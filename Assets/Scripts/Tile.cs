@@ -2,13 +2,15 @@
 using System.Collections;
 
 public class Tile : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
 	
+	public bool isWalkable; //false is a wall, true is a way
+	public int x, y; //coordenates
+
+	GameObject[] myObjects; //objects in the tile: player, enemys...
+
+	void Start () {
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
