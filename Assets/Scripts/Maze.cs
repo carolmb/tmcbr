@@ -2,28 +2,39 @@
 using System.Collections;
 
 public class Maze : MonoBehaviour {
-	
-	Tile[,] maze; //GameObject Tile
+
+	public static Maze instance;
+
+	Tile[,] tiles; //GameObject Tile
 	//enemys
 	//blablabla
 
+	public int width {
+		get { return tiles.GetLength (0); }
+	}
+
+	public int height {
+		get { return tiles.GetLength (1); }
+	}
+
+	public Tile this[int i, int j] {
+		get { return tiles [i, j]; }
+	}
+
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+		instance = this;
 		Map map = new Map(0, 0); //creates de logic maze (just 0s and 1s)
 		CreateTiles (map);
 	}
 
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	void CreateTiles (Map map) { 
+		tiles = new Tile[map.width, map.height];
 		for (int i = 0; i < map.height; i++) {
 			for(int j = 0; j < map.width; j++) {
-				maze [i, j].isWalkable = map.map[i, j] == 1 ? true : false;
-				maze [i, j].x = i;
-				maze [i, j].y = j;
+				tiles [i, j].isWalkable = map.map[i, j] == 1 ? true : false;
+				tiles [i, j].x = i;
+				tiles [i, j].y = j;
 			}
 		}
 	}
