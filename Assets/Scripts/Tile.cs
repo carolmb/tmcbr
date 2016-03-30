@@ -12,6 +12,7 @@ public class Tile : MonoBehaviour {
 	GameObject[] myObjects; //objects in the tile: player, enemys...
 
 	void Start () {
+		
 	}
 	
 	void Update () {
@@ -19,7 +20,16 @@ public class Tile : MonoBehaviour {
 	}
 
 	public List<Tile> GetNeighbours() {
-		return null;
+		List<Tile> neightbours = new List<Tile> ();
+		neightbours.Add (Maze.instance [x, y + 1]);
+		neightbours.Add (Maze.instance [x, y - 1]);
+		neightbours.Add (Maze.instance [x + 1, y]);
+		neightbours.Add (Maze.instance [x + 1, y + 1]);
+		neightbours.Add (Maze.instance [x + 1, y - 1]);
+		neightbours.Add (Maze.instance [x - 1, y]);
+		neightbours.Add (Maze.instance [x - 1, y + 1]);
+		neightbours.Add (Maze.instance [x - 1, y - 1]);
+		return neightbours;
 	}
 
 }

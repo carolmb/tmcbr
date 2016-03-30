@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6608d276d8a8845a0b22bcbd7dc6dc35
-timeCreated: 1458931604
+timeCreated: 1459335704
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -19,7 +19,7 @@ TextureImporter:
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -29,7 +29,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -41,7 +41,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -49,13 +49,14 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 1
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
@@ -64,123 +65,136 @@ TextureImporter:
     - name: player_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 96
-        width: 21
-        height: 29
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: player_1
       rect:
         serializedVersion: 2
-        x: 25
+        x: 24
         y: 96
-        width: 21
-        height: 30
+        width: 24
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: player_2
       rect:
         serializedVersion: 2
-        x: 49
+        x: 48
         y: 96
-        width: 21
-        height: 29
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: player_3
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 64
-        width: 19
-        height: 29
+        width: 24
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: player_4
       rect:
         serializedVersion: 2
-        x: 27
+        x: 24
         y: 64
-        width: 19
-        height: 30
+        width: 24
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: player_5
       rect:
         serializedVersion: 2
-        x: 51
+        x: 48
         y: 64
-        width: 19
-        height: 29
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: player_6
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 32
-        width: 19
-        height: 29
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: player_7
       rect:
         serializedVersion: 2
-        x: 26
+        x: 24
         y: 32
-        width: 19
-        height: 30
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: player_8
       rect:
         serializedVersion: 2
-        x: 50
+        x: 48
         y: 32
-        width: 19
-        height: 29
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: player_9
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 21
-        height: 29
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: player_10
       rect:
         serializedVersion: 2
-        x: 25
+        x: 24
         y: 0
-        width: 21
-        height: 30
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: player_11
       rect:
         serializedVersion: 2
-        x: 49
+        x: 48
         y: 0
-        width: 21
-        height: 29
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
