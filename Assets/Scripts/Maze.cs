@@ -32,7 +32,8 @@ public class Maze : MonoBehaviour {
 		tiles = new Tile[map.width, map.height];
 		for (int i = 0; i < map.height; i++) {
 			for(int j = 0; j < map.width; j++) {
-				tiles [i, j].isWalkable = map.map[i, j] == 1 ? true : false;
+				tiles [i, j] = new Tile ();
+				tiles [i, j].isWalkable = map.map[i, j].isWalkeable;
 				tiles [i, j].x = i;
 				tiles [i, j].y = j;
 			}

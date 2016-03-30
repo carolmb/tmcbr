@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Tile : MonoBehaviour {
+public class Tile {
 
 	public readonly static int size = 32;
 
@@ -18,7 +18,7 @@ public class Tile : MonoBehaviour {
 	void Update () {
 	
 	}
-
+		
 	public List<Tile> GetNeighbours() {
 		List<Tile> neightbours = new List<Tile> ();
 		neightbours.Add (Maze.instance [x, y + 1]);
@@ -31,5 +31,6 @@ public class Tile : MonoBehaviour {
 		neightbours.Add (Maze.instance [x - 1, y - 1]);
 		return neightbours;
 	}
+
 
 }
