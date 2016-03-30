@@ -6,20 +6,27 @@ public class Tile {
 
 	public readonly static int size = 32;
 
-	public bool isWalkable; //false is a wall, true is a way
 	public int x, y; //coordenates
 
-	GameObject[] myObjects; //objects in the tile: player, enemys...
+	public bool isWall = false; // floor or wall
+	public int obstacle = -1; // -1 is no obstacle
+		
+	public bool visited; // to algorithms and to check if visited by player
 
-	void Start () {
-		
+	public bool isWalkable {
+		get { return !isWall && obstacle < 0; }
 	}
-	
-	void Update () {
-	
+
+	public List<Tile> GetNeighbours4() {
+		List<Tile> neightbours = new List<Tile> ();
+		neightbours.Add (Maze.instance [x, y + 1]);
+		neightbours.Add (Maze.instance [x, y - 1]);
+		neightbours.Add (Maze.instance [x + 1, y]);
+		neightbours.Add (Maze.instance [x - 1, y]);
+		return neightbours;
 	}
-		
-	public List<Tile> GetNeighbours() {
+
+	public List<Tile> GetNeighbours8() {
 		List<Tile> neightbours = new List<Tile> ();
 		neightbours.Add (Maze.instance [x, y + 1]);
 		neightbours.Add (Maze.instance [x, y - 1]);

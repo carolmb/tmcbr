@@ -26,6 +26,12 @@ public class Character : MonoBehaviour {
 		boxCollider = GetComponent<BoxCollider2D>();
 	}
 
+	void LateUpdate() {
+		Vector3 pos = new Vector3 (Mathf.Round(transform.position.x), Mathf.Round(transform.position.y));
+		pos.z = pos.y;
+		transform.position = pos;
+	}
+
 	public void Move(Vector2 translation) {
 		Vector2 newPosition = (Vector2)transform.position + translation;
 		if (IsWalkable (newPosition)) {
@@ -67,8 +73,8 @@ public class Character : MonoBehaviour {
 	private bool IsWalkable(Vector2 newPosition) {
 		float x1 = newPosition.x - boxCollider.bounds.extents.x;
 		float x2 = newPosition.x + boxCollider.bounds.extents.x;
-		float y1 = newPosition.y - boxCollider.bounds.extents.y;
-		float y2 = newPosition.y + boxCollider.bounds.extents.y;
+		float y1 = newPosition.y - boxCollider.bounds.extents.y - Tile.size / 2;
+		float y2 = newPosition.y + boxCollider.bounds.extents.y - Tile.size / 2;
 
 		if (Collides (x1, y1) | Collides (x1, y2) || Collides (x2, y1) || Collides (x2, y2)) {
 			return false;
@@ -76,18 +82,13 @@ public class Character : MonoBehaviour {
 			return true;
 		}
 	}
-	
+
 	public bool Collides(float x, float y) {
-		Vector2 p = WorldToTilePos(new Vector2 (x, y));
+		Vector2 p = Maze.WorldToTilePos(new Vector2 (x, y));
+		if (p.x < 0 || p.x >= Maze.instance.width || p.y < 0 || p.y >= Maze.instance.height) {
+			return true;
+		}
 		return Maze.instance [(int)p.x, (int)p.y].isWalkable == false;
-	}
-
-	public Vector2 TileToWorldPosition(Vector2 tilePos) {
-		return tilePos * Tile.size;
-	}
-
-	public Vector2 WorldToTilePos(Vector2 worldPos) {
-		return new Vector2(Mathf.Round(worldPos.x / Tile.size), Mathf.Round(worldPos.y / Tile.size));
 	}
 
 }

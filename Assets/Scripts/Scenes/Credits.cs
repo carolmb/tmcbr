@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Credits : MonoBehaviour {
 
@@ -7,7 +8,7 @@ public class Credits : MonoBehaviour {
 	 * Back to main menu.
 	 */
 	public void Back() {
-		Application.LoadLevel("MainMenu");
+		SceneManager.LoadScene("MainMenu");
 	}
 	
 	public void MouseEnter() {

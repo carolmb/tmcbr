@@ -12,13 +12,13 @@ public class Player : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		moveVector.x = Input.GetAxis ("Horizontal");
-		moveVector.y = Input.GetAxis ("Vertical");
+		moveVector.x = Input.GetAxisRaw ("Horizontal");
+		moveVector.y = Input.GetAxisRaw ("Vertical");
 		if (moveVector.x != 0 || moveVector.y != 0) {
 			character.Move (moveVector * speed * Time.deltaTime);
 		} else {
 			character.Stop ();
 		}
-
 	}
+
 }

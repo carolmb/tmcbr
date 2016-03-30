@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
@@ -7,21 +8,21 @@ public class MainMenu : MonoBehaviour {
 	 * Starts the game.
 	 */
 	public void Play() {
-		Application.LoadLevelAdditive("ChooseGame");
+		SceneManager.LoadScene("ChooseGame");
 	}
 
 	/**
 	 * Achievements.
 	 */
 	public void Achievements() {
-		Application.LoadLevelAdditive("Achievements");
+		SceneManager.LoadScene("Achievements");
 	}
 
 	/**
 	 * Credits.
 	 */
 	public void Credits() {
-		Application.LoadLevelAdditive("Credits");
+		SceneManager.LoadScene("Credits");
 	}
 
 	/**
