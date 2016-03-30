@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Tile : MonoBehaviour {
+public class Tile {
 
 	public readonly static int size = 32;
 
@@ -18,7 +18,7 @@ public class Tile : MonoBehaviour {
 	
 	}
 
-	public List<Tile> GetNeighbours() {
+	public List<Tile> GetNeighbours () {
 		return null;
 	}
 
