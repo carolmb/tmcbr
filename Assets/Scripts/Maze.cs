@@ -4,6 +4,7 @@ using System.Collections;
 public class Maze : MonoBehaviour {
 
 	public static Maze instance;
+	public static Tile begin;
 
 	public string mazeTheme;
 
