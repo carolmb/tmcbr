@@ -152,6 +152,7 @@ public class MazeGenerator {
 			if (NotVisitedNeighbours (currentTile)) {
 				neighbours = GetNeighbours (currentTile);
 				temp = neighbours [Random.Range (0, neighbours.Count)];
+				stack.Push (currentTile);
 				stack.Push (temp);
 				RemoveWall (currentTile, temp);
 			} 

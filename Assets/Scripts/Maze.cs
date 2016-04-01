@@ -34,7 +34,7 @@ public class Maze : MonoBehaviour {
 		if (visited) {
 			// TODO: carregar do salvo
 		} else {
-			MazeGenerator.CreateMaze (11, 11);
+			MazeGenerator.CreateMaze (41, 41);
 		}
 
 		foreach (Tile t in tiles) {
