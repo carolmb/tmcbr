@@ -13,6 +13,15 @@ public class Tile {
 		
 	public bool visited; // to algorithms and to check if visited by player
 
+	public Tile() {
+		
+	}
+
+	public Tile(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
 	public bool isWalkable {
 		get { return !isWall && obstacle < 0; }
 	}

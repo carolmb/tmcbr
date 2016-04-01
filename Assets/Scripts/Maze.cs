@@ -4,11 +4,11 @@ using System.Collections;
 public class Maze : MonoBehaviour {
 
 	public static Maze instance;
-	public static Tile begin;
 
 	public string mazeTheme;
 
-	Tile[,] tiles; //GameObject Tile
+	public Tile[,] tiles; //GameObject Tile
+	public Tile beginTile;
 
 	bool visited = false;
 
@@ -34,7 +34,7 @@ public class Maze : MonoBehaviour {
 		if (visited) {
 			// TODO: carregar do salvo
 		} else {
-			tiles = MazeGenerator.CreateMaze (10, 10);
+			MazeGenerator.CreateMaze (11, 11);
 		}
 
 		foreach (Tile t in tiles) {
@@ -58,7 +58,7 @@ public class Maze : MonoBehaviour {
 		return obj;
 	}
 
-	public static Vector3 TileToWorldPosition(Vector2 tilePos) {
+	public Vector3 TileToWorldPosition(Vector2 tilePos) {
 		tilePos = tilePos * Tile.size;
 		return new Vector3 (tilePos.x, tilePos.y, tilePos.y);
 	}

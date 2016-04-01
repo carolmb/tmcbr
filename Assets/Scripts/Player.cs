@@ -7,6 +7,11 @@ public class Player : MonoBehaviour {
 	private Character character;
 	private Vector2 moveVector;
 
+	void Start() {
+		Vector2 tilePos = new Vector2 (Maze.instance.beginTile.x, Maze.instance.beginTile.y);
+		transform.position = Maze.instance.TileToWorldPosition (tilePos);
+	}
+
 	void Awake() {
 		character = GetComponent<Character> ();
 	}
