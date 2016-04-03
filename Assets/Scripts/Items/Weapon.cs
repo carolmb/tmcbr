@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : Character {
+public class Weapon : Item {
+	
+	// Damage
+	public int Damage;
 
 	// Use this for initialization
 	void Start () {
@@ -10,6 +13,11 @@ public class Enemy : Character {
 	
 	// Update is called once per frame
 	void Update () {
+		//
+	}
+
+	// Use the weapon
+	void attack() {
 		//
 	}
 }

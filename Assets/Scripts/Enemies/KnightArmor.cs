@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : Character {
+public class KnightArmor : Enemy {
+
+	// If the Knight Armor is possessed
+	public bool isPossessed;
 
 	// Use this for initialization
 	void Start () {
