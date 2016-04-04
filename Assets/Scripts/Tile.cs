@@ -6,16 +6,16 @@ public class Tile {
 
 	public readonly static int size = 32;
 
-	public int x, y; //coordenates
+	public int x, y; // coordenates
 
 	public bool isWall = false; // floor or wall
 	public int obstacle = -1; // -1 is no obstacle
 		
 	public bool visited; // to algorithms and to check if visited by player
 
-	public Tile() {
-		
-	}
+	public GameObject prefab; // 
+
+	public Tile() {}
 
 	public Tile(int x, int y) {
 		this.x = x;
@@ -47,6 +47,4 @@ public class Tile {
 		neightbours.Add (Maze.instance [x - 1, y - 1]);
 		return neightbours;
 	}
-
-
 }

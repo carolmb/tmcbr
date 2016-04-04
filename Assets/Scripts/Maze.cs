@@ -45,7 +45,15 @@ public class Maze : MonoBehaviour {
 			if (t.obstacle >= 0) {
 				CreateTileObject (t.x, t.y, "obstacle" + t.obstacle);
 			}
+			if (t.prefab != null) {
+				CreateTilePrefab (t.x, t.y, t.prefab);
+			}
 		}
+	}
+
+	GameObject CreateTilePrefab(int x, int y, GameObject prefab) {
+		// TODO
+		return null;
 	}
 
 	GameObject CreateTileObject(int x, int y, string spriteName) {
@@ -58,7 +66,7 @@ public class Maze : MonoBehaviour {
 		return obj;
 	}
 
-	public Vector3 TileToWorldPosition(Vector2 tilePos) {
+	public static Vector3 TileToWorldPosition(Vector2 tilePos) {
 		tilePos = tilePos * Tile.size;
 		return new Vector3 (tilePos.x, tilePos.y, tilePos.y);
 	}

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Mimic : Enemy {
+public class Mimic : Character {
 
 	// Use this for initialization
 	void Start () {

@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KnightArmor : Enemy {
+[RequireComponent (typeof(Character))]
+public class KnightArmor : MonoBehaviour {
 
-	// If the Knight Armor is possessed
-	public bool isPossessed;
+	private Character character;
 
-	// Use this for initialization
-	void Start () {
-		//
+	void Awake() {
+		character = GetComponent<Character> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		//
+
+	void Update() {
+		// Checar o raio, depois o caminho, e então andar para o primeiro tile desse caminho
+		// Acessa o player por Player.instance
+		// Maze.WorldToTilePos()
 	}
+
 }
