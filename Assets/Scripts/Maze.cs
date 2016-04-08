@@ -6,11 +6,10 @@ public class Maze : MonoBehaviour {
 	public static Maze instance;
 
 	public string mazeTheme;
+	public int size;
 
 	public Tile[,] tiles; //GameObject Tile
 	public Tile beginTile;
-
-	bool visited = false;
 
 	public int width {
 		get { return tiles.GetLength (0); }
@@ -20,10 +19,6 @@ public class Maze : MonoBehaviour {
 		get { return tiles.GetLength (1); }
 	}
 
-	public Tile this[int i, int j] {
-		get { return tiles [i, j]; }
-	}
-
 	// Use this for initialization
 	void Awake () {
 		instance = this;
@@ -31,14 +26,16 @@ public class Maze : MonoBehaviour {
 	}
 
 	void LoadMaze() {
-		if (visited) {
-			// TODO: carregar do salvo
-		} else {
-			MazeGenerator.CreateMaze (41, 41);
-		}
+		// TODO: carregar do salvo (o gerador aqui é temporário)
+		MazeGenerator.CreateMaze (size, size);
 
 		foreach (Tile t in tiles) {
-			CreateTileObject (t.x, t.y, "floor").transform.Translate (0, 0, 999 - transform.position.z);
+			
+			GameObject floor = CreateTileObject (t.x, t.y, "floor");
+			Vector3 pos = floor.transform.position;
+			pos.z = 999;
+			floor.transform.position = pos;
+
 			if (t.isWall) {
 				CreateTileObject (t.x, t.y, "wall").transform.Translate (0, 0, 1);
 			}
@@ -48,12 +45,20 @@ public class Maze : MonoBehaviour {
 			if (t.prefab != null) {
 				CreateTilePrefab (t.x, t.y, t.prefab);
 			}
+
 		}
 	}
 
+	void Start() {
+		Vector2 tilePos = new Vector2 (beginTile.x, beginTile.y);
+		Player.instance.transform.position = Maze.TileToWorldPosition (tilePos) + new Vector3(0, Tile.size / 2, 0);
+	}
+
 	GameObject CreateTilePrefab(int x, int y, GameObject prefab) {
-		// TODO
-		return null;
+		GameObject obj = Instantiate (prefab);
+		obj.transform.position = TileToWorldPosition (new Vector2 (x, y));
+		obj.transform.SetParent (transform);
+		return obj;
 	}
 
 	GameObject CreateTileObject(int x, int y, string spriteName) {
@@ -72,7 +77,13 @@ public class Maze : MonoBehaviour {
 	}
 
 	public static Vector2 WorldToTilePos(Vector2 worldPos) {
-		return new Vector2(Mathf.Round(worldPos.x / Tile.size), Mathf.Round(worldPos.y / Tile.size));
+		Vector2 tilePos = new Vector2(Mathf.Round(worldPos.x / Tile.size), Mathf.Round(worldPos.y / Tile.size));
+
+
+		Debug.Log ("world: " + worldPos);
+		Debug.Log ("tile: " + tilePos);
+
+		return tilePos;
 	}
 
 }

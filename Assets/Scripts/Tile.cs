@@ -28,23 +28,23 @@ public class Tile {
 
 	public List<Tile> GetNeighbours4() {
 		List<Tile> neightbours = new List<Tile> ();
-		neightbours.Add (Maze.instance [x, y + 1]);
-		neightbours.Add (Maze.instance [x, y - 1]);
-		neightbours.Add (Maze.instance [x + 1, y]);
-		neightbours.Add (Maze.instance [x - 1, y]);
+		neightbours.Add (Maze.instance.tiles [x, y + 1]);
+		neightbours.Add (Maze.instance.tiles [x, y - 1]);
+		neightbours.Add (Maze.instance.tiles [x + 1, y]);
+		neightbours.Add (Maze.instance.tiles [x - 1, y]);
 		return neightbours;
 	}
 
 	public List<Tile> GetNeighbours8() {
 		List<Tile> neightbours = new List<Tile> ();
-		neightbours.Add (Maze.instance [x, y + 1]);
-		neightbours.Add (Maze.instance [x, y - 1]);
-		neightbours.Add (Maze.instance [x + 1, y]);
-		neightbours.Add (Maze.instance [x + 1, y + 1]);
-		neightbours.Add (Maze.instance [x + 1, y - 1]);
-		neightbours.Add (Maze.instance [x - 1, y]);
-		neightbours.Add (Maze.instance [x - 1, y + 1]);
-		neightbours.Add (Maze.instance [x - 1, y - 1]);
+		neightbours.Add (Maze.instance.tiles [x, y + 1]);
+		neightbours.Add (Maze.instance.tiles [x, y - 1]);
+		neightbours.Add (Maze.instance.tiles [x + 1, y]);
+		neightbours.Add (Maze.instance.tiles [x + 1, y + 1]);
+		neightbours.Add (Maze.instance.tiles [x + 1, y - 1]);
+		neightbours.Add (Maze.instance.tiles [x - 1, y]);
+		neightbours.Add (Maze.instance.tiles [x - 1, y + 1]);
+		neightbours.Add (Maze.instance.tiles [x - 1, y - 1]);
 		return neightbours;
 	}
 }

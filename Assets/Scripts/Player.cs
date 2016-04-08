@@ -9,24 +9,38 @@ public class Player : MonoBehaviour {
 	private Character character;
 	private Vector2 moveVector;
 
-	void Start() {
-		Vector2 tilePos = new Vector2 (Maze.instance.beginTile.x, Maze.instance.beginTile.y);
-		transform.position = Maze.TileToWorldPosition (tilePos);
-	}
-
 	void Awake() {
 		instance = this;
 		character = GetComponent<Character> ();
 	}
 
-	void FixedUpdate() {
+	void Update() {
 		moveVector.x = Input.GetAxisRaw ("Horizontal");
 		moveVector.y = Input.GetAxisRaw ("Vertical");
 		if (moveVector.x != 0 || moveVector.y != 0) {
-			character.InstantMove (moveVector * character.speed * Time.deltaTime);
+			Debug.Log ("input: " + moveVector);
+			float angle = Math.VectorToAngle (moveVector);
+			if (TryMove (angle)) {
+				Debug.Log (Maze.WorldToTilePos (transform.position));
+				character.TurnTo (angle);
+			} else if (TryMove (angle + 45)) {
+				Debug.Log (Maze.WorldToTilePos (transform.position));
+				character.TurnTo (angle + 45); 
+			} else if (TryMove (angle - 45)) {
+				Debug.Log (Maze.WorldToTilePos (transform.position));
+				character.TurnTo(angle - 45);
+			} else {
+				character.TurnTo (angle);
+				character.Stop ();
+			}
 		} else {
 			character.Stop ();
 		}
+	}
+
+	bool TryMove(float angle) {
+		Vector2 translation = Math.AngleToVector (angle) * character.speed;
+		return character.InstantMove (translation);
 	}
 
 }
