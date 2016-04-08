@@ -14,20 +14,17 @@ public class Player : MonoBehaviour {
 		character = GetComponent<Character> ();
 	}
 
+	// Movimento pelo Input
 	void Update() {
 		moveVector.x = Input.GetAxisRaw ("Horizontal");
 		moveVector.y = Input.GetAxisRaw ("Vertical");
 		if (moveVector.x != 0 || moveVector.y != 0) {
-			Debug.Log ("input: " + moveVector);
-			float angle = Math.VectorToAngle (moveVector);
+			float angle = GameManager.VectorToAngle (moveVector);
 			if (TryMove (angle)) {
-				Debug.Log (Maze.WorldToTilePos (transform.position));
 				character.TurnTo (angle);
 			} else if (TryMove (angle + 45)) {
-				Debug.Log (Maze.WorldToTilePos (transform.position));
 				character.TurnTo (angle + 45); 
 			} else if (TryMove (angle - 45)) {
-				Debug.Log (Maze.WorldToTilePos (transform.position));
 				character.TurnTo(angle - 45);
 			} else {
 				character.TurnTo (angle);
@@ -38,8 +35,10 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+	// Tenta se mover no dado ângulo
+	// Se conseguir, move e retorn true; se não, apenas retorna false
 	bool TryMove(float angle) {
-		Vector2 translation = Math.AngleToVector (angle) * character.speed;
+		Vector2 translation = GameManager.AngleToVector (angle) * character.speed;
 		return character.InstantMove (translation);
 	}
 

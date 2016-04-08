@@ -31,7 +31,7 @@ public class KnightArmor : MonoBehaviour {
 		} else if (character.direction == 0) {
 			position.y += 1;
 		}
-		way.Enqueue(Maze.WorldToTilePos(position));
+		way.Enqueue(MazeManager.WorldToTilePos(position));
 		firstPosition = transform.position;
 	}
 
@@ -44,7 +44,7 @@ public class KnightArmor : MonoBehaviour {
 	void CheckCollision() {
 		// First position
 		Vector2 position = way.Dequeue();
-		if (Maze.WorldToTilePos(Player.instance.transform.position) == Maze.WorldToTilePos(position)) {
+		if (MazeManager.WorldToTilePos(Player.instance.transform.position) == MazeManager.WorldToTilePos(position)) {
 			// Wait one second
 			Invoke("Wait", 1);
 			// First movement
@@ -57,10 +57,10 @@ public class KnightArmor : MonoBehaviour {
 	// Try find the player
 	void FindPlayer(Vector2 position, int count, bool founded) {
 		// If was founded
-		if (count == 0 && Maze.WorldToTilePos (Player.instance.transform.position) != position) {
+		if (count == 0 && MazeManager.WorldToTilePos (Player.instance.transform.position) != position) {
 			founded = false;
 			ReturnToOriginalPosition ();
-		} else if (Maze.WorldToTilePos (Player.instance.transform.position) == position) {
+		} else if (MazeManager.WorldToTilePos (Player.instance.transform.position) == position) {
 			founded = true;
 			// Wait one second
 			Invoke("Wait", 1);
@@ -69,16 +69,16 @@ public class KnightArmor : MonoBehaviour {
 			character.MoveTo(pos);
 		}
 		// Check the way
-		if (Maze.instance.tiles[(int) position.x, (int) position.y - 1].isWalkable == true && !founded) {
+		if (MazeManager.maze.tiles[(int) position.x, (int) position.y - 1].isWalkable == true && !founded) {
 			FindPlayer(new Vector2(position.x, position.y), --count, founded);
 		}
-		if (Maze.instance.tiles[(int) position.x, (int) position.y + 1].isWalkable == true && !founded) {
+		if (MazeManager.maze.tiles[(int) position.x, (int) position.y + 1].isWalkable == true && !founded) {
 			FindPlayer(new Vector2(position.x, position.y), --count, founded);
 		}
-		if (Maze.instance.tiles[(int) position.x - 1, (int) position.y].isWalkable == true && !founded) {
+		if (MazeManager.maze.tiles[(int) position.x - 1, (int) position.y].isWalkable == true && !founded) {
 			FindPlayer(new Vector2(position.x, position.y), --count, founded);
 		}
-		if (Maze.instance.tiles[(int) position.x + 1, (int) position.y].isWalkable == true && !founded) {
+		if (MazeManager.maze.tiles[(int) position.x + 1, (int) position.y].isWalkable == true && !founded) {
 			FindPlayer(new Vector2(position.x, position.y), --count, founded);
 		}
 	}

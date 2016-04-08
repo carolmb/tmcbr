@@ -11,15 +11,16 @@ public class Tile {
 	public bool isWall = false; // floor or wall
 	public int obstacle = -1; // -1 is no obstacle
 		
-	public bool visited; // to algorithms and to check if visited by player
+	public bool visited; // usado para algoritmos e posteriormente para checar se foi visitado pelo jogador
 
-	public GameObject prefab; // 
+	public string objectName; // nome do objeto (inimigo ou item), se tiver 
 
 	public Tile() {}
 
 	public Tile(int x, int y) {
 		this.x = x;
 		this.y = y;
+		objectName = "";
 	}
 
 	public bool isWalkable {
@@ -28,23 +29,23 @@ public class Tile {
 
 	public List<Tile> GetNeighbours4() {
 		List<Tile> neightbours = new List<Tile> ();
-		neightbours.Add (Maze.instance.tiles [x, y + 1]);
-		neightbours.Add (Maze.instance.tiles [x, y - 1]);
-		neightbours.Add (Maze.instance.tiles [x + 1, y]);
-		neightbours.Add (Maze.instance.tiles [x - 1, y]);
+		neightbours.Add (MazeManager.maze.tiles [x, y + 1]);
+		neightbours.Add (MazeManager.maze.tiles [x, y - 1]);
+		neightbours.Add (MazeManager.maze.tiles [x + 1, y]);
+		neightbours.Add (MazeManager.maze.tiles [x - 1, y]);
 		return neightbours;
 	}
 
 	public List<Tile> GetNeighbours8() {
 		List<Tile> neightbours = new List<Tile> ();
-		neightbours.Add (Maze.instance.tiles [x, y + 1]);
-		neightbours.Add (Maze.instance.tiles [x, y - 1]);
-		neightbours.Add (Maze.instance.tiles [x + 1, y]);
-		neightbours.Add (Maze.instance.tiles [x + 1, y + 1]);
-		neightbours.Add (Maze.instance.tiles [x + 1, y - 1]);
-		neightbours.Add (Maze.instance.tiles [x - 1, y]);
-		neightbours.Add (Maze.instance.tiles [x - 1, y + 1]);
-		neightbours.Add (Maze.instance.tiles [x - 1, y - 1]);
+		neightbours.Add (MazeManager.maze.tiles [x, y + 1]);
+		neightbours.Add (MazeManager.maze.tiles [x, y - 1]);
+		neightbours.Add (MazeManager.maze.tiles [x + 1, y]);
+		neightbours.Add (MazeManager.maze.tiles [x + 1, y + 1]);
+		neightbours.Add (MazeManager.maze.tiles [x + 1, y - 1]);
+		neightbours.Add (MazeManager.maze.tiles [x - 1, y]);
+		neightbours.Add (MazeManager.maze.tiles [x - 1, y + 1]);
+		neightbours.Add (MazeManager.maze.tiles [x - 1, y - 1]);
 		return neightbours;
 	}
 }
