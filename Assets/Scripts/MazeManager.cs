@@ -1,19 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class MazeManager : MonoBehaviour {
 
 	public static Maze maze; // Se quiser acesso a qualquer informação do labirinto, use isso
 
-	public static List<string> nextScene;
+	// ===============================================================================
+	// Transição entre labirintos
+	// ===============================================================================
+
+	// Para transições de um labirinto para outro
+	public static Transition currentTransition;
+
+	public static void GoToMaze(Transition transition) {
+		currentTransition = transition;
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+	}
+
+	// ===============================================================================
+	// Criação dos tiles
+	// ===============================================================================
+
+	// Coloca o player na posição inicial
+	void Start() {
+		Vector2 tilePos = new Vector2 (currentTransition.tileX, currentTransition.tileY);
+		Vector2 initPos = TileToWorldPosition (tilePos) + new Vector3 (0, Tile.size / 2, 0);
+		Player.instance.transform.position = initPos;
+		Player.instance.character.direction = currentTransition.direction;
+	}
 
 	// Guarda a instância e inicializa os tiles
 	void Awake () {
-		//maze = MazeGenerator.CreateMaze ("Hall", 10, 10);
-		maze = SaveManager.currentSave.mazes[0];
-		foreach (Tile t in maze) {
+		maze = SaveManager.currentSave.mazes [currentTransition.mazeID];
 
+		foreach (Tile t in maze) {
 			GameObject floor = CreateTileGraphic (t.x, t.y, "floor");
 			Vector3 pos = floor.transform.position;
 			pos.z = 999;
@@ -28,15 +50,7 @@ public class MazeManager : MonoBehaviour {
 			if (t.objectName != "") {
 				CreateTileObject (t.x, t.y, t.objectName);
 			}
-
 		}
-
-	}
-
-	// Coloca o player na posição inicial
-	void Start() {
-		Vector2 tilePos = new Vector2 (maze.beginCoord.x, maze.beginCoord.y);
-		Player.instance.transform.position = TileToWorldPosition (tilePos) + new Vector3(0, Tile.size / 2, 0);
 	}
 
 	// Criar objeto do tile	(prefab do item/inimigo deve estar na pasta Resources/Prefabs)
@@ -51,13 +65,17 @@ public class MazeManager : MonoBehaviour {
 	// Criar gráficos do tile
 	GameObject CreateTileGraphic(int x, int y, string spriteName) {
 		GameObject obj = new GameObject ();
-		obj.name = "Tile (" + x + ", " + y + ")";
+		obj.name = "Tile[" + spriteName + "] (" + x + ", " + y + ")";
 		obj.transform.position = TileToWorldPosition (new Vector2 (x, y));
 		SpriteRenderer sr = obj.AddComponent<SpriteRenderer> ();
 		sr.sprite = Resources.Load<Sprite> ("Images/Tilesets/" + maze.theme + "/" + spriteName);
 		obj.transform.SetParent (transform);
 		return obj;
 	}
+
+	// ===============================================================================
+	// Posição dos tiles
+	// ===============================================================================
 
 	// Converte coordenada em tiles para posição de jogo (em pixels)
 	public static Vector3 TileToWorldPosition(Vector2 tilePos) {
@@ -81,6 +99,6 @@ public class MazeManager : MonoBehaviour {
 		}
 		return maze.tiles [(int)p.x, (int)p.y].isWalkable == false;
 	}
-
+		
 }
 	

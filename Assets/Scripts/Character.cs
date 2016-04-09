@@ -45,7 +45,7 @@ public class Character : MonoBehaviour {
 	}
 
 	// Converte um ângulo para uma direção (usar a imagem do personagem como referência)
-	public int AngleToDirection(int angle) {
+	public static int AngleToDirection(int angle) {
 		while (angle < 0)
 			angle += 360;
 		while (angle >= 360)
@@ -150,6 +150,13 @@ public class Character : MonoBehaviour {
 	// Verifica se um dado ponto está colidindo em algum tile
 	public bool Collides(float x, float y) {
 		return MazeManager.Collides (x, y);
+	}
+
+	public Tile currentTile {
+		get {
+			Vector2 tileCoord = MazeManager.WorldToTilePos(transform.position - new Vector3(0, Tile.size / 2, 0));
+			return MazeManager.maze.tiles [(int)tileCoord.x, (int)tileCoord.y];
+		}
 	}
 
 }

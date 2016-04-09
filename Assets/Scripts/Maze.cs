@@ -6,18 +6,14 @@ using System.Linq;
 [System.Serializable]
 public class Maze : IEnumerable {
 
-	// TODO: colocar também as transições do tipo Tile (representado por um x, y) -> Maze (representdo por um ID)
-
-	public int id = -1;
+	public int id;
 	public Tile[,] tiles;
-
-	public Tile beginCoord;
-	public Tile endCoord;
 
 	// Para saber qual gráfico vai ser utilizado
 	public string theme = "Hall";
 
-	public Maze(string theme, int width, int height) {
+	public Maze(int id, string theme, int width, int height) {
+		this.id = id;
 		this.tiles = new Tile[width, height];
 		this.theme = theme;
 	}
@@ -29,6 +25,8 @@ public class Maze : IEnumerable {
 	// Tamanho em coordenadas do jogo
 	public float worldWidth { get { return width * Tile.size; }	}
 	public float worldHeight { get { return height * Tile.size; } }
+
+	public Vector2 center { get { return new Vector2 (width / 2, height / 2); } }
 
 	public IEnumerator GetEnumerator() {
 		return tiles.GetEnumerator ();

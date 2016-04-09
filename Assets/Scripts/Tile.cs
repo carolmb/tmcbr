@@ -3,25 +3,48 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
+public class Transition {
+	public int mazeID;
+	public int tileX;
+	public int tileY;
+	public int direction;
+	public Transition(int id, int x, int y, int dir) {
+		mazeID = id;
+		tileX = x;
+		tileY = y;
+		direction = dir;
+	}
+}
+
+[System.Serializable]
 public class Tile {
 
 	public readonly static int size = 32;
 
-	public int x, y; // coordenates
-
-	public bool isWall = false; // floor or wall
-	public int obstacle = -1; // -1 is no obstacle
+	public int x, y; // coordenadas
+	public Vector2 coordinates {
+		get { return new Vector2 (x, y); }
+	}
 		
+	public bool isWall = false; // chão ou parede
+	public int obstacle = -1; // -1 é sem obstáculo
+	public string objectName = ""; // nome do objeto (inimigo ou item), se tiver 
 	public bool visited; // usado para algoritmos e posteriormente para checar se foi visitado pelo jogador
-
-	public string objectName; // nome do objeto (inimigo ou item), se tiver 
+	public Transition transition; // se ao tocar, para onde o player vai
 
 	public Tile() {}
 
 	public Tile(int x, int y) {
 		this.x = x;
 		this.y = y;
-		objectName = "";
+	}
+
+	public Tile(Tile copy) {
+		this.x = copy.x;
+		this.y = copy.y;
+		this.isWall = copy.isWall;
+		this.obstacle = copy.obstacle;
+		//this.transition = copy.transition;
 	}
 
 	public bool isWalkable {

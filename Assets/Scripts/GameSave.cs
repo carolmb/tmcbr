@@ -11,9 +11,12 @@ public class GameSave {
 	Bag bag;
 
 	public GameSave(){
-		mazes = new Maze[3];
-		mazes [0] = MazeGenerator.CreateMaze("hall", 7, 7);
-		mazes [1] = MazeGenerator.CreateMaze("hall", 8, 8);
-		mazes [2] = MazeGenerator.CreateMaze("hall", 9, 9);
+		int mazeCount = 1;
+		mazes = new Maze[mazeCount];
+		for (int i = 0; i < mazeCount; i++) {
+			mazes [i] = MazeGenerator.CreateMaze(i, "Hall", 15, 15);
+		}
+
 	}
+
 }

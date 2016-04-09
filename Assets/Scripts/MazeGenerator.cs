@@ -9,13 +9,13 @@ public class MazeGenerator {
 		if (tile.x - 2 > 0 && !maze.tiles [tile.x - 2, tile.y].visited) {
 			neighbours.Add (maze.tiles [tile.x - 2, tile.y]);
 		}
-		if (tile.x + 2 < maze.width && !maze.tiles [tile.x + 2, tile.y].visited) {
+		if (tile.x + 2 < maze.width - 1 && !maze.tiles [tile.x + 2, tile.y].visited) {
 			neighbours.Add (maze.tiles [tile.x + 2, tile.y]);
 		} 
 		if (tile.y - 2 > 0 && !maze.tiles [tile.x, tile.y - 2].visited) {
 			neighbours.Add (maze.tiles [tile.x, tile.y - 2]);
 		} 
-		if (tile.y + 2 < maze.height && !maze.tiles [tile.x, tile.y + 2].visited) {
+		if (tile.y + 2 < maze.height - 1 && !maze.tiles [tile.x, tile.y + 2].visited) {
 			neighbours.Add (maze.tiles [tile.x, tile.y + 2]);
 		}
 
@@ -49,9 +49,7 @@ public class MazeGenerator {
 	static void InicializeNullMaze(Maze maze) {
 		for (int i = 0; i < maze.width; i++) {
 			for (int j = 0; j < maze.height; j++) {
-				maze.tiles [i, j] = new Tile ();
-				maze.tiles [i, j].x = i;
-				maze.tiles [i, j].y = j;
+				maze.tiles [i, j] = new Tile (i, j);
 				if (i % 2 == 1 && j % 2 == 1) {
 					maze.tiles [i, j].isWall = false;
 					maze.tiles [i, j].visited = false;
@@ -85,108 +83,137 @@ public class MazeGenerator {
 		}
 	}
 
-	static Tile BeginMazeGenerator(Maze maze, int h) {
-		Tile begin = new Tile();
+	static Tile BeginMazeGenerator(Maze maze) {
+		int h = maze.height;
 		int y = Random.Range (1, h-2);
 		if (y % 2 == 0) {
 			y++;
 		}
-
-		begin.isWall = false;
-		begin.x = 1;
-		begin.y = y;
-		maze.tiles [1, y] = begin;
-
-		maze.beginCoord = begin;
-		//maze.beginCoord = new Vector2(begin.x, begin.y);
-		return begin;	
+		maze.tiles [1, y].isWall = false;
+		return maze.tiles [1, y];
 	}
 
-	public static void ExpandMaze(Maze maze){
-		Tile[,] expandedTiles = new Tile[maze.width*2, maze.height*2];
-		for(int i = 0, a = 0; i < maze.width; i++, a+=2) {
-			for(int j = 0, b = 0; j < maze.height; j++, b+=2) {
-				expandedTiles [a, b] = new Tile (a, b);
-				expandedTiles [a, b + 1] = new Tile (a, b + 1);
-				expandedTiles [a + 1, b] = new Tile (a + 1, b);
-				expandedTiles [a + 1, b + 1] = new Tile (a + 1, b + 1);
-				if(maze.tiles[i, j].isWall) {
-					expandedTiles [a, b].isWall = true;
-					expandedTiles [a, b + 1].isWall = true;
-					expandedTiles [a + 1, b].isWall = true;
-					expandedTiles [a + 1, b + 1].isWall = true;
-				} else {
-					expandedTiles [a, b].isWall = false;
-					expandedTiles [a, b + 1].isWall = false;
-					expandedTiles [a + 1, b].isWall = false;
-					expandedTiles [a + 1, b + 1].isWall = false;					
+	public static void ExpandMaze(Maze maze, int factorX, int factorY){
+		Tile[,] expandedTiles = new Tile[maze.width * factorX, maze.height * factorY];
+		for(int i = 0; i < maze.width; i++) {
+			for(int j = 0; j < maze.height; j++) {
+				
+				for (int ki = 0; ki < factorX; ki++) {
+					for (int kj = 0; kj < factorY; kj++) {
+						int x = i * factorX + ki;
+						int y = j * factorY + kj;
+
+						// Criar tiles com as novas coordenadas
+						expandedTiles [x, y] = new Tile (maze.tiles [i, j]);
+						expandedTiles [x, y] .x = x;
+						expandedTiles [x, y] .y = y;
+
+						// Ajustar a transição que tiver no tile
+						if (maze.tiles [i, j].transition != null) {
+							
+							int id = maze.tiles [i, j].transition.mazeID;
+							int dir = maze.tiles [i, j].transition.direction;
+							int dx = maze.tiles [i, j].transition.tileX * factorX + ki;
+							int dy = maze.tiles [i, j].transition.tileY * factorY + kj;
+							expandedTiles [x, y].transition = new Transition (id, dx, dy, dir);
+						}
+
+					}
 				}
 			}
 		}
 		maze.tiles = expandedTiles;
-		maze.beginCoord.x = 3;
-		maze.beginCoord.y *= 2;
 	}
 
-	public static Maze CreateMaze(string theme, int w, int h) { // vai ser esse
-		//return TempMaze();
-		Maze maze = new Maze (theme, w, h);
+	private static void SetTransition(Tile origTile, Tile destTile, Maze origMaze, Maze destMaze) {
+		float angle = GameManager.VectorToAngle (origTile.coordinates - origMaze.center);
+		int direction = Character.AngleToDirection (Mathf.RoundToInt (angle / 90) * 90);
+		origTile.transition = new Transition (destMaze.id, destTile.x, destTile.y, direction);
+	}
 
-		Tile currentTile = BeginMazeGenerator(maze, h);
+	private static Maze CreateHall(Maze maze) {
+		// TODO: uma forma diferente de criar o labirinto
+		// Por ex: esse tem mais corredores "retos", verticais ou horizontais
+		return CreateForest(maze);
+	}
+
+	private static Maze CreateCave(Maze maze) {
+		return CreateForest(maze);
+	}
+
+	private static Maze CreateForest(Maze maze) {
+		InicializeNullMaze (maze);
+		Tile currentTile = BeginMazeGenerator(maze);
 		Tile temp;
 		Stack<Tile> stack = new Stack<Tile> ();
 		List<Tile> neighbours;
-
-		InicializeNullMaze (maze);
 
 		stack.Push (currentTile);
 		while (stack.Count > 0) {
 			currentTile = stack.Pop ();
 			currentTile.visited = true;
-		//	Debug.Log ("currentTile x: " + currentTile.x + " currentTile.y: " + currentTile.y);
-
 			if (NotVisitedNeighbours (maze, currentTile)) {
 				neighbours = GetNeighbours (maze, currentTile);
 				temp = neighbours [Random.Range (0, neighbours.Count)];
 				stack.Push (currentTile);
 				stack.Push (temp);
 				RemoveWall (maze, currentTile, temp);
-			} 
-		}
-		ExpandMaze (maze);
-		return maze;
-	}
-
-	/*
-	private static void TempMaze() { // provisório
-	
-		int[,] tempMap = new int[,] {
-			{0,0,0,0,0,0,0,0,1,1},
-			{0,1,0,1,1,1,1,1,1,1},
-			{0,1,0,0,1,0,0,0,0,0},
-			{0,1,0,0,1,0,1,1,1,1},
-			{0,0,0,0,1,0,1,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0},
-			{0,1,0,1,1,1,1,1,1,1},
-			{0,1,0,0,1,0,0,0,0,0},
-			{1,1,0,0,1,0,1,1,1,1},
-			{1,1,0,0,1,0,1,0,1,1}
-		};
-
-		int w = tempMap.GetLength (0);
-		int h = tempMap.GetLength (1);
-
-		Maze.instance.tiles = new Tile[w, h];
-	
-		for (int i = 0; i < w; i++) {
-			for (int j = 0; j < h; j++) {
-				tiles [i, j] = new Tile ();
-				tiles [i, j].isWall = tempMap [i, j] == 1 ? true : false;
-				tiles [i, j].x = i;
-				tiles [i, j].y = j;
 			}
 		}
 
-	}*/
+		// Gerar tiles inicial e final
+		int x, y;
+
+		// Gerar um tile na borda esquerda
+		x = 1;
+		do {
+			y = Random.Range (1, maze.height - 1);
+		} while (maze.tiles [x, y].isWall);
+		Tile initialTile = maze.tiles [x - 1, y];
+		initialTile.isWall = false;
+
+		// Gerar um tile na borda direita
+		x = maze.width - 2;
+		do {
+			y = Random.Range (1, maze.height - 1);
+		} while (maze.tiles [x, y].isWall);
+		Tile finalTile = maze.tiles [x + 1, y];
+		finalTile.isWall = false;
+
+		// Destino da transição no tile inicial (que é um tile à frente do tile final)
+		Tile initialTile_dest = maze.tiles [finalTile.x - 1, finalTile.y]; 
+		// Destino da transição no tile final (que é um tile à frente do tile inicial)
+		Tile finalTile_dest = maze.tiles [initialTile.x + 1, initialTile.y];
+
+		// Colocar as transições entre o primeiro e o último tile (TEMPORÁRIO)
+		// TODO: Colocar depois as transições entre diferentes labirintos
+		SetTransition (initialTile, initialTile_dest, maze, maze);
+		SetTransition (finalTile, finalTile_dest, maze, maze);
+
+		// Multiplicar o maze
+		int f = 2; // Scale factor
+		ExpandMaze (maze, f, f);
+
+		// Deixar como se tivesse acabado de terminar o labirinto (ou seja, volta para o início)
+		MazeManager.currentTransition = maze.tiles[finalTile.x * f, finalTile.y * f].transition;
+
+		Debug.Log ("Inicial: " + initialTile.coordinates);
+		Debug.Log ("Final: " + finalTile.coordinates);
+
+		return maze;
+	}
+
+	public static Maze CreateMaze(int id, string theme, int w, int h) {
+		Maze maze = new Maze (id, theme, w, h);
+		switch (theme) {
+		case "Hall":
+			return CreateHall (maze);
+		case "Cave":
+			return CreateCave (maze);
+		case "Forest":
+			return CreateForest (maze);
+		}
+		return null;
+	}
 
 }

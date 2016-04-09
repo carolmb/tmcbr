@@ -41,7 +41,6 @@ public static class SaveManager {
 	public static void NewSave(string gameName) {
 		GameSave gs = new GameSave();
 		SaveGame (gameName, gs);
-		// TODO: criar novo salvo
 	}
 
 }
