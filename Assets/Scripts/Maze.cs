@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+[System.Serializable]
 public class Maze : IEnumerable {
 
 	// TODO: colocar também as transições do tipo Tile (representado por um x, y) -> Maze (representdo por um ID)

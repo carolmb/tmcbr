@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MazeManager : MonoBehaviour {
 
 	public static Maze maze; // Se quiser acesso a qualquer informação do labirinto, use isso
+
+	public static List<string> nextScene;
 
 	// Guarda a instância e inicializa os tiles
 	void Awake () {
