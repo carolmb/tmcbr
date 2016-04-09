@@ -96,7 +96,9 @@ public class MazeGenerator {
 		begin.x = 1;
 		begin.y = y;
 		maze.tiles [1, y] = begin;
-		maze.beginCoord = new Vector2(begin.x, begin.y);
+
+		maze.beginCoord = begin;
+		//maze.beginCoord = new Vector2(begin.x, begin.y);
 		return begin;	
 	}
 

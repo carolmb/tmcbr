@@ -10,8 +10,8 @@ public class MazeManager : MonoBehaviour {
 
 	// Guarda a instância e inicializa os tiles
 	void Awake () {
-		maze = MazeGenerator.CreateMaze ("Hall", 10, 10);
-
+		//maze = MazeGenerator.CreateMaze ("Hall", 10, 10);
+		maze = SaveManager.currentSave.mazes[0];
 		foreach (Tile t in maze) {
 
 			GameObject floor = CreateTileGraphic (t.x, t.y, "floor");

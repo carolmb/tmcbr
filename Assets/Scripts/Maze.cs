@@ -10,13 +10,15 @@ public class Maze : IEnumerable {
 
 	public int id = -1;
 	public Tile[,] tiles;
-	public Vector2 beginCoord;
+
+	public Tile beginCoord;
+	public Tile endCoord;
 
 	// Para saber qual gráfico vai ser utilizado
 	public string theme = "Hall";
 
 	public Maze(string theme, int width, int height) {
-		tiles = new Tile[width, height];
+		this.tiles = new Tile[width, height];
 		this.theme = theme;
 	}
 
