@@ -16,6 +16,8 @@ public class GameSave {
 			mazes [i] = MazeGenerator.CreateMaze(i, "Hall", 15, 15);
 		}
 		transition = mazes [0].FindTransitionInX (mazes [0].width - 1);
+
+		bag = new Bag ();
 	}
 
 }

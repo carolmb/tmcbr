@@ -2,15 +2,36 @@
 using System.Collections;
 using System;
 
-public class Item {
+public abstract class Item {
 
 	// Item id
 	public int id;
 	// Item picture
-	public Sprite picture;
+	public string spriteName;
 
-	//
-	void OnUse() {
-		//
+	public Item(int id, string spriteName) {
+		this.id = id;
+		this.spriteName = spriteName;
 	}
+
+	// O que acontece quando o jogador usa o item
+	public abstract void OnUse();
+
+	// ===============================================================================
+	// Database
+	// ===============================================================================
+
+	// Essa lista vai ser acessada para pegar os items pelo ID
+	public static Item[] DB = InitializeDB();
+
+	private static Item[] InitializeDB() {
+		Item[] db = new Item[10];
+
+		// TODO: criar os diferentes itens aqui
+		// OBS: todos os itens devem herdar dessa classe. Ex:
+		// db[3] = new Knife(3, "knife");
+
+		return db;
+	}
+
 }

@@ -17,6 +17,10 @@ public class Player : MonoBehaviour {
 		Resume ();
 	}
 
+	// ===============================================================================
+	// Movimento
+	// ===============================================================================
+
 	// Movimento pelo Input
 	void Update() {
 		if (paused)
@@ -65,6 +69,10 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+	// ===============================================================================
+	// Pause
+	// ===============================================================================
+
 	public void Pause() {
 		paused = true;
 		Time.timeScale = 0;
@@ -73,6 +81,31 @@ public class Player : MonoBehaviour {
 	public void Resume() {
 		paused = false;
 		Time.timeScale = 1;
+	}
+
+	// ===============================================================================
+	// Itens
+	// ===============================================================================
+
+	public Bag bag { get { return SaveManager.currentSave.bag; } }
+
+	public void IncrementCoins(int value) {
+		bag.coins += value;
+		GameMenu.instance.UpdateCoins (bag.coins);
+	}
+
+	public void IncrementRoses(int value) {
+		bag.roses += value;
+		GameMenu.instance.UpdateRoses (bag.roses);
+	}
+
+	public Item currentItem;
+
+	public void ChooseItem(int id) {
+		int itemID = bag.itemIDs [id];
+		currentItem = Item.DB [itemID];
+		GameMenu.instance.UpdateItem (currentItem);
+		Resume ();
 	}
 
 }
