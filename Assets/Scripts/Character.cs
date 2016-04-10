@@ -109,7 +109,7 @@ public class Character : MonoBehaviour {
 	// Move o personagem para o ponto dest, gradativamente
 	public IEnumerator MoveTo(Vector2 dest) {
 		moving = true;
-		Vector2 orig = (Vector2)transform.position;
+		Vector2 orig = (Vector2) transform.position;
 		float distance = (dest - orig).magnitude;
 		float percentage = 0;
 		float percSpeed = speed / distance;

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class KnightArmor : MonoBehaviour {
 
 	// Character
-	private Character character;
+	public Character character;
 	// Max way
 	private int max_way;
 	// First position
@@ -20,6 +20,13 @@ public class KnightArmor : MonoBehaviour {
 	void Awake() {
 		character = GetComponent<Character>();
 		max_way = 10;
+	}
+
+	void Start() {
+		calcPosition ();
+	}
+
+	void calcPosition() {
 		// First tile
 		Vector2 position = transform.position;
 		firstDirection = character.direction;
@@ -32,6 +39,7 @@ public class KnightArmor : MonoBehaviour {
 			position.y += 1;
 		}
 		way.Enqueue(MazeManager.WorldToTilePos(position));
+		Debug.Log (way.Count);
 		firstPosition = transform.position;
 	}
 
@@ -42,15 +50,22 @@ public class KnightArmor : MonoBehaviour {
 
 	// 
 	void CheckCollision() {
-		// First position
-		Vector2 position = way.Dequeue();
-		if (MazeManager.WorldToTilePos(Player.instance.transform.position) == MazeManager.WorldToTilePos(position)) {
-			// Wait one second
-			Invoke("Wait", 1);
-			// First movement
-			character.MoveTo(position);
-			// Try find the player
-			FindPlayer (position, max_way, false);
+		if (character.moving == false) {
+			way.Clear ();
+			calcPosition ();
+		}
+		// If the queue isn't empty
+		if (way.Count > 0) {
+			// First position
+			Vector2 position = way.Dequeue();
+			if (MazeManager.WorldToTilePos(Player.instance.transform.position) == MazeManager.WorldToTilePos(position)) {
+				// Wait one second
+				Invoke("Wait", 1);
+				// First movement
+				StartCoroutine(character.MoveTo(position));
+				// Try find the player
+				FindPlayer (position, max_way, false);
+			}
 		}
 	}
 
