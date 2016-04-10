@@ -33,6 +33,8 @@ public class MazeManager : MonoBehaviour {
 
 	// Guarda a instância e inicializa os tiles
 	void Awake () {
+		Debug.Log (SaveManager.currentSave.mazes == null);
+		Debug.Log (currentTransition == null);
 		maze = SaveManager.currentSave.mazes [currentTransition.mazeID];
 
 		foreach (Tile t in maze) {
