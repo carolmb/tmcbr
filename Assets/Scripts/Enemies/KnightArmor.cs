@@ -23,12 +23,14 @@ public class KnightArmor : MonoBehaviour {
 	}
 
 	void Start() {
+		transform.position = new Vector2(2, 4);
+		transform.position = MazeManager.TileToWorldPosition (new Vector2 (2, 4));
 		calcPosition ();
 	}
 
 	void calcPosition() {
 		// First tile
-		Vector2 position = transform.position;
+		Vector2 position = MazeManager.TileToWorldPosition (transform.position);
 		firstDirection = character.direction;
 		// Check the direction
 		if (character.direction == 2) {
@@ -36,11 +38,10 @@ public class KnightArmor : MonoBehaviour {
 		} else if (character.direction == 1) {
 			position.x -= 1;
 		} else if (character.direction == 0) {
-			position.y += 1;
+			position.y -= 1;
 		}
 		way.Enqueue(MazeManager.WorldToTilePos(position));
-		Debug.Log (way.Count);
-		firstPosition = transform.position;
+		firstPosition = MazeManager.TileToWorldPosition (transform.position);
 	}
 
 	//
@@ -53,6 +54,8 @@ public class KnightArmor : MonoBehaviour {
 		if (character.moving == false) {
 			way.Clear ();
 			calcPosition ();
+		} else {
+			Debug.Log (character.moving);
 		}
 		// If the queue isn't empty
 		if (way.Count > 0) {
@@ -66,6 +69,7 @@ public class KnightArmor : MonoBehaviour {
 				// Try find the player
 				FindPlayer (position, max_way, false);
 			}
+			way.Enqueue(position);
 		}
 	}
 
