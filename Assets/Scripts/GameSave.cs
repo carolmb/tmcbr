@@ -4,19 +4,18 @@ using System.Collections;
 [System.Serializable]
 public class GameSave {
 
-	// TODO: Demais coisas que vão ser salvas
-
-	public int id;
+	public string name;
 	public Maze[] mazes;
-	Bag bag;
+	public Transition transition;
+	public Bag bag;
 
-	public GameSave(){
+	public GameSave() {
 		int mazeCount = 1;
 		mazes = new Maze[mazeCount];
 		for (int i = 0; i < mazeCount; i++) {
 			mazes [i] = MazeGenerator.CreateMaze(i, "Hall", 15, 15);
 		}
-
+		transition = mazes [0].FindTransitionInX (mazes [0].width - 1);
 	}
 
 }

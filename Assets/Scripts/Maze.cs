@@ -28,6 +28,26 @@ public class Maze : IEnumerable {
 
 	public Vector2 center { get { return new Vector2 (width / 2, height / 2); } }
 
+	// Procura uma transição em todos os tiles na reta X 
+	// Use x = 0 para a lateral esquerda, x = width - 1 para a lateral direita
+	public Transition FindTransitionInX(int x) {
+		for (int y = 1; y < height - 1; y++) {
+			if (tiles [x, y].transition != null)
+				return tiles [x, y].transition;
+		}
+		return null;
+	}
+
+	// Procura uma transição em todos os tiles na reta Y
+	// Use y = 0 para a base e y = height - 1 para o topo
+	public Transition FindTransitionInY(int y) {
+		for (int x = 1; x < width - 1; x++) {
+			if (tiles [x, y].transition != null)
+				return tiles [x, y].transition;
+		}
+		return null;
+	}
+
 	public IEnumerator GetEnumerator() {
 		return tiles.GetEnumerator ();
 	}

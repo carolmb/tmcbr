@@ -11,11 +11,12 @@ public class MazeManager : MonoBehaviour {
 	// Transição entre labirintos
 	// ===============================================================================
 
-	// Para transições de um labirinto para outro
-	public static Transition currentTransition;
+	public static Transition currentTransition {
+		get { return SaveManager.currentSave.transition; }
+	}
 
 	public static void GoToMaze(Transition transition) {
-		currentTransition = transition;
+		SaveManager.currentSave.transition = transition;
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
 
@@ -31,8 +32,11 @@ public class MazeManager : MonoBehaviour {
 		Player.instance.character.direction = currentTransition.direction;
 	}
 
-	// Guarda a instância e inicializa os tiles
+	// Resgata o labirinto atual e inicializa os tiles
 	void Awake () {
+		if (SaveManager.currentSave == null) {
+			SaveManager.NewGame ();
+		}
 		maze = SaveManager.currentSave.mazes [currentTransition.mazeID];
 
 		foreach (Tile t in maze) {

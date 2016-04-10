@@ -194,12 +194,6 @@ public class MazeGenerator {
 		int f = 2; // Scale factor
 		ExpandMaze (maze, f, f);
 
-		// Deixar como se tivesse acabado de terminar o labirinto (ou seja, volta para o início)
-		MazeManager.currentTransition = maze.tiles[finalTile.x * f, finalTile.y * f].transition;
-
-		Debug.Log ("Inicial: " + initialTile.coordinates);
-		Debug.Log ("Final: " + finalTile.coordinates);
-
 		return maze;
 	}
 

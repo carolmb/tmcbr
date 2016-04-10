@@ -4,9 +4,9 @@ using System.Collections;
 [RequireComponent (typeof(Character))]
 public class Player : MonoBehaviour {
 
-	// TODO: verificar a transição do tile em que ele está
-
 	public static Player instance;
+
+	public bool paused;
 
 	public Character character;
 	private Vector2 moveVector;
@@ -14,10 +14,14 @@ public class Player : MonoBehaviour {
 	void Awake() {
 		instance = this;
 		character = GetComponent<Character> ();
+		Resume ();
 	}
 
 	// Movimento pelo Input
 	void Update() {
+		if (paused)
+			return;
+
 		moveVector.x = Input.GetAxisRaw ("Horizontal");
 		moveVector.y = Input.GetAxisRaw ("Vertical");
 		if (moveVector.x == 0 && moveVector.y == 0 || !TryMove ()) {
@@ -59,6 +63,16 @@ public class Player : MonoBehaviour {
 		if (tile.transition != null) {
 			MazeManager.GoToMaze (tile.transition);
 		}
+	}
+
+	public void Pause() {
+		paused = true;
+		Time.timeScale = 0;
+	}
+
+	public void Resume() {
+		paused = false;
+		Time.timeScale = 1;
 	}
 
 }

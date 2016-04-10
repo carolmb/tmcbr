@@ -7,40 +7,45 @@ using System.IO;
 public static class SaveManager {
 
 	public static GameSave currentSave; // salvo atualmente carregado
-	public static string currentSaveName;
 
-	// Carrega um arquivo de salvo
-	public static void LoadSave(int id) {
-		// TODO: ler do arquivo de salvo e guardar em currentSave
-	}
+	public static GameSave[] allSaves;
+	public static int maxSaves = 3;
 
 	// Guardar num arquivo o salvo atual
-	public static void SaveGame(string gsName, GameSave gs) { 
-		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Create (Application.persistentDataPath + "/" + gsName + ".maze");
-		bf.Serialize (file, gs);
-		file.Close ();
-		currentSave = gs;
+	public static void SaveGame(int id, string name) {
+		currentSave.name = name;
+		allSaves [id] = currentSave;
+		StoreSaves ();
 	}
 
-	public static bool LoadGame(string loadGameName) {
-		GameSave gs = null;
-		if(File.Exists(Application.persistentDataPath + "/" + loadGameName + ".maze")) {
-			BinaryFormatter bf = new BinaryFormatter();
-			string namePath = Application.persistentDataPath + "/" + loadGameName + ".maze";
-			FileStream file = File.Open(namePath, FileMode.Open);
-			gs = (GameSave)bf.Deserialize(file);
-			file.Close();
-			currentSave = gs;
-			return true;
-		}
-		return false;
+	// Carregar um jogo
+	public static void LoadGame(int id) {
+		currentSave = allSaves [id];
 	}
 
 	// Ao criar um novo jogo
-	public static void NewSave(string gameName) {
-		GameSave gs = new GameSave();
-		SaveGame (gameName, gs);
+	public static void NewGame() {
+		currentSave = new GameSave();
+	}
+				
+	public static void LoadSaves() {
+		string namePath = Application.persistentDataPath + "/" + "saves";
+		if (File.Exists (namePath)) {
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream file = File.Open(namePath, FileMode.Open);
+			allSaves = (GameSave[]) bf.Deserialize(file);
+			file.Close();
+		} else {
+			allSaves = new GameSave[maxSaves];
+		}
+	}
+
+	private static void StoreSaves() {
+		BinaryFormatter bf = new BinaryFormatter();
+		string namePath = Application.persistentDataPath + "/" + "saves";
+		FileStream file = File.Create (namePath);
+		bf.Serialize (file, allSaves);
+		file.Close ();
 	}
 
 }

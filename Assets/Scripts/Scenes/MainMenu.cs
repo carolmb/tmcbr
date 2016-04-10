@@ -1,42 +1,42 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
 
-	/**
-	 * Starts the game.
-	 */
-	public void Play() {
-		SceneManager.LoadScene("ChooseGame");
+	public Button loadButton;
+	public Button[] saveButtons;
+
+	public void Start() {
+		SaveManager.currentSave = null;
+		SaveManager.maxSaves = saveButtons.Length;
+		SaveManager.LoadSaves ();
+		bool hasSave = false;
+		for (int i = 0; i < SaveManager.maxSaves; i++) {
+			if (SaveManager.allSaves [i] != null) {
+				saveButtons [i].interactable = true;
+				saveButtons [i].GetComponentInChildren<Text> ().text = SaveManager.allSaves[i].name;
+				hasSave = true;
+			} else {
+				saveButtons [i].interactable = false;
+				saveButtons [i].GetComponentInChildren<Text> ().text = "Empty";
+			}
+		}
+		loadButton.interactable = hasSave;
 	}
 
-	/**
-	 * Achievements.
-	 */
-	public void Achievements() {
-		SceneManager.LoadScene("Achievements");
+	public void CallGameScene() {
+		SceneManager.LoadScene ("Game");
 	}
 
-	/**
-	 * Credits.
-	 */
-	public void Credits() {
-		SceneManager.LoadScene("Credits");
+	public void LoadGame(int id) {
+		SaveManager.LoadGame (id);
+		CallGameScene ();
 	}
 
-	/**
-	 * Ends the game.
-	 */
 	public void Quit() {
-		Application.Quit();
+		Application.Quit ();
 	}
 
-	public void MouseEnter() {
-		//
-	}
-
-	public void MouseExit() {
-		//
-	}
 }
