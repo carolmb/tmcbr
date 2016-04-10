@@ -4,6 +4,24 @@ using System.Collections.Generic;
 
 public class MazeGenerator {
 
+	static List<Tile> GetAllNeighbours(Maze maze, Tile tile) {
+		List<Tile> neighbours = new List<Tile> ();
+		if (tile.x - 2 > 0 && maze.tiles[tile.x - 2, tile.y].isWalkable) {
+			neighbours.Add (maze.tiles [tile.x - 2, tile.y]);
+		}
+		if (tile.x + 2 < maze.width - 1 && maze.tiles[tile.x + 2, tile.y].isWalkable) {
+			neighbours.Add (maze.tiles [tile.x + 2, tile.y]);
+		} 
+		if (tile.y - 2 > 0 && maze.tiles[tile.x, tile.y - 2].isWalkable) {
+			neighbours.Add (maze.tiles [tile.x, tile.y - 2]);
+		} 
+		if (tile.y + 2 < maze.height - 1 && maze.tiles[tile.x, tile.y + 2].isWalkable) {
+			neighbours.Add (maze.tiles [tile.x, tile.y + 2]);
+		}
+
+		return neighbours;
+	}
+
 	static List<Tile> GetNeighbours(Maze maze, Tile tile) {
 		List<Tile> neighbours = new List<Tile> ();
 		if (tile.x - 2 > 0 && !maze.tiles [tile.x - 2, tile.y].visited) {
@@ -26,23 +44,6 @@ public class MazeGenerator {
 		if (GetNeighbours (maze, tile).Count > 0) {
 			return true;
 		}
-		/*
-		if (tile.x - 2 >= 0)
-			if (!Maze.instance.tiles [tile.x - 2, tile.y].visited)
-				return true; 
-
-		if (tile.x + 2 < width)
-			if (!Maze.instance.tiles[tile.x + 2, tile.y].visited)
-				return true;
-
-		if (tile.y - 2 > 0)
-			if (!Maze.instance.tiles[tile.x, tile.y - 2].visited) 
-				return true;
-			
-		if (tile.y + 2 < height) 
-			if (!Maze.instance.tiles[tile.x, tile.y + 2].visited)
-				return true;
-		*/
 		return false;
 	}
 		
@@ -65,22 +66,11 @@ public class MazeGenerator {
 		int deltaX = neighbor.x - current.x ;
 		int deltaY = neighbor.y - current.y;
 
-		//Debug.Log ("deltaX: " + deltaX);
-		//Debug.Log ("deltaY: " + deltaY);
-
-		//int debugX = current.x + deltaX/2;
-		//int debugY = current.y + deltaY/2;
-		//Debug.Log ("remove wall x: " + debugX);
-		//Debug.Log ("remove wall y: " + debugY);
-
 		if (current.x + deltaX / 2 > 0 && current.y + deltaY / 2 > 0 && 
 			current.x + deltaX / 2 < maze.width && current.y + deltaY / 2 < maze.height) {
 			maze.tiles [current.x + deltaX / 2, current.y + deltaY / 2].isWall = false;
 			maze.tiles [current.x + deltaX / 2, current.y + deltaY / 2].visited = true;
-		//	Debug.Log ("Removed");
-		} else {
-		//	Debug.Log ("Not removed");
-		}
+		} 
 	}
 
 	static Tile BeginMazeGenerator(Maze maze) {
@@ -91,6 +81,45 @@ public class MazeGenerator {
 		}
 		maze.tiles [1, y].isWall = false;
 		return maze.tiles [1, y];
+	}
+
+	public static void ClearMazeVisits(Maze maze) {
+		foreach(Tile t in maze.tiles) {
+			if(t.isWalkable == true) {
+				t.visited = false;
+			}
+		}
+	}
+
+	public static void CreateEnemysHall(Maze maze) {
+		//0 mimics
+		//1 armadura enfeite
+		//2 armadura fantasma
+		//3 espelho por onde sai inimigos
+
+		Tile currentTile = BeginMazeGenerator(maze); //trocar pelo ponto inicial do labirinto
+		Tile temp;
+		Stack<Tile> stack = new Stack<Tile> ();
+		List<Tile> neighbours, allNeighbours;
+
+		ClearMazeVisits (maze);
+
+		stack.Push (currentTile);
+		while (stack.Count > 0) {
+			currentTile = stack.Pop ();
+			currentTile.visited = true;
+			if (NotVisitedNeighbours (maze, currentTile)) {
+				neighbours = GetNeighbours (maze, currentTile);
+				allNeighbours = GetAllNeighbours (maze, currentTile);
+				temp = neighbours [Random.Range (0, neighbours.Count)];
+				if (allNeighbours.Count == 1) { //verificar se é diferente do final
+					currentTile.obstacle = 0;
+				}
+				stack.Push (currentTile);
+				stack.Push (temp);
+			}
+		}
+
 	}
 
 	public static void ExpandMaze(Maze maze, int factorX, int factorY){
@@ -193,7 +222,7 @@ public class MazeGenerator {
 		// Multiplicar o maze
 		int f = 2; // Scale factor
 		ExpandMaze (maze, f, f);
-
+		CreateEnemysHall (maze);
 		return maze;
 	}
 
