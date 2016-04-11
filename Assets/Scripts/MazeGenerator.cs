@@ -24,26 +24,26 @@ public class MazeGenerator {
 		return neighbours;
 	}
 
-	static List<Tile> GetNeighbours (Maze maze, Tile tile) {
+	public static List<Tile> GetNeighbours (Maze maze, Tile tile, int delta) {
 		List<Tile> neighbours = new List<Tile> ();
-		if (tile.x - 2 > 0 && !maze.tiles [tile.x - 2, tile.y].visited) {
-			neighbours.Add (maze.tiles [tile.x - 2, tile.y]);
+		if (tile.x - delta > 0 && !maze.tiles [tile.x - delta, tile.y].visited) {
+			neighbours.Add (maze.tiles [tile.x - delta, tile.y]);
 		}
-		if (tile.x + 2 < maze.width - 1 && !maze.tiles [tile.x + 2, tile.y].visited) {
-			neighbours.Add (maze.tiles [tile.x + 2, tile.y]);
+		if (tile.x + delta < maze.width - 1 && !maze.tiles [tile.x + delta, tile.y].visited) {
+			neighbours.Add (maze.tiles [tile.x + delta, tile.y]);
 		} 
-		if (tile.y - 2 > 0 && !maze.tiles [tile.x, tile.y - 2].visited) {
-			neighbours.Add (maze.tiles [tile.x, tile.y - 2]);
+		if (tile.y - delta > 0 && !maze.tiles [tile.x, tile.y - delta].visited) {
+			neighbours.Add (maze.tiles [tile.x, tile.y - delta]);
 		} 
-		if (tile.y + 2 < maze.height - 1 && !maze.tiles [tile.x, tile.y + 2].visited) {
-			neighbours.Add (maze.tiles [tile.x, tile.y + 2]);
+		if (tile.y + delta < maze.height - 1 && !maze.tiles [tile.x, tile.y + delta].visited) {
+			neighbours.Add (maze.tiles [tile.x, tile.y + delta]);
 		}
 
 		return neighbours;
 	}
 
-	static bool NotVisitedNeighbours (Maze maze, Tile tile) {
-		if (GetNeighbours (maze, tile).Count > 0) {
+	public static bool NotVisitedNeighbours (Maze maze, Tile tile, int delta) {
+		if (GetNeighbours (maze, tile, delta).Count > 0) {
 			return true;
 		}
 		return false;
@@ -97,7 +97,7 @@ public class MazeGenerator {
 		for (int i = tile.x - deltaEnemys; i < tile.y + deltaEnemys; i++) {
 			for (int j = tile.y - deltaEnemys; j < tile.y + deltaEnemys; j++) {
 				if (i >= 0 && i < maze.width && j >= 0 && j < maze.height) {
-					if (maze.tiles [i, j].obstacle >= 0) {
+					if (maze.tiles [i, j].obstacle >= 0) { //trocar por .objectName != ""
 						return false;
 					}
 				}
@@ -107,27 +107,31 @@ public class MazeGenerator {
 	}
 
 	public static void CreateEnemysHall(Maze maze) {
-		//0 mimics
-		//1 armadura enfeite
-		//2 armadura fantasma
-		//3 espelho por onde sai inimigos
+		//mimics
+		//armadura enfeite
+		//armadura fantasma
+		//espelho por onde sai inimigos
 
 		foreach (Tile t in maze.tiles) {
-			if (EmptyRadiusToEnemies(maze, t)) {
+			if (EmptyRadiusToEnemies (maze, t)) {
 				if (GetAllWallNeighbours (maze, t).Count == 2 && t.isWalkable) { //mimics
-					if (true) { //fator random
-						t.obstacle = 0;
+					if (Random.Range (0, 100) < 70) { //fator random
+						t.objectName = ""; //trocar pelo nome do prefab
 					}
 				} else if (GetAllWallNeighbours (maze, t).Count == 3 && t.isWall) { //armadura
-					if (false) { //fator random
-						t.obstacle = 1;
+					if (Random.Range (0, 100) < 50) { //fator random
+						t.objectName = ""; 
 					}
-				} else if (GetAllWallNeighbours (maze, t).Count == 3 && t.isWall){
-					if (true) {
-						//espelho com inimigos
+				} else if (GetAllWallNeighbours (maze, t).Count == 3 && t.isWall) { //espelho
+					if (Random.Range (0, 100) < 60) {
+						t.objectName = "";
 					} else {
-						//espelho com dicas
+						t.obstacle = 0; //trocar por código do espelho com dicas
 					}
+				}
+			} else {
+				if (Random.Range (0, 100) < 20 && t.isWalkable) {
+					t.obstacle = 0;
 				}
 			}
 		}
@@ -193,8 +197,8 @@ public class MazeGenerator {
 		while (stack.Count > 0) {
 			currentTile = stack.Pop ();
 			currentTile.visited = true;
-			if (NotVisitedNeighbours (maze, currentTile)) {
-				neighbours = GetNeighbours (maze, currentTile);
+			if (NotVisitedNeighbours (maze, currentTile, 2)) {
+				neighbours = GetNeighbours (maze, currentTile, 2);
 				temp = neighbours [Random.Range (0, neighbours.Count)];
 				stack.Push (currentTile);
 				stack.Push (temp);
