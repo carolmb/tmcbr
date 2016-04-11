@@ -52,12 +52,20 @@ public class Tile {
 	}
 
 	public List<Tile> GetNeighbours4() {
-		List<Tile> neightbours = new List<Tile> ();
-		neightbours.Add (MazeManager.maze.tiles [x, y + 1]);
-		neightbours.Add (MazeManager.maze.tiles [x, y - 1]);
-		neightbours.Add (MazeManager.maze.tiles [x + 1, y]);
-		neightbours.Add (MazeManager.maze.tiles [x - 1, y]);
-		return neightbours;
+		List<Tile> neighbours = new List<Tile> ();
+		if (x - 1 >= 0) {
+			neighbours.Add (MazeManager.maze.tiles [x - 1, y]);
+		}
+		if (x + 1 <= MazeManager.maze.width - 1) {
+			neighbours.Add (MazeManager.maze.tiles [x + 1, y]);
+		} 
+		if (y - 1 >= 0) {
+			neighbours.Add (MazeManager.maze.tiles [x, y - 1]);
+		} 
+		if (y + 1 <= MazeManager.maze.height - 1) {
+			neighbours.Add (MazeManager.maze.tiles [x, y + 1]);
+		}
+		return neighbours;
 	}
 
 	public List<Tile> GetNeighbours8() {

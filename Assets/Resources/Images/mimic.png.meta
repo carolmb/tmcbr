@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0dcf1a5752701754bbca0f20045c231e
-timeCreated: 1460328994
+timeCreated: 1460374157
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -69,19 +69,19 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 1, y: 13}
-        - {x: -2, y: 13}
-        - {x: -8, y: 4}
-        - {x: -12, y: -11}
-        - {x: -10, y: -13}
-        - {x: 10, y: -13}
-        - {x: 12, y: -12}
-        - {x: 12, y: -10}
-        - {x: 4, y: 10}
+      - - {x: 1, y: 29}
+        - {x: -2, y: 29}
+        - {x: -8, y: 20}
+        - {x: -12, y: 5}
+        - {x: -10, y: 3}
+        - {x: 10, y: 3}
+        - {x: 12, y: 4}
+        - {x: 12, y: 6}
+        - {x: 4, y: 26}
     - name: mimic_1
       rect:
         serializedVersion: 2
@@ -89,17 +89,17 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 12}
-        - {x: -12, y: -3}
-        - {x: -12, y: -13}
-        - {x: 11, y: -13}
-        - {x: 12, y: -11}
-        - {x: 12, y: -4}
-        - {x: 3, y: 12}
+      - - {x: -7, y: 28}
+        - {x: -12, y: 13}
+        - {x: -12, y: 3}
+        - {x: 11, y: 3}
+        - {x: 12, y: 5}
+        - {x: 12, y: 12}
+        - {x: 3, y: 28}
     - name: mimic_2
       rect:
         serializedVersion: 2
@@ -107,18 +107,18 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 1, y: 13}
-        - {x: -4, y: 13}
-        - {x: -12, y: -9}
-        - {x: -12, y: -12}
-        - {x: -10, y: -13}
-        - {x: 12, y: -13}
-        - {x: 12, y: -3}
-        - {x: 7, y: 9}
+      - - {x: 1, y: 29}
+        - {x: -4, y: 29}
+        - {x: -12, y: 7}
+        - {x: -12, y: 4}
+        - {x: -10, y: 3}
+        - {x: 12, y: 3}
+        - {x: 12, y: 13}
+        - {x: 7, y: 25}
     - name: mimic_3
       rect:
         serializedVersion: 2
@@ -126,19 +126,19 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 1, y: 13}
-        - {x: -2, y: 13}
-        - {x: -8, y: 4}
-        - {x: -12, y: -11}
-        - {x: -10, y: -13}
-        - {x: 10, y: -13}
-        - {x: 12, y: -12}
-        - {x: 12, y: -10}
-        - {x: 4, y: 10}
+      - - {x: 1, y: 29}
+        - {x: -2, y: 29}
+        - {x: -8, y: 20}
+        - {x: -12, y: 5}
+        - {x: -10, y: 3}
+        - {x: 10, y: 3}
+        - {x: 12, y: 4}
+        - {x: 12, y: 6}
+        - {x: 4, y: 26}
     - name: mimic_4
       rect:
         serializedVersion: 2
@@ -146,17 +146,17 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 12}
-        - {x: -12, y: -3}
-        - {x: -12, y: -13}
-        - {x: 11, y: -13}
-        - {x: 12, y: -11}
-        - {x: 12, y: -4}
-        - {x: 3, y: 12}
+      - - {x: -7, y: 28}
+        - {x: -12, y: 13}
+        - {x: -12, y: 3}
+        - {x: 11, y: 3}
+        - {x: 12, y: 5}
+        - {x: 12, y: 12}
+        - {x: 3, y: 28}
     - name: mimic_5
       rect:
         serializedVersion: 2
@@ -164,18 +164,18 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -3, y: 14}
-        - {x: -5, y: 12}
-        - {x: -12, y: -2}
-        - {x: -12, y: -11}
-        - {x: -11, y: -13}
-        - {x: 12, y: -13}
-        - {x: 12, y: -1}
-        - {x: 4, y: 14}
+      - - {x: -3, y: 30}
+        - {x: -5, y: 28}
+        - {x: -12, y: 14}
+        - {x: -12, y: 5}
+        - {x: -11, y: 3}
+        - {x: 12, y: 3}
+        - {x: 12, y: 15}
+        - {x: 4, y: 30}
     - name: mimic_6
       rect:
         serializedVersion: 2
@@ -183,17 +183,17 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 12}
-        - {x: -12, y: -3}
-        - {x: -12, y: -13}
-        - {x: 11, y: -13}
-        - {x: 12, y: -11}
-        - {x: 12, y: -4}
-        - {x: 3, y: 12}
+      - - {x: -7, y: 28}
+        - {x: -12, y: 13}
+        - {x: -12, y: 3}
+        - {x: 11, y: 3}
+        - {x: 12, y: 5}
+        - {x: 12, y: 12}
+        - {x: 3, y: 28}
     - name: mimic_7
       rect:
         serializedVersion: 2
@@ -201,18 +201,18 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 1, y: 13}
-        - {x: -4, y: 13}
-        - {x: -12, y: -9}
-        - {x: -12, y: -12}
-        - {x: -10, y: -13}
-        - {x: 12, y: -13}
-        - {x: 12, y: -3}
-        - {x: 7, y: 9}
+      - - {x: 1, y: 29}
+        - {x: -4, y: 29}
+        - {x: -12, y: 7}
+        - {x: -12, y: 4}
+        - {x: -10, y: 3}
+        - {x: 12, y: 3}
+        - {x: 12, y: 13}
+        - {x: 7, y: 25}
     - name: mimic_8
       rect:
         serializedVersion: 2
@@ -220,18 +220,18 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -3, y: 14}
-        - {x: -5, y: 12}
-        - {x: -12, y: -2}
-        - {x: -12, y: -11}
-        - {x: -11, y: -13}
-        - {x: 12, y: -13}
-        - {x: 12, y: -1}
-        - {x: 4, y: 14}
+      - - {x: -3, y: 30}
+        - {x: -5, y: 28}
+        - {x: -12, y: 14}
+        - {x: -12, y: 5}
+        - {x: -11, y: 3}
+        - {x: 12, y: 3}
+        - {x: 12, y: 15}
+        - {x: 4, y: 30}
     - name: mimic_9
       rect:
         serializedVersion: 2
@@ -239,18 +239,18 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -3, y: 14}
-        - {x: -5, y: 12}
-        - {x: -12, y: -2}
-        - {x: -12, y: -11}
-        - {x: -11, y: -13}
-        - {x: 12, y: -13}
-        - {x: 12, y: -1}
-        - {x: 4, y: 14}
+      - - {x: -3, y: 30}
+        - {x: -5, y: 28}
+        - {x: -12, y: 14}
+        - {x: -12, y: 5}
+        - {x: -11, y: 3}
+        - {x: 12, y: 3}
+        - {x: 12, y: 15}
+        - {x: 4, y: 30}
     - name: mimic_10
       rect:
         serializedVersion: 2
@@ -258,18 +258,18 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 0, y: 13}
-        - {x: -5, y: 13}
-        - {x: -13, y: -9}
-        - {x: -13, y: -12}
-        - {x: -11, y: -13}
-        - {x: 11, y: -13}
-        - {x: 11, y: -3}
-        - {x: 6, y: 9}
+      - - {x: 0, y: 29}
+        - {x: -5, y: 29}
+        - {x: -13, y: 7}
+        - {x: -13, y: 4}
+        - {x: -11, y: 3}
+        - {x: 11, y: 3}
+        - {x: 11, y: 13}
+        - {x: 6, y: 25}
     - name: mimic_11
       rect:
         serializedVersion: 2
@@ -277,18 +277,18 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -4, y: 14}
-        - {x: -6, y: 12}
-        - {x: -13, y: -2}
-        - {x: -13, y: -11}
-        - {x: -12, y: -13}
-        - {x: 11, y: -13}
-        - {x: 11, y: -1}
-        - {x: 3, y: 14}
+      - - {x: -4, y: 30}
+        - {x: -6, y: 28}
+        - {x: -13, y: 14}
+        - {x: -13, y: 5}
+        - {x: -12, y: 3}
+        - {x: 11, y: 3}
+        - {x: 11, y: 15}
+        - {x: 3, y: 30}
     outline: []
   spritePackingTag: 
   userData: 

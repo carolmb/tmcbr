@@ -63,6 +63,7 @@ public class MazeManager : MonoBehaviour {
 		GameObject obj = Instantiate (prefab);
 		obj.transform.position = TileToWorldPosition (new Vector2 (x, y));
 		obj.transform.SetParent (transform);
+		obj.name = prefabName;
 		return obj;
 	}
 

@@ -114,7 +114,7 @@ public class Character : MonoBehaviour {
 		float percentage = 0;
 		float percSpeed = speed / distance;
 		while (percentage < 1) {
-			percentage += percSpeed * Time.deltaTime;
+			percentage += percSpeed;
 			InstantMoveTo (Vector2.Lerp(orig, dest, percentage));
 			yield return null;
 		}

@@ -116,7 +116,7 @@ public class MazeGenerator {
 			if (EmptyRadiusToEnemies (maze, t)) {
 				if (GetAllWallNeighbours (maze, t).Count == 2 && t.isWalkable) { //mimics
 					if (Random.Range (0, 100) < 70) { //fator random
-						t.objectName = ""; //trocar pelo nome do prefab
+						t.objectName = "Mimic"; //trocar pelo nome do prefab
 					}
 				} else if (GetAllWallNeighbours (maze, t).Count == 3 && t.isWall) { //armadura
 					if (Random.Range (0, 100) < 50) { //fator random
