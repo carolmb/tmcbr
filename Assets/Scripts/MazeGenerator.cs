@@ -132,7 +132,11 @@ public class MazeGenerator {
 				
 	}
 
-	public static void ExpandMaze (Maze maze, int factorX, int factorY){
+	public static void ExpandMazeFlorest (Maze maze, int factorX, int factorY) {
+		ExpandMazeHall (maze, factorX, factorY);
+	}
+
+	public static void ExpandMazeHall (Maze maze, int factorX, int factorY){
 		Tile[,] expandedTiles = new Tile[maze.width * factorX, maze.height * factorY];
 		for (int i = 0; i < maze.width; i++) {
 			for (int j = 0; j < maze.height; j++) {
@@ -170,16 +174,47 @@ public class MazeGenerator {
 		origTile.transition = new Transition (destMaze.id, destTile.x, destTile.y, direction);
 	}
 
+	private static Tile getNeighbourHall(List<Tile> n){
+		if (Random.Range (0, 100) < 80 || n.Count == 1) {
+			return n[0];
+		} else {
+			return n [Random.Range (1, n.Count - 1)];
+		}
+	}
+
 	private static Maze CreateHall (Maze maze) {
-		// TODO: uma forma diferente de criar o labirinto
-		// Por ex: esse tem mais corredores "retos", verticais ou horizontais
-		return CreateForest(maze);
+		InicializeNullMaze (maze);
+		Tile currentTile = BeginMazeGenerator(maze);
+		Tile temp;
+		Stack<Tile> stack = new Stack<Tile> ();
+		List<Tile> neighbours;
+
+		stack.Push (currentTile);
+		while (stack.Count > 0) {
+			currentTile = stack.Pop ();
+			visited [currentTile.x, currentTile.y] = true;
+			if (NotVisitedNeighbours (maze, currentTile, 2)) {
+				neighbours = GetNeighbours (maze, currentTile, 2);
+				temp = getNeighbourHall (neighbours);
+				stack.Push (currentTile);
+				stack.Push (temp);
+				RemoveWall (maze, currentTile, temp);
+			}
+		}
+
+		SetIniFinalTiles (maze);
+
+		// Multiplicar o maze
+		int f = 2; // Scale factor
+		ExpandMazeHall (maze, f, f);
+		CreateEnemysHall (maze);
+		return maze;		
 	}
 
 	private static Maze CreateCave (Maze maze) {
 		return CreateForest(maze);
 	}
-
+		
 	private static Maze CreateForest (Maze maze) {
 		InicializeNullMaze (maze);
 		Tile currentTile = BeginMazeGenerator(maze);
@@ -193,13 +228,21 @@ public class MazeGenerator {
 			visited [currentTile.x, currentTile.y] = true;
 			if (NotVisitedNeighbours (maze, currentTile, 2)) {
 				neighbours = GetNeighbours (maze, currentTile, 2);
-				temp = neighbours [Random.Range (0, neighbours.Count)];
+				temp = neighbours [Random.Range (0, neighbours.Count - 1)];
 				stack.Push (currentTile);
 				stack.Push (temp);
 				RemoveWall (maze, currentTile, temp);
 			}
 		}
 
+		SetIniFinalTiles (maze);
+		// Multiplicar o maze
+		int f = 2; // Scale factor
+		ExpandMazeFlorest (maze, f, f);
+		return maze;
+	}
+
+	public static void SetIniFinalTiles (Maze maze) {
 		// Gerar tiles inicial e final
 		int x, y;
 
@@ -229,11 +272,6 @@ public class MazeGenerator {
 		SetTransition (initialTile, initialTile_dest, maze, maze);
 		SetTransition (finalTile, finalTile_dest, maze, maze);
 
-		// Multiplicar o maze
-		int f = 2; // Scale factor
-		ExpandMaze (maze, f, f);
-		CreateEnemysHall (maze);
-		return maze;
 	}
 
 	public static Maze CreateMaze (int id, string theme, int w, int h) {
