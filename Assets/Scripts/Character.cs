@@ -35,10 +35,10 @@ public class Character : MonoBehaviour {
 	// ===============================================================================
 
 	// Valores do Animator Controller equivalente a cada direção
-	public static readonly int DOWN = 0;
-	public static readonly int LEFT = 1;
-	public static readonly int RIGHT = 2;
-	public static readonly int UP = 3;
+	public const int DOWN = 0;
+	public const int LEFT = 1;
+	public const int RIGHT = 2;
+	public const int UP = 3;
 
 	// Parâmaetro direção (usa diretamente o parâmetro do Animator Controller
 	public int direction {
@@ -47,6 +47,12 @@ public class Character : MonoBehaviour {
 		}
 		set {
 			animator.SetInteger ("Direction", value);
+		}
+	}
+
+	public int lookingAngle {
+		get {
+			return DirectionToAngle (direction);
 		}
 	}
 
@@ -65,6 +71,21 @@ public class Character : MonoBehaviour {
 			return LEFT;
 		case 270:
 			return DOWN;
+		}
+		return 0;
+	}
+
+	// Converte um ângulo para uma direção
+	public static int DirectionToAngle(int direction) {
+		switch (direction) {
+		case RIGHT:
+			return 0;
+		case UP:
+			return 90;
+		case LEFT:
+			return 180;
+		case DOWN:
+			return 270;
 		}
 		return 0;
 	}
@@ -167,10 +188,10 @@ public class Character : MonoBehaviour {
 
 	// Verifica se tal posição é passável para o personagem (checa cada ponto de seu colisor)
 	private bool CanMoveTo(Vector2 newPosition) {
-		float left 		= newPosition.x - boxCollider.bounds.extents.x;
-		float right 	= newPosition.x + boxCollider.bounds.extents.x;
-		float bottom 	= newPosition.y - boxCollider.bounds.extents.y - Tile.size / 2;
-		float top 		= newPosition.y + boxCollider.bounds.extents.y - Tile.size / 2;
+		float left 		= newPosition.x - boxCollider.bounds.extents.x + boxCollider.offset.x;
+		float right 	= newPosition.x + boxCollider.bounds.extents.x + boxCollider.offset.x;
+		float bottom 	= newPosition.y - boxCollider.bounds.extents.y + boxCollider.offset.y - Tile.size / 2;
+		float top 		= newPosition.y + boxCollider.bounds.extents.y + boxCollider.offset.y - Tile.size / 2;
 
 		if (Collides (left, top) || Collides (left, bottom) || Collides (right, top) || Collides (right, bottom)) {
 			return false;

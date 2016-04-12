@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent (typeof(Character))]
 public class Player : MonoBehaviour {
@@ -26,13 +27,15 @@ public class Player : MonoBehaviour {
 	// Movimento
 	// ===============================================================================
 
+	public Button menuButton;
+
 	// Movimento pelo Input
 	void Update() {
-		if (Input.GetButtonDown ("Pause")) {
-			if (paused) {
-				Resume ();
+		if (Input.GetButtonDown ("Menu")) {
+			if (!paused) {
+				menuButton.onClick.Invoke ();
 			} else {
-				Pause ();
+				GameMenu.instance.CloseMenu();
 			}
 		}
 

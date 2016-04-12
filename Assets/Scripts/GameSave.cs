@@ -19,6 +19,7 @@ public class GameSave {
 		transition = mazes [0].FindTransitionInX (mazes [0].width - 1);
 
 		bag = new Bag ();
+		bag.itemIDs [0] = 0;
 		lifePoints = 5;
 	}
 
