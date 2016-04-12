@@ -61,7 +61,7 @@ public class MazeManager : MonoBehaviour {
 	GameObject CreateTileObject(int x, int y, string prefabName) {
 		GameObject prefab = Resources.Load<GameObject> ("Prefabs/" + prefabName);
 		GameObject obj = Instantiate (prefab);
-		obj.transform.position = TileToWorldPosition (new Vector2 (x, y));
+		obj.transform.position = TileToWorldPosition (new Vector2 (x, y)) + new Vector3(0, Tile.size / 2, 0);
 		obj.transform.SetParent (transform);
 		obj.name = prefabName;
 		return obj;
@@ -94,6 +94,20 @@ public class MazeManager : MonoBehaviour {
 		//Debug.Log ("world: " + worldPos);
 		//Debug.Log ("tile: " + tilePos);
 		return tilePos;
+	}
+
+	// Arredonda uma coordenada para um múltiplo de Tile.size
+	public static int RoundToTile(float value) {
+		return Mathf.RoundToInt (value / Tile.size) * Tile.size;
+	}
+
+	// Pega o tile na dada posição
+	public static Tile GetTile(Vector2 position) {
+		Vector2 p = WorldToTilePos(position);
+		if (p.x < 0 || p.x >= maze.width || p.y < 0 || p.y >= maze.height) {
+			return null;
+		}
+		return maze.tiles [(int)p.x, (int)p.y];
 	}
 
 	// Verifica de um ponto está colidindo com algum tile

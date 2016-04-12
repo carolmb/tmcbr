@@ -8,6 +8,7 @@ public class GameSave {
 	public Maze[] mazes;
 	public Transition transition;
 	public Bag bag;
+	public int lifePoints;
 
 	public GameSave() {
 		int mazeCount = 1;
@@ -18,6 +19,7 @@ public class GameSave {
 		transition = mazes [0].FindTransitionInX (mazes [0].width - 1);
 
 		bag = new Bag ();
+		lifePoints = 5;
 	}
 
 }

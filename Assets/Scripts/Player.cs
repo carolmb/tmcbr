@@ -17,51 +17,39 @@ public class Player : MonoBehaviour {
 		Resume ();
 	}
 
+	void Start() {
+		character.lifePoints = SaveManager.currentSave.lifePoints;
+		GameMenu.instance.UpdateLife (character.lifePoints);
+	}
+
 	// ===============================================================================
 	// Movimento
 	// ===============================================================================
 
 	// Movimento pelo Input
 	void Update() {
-		if (paused)
+		if (paused || character.damaging)
 			return;
 
 		moveVector.x = Input.GetAxisRaw ("Horizontal");
 		moveVector.y = Input.GetAxisRaw ("Vertical");
-		if (moveVector.x == 0 && moveVector.y == 0 || !TryMove ()) {
-			// Se não apertou botão ou colidiu com tile
+		if (moveVector.x == 0 && moveVector.y == 0) {
+			// Se não apertou botão
 			character.Stop ();
 		} else {
-			// Se moveu
-			CheckTransition();
+			float angle = character.TryMove (moveVector);
+			if (!float.IsNaN(angle)) {
+				// Se moveu
+				character.TurnTo (angle);
+				CheckTransition ();
+			} else {
+				character.TurnTo(GameManager.VectorToAngle(moveVector));
+				character.Stop ();
+			}
 		}
 	}
 
-	// Tenta se mover na direção do atual moveVector
-	// Se conseguir, move e retorna true; se não, apenas retorna false
-	bool TryMove() {
-		float angle = GameManager.VectorToAngle (moveVector);
-		if (TryMove (angle)) {
-			character.TurnTo (angle);
-		} else if (TryMove (angle + 45)) {
-			character.TurnTo (angle + 45); 
-		} else if (TryMove (angle - 45)) {
-			character.TurnTo(angle - 45);
-		} else {
-			character.TurnTo (angle);
-			character.Stop ();
-			return false;
-		}
-		return true;
-	}
-
-	// Tenta se mover no dado ângulo
-	// Se conseguir, move e retorna true; se não, apenas retorna false
-	bool TryMove(float angle) {
-		Vector2 translation = GameManager.AngleToVector (angle) * character.speed;
-		return character.InstantMove (translation);
-	}
-
+	// Verifica se o player chegou nem tile que tem uma transição
 	void CheckTransition() {
 		Tile tile = character.currentTile;
 		if (tile.transition != null) {
@@ -106,6 +94,40 @@ public class Player : MonoBehaviour {
 		currentItem = Item.DB [itemID];
 		GameMenu.instance.UpdateItem (currentItem);
 		Resume ();
+	}
+
+	// ===============================================================================
+	// Dano e Morte
+	// ===============================================================================
+
+	public bool immune { get; private set; }
+	public float immuneTime = 1f;
+
+	public float blinkFreq = 0.075f;
+
+	public void OnDamage() {
+		SaveManager.currentSave.lifePoints = character.lifePoints;
+		GameMenu.instance.UpdateLife (character.lifePoints);
+		StartCoroutine (Blink ());
+	}
+
+	private IEnumerator Blink() {
+		immune = true;
+		float time = 0;
+		bool red = false;
+
+		while (time < immuneTime) {
+			character.spriteRenderer.color = red ? Color.white : Color.red;
+			time += blinkFreq;
+			red = !red;
+			yield return new WaitForSeconds (blinkFreq);
+		}
+		character.spriteRenderer.color = Color.white;
+		immune = false;
+	}
+
+	public void OnDie() {
+		GameMenu.instance.Quit ();
 	}
 
 }

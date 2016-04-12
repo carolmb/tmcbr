@@ -13,6 +13,7 @@ public class GameMenu : MonoBehaviour {
 
 	public Text coinText;
 	public Text roseText;
+	public Text lifeText;
 
 	public Image currentItem;
 
@@ -60,6 +61,10 @@ public class GameMenu : MonoBehaviour {
 
 	public void Quit() {
 		SceneManager.LoadScene ("MainMenu");
+	}
+
+	public void UpdateLife(int value) {
+		lifeText.text = "x" + value;
 	}
 
 	public void UpdateCoins(int value) {

@@ -3,12 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 [RequireComponent (typeof(Character))]
-public class KnightArmor : MonoBehaviour {
+public class KnightArmor : Enemy {
 
-	// Character
-	private Character character;
-	// Max way
-	private int max_way;
+	int max_way;
 	// First position
 	private Vector3 firstPosition;
 	// First direction
@@ -17,8 +14,8 @@ public class KnightArmor : MonoBehaviour {
 	Queue<Vector2> way = new Queue<Vector2>();
 
 	//
-	void Awake() {
-		character = GetComponent<Character>();
+	protected override void Awake() {
+		base.Awake ();
 		max_way = 10;
 		// First tile
 		Vector2 position = transform.position;

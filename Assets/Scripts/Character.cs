@@ -8,11 +8,13 @@ using System.Collections.Generic;
 public class Character : MonoBehaviour {
 
 	private Animator animator;
+	public SpriteRenderer spriteRenderer { get; private set; }
 	private BoxCollider2D boxCollider;
 		
 	void Awake () {
 		animator = GetComponent<Animator> ();
 		boxCollider = GetComponent<BoxCollider2D> ();
+		spriteRenderer = GetComponent<SpriteRenderer> ();
 		Stop ();
 	}
 
@@ -22,6 +24,10 @@ public class Character : MonoBehaviour {
 		Vector3 pos = transform.position;
 		pos.z = pos.y;
 		transform.position = pos;
+	}
+
+	public bool isPlayer {
+		get { return Player.instance.gameObject == gameObject; }
 	}
 
 	// ===============================================================================
@@ -82,16 +88,17 @@ public class Character : MonoBehaviour {
 
 	// Move, dentro de um frame, o personagem em direção translation
 	// Retorna se foi possível mover
-	public bool InstantMove(Vector2 translation) {
-		return InstantMoveTo((Vector2) transform.position + translation);
+	public bool InstantMove(Vector2 translation, bool animate = true) {
+		return InstantMoveTo((Vector2) transform.position + translation, animate);
 	}
 
 	// Move, dentro de um frame, o personagem para o point
 	// Retorna se foi possível mover
-	public bool InstantMoveTo(Vector2 point) {
+	public bool InstantMoveTo(Vector2 point, bool animate = true) {
 		if (CanMoveTo (point)) {
 			transform.position = point;
-			animator.speed = 1;
+			if (animate)
+				animator.speed = 1;
 			return true;
 		} else {
 			return false;
@@ -113,12 +120,13 @@ public class Character : MonoBehaviour {
 		float distance = (dest - orig).magnitude;
 		float percentage = 0;
 		float percSpeed = speed / distance;
-		while (percentage < 1) {
-			percentage += percSpeed;
-			InstantMoveTo (Vector2.Lerp(orig, dest, percentage));
+		while (percentage <= 1) {
+			if (!Player.instance.paused) {
+				percentage += percSpeed;
+				InstantMoveTo (Vector2.Lerp (orig, dest, percentage));
+			}
 			yield return null;
 		}
-		transform.position = dest;
 		moving = false;
 	}
 
@@ -133,14 +141,38 @@ public class Character : MonoBehaviour {
 	// Colisão
 	// ===============================================================================
 
+	// Tenta se mover na direção do atual moveVector
+	// Se conseguir, move e retorna o ângulo que andou; se não, retorna NaN
+	public float TryMove(Vector2 moveVector, bool animate = true) {
+		float angle = GameManager.VectorToAngle (moveVector);
+		angle = Mathf.Round (angle / 45) * 45;
+
+		if (TryMove (angle, animate)) {
+			return angle;
+		} else if (TryMove (angle + 45, animate)) {
+			return angle + 45; 
+		} else if (TryMove (angle - 45, animate)) {
+			return angle - 45;
+		} else {
+			return float.NaN;
+		}
+	}
+
+	// Tenta se mover no dado ângulo
+	// Se conseguir, move e retorna true; se não, apenas retorna false
+	bool TryMove(float angle, bool animate) {
+		Vector2 translation = GameManager.AngleToVector (angle) * speed;
+		return InstantMove (translation, animate);
+	}
+
 	// Verifica se tal posição é passável para o personagem (checa cada ponto de seu colisor)
 	private bool CanMoveTo(Vector2 newPosition) {
-		float x1 = newPosition.x - boxCollider.bounds.extents.x;
-		float x2 = newPosition.x + boxCollider.bounds.extents.x;
-		float y1 = newPosition.y - boxCollider.bounds.extents.y - Tile.size / 2;
-		float y2 = newPosition.y + boxCollider.bounds.extents.y - Tile.size / 2;
+		float left 		= newPosition.x - boxCollider.bounds.extents.x;
+		float right 	= newPosition.x + boxCollider.bounds.extents.x;
+		float bottom 	= newPosition.y - boxCollider.bounds.extents.y - Tile.size / 2;
+		float top 		= newPosition.y + boxCollider.bounds.extents.y - Tile.size / 2;
 
-		if (Collides (x1, y1) || Collides (x1, y2) || Collides (x2, y1) || Collides (x2, y2)) {
+		if (Collides (left, top) || Collides (left, bottom) || Collides (right, top) || Collides (right, bottom)) {
 			return false;
 		} else {
 			return true;
@@ -152,11 +184,66 @@ public class Character : MonoBehaviour {
 		return MazeManager.Collides (x, y);
 	}
 
+	// Tile atual do personagem
 	public Tile currentTile {
 		get {
 			Vector2 tileCoord = MazeManager.WorldToTilePos(transform.position - new Vector3(0, Tile.size / 2, 0));
 			return MazeManager.maze.tiles [(int)tileCoord.x, (int)tileCoord.y];
 		}
+	}
+
+	// ===============================================================================
+	// Dano e Morte
+	// ===============================================================================
+
+	// Pontos de vida do personagem
+	public int lifePoints = 5;
+
+	// Quantos pixels o personagem vai andar para trás quando levar dano
+	private int damageStep = 2;
+	private float damageDuration = 0.5f;
+
+	// Serve para verificar se o personagem está levando dano
+	public bool damaging { get; private set; }
+
+	// Animação de dano
+	public IEnumerator Damage(Vector2 origin, int value) {
+		damaging = true;
+
+		lifePoints = Mathf.Max (0, lifePoints - value);
+		SendMessage ("OnDamage");
+
+		// Step
+		Stop();
+		TurnTo (origin);
+		yield return StartCoroutine (DamageStep(origin));
+		Stop();
+
+		// Death
+		if (lifePoints == 0) {
+			yield return StartCoroutine(Die());
+		} else {
+			damaging = false;
+		}
+	}
+
+	// Passo que o personagem dá para trás quando leva dano
+	private IEnumerator DamageStep(Vector2 origin) {
+		Vector2 direction = ((Vector2)transform.position - origin).normalized * damageStep;
+		float time = 0;
+		while (time < damageDuration) {
+			TryMove (direction, false);
+			yield return null;
+			time += Time.deltaTime;
+		}
+	}
+
+	// Animação de morte
+	public IEnumerator Die() {
+		// TODO: animaçãozinha simples de morte
+		SendMessage ("OnDie");
+		yield return null;
+		Destroy (gameObject);
 	}
 
 }
