@@ -9,9 +9,12 @@ public abstract class Item {
 	// Item picture
 	public string spriteName;
 
-	public Item(int id, string spriteName) {
+	public bool consumable;
+
+	public Item(int id, string spriteName, bool consumable) {
 		this.id = id;
 		this.spriteName = spriteName;
+		this.consumable = consumable;
 	}
 
 	// O que acontece quando o jogador usa o item

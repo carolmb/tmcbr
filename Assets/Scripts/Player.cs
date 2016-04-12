@@ -28,8 +28,26 @@ public class Player : MonoBehaviour {
 
 	// Movimento pelo Input
 	void Update() {
-		if (paused || character.damaging)
+		if (Input.GetButtonDown ("Pause")) {
+			if (paused) {
+				Resume ();
+			} else {
+				Pause ();
+			}
+		}
+
+		if (paused)
 			return;
+
+		// Guardar tile visitado
+		character.currentTile.visited = true;
+
+		if (character.damaging)
+			return;
+
+		if (Input.GetButtonDown ("Item")) {
+			UseItem ();
+		}
 
 		moveVector.x = Input.GetAxisRaw ("Horizontal");
 		moveVector.y = Input.GetAxisRaw ("Vertical");
@@ -61,11 +79,13 @@ public class Player : MonoBehaviour {
 	// Pause
 	// ===============================================================================
 
+	// Pausar jogo
 	public void Pause() {
 		paused = true;
 		Time.timeScale = 0;
 	}
 
+	// Despausar jogo
 	public void Resume() {
 		paused = false;
 		Time.timeScale = 1;
@@ -76,6 +96,7 @@ public class Player : MonoBehaviour {
 	// ===============================================================================
 
 	public Bag bag { get { return SaveManager.currentSave.bag; } }
+	private int selectedSlot = -1;
 
 	public void IncrementCoins(int value) {
 		bag.coins += value;
@@ -87,13 +108,31 @@ public class Player : MonoBehaviour {
 		GameMenu.instance.UpdateRoses (bag.roses);
 	}
 
-	public Item currentItem;
+	public Item currentItem {
+		get { 
+			if (selectedSlot > -1) {
+				int itemID = bag.itemIDs [selectedSlot];
+				if (itemID > -1)
+					return Item.DB [itemID];
+			}
+			return null;
+		}
+	}
 
 	public void ChooseItem(int id) {
-		int itemID = bag.itemIDs [id];
-		currentItem = Item.DB [itemID];
+		selectedSlot = id;
 		GameMenu.instance.UpdateItem (currentItem);
 		Resume ();
+	}
+
+	public void UseItem() {
+		if (currentItem != null) {
+			currentItem.OnUse ();
+			if (currentItem.consumable) {
+				bag.itemIDs [selectedSlot] = -1;
+				selectedSlot = -1;
+			}
+		}
 	}
 
 	// ===============================================================================
@@ -108,7 +147,8 @@ public class Player : MonoBehaviour {
 	public void OnDamage() {
 		SaveManager.currentSave.lifePoints = character.lifePoints;
 		GameMenu.instance.UpdateLife (character.lifePoints);
-		StartCoroutine (Blink ());
+		if (character.lifePoints > 0)
+			StartCoroutine (Blink ());
 	}
 
 	private IEnumerator Blink() {

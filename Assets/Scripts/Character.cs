@@ -200,8 +200,8 @@ public class Character : MonoBehaviour {
 	public int lifePoints = 5;
 
 	// Quantos pixels o personagem vai andar para trás quando levar dano
-	private int damageStep = 2;
-	private float damageDuration = 0.5f;
+	private float damageSpeed = 3;
+	private float damageDuration = 0.25f;
 
 	// Serve para verificar se o personagem está levando dano
 	public bool damaging { get; private set; }
@@ -229,13 +229,16 @@ public class Character : MonoBehaviour {
 
 	// Passo que o personagem dá para trás quando leva dano
 	private IEnumerator DamageStep(Vector2 origin) {
-		Vector2 direction = ((Vector2)transform.position - origin).normalized * damageStep;
+		Vector2 direction = ((Vector2)transform.position - origin).normalized;
+		float previousSpeed = speed;
+		speed = damageSpeed;
 		float time = 0;
 		while (time < damageDuration) {
 			TryMove (direction, false);
 			yield return null;
 			time += Time.deltaTime;
 		}
+		speed = previousSpeed;
 	}
 
 	// Animação de morte

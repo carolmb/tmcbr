@@ -29,7 +29,7 @@ public class Tile {
 	public bool isWall = false; // chão ou parede
 	public int obstacle = -1; // -1 é sem obstáculo
 	public string objectName = ""; // nome do objeto (inimigo ou item), se tiver 
-	public bool visited; // usado para checar se foi visitado pelo jogador
+	public bool visited = false; // usado para checar se foi visitado pelo jogador
 	public Transition transition; // se ao tocar, para onde o player vai
 
 	public Tile() {}
