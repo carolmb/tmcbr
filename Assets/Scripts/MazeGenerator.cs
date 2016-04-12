@@ -137,6 +137,9 @@ public class MazeGenerator {
 	}
 
 	public static void ExpandMazeHall (Maze maze, int factorX, int factorY){
+
+
+
 		Tile[,] expandedTiles = new Tile[maze.width * factorX, maze.height * factorY];
 		for (int i = 0; i < maze.width; i++) {
 			for (int j = 0; j < maze.height; j++) {
@@ -165,10 +168,11 @@ public class MazeGenerator {
 				}
 			}
 		}
+		maze.beginMaze = expandedTiles[maze.beginMaze.x * factorX, maze.beginMaze.y * factorY];
 		maze.tiles = expandedTiles;
 	}
 
-	private static void SetTransition (Tile origTile, Tile destTile, Maze origMaze, Maze destMaze) {
+	public static void SetTransition (Tile origTile, Tile destTile, Maze origMaze, Maze destMaze) {
 		float angle = GameManager.VectorToAngle (origTile.coordinates - origMaze.center);
 		int direction = Character.AngleToDirection (Mathf.RoundToInt (angle / 90) * 90);
 		origTile.transition = new Transition (destMaze.id, destTile.x, destTile.y, direction);
@@ -184,7 +188,10 @@ public class MazeGenerator {
 
 	private static Maze CreateHall (Maze maze) {
 		InicializeNullMaze (maze);
+		//Debug.Log (maze.width);
+		//Debug.Log (begin);
 		Tile currentTile = BeginMazeGenerator(maze);
+		maze.beginMaze = currentTile;
 		Tile temp;
 		Stack<Tile> stack = new Stack<Tile> ();
 		List<Tile> neighbours;
@@ -244,34 +251,36 @@ public class MazeGenerator {
 
 	public static void SetIniFinalTiles (Maze maze) {
 		// Gerar tiles inicial e final
-		int x, y;
+//		int x, y;
 
 		// Gerar um tile na borda esquerda
-		x = 1;
+		/*x = 1;
 		do {
 			y = Random.Range (1, maze.height - 1);
 		} while (maze.tiles [x, y].isWall);
 		Tile initialTile = maze.tiles [x - 1, y];
 		initialTile.isWall = false;
-
+		maze.beginMaze = initialTile;
+		*/
 		// Gerar um tile na borda direita
-		x = maze.width - 2;
+	/*	x = maze.width - 2;
 		do {
 			y = Random.Range (1, maze.height - 1);
-		} while (maze.tiles [x, y].isWall);
+		} while (maze.tiles [x, y].isWall && y%2 == 0);
 		Tile finalTile = maze.tiles [x + 1, y];
 		finalTile.isWall = false;
+		maze.endMaze = finalTile;
 
 		// Destino da transição no tile inicial (que é um tile à frente do tile final)
 		Tile initialTile_dest = maze.tiles [finalTile.x - 1, finalTile.y]; 
 		// Destino da transição no tile final (que é um tile à frente do tile inicial)
-		Tile finalTile_dest = maze.tiles [initialTile.x + 1, initialTile.y];
+		Tile finalTile_dest = maze.tiles [maze.beginMaze.x + 1, maze.beginMaze.y];
 
 		// Colocar as transições entre o primeiro e o último tile (TEMPORÁRIO)
 		// TODO: Colocar depois as transições entre diferentes labirintos
-		SetTransition (initialTile, initialTile_dest, maze, maze);
+		SetTransition (maze.tiles[maze.beginMaze.x - 1, maze.beginMaze.y], initialTile_dest, maze, maze);
 		SetTransition (finalTile, finalTile_dest, maze, maze);
-
+	*/
 	}
 
 	public static Maze CreateMaze (int id, string theme, int w, int h) {

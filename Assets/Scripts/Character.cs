@@ -197,7 +197,7 @@ public class Character : MonoBehaviour {
 	// ===============================================================================
 
 	// Pontos de vida do personagem
-	public int lifePoints = 5;
+	public int lifePoints = 100;
 
 	// Quantos pixels o personagem vai andar para trás quando levar dano
 	private float damageSpeed = 3;

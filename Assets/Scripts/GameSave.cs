@@ -11,12 +11,50 @@ public class GameSave {
 	public int lifePoints;
 
 	public GameSave() {
-		int mazeCount = 1;
+		Tile initialTile, finalTile;
+
+		int mazeCount = 3;
 		mazes = new Maze[mazeCount];
+
 		for (int i = 0; i < mazeCount; i++) {
-			mazes [i] = MazeGenerator.CreateMaze(i, "Hall", 15, 15);
+			mazes [i] = MazeGenerator.CreateMaze (i, "Hall", 15, 15);
 		}
-		transition = mazes [0].FindTransitionInX (mazes [0].width - 1);
+
+		int x = mazes[mazeCount - 1].width - 3, y;
+		do {
+			y = Random.Range (1, mazes[mazeCount -1 ].height - 1);
+		} while (mazes[mazeCount - 1].tiles [x, y].isWall && y%2 == 0);
+		finalTile = mazes[mazeCount-1].tiles [x + 2, y];
+		finalTile.isWall = false;
+		mazes [mazeCount - 1].tiles [x + 1, y].isWall = false;
+
+
+		for (int i = 0; i < mazeCount; i++) {
+
+			//pega o inicio do maze atual
+			//cria o final do maze anterior com base no inicio do atual
+			//faz transição
+		
+			initialTile = mazes [i].beginMaze;
+			mazes [i].tiles [initialTile.x - 1, initialTile.y].isWall = false;
+			mazes [i].tiles [initialTile.x - 2, initialTile.y].isWall = false;
+
+			if (i != 0) {
+				finalTile = mazes [i - 1].tiles [mazes [i].width - 1, initialTile.y];
+
+				mazes [i - 1].tiles [mazes [i].width - 2, initialTile.y].isWall = false;
+				finalTile.isWall = false;
+
+				MazeGenerator.SetTransition (finalTile, initialTile, mazes [i - 1], mazes [i]);
+			} else {
+				mazes [mazeCount - 1].tiles [mazes [i].width - 2, initialTile.y].isWall = false;
+				finalTile.isWall = false;
+
+				MazeGenerator.SetTransition (finalTile, initialTile, mazes [mazeCount - 1], mazes [i]);
+			}
+		}
+
+		transition = new Transition(0, mazes[0].beginMaze.x, mazes[0].beginMaze.y, 0);
 
 		bag = new Bag ();
 		lifePoints = 5;

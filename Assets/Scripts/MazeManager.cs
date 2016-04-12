@@ -38,7 +38,7 @@ public class MazeManager : MonoBehaviour {
 			SaveManager.NewGame ();
 		}
 		maze = SaveManager.currentSave.mazes [currentTransition.mazeID];
-
+		Debug.Log ("id: " + currentTransition.mazeID);
 		foreach (Tile t in maze) {
 			GameObject floor = CreateTileGraphic (t.x, t.y, "floor");
 			Vector3 pos = floor.transform.position;
