@@ -91,7 +91,7 @@ public class MazeGenerator {
 		for (int i = tile.x - deltaEnemys; i < tile.y + deltaEnemys; i++) {
 			for (int j = tile.y - deltaEnemys; j < tile.y + deltaEnemys; j++) {
 				if (i >= 0 && i < maze.width && j >= 0 && j < maze.height) {
-					if (maze.tiles [i, j].obstacle >= 0) { //trocar por .objectName != ""
+					if (maze.tiles [i, j].objectName != "") { //trocar por .objectName != ""
 						return false;
 					}
 				}
@@ -114,17 +114,17 @@ public class MazeGenerator {
 					}
 				} else if (GetAllWallNeighbours (maze, t).Count == 3 && t.isWall) { //armadura
 					if (Random.Range (0, 100) < 50) { //fator random
-						t.objectName = ""; 
+						//t.objectName = "Armor"; 
 					}
 				} else if (GetAllWallNeighbours (maze, t).Count == 3 && t.isWall) { //espelho
 					if (Random.Range (0, 100) < 60) {
 						t.objectName = "";
 					} else {
-						t.obstacle = 0; //trocar por código do espelho com dicas
+						//t.obstacle = 0; //trocar por código do espelho com dicas
 					}
 				}
 			} else {
-				if (Random.Range (0, 100) < 20 && t.isWalkable) {
+				if (Random.Range (0, 100) < 10 && t.isWalkable) {
 					t.obstacle = 0;
 				}
 			}

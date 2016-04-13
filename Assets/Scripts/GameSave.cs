@@ -11,7 +11,7 @@ public class GameSave {
 	public int lifePoints;
 
 	public GameSave() {
-		Tile initialTile, finalTile;
+		Tile initialTileTop, initialTileBottom, finalTileTop, finalTileBottom;
 
 		int mazeCount = 3;
 		mazes = new Maze[mazeCount];
@@ -24,7 +24,7 @@ public class GameSave {
 		do {
 			y = Random.Range (1, mazes[mazeCount -1 ].height - 1);
 		} while (mazes[mazeCount - 1].tiles [x, y].isWall && y%2 == 0);
-		finalTile = mazes[mazeCount-1].tiles [x + 2, y];
+		finalTileBottom = mazes[mazeCount-1].tiles [x + 2, y];
 		mazes [mazeCount - 1].tiles [x + 2, y].isWall = false;
 		mazes [mazeCount - 1].tiles [x + 2, y].obstacle = -1;
 		mazes [mazeCount - 1].tiles [x + 2, y + 1].isWall = false;
@@ -38,36 +38,37 @@ public class GameSave {
 			//cria o final do maze anterior com base no inicio do atual
 			//faz transição
 		
-			initialTile = mazes [i].beginMaze;
-			mazes [i].tiles [initialTile.x - 1, initialTile.y].isWall = false;
-			mazes [i].tiles [initialTile.x - 1, initialTile.y].obstacle = -1;
-			mazes [i].tiles [initialTile.x - 2, initialTile.y].isWall = false;
-			mazes [i].tiles [initialTile.x - 2, initialTile.y].obstacle = -1;
-			mazes [i].tiles [initialTile.x - 1, initialTile.y + 1].isWall = false;
-			mazes [i].tiles [initialTile.x - 2, initialTile.y + 1].isWall = false;
+			initialTileBottom = mazes [i].beginMaze;
+			mazes [i].tiles [initialTileBottom.x - 1, initialTileBottom.y].isWall = false;
+			mazes [i].tiles [initialTileBottom.x - 1, initialTileBottom.y].obstacle = -1;
+			mazes [i].tiles [initialTileBottom.x - 2, initialTileBottom.y].isWall = false;
+			mazes [i].tiles [initialTileBottom.x - 2, initialTileBottom.y].obstacle = -1;
+			mazes [i].tiles [initialTileBottom.x - 1, initialTileBottom.y + 1].isWall = false;
+			mazes [i].tiles [initialTileBottom.x - 2, initialTileBottom.y + 1].isWall = false;
 
 			if (i != 0) {
-				finalTile = mazes [i - 1].tiles [mazes [i].width - 1, initialTile.y];
-				mazes [i - 1].tiles [mazes [i].width - 1, initialTile.y + 1].isWall = false;
-				mazes [i - 1].tiles [mazes [i].width - 1, initialTile.y + 1].obstacle = -1;
-				mazes [i - 1].tiles [mazes [i].width - 2, initialTile.y].isWall = false;
-				mazes [i - 1].tiles [mazes [i].width - 2, initialTile.y].obstacle = -1;
-				mazes [i - 1].tiles [mazes [i].width - 2, initialTile.y + 1].isWall = false;
-				mazes [i - 1].tiles [mazes [i].width - 2, initialTile.y + 1].obstacle = -1;
+				finalTileBottom = mazes [i - 1].tiles [mazes [i].width - 1, initialTileBottom.y];
+				mazes [i - 1].tiles [mazes [i].width - 1, initialTileBottom.y + 1].isWall = false;
+				mazes [i - 1].tiles [mazes [i].width - 1, initialTileBottom.y + 1].obstacle = -1;
+				mazes [i - 1].tiles [mazes [i].width - 2, initialTileBottom.y].isWall = false;
+				mazes [i - 1].tiles [mazes [i].width - 2, initialTileBottom.y].obstacle = -1;
+				mazes [i - 1].tiles [mazes [i].width - 2, initialTileBottom.y + 1].isWall = false;
+				mazes [i - 1].tiles [mazes [i].width - 2, initialTileBottom.y + 1].obstacle = -1;
 
-				finalTile.isWall = false;
+				finalTileBottom.isWall = false;
 
-				MazeGenerator.SetTransition (finalTile, initialTile, mazes [i - 1], mazes [i]);
+				MazeGenerator.SetTransition (finalTileBottom, initialTileBottom, mazes [i - 1], mazes [i]);
+				//MazeGenerator.SetTransition ();
 			} else {
-				mazes [mazeCount - 1].tiles [mazes [i].width - 2, initialTile.y].isWall = false;
-				mazes [mazeCount - 1].tiles [mazes [i].width - 2, initialTile.y].obstacle = -1;
-				mazes [mazeCount - 1].tiles [mazes [i].width - 2, initialTile.y + 1].isWall = false;
-				mazes [mazeCount - 1].tiles [mazes [i].width - 2, initialTile.y + 1].obstacle = -1;
-				finalTile.isWall = false;
+				mazes [mazeCount - 1].tiles [mazes [i].width - 2, initialTileBottom.y].isWall = false;
+				mazes [mazeCount - 1].tiles [mazes [i].width - 2, initialTileBottom.y].obstacle = -1;
+				mazes [mazeCount - 1].tiles [mazes [i].width - 2, initialTileBottom.y + 1].isWall = false;
+				mazes [mazeCount - 1].tiles [mazes [i].width - 2, initialTileBottom.y + 1].obstacle = -1;
+				finalTileBottom.isWall = false;
 
-				MazeGenerator.SetTransition (finalTile, initialTile, mazes [mazeCount - 1], mazes [i]);
+				MazeGenerator.SetTransition (finalTileBottom, initialTileBottom, mazes [mazeCount - 1], mazes [i]);
 			}
-			Debug.Log (finalTile.coordinates);
+			Debug.Log (finalTileBottom.coordinates);
 		}
 
 		transition = new Transition(0, mazes[0].beginMaze.x, mazes[0].beginMaze.y, 0);
