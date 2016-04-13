@@ -100,7 +100,7 @@ public class MazeGenerator {
 		return true;
 	}
 
-	public static void CreateEnemysHall(Maze maze) {
+	public static void CreateEnemiesHall(Maze maze) {
 		//mimics
 		//armadura enfeite
 		//armadura fantasma
@@ -119,41 +119,76 @@ public class MazeGenerator {
 				} else if (GetAllWallNeighbours (maze, t).Count == 3 && t.isWall) { //espelho
 					if (Random.Range (0, 100) < 60) {
 						t.objectName = "";
-					} else {
-						//t.obstacle = 0; //trocar por código do espelho com dicas
 					}
 				}
 			} else {
-				if (Random.Range (0, 100) < 10 && t.isWalkable) {
-				//	t.obstacle = 0;
+				if (Random.Range (0, 100) < 10 && t.isWalkable && NotObstaclesNear(maze, t)) {
+					t.obstacle = 0;
 				}
 			}
 		}
 				
 	}
 
+	static bool NotObstaclesNear(Maze maze, Tile tile) {
+		if (tile.x - 1 >= 0 && maze.tiles[tile.x - 1, tile.y].obstacle >= 0) {
+			return false;
+		}
+		if (tile.x - 1 >= 0 && tile.y - 1 >= 0 && maze.tiles[tile.x - 1, tile.y - 1].obstacle >= 0) {
+			return false;
+		}
+		if (tile.x + 1 < maze.width && maze.tiles[tile.x + 1, tile.y].obstacle >= 0) {
+			return false;
+		} 
+		if (tile.x + 1 < maze.width && tile.y + 1 < maze.height && maze.tiles[tile.x + 1, tile.y + 1].obstacle >= 0) {
+			return false;
+		} 
+		if (tile.y - 1 >= 0 && maze.tiles[tile.x, tile.y - 1].obstacle >= 0) {
+			return false;
+		} 
+		if (tile.x + 1 < maze.width && tile.y - 1 >= 0 && maze.tiles[tile.x + 1, tile.y - 1].obstacle >= 0) {
+			return false;
+		} 
+		if (tile.x - 1 >= 0 && tile.y + 1 < maze.height && maze.tiles[tile.x - 1, tile.y + 1].obstacle >= 0) {
+			return false;
+		}
+		return true;
+	}
+
 	public static void CreateObstaclesForest(Maze maze) {
 		foreach (Tile t in maze.tiles) {
 			if (t.isWall) {	
-				if (Random.Range (0, 100) < 30) { //fator random
+				if (Random.Range (1, 100) < 30) { //fator random
 					t.obstacle = 0; //trocar pelo nome do prefab
-				} else if (Random.Range (0, 100) < 20) { //fator random
-					t.obstacle = 1;
-					t.isWall = false;
-				} else if (Random.Range (0, 100) < 20) {
+				} else if (Random.Range (1, 100) < 20) {
 					t.obstacle = 2;
 					t.isWall = false;
-				} else if (Random.Range (0, 100) < 20) {
-					t.obstacle = 3;
-					t.isWall = false;
-				} else if (Random.Range (0, 100) < 20) {
+				} else if (Random.Range (1, 100) < 20) {
 					t.obstacle = 4;
 					t.isWall = false;
+				}
+			}
+			if (t.isWalkable && NotObstaclesNear(maze, t) && t.transition == null) { 
+				if (Random.Range (1, 100) < 30) {
+					t.obstacle = 1;
+				} else if (Random.Range (1, 100) < 20) {
+					t.obstacle = 2;
+				} else if (Random.Range (1, 100) < 30) {
+					t.obstacle = 3;
 				}
 			}
 		}
 	}
 		
+	public static void CreateEnemies(Maze maze, string theme) {
+		if (theme == "Hall")
+			CreateEnemiesHall (maze);
+		else if (theme == "Cave")
+			CreateEnemiesHall (maze);
+		else if (theme == "Forest")
+			CreateObstaclesForest (maze);
+	}
+
 	public static void ExpandMaze (Maze maze, int factorX, int factorY){
 		Tile[,] expandedTiles = new Tile[maze.width * factorX, maze.height * factorY];
 		for (int i = 0; i < maze.width; i++) {
@@ -194,16 +229,26 @@ public class MazeGenerator {
 	}
 
 	private static Tile GetNeighbourHall(List<Tile> n){
-		if (Random.Range (0, 100) < 80 || n.Count == 1) {
+		if (Random.Range (1, 100) < 80 || n.Count == 1) {
 			return n[0];
 		} else {
 			return n [Random.Range (1, n.Count - 1)];
 		}
 	}
+		
+	private static Maze CreateCave (Maze maze) {
+		return CreateForest(maze);
+	}
+		
+	private static Tile GetNeighbourForest(List<Tile> n){
+		int i = Random.Range (0, n.Count - 1);
+	//		Debug.Log (i + " " + n.Count);
+		return n [i];
+	}
 
 	private static Maze CreateHall (Maze maze) {
 		InicializeNullMaze (maze);
-	
+
 		Tile currentTile = BeginMazeGenerator(maze);
 		maze.beginMaze = currentTile;
 		Tile temp;
@@ -222,20 +267,7 @@ public class MazeGenerator {
 				RemoveWall (maze, currentTile, temp);
 			}
 		}
-			
-		// Multiplicar o maze
-		int f = 2; // Scale factor
-		ExpandMaze (maze, f, f);
-		CreateEnemysHall (maze);
 		return maze;		
-	}
-
-	private static Maze CreateCave (Maze maze) {
-		return CreateForest(maze);
-	}
-		
-	private static Tile GetNeighbourForest(List<Tile> n){
-		return n [Random.Range (0, n.Count - 1)];
 	}
 
 	private static Maze CreateForest (Maze maze) {
@@ -258,11 +290,6 @@ public class MazeGenerator {
 				RemoveWall (maze, currentTile, temp);
 			}
 		}
-
-		// Multiplicar o maze
-		int f = 2; // Scale factor
-		ExpandMaze (maze, f, f);
-		CreateObstaclesForest (maze);
 		return maze;
 	}
 		
