@@ -132,14 +132,33 @@ public class MazeGenerator {
 				
 	}
 
+	public static void CreateObstaclesForest(Maze maze) {
+		foreach (Tile t in maze.tiles) {
+			if (t.isWall) {	
+				if (Random.Range (0, 100) < 30) { //fator random
+					t.obstacle = 0; //trocar pelo nome do prefab
+				} else if (Random.Range (0, 100) < 20) { //fator random
+					t.obstacle = 1;
+					t.isWall = false;
+				} else if (Random.Range (0, 100) < 20) {
+					t.obstacle = 2;
+					t.isWall = false;
+				} else if (Random.Range (0, 100) < 20) {
+					t.obstacle = 3;
+					t.isWall = false;
+				} else if (Random.Range (0, 100) < 20) {
+					t.obstacle = 4;
+					t.isWall = false;
+				}
+			}
+		}
+	}
+
 	public static void ExpandMazeFlorest (Maze maze, int factorX, int factorY) {
 		ExpandMazeHall (maze, factorX, factorY);
 	}
 
 	public static void ExpandMazeHall (Maze maze, int factorX, int factorY){
-
-
-
 		Tile[,] expandedTiles = new Tile[maze.width * factorX, maze.height * factorY];
 		for (int i = 0; i < maze.width; i++) {
 			for (int j = 0; j < maze.height; j++) {
@@ -188,8 +207,7 @@ public class MazeGenerator {
 
 	private static Maze CreateHall (Maze maze) {
 		InicializeNullMaze (maze);
-		//Debug.Log (maze.width);
-		//Debug.Log (begin);
+	
 		Tile currentTile = BeginMazeGenerator(maze);
 		maze.beginMaze = currentTile;
 		Tile temp;
@@ -208,9 +226,7 @@ public class MazeGenerator {
 				RemoveWall (maze, currentTile, temp);
 			}
 		}
-
-		SetIniFinalTiles (maze);
-
+			
 		// Multiplicar o maze
 		int f = 2; // Scale factor
 		ExpandMazeHall (maze, f, f);
@@ -225,6 +241,7 @@ public class MazeGenerator {
 	private static Maze CreateForest (Maze maze) {
 		InicializeNullMaze (maze);
 		Tile currentTile = BeginMazeGenerator(maze);
+		maze.beginMaze = currentTile;
 		Tile temp;
 		Stack<Tile> stack = new Stack<Tile> ();
 		List<Tile> neighbours;
@@ -242,47 +259,13 @@ public class MazeGenerator {
 			}
 		}
 
-		SetIniFinalTiles (maze);
 		// Multiplicar o maze
 		int f = 2; // Scale factor
 		ExpandMazeFlorest (maze, f, f);
+		CreateObstaclesForest (maze);
 		return maze;
 	}
-
-	public static void SetIniFinalTiles (Maze maze) {
-		// Gerar tiles inicial e final
-//		int x, y;
-
-		// Gerar um tile na borda esquerda
-		/*x = 1;
-		do {
-			y = Random.Range (1, maze.height - 1);
-		} while (maze.tiles [x, y].isWall);
-		Tile initialTile = maze.tiles [x - 1, y];
-		initialTile.isWall = false;
-		maze.beginMaze = initialTile;
-		*/
-		// Gerar um tile na borda direita
-	/*	x = maze.width - 2;
-		do {
-			y = Random.Range (1, maze.height - 1);
-		} while (maze.tiles [x, y].isWall && y%2 == 0);
-		Tile finalTile = maze.tiles [x + 1, y];
-		finalTile.isWall = false;
-		maze.endMaze = finalTile;
-
-		// Destino da transição no tile inicial (que é um tile à frente do tile final)
-		Tile initialTile_dest = maze.tiles [finalTile.x - 1, finalTile.y]; 
-		// Destino da transição no tile final (que é um tile à frente do tile inicial)
-		Tile finalTile_dest = maze.tiles [maze.beginMaze.x + 1, maze.beginMaze.y];
-
-		// Colocar as transições entre o primeiro e o último tile (TEMPORÁRIO)
-		// TODO: Colocar depois as transições entre diferentes labirintos
-		SetTransition (maze.tiles[maze.beginMaze.x - 1, maze.beginMaze.y], initialTile_dest, maze, maze);
-		SetTransition (finalTile, finalTile_dest, maze, maze);
-	*/
-	}
-
+		
 	public static Maze CreateMaze (int id, string theme, int w, int h) {
 		Maze maze = new Maze (id, theme, w, h);
 		visited = new bool[w, h];
