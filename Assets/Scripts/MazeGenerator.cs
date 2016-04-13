@@ -112,7 +112,7 @@ public class MazeGenerator {
 					if (Random.Range (0, 100) < 50) { //fator random
 						t.objectName = "Mimic"; //trocar pelo nome do prefab
 					}
-				} else if (GetAllWallNeighbours (maze, t).Count == 3 && t.isWall) { //armadura
+				} else if (GetAllWallNeighbours (maze, t).Count == 3 && t.isWalkable) { //armadura
 					if (Random.Range (0, 100) < 30) { //fator random
 						t.objectName = "KnightArmor"; 
 					}
@@ -125,7 +125,7 @@ public class MazeGenerator {
 				}
 			} else {
 				if (Random.Range (0, 100) < 10 && t.isWalkable) {
-					t.obstacle = 0;
+				//	t.obstacle = 0;
 				}
 			}
 		}
@@ -153,12 +153,8 @@ public class MazeGenerator {
 			}
 		}
 	}
-
-	public static void ExpandMazeFlorest (Maze maze, int factorX, int factorY) {
-		ExpandMazeHall (maze, factorX, factorY);
-	}
-
-	public static void ExpandMazeHall (Maze maze, int factorX, int factorY){
+		
+	public static void ExpandMaze (Maze maze, int factorX, int factorY){
 		Tile[,] expandedTiles = new Tile[maze.width * factorX, maze.height * factorY];
 		for (int i = 0; i < maze.width; i++) {
 			for (int j = 0; j < maze.height; j++) {
@@ -229,7 +225,7 @@ public class MazeGenerator {
 			
 		// Multiplicar o maze
 		int f = 2; // Scale factor
-		ExpandMazeHall (maze, f, f);
+		ExpandMaze (maze, f, f);
 		CreateEnemysHall (maze);
 		return maze;		
 	}
@@ -261,7 +257,7 @@ public class MazeGenerator {
 
 		// Multiplicar o maze
 		int f = 2; // Scale factor
-		ExpandMazeFlorest (maze, f, f);
+		ExpandMaze (maze, f, f);
 		CreateObstaclesForest (maze);
 		return maze;
 	}
