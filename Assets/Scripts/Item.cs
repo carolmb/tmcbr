@@ -30,6 +30,8 @@ public abstract class Item {
 	private static Item[] InitializeDB() {
 		Item[] db = new Item[10];
 
+		db [0] = new Slingshot (0);
+
 		// TODO: criar os diferentes itens aqui
 		// OBS: todos os itens devem herdar dessa classe. Ex:
 		// db[3] = new Knife(3, "knife");

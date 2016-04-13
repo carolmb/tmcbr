@@ -20,6 +20,8 @@ public class Coin : MonoBehaviour {
 		pos.z = pos.y;
 		transform.position = pos;
 
+		value = Random.Range (1, 250);
+
 		if (value >= 200) {
 			sr.color = color200;
 		} else if (value >= 100) {

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 
+	public GameObject coin;
+
 	protected Character character;
 	protected Coroutine currentMovement;
 
@@ -29,11 +31,14 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void OnDamage() {
-		StopCoroutine (currentMovement);
-		currentMovement = null;
+		if (currentMovement != null) {
+			StopCoroutine (currentMovement);
+			currentMovement = null;
+		}
 	}
 
 	void OnDie() {
+		Instantiate (coin, transform.position, transform.rotation);
 		Debug.Log ("morrel");
 		// TODO: dropar moeda
 	}

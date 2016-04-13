@@ -63,6 +63,14 @@ public class GameMenu : MonoBehaviour {
 		SceneManager.LoadScene ("MainMenu");
 	}
 
+	public void CloseMenu() {
+		// TODO
+	}
+
+	public void CloseAll() {
+		// TODO
+	}
+
 	public void UpdateLife(int value) {
 		lifeText.text = "x" + value;
 	}
