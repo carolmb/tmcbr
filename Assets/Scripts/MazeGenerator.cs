@@ -100,12 +100,20 @@ public class MazeGenerator {
 		return true;
 	}
 
-	public static void CreateEnemiesHall(Maze maze) {
-		//mimics
-		//armadura enfeite
-		//armadura fantasma
-		//espelho por onde sai inimigos
+	static bool NoObstaclesNear(Maze maze, Tile tile) {
+		for (int i = tile.x - 1; i <= tile.x + 1; i++) {
+			for (int j = tile.y - 1; j <= tile.y + 1; j++) {
+				if (i >= 0 && i < maze.width && j >= 0 && j < maze.height) {
+					if (maze.tiles [i, j].obstacle >= 0) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
 
+	public static void CreateEnemiesHall(Maze maze) {
 		foreach (Tile t in maze.tiles) {
 			if (EmptyRadiusToEnemies (maze, t)) {
 				if (GetAllWallNeighbours (maze, t).Count == 2 && t.isWalkable) { //mimics
@@ -122,53 +130,28 @@ public class MazeGenerator {
 					}
 				}
 			} else {
-				if (Random.Range (0, 100) < 10 && t.isWalkable && NotObstaclesNear(maze, t)) {
+				if (Random.Range (0, 100) < 10 && t.isWalkable && NoObstaclesNear(maze, t)) {
 					t.obstacle = 0;
 				}
 			}
 		}
 				
 	}
-
-	static bool NotObstaclesNear(Maze maze, Tile tile) {
-		if (tile.x - 1 >= 0 && maze.tiles[tile.x - 1, tile.y].obstacle >= 0) {
-			return false;
-		}
-		if (tile.x - 1 >= 0 && tile.y - 1 >= 0 && maze.tiles[tile.x - 1, tile.y - 1].obstacle >= 0) {
-			return false;
-		}
-		if (tile.x + 1 < maze.width && maze.tiles[tile.x + 1, tile.y].obstacle >= 0) {
-			return false;
-		} 
-		if (tile.x + 1 < maze.width && tile.y + 1 < maze.height && maze.tiles[tile.x + 1, tile.y + 1].obstacle >= 0) {
-			return false;
-		} 
-		if (tile.y - 1 >= 0 && maze.tiles[tile.x, tile.y - 1].obstacle >= 0) {
-			return false;
-		} 
-		if (tile.x + 1 < maze.width && tile.y - 1 >= 0 && maze.tiles[tile.x + 1, tile.y - 1].obstacle >= 0) {
-			return false;
-		} 
-		if (tile.x - 1 >= 0 && tile.y + 1 < maze.height && maze.tiles[tile.x - 1, tile.y + 1].obstacle >= 0) {
-			return false;
-		}
-		return true;
-	}
-
+		
 	public static void CreateObstaclesForest(Maze maze) {
 		foreach (Tile t in maze.tiles) {
 			if (t.isWall) {	
 				if (Random.Range (1, 100) < 30) { //fator random
 					t.obstacle = 0; //trocar pelo nome do prefab
-				} else if (Random.Range (1, 100) < 20) {
+				} else if (Random.Range (1, 100) < 30) {
 					t.obstacle = 2;
 					t.isWall = false;
-				} else if (Random.Range (1, 100) < 20) {
+				} else if (Random.Range (1, 100) < 30) {
 					t.obstacle = 4;
 					t.isWall = false;
 				}
 			}
-			if (t.isWalkable && NotObstaclesNear(maze, t) && t.transition == null) { 
+			if (t.isWalkable && NoObstaclesNear(maze, t) && t.transition == null) { 
 				if (Random.Range (1, 100) < 30) {
 					t.obstacle = 1;
 				} else if (Random.Range (1, 100) < 20) {

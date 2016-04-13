@@ -12,7 +12,7 @@ public class GameSave {
 
 
 	public GameSave() {
-		mazes = StageGenerator.CreateStage ("Hall");
+		mazes = StageGenerator.CreateStage ("Forest");
 
 		transition = new Transition(0, mazes[0].beginMaze.x, mazes[0].beginMaze.y, 0);
 
