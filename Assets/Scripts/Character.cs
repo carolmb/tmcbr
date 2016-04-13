@@ -116,6 +116,7 @@ public class Character : MonoBehaviour {
 	// Move, dentro de um frame, o personagem para o point
 	// Retorna se foi possível mover
 	public bool InstantMoveTo(Vector2 point, bool animate = true) {
+		AdjustToFPS (ref point);
 		if (CanMoveTo (point)) {
 			transform.position = point;
 			if (animate)
@@ -162,6 +163,12 @@ public class Character : MonoBehaviour {
 	// Colisão
 	// ===============================================================================
 
+	private void AdjustToFPS(ref Vector2 newPosition) {
+		Vector2 movement = newPosition - (Vector2) transform.position;
+		movement *= 60 * Time.deltaTime;
+		newPosition = (Vector2)transform.position + movement;
+	}
+
 	// Tenta se mover na direção do atual moveVector
 	// Se conseguir, move e retorna o ângulo que andou; se não, retorna NaN
 	public float TryMove(Vector2 moveVector, bool animate = true) {
@@ -188,6 +195,8 @@ public class Character : MonoBehaviour {
 
 	// Verifica se tal posição é passável para o personagem (checa cada ponto de seu colisor)
 	private bool CanMoveTo(Vector2 newPosition) {
+
+
 		float left 		= newPosition.x - boxCollider.bounds.extents.x + boxCollider.offset.x;
 		float right 	= newPosition.x + boxCollider.bounds.extents.x + boxCollider.offset.x;
 		float bottom 	= newPosition.y - boxCollider.bounds.extents.y + boxCollider.offset.y - Tile.size / 2;

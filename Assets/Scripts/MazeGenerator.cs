@@ -193,7 +193,7 @@ public class MazeGenerator {
 		origTile.transition = new Transition (destMaze.id, destTile.x, destTile.y, direction);
 	}
 
-	private static Tile getNeighbourHall(List<Tile> n){
+	private static Tile GetNeighbourHall(List<Tile> n){
 		if (Random.Range (0, 100) < 80 || n.Count == 1) {
 			return n[0];
 		} else {
@@ -216,7 +216,7 @@ public class MazeGenerator {
 			visited [currentTile.x, currentTile.y] = true;
 			if (NotVisitedNeighbours (maze, currentTile, 2)) {
 				neighbours = GetNeighbours (maze, currentTile, 2);
-				temp = getNeighbourHall (neighbours);
+				temp = GetNeighbourHall (neighbours);
 				stack.Push (currentTile);
 				stack.Push (temp);
 				RemoveWall (maze, currentTile, temp);
@@ -234,6 +234,10 @@ public class MazeGenerator {
 		return CreateForest(maze);
 	}
 		
+	private static Tile GetNeighbourForest(List<Tile> n){
+		return n [Random.Range (0, n.Count - 1)];
+	}
+
 	private static Maze CreateForest (Maze maze) {
 		InicializeNullMaze (maze);
 		Tile currentTile = BeginMazeGenerator(maze);
@@ -248,7 +252,7 @@ public class MazeGenerator {
 			visited [currentTile.x, currentTile.y] = true;
 			if (NotVisitedNeighbours (maze, currentTile, 2)) {
 				neighbours = GetNeighbours (maze, currentTile, 2);
-				temp = neighbours [Random.Range (0, neighbours.Count - 1)];
+				temp = GetNeighbourForest (neighbours);
 				stack.Push (currentTile);
 				stack.Push (temp);
 				RemoveWall (maze, currentTile, temp);

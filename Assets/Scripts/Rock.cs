@@ -28,9 +28,9 @@ public class Rock : MonoBehaviour {
 			}
 
 			Vector3 pos = transform.position;
-			pos.x += moveVector.x;
-			pos.y += moveVector.y;
-			pos.z += moveVector.y;
+			pos.x += moveVector.x * 60 * Time.deltaTime;
+			pos.y += moveVector.y * 60 * Time.deltaTime;
+			pos.z += moveVector.y * 60 * Time.deltaTime;
 			transform.position = pos;
 			lifeTime -= Time.deltaTime;
 		} else {

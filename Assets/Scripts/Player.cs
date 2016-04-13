@@ -18,6 +18,7 @@ public class Player : MonoBehaviour {
 		Resume ();
 	}
 
+	// Atualizar interface
 	void Start() {
 		character.lifePoints = SaveManager.currentSave.lifePoints;
 		GameMenu.instance.UpdateLife (character.lifePoints);
@@ -99,7 +100,6 @@ public class Player : MonoBehaviour {
 	// ===============================================================================
 
 	public Bag bag { get { return SaveManager.currentSave.bag; } }
-	private int selectedSlot = -1;
 
 	public void IncrementCoins(int value) {
 		bag.coins += value;
@@ -111,10 +111,10 @@ public class Player : MonoBehaviour {
 		GameMenu.instance.UpdateRoses (bag.roses);
 	}
 
-	public Item currentItem {
+	public Item selectedItem {
 		get { 
-			if (selectedSlot > -1) {
-				int itemID = bag.itemIDs [selectedSlot];
+			if (bag.selectedSlot > -1) {
+				int itemID = bag.selectedItemID;
 				if (itemID > -1)
 					return Item.DB [itemID];
 			}
@@ -123,17 +123,17 @@ public class Player : MonoBehaviour {
 	}
 
 	public void ChooseItem(int id) {
-		selectedSlot = id;
-		GameMenu.instance.UpdateItem (currentItem);
+		bag.selectedSlot = id;
+		GameMenu.instance.UpdateItem (selectedItem);
 		Resume ();
 	}
 
 	public void UseItem() {
-		if (currentItem != null) {
-			currentItem.OnUse ();
-			if (currentItem.consumable) {
-				bag.itemIDs [selectedSlot] = -1;
-				selectedSlot = -1;
+		if (selectedItem != null) {
+			selectedItem.OnUse ();
+			if (selectedItem.consumable) {
+				bag.itemIDs [bag.selectedSlot] = -1;
+				bag.selectedSlot = -1;
 			}
 		}
 	}
@@ -142,11 +142,14 @@ public class Player : MonoBehaviour {
 	// Dano e Morte
 	// ===============================================================================
 
+	// Imunidade a dano
 	public bool immune { get; private set; }
 	public float immuneTime = 1f;
 
+	// Tempo de mudança de vermelho pra branco
 	public float blinkFreq = 0.075f;
 
+	// Atualizar interface e piscar
 	public void OnDamage() {
 		SaveManager.currentSave.lifePoints = character.lifePoints;
 		GameMenu.instance.UpdateLife (character.lifePoints);
@@ -154,6 +157,7 @@ public class Player : MonoBehaviour {
 			StartCoroutine (Blink ());
 	}
 
+	// Piscar quando o jogador leva dano
 	private IEnumerator Blink() {
 		immune = true;
 		float time = 0;
@@ -169,6 +173,7 @@ public class Player : MonoBehaviour {
 		immune = false;
 	}
 
+	// Sair do jogo quando morrer
 	public void OnDie() {
 		GameMenu.instance.Quit ();
 	}

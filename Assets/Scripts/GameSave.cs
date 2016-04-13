@@ -79,7 +79,6 @@ public class GameSave {
 		transition = new Transition(0, mazes[0].beginMaze.x, mazes[0].beginMaze.y, 0);
 
 		bag = new Bag ();
-		bag.itemIDs [0] = 0;
 		lifePoints = 5;
 	}
 

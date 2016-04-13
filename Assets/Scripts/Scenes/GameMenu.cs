@@ -24,7 +24,7 @@ public class GameMenu : MonoBehaviour {
 	void Start() {
 		UpdateSaveButtons ();
 		UpdateItemButtons ();
-		UpdateItem (Player.instance.currentItem);
+		UpdateItem (Player.instance.selectedItem);
 	}
 
 	public void UpdateSaveButtons() {
