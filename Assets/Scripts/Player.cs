@@ -36,6 +36,7 @@ public class Player : MonoBehaviour {
 			if (!paused) {
 				menuButton.onClick.Invoke ();
 			} else {
+				Resume ();
 				GameMenu.instance.CloseMenu();
 			}
 		}

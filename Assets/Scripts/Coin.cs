@@ -3,15 +3,34 @@ using System.Collections;
 
 public class Coin : MonoBehaviour {
 
-	public int value = 1;
+	private int value;
 
-	public Color color1 = Color.blue;
-	public Color color5 = Color.red;
-	public Color color10 = Color.green;
-	public Color color20 = Color.yellow;
-	public Color color50 = Color.magenta;
-	public Color color100 = Color.cyan;
-	public Color color200 = Color.white;
+	private class CoinType {
+		public int value;
+		public Color color;
+		public int chance;
+		public CoinType(int value, Color color, int chance) {
+			this.value = value;
+			this.color = color;
+			this.chance = chance;
+		}
+	}
+
+	private static CoinType[] coinTypes = InitializeCoinTypes();
+
+	private static CoinType[] InitializeCoinTypes() {
+		CoinType[] types = new CoinType[7];
+		types [0] = new CoinType (1, Color.blue, 25);
+		types [1] = new CoinType (5, Color.red, 50);
+		types [2] = new CoinType (10, Color.green, 70);
+		types [3] = new CoinType (20, Color.yellow, 82);
+		types [4] = new CoinType (50, Color.magenta, 92);
+		types [5] = new CoinType (100, Color.cyan, 97);
+		types [6] = new CoinType (200, Color.white, 100);
+		return types;
+	}
+
+	public float lifeTime = 5.0f;
 
 	void Start() {
 		SpriteRenderer sr = GetComponent<SpriteRenderer> ();
@@ -20,24 +39,17 @@ public class Coin : MonoBehaviour {
 		pos.z = pos.y;
 		transform.position = pos;
 
-		value = Random.Range (1, 250);
+		int r = Random.Range (0, 100);
 
-		if (value >= 200) {
-			sr.color = color200;
-		} else if (value >= 100) {
-			sr.color = color100;
-		} else if (value >= 50) {
-			sr.color = color50;
-		} else if (value >= 20) {
-			sr.color = color20;
-		} else if (value >= 10) {
-			sr.color = color10;
-		} else if (value >= 5) {
-			sr.color = color5;
-		} else {
-			sr.color = color1;
+		for (int i = 0; i < 7; i++) {
+			if (r < coinTypes [i].chance) {
+				value = coinTypes [i].value;
+				sr.color = coinTypes [i].color;
+				break;
+			}
 		}
 
+		Destroy (gameObject, lifeTime);
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {

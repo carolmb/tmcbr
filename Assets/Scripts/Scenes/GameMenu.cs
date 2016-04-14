@@ -17,6 +17,9 @@ public class GameMenu : MonoBehaviour {
 
 	public Image currentItem;
 
+	public GameObject[] menuWindows;
+	public GameObject gameInterface;
+
 	void Awake() {
 		instance = this;
 	}
@@ -64,7 +67,10 @@ public class GameMenu : MonoBehaviour {
 	}
 
 	public void CloseMenu() {
-		// TODO
+		foreach (GameObject go in menuWindows) {
+			go.SetActive (false);
+		}
+		gameInterface.SetActive (true);
 	}
 
 	public void CloseAll() {
