@@ -4,7 +4,6 @@ using System.Collections;
 public class Tomato : Enemy {
 
 	public GameObject tomato;
-	public int maxInvokes;
 
 	// Use this for initialization
 
