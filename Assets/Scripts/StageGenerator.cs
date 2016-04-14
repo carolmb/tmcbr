@@ -37,6 +37,7 @@ public static class StageGenerator {
 			//faz transição
 
 			initialTile = mazes [i].beginMaze;
+
 			mazes [i].tiles [initialTile.x - 1, initialTile.y].isWall = false;
 
 			if (i != 0) {

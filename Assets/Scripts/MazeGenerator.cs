@@ -138,7 +138,7 @@ public class MazeGenerator {
 				
 	}
 		
-	public static void CreateObstaclesForest(Maze maze) {
+	public static void CreateObstaclesEnemiesForest(Maze maze) {
 		foreach (Tile t in maze.tiles) {
 			if (t.isWall) {	
 				if (Random.Range (1, 100) < 30) { //fator random
@@ -153,6 +153,8 @@ public class MazeGenerator {
 			}
 			if (t.isWalkable && NoObstaclesNear(maze, t) && t.transition == null) { 
 				if (Random.Range (1, 100) < 30) {
+					t.objectName = "Tomato";
+				} else if (Random.Range (1, 100) < 30) {
 					t.obstacle = 1;
 				} else if (Random.Range (1, 100) < 20) {
 					t.obstacle = 2;
@@ -169,7 +171,7 @@ public class MazeGenerator {
 		else if (theme == "Cave")
 			CreateEnemiesHall (maze);
 		else if (theme == "Forest")
-			CreateObstaclesForest (maze);
+			CreateObstaclesEnemiesForest (maze);
 	}
 
 	public static void ExpandMaze (Maze maze, int factorX, int factorY){

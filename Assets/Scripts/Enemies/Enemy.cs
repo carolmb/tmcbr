@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	void OnDie() {
+	protected void OnDie() {
 		Instantiate (coin, transform.position, transform.rotation);
 		Debug.Log ("morrel");
 		// TODO: dropar moeda
