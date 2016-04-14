@@ -9,7 +9,6 @@ public class Tomato : Enemy {
 	// Use this for initialization
 
 	void Start () {
-		base.Awake ();
 		Spaw ();
 	}
 	

@@ -45,10 +45,14 @@ public static class StageGenerator {
 				finalTile.isWall = false;
 
 				MazeGenerator.SetTransition (finalTile, initialTile, mazes [i - 1], mazes [i]);
+				MazeGenerator.SetTransition (mazes [i].tiles [initialTile.x - 1, initialTile.y], 
+					mazes[i - 1].tiles[finalTile.x - 1, finalTile.y], mazes [i], mazes [i - 1]);
 			} else {
 				finalTile.isWall = false;
 
 				MazeGenerator.SetTransition (finalTile, initialTile, mazes [mazeCount - 1], mazes [i]);
+				MazeGenerator.SetTransition (mazes [i].tiles [initialTile.x - 1, initialTile.y], 
+					mazes[mazeCount - 1].tiles[finalTile.x - 1, finalTile.y], mazes [i], mazes [mazeCount - 1]);
 			}
 
 		}

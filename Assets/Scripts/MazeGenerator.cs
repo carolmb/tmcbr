@@ -87,7 +87,7 @@ public class MazeGenerator {
 		return maze.tiles [1, y];
 	}
 
-	public static bool EmptyRadiusToEnemies(Maze maze, Tile tile) {
+	public static bool EmptyRadiusToEnemies (Maze maze, Tile tile) {
 		for (int i = tile.x - deltaEnemys; i < tile.y + deltaEnemys; i++) {
 			for (int j = tile.y - deltaEnemys; j < tile.y + deltaEnemys; j++) {
 				if (i >= 0 && i < maze.width && j >= 0 && j < maze.height) {
@@ -100,7 +100,7 @@ public class MazeGenerator {
 		return true;
 	}
 
-	static bool NoObstaclesNear(Maze maze, Tile tile) {
+	static bool NoObstaclesNear (Maze maze, Tile tile) {
 		for (int i = tile.x - 1; i <= tile.x + 1; i++) {
 			for (int j = tile.y - 1; j <= tile.y + 1; j++) {
 				if (i >= 0 && i < maze.width && j >= 0 && j < maze.height) {
@@ -113,7 +113,21 @@ public class MazeGenerator {
 		return true;
 	}
 
-	public static void CreateEnemiesHall(Maze maze) {
+	static bool NearBegin (Maze maze, Tile tile) {
+		for (int i = maze.beginMaze.x - 1; i <= maze.beginMaze.x + 1; i++) {
+			for (int j = maze.beginMaze.y - 1; j <= maze.beginMaze.y + 1; j++) {
+				if (i >= 0 && i < maze.width && j >= 0 && j < maze.height) {
+					if (maze.tiles[i, j] == tile) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+
+	public static void CreateEnemiesHall (Maze maze) {
 		foreach (Tile t in maze.tiles) {
 			if (EmptyRadiusToEnemies (maze, t)) {
 				if (GetAllWallNeighbours (maze, t).Count == 2 && t.isWalkable) { //mimics
@@ -138,8 +152,11 @@ public class MazeGenerator {
 				
 	}
 		
-	public static void CreateObstaclesEnemiesForest(Maze maze) {
+	public static void CreateObstaclesEnemiesForest (Maze maze) {
 		foreach (Tile t in maze.tiles) {
+			if (NearBegin (maze, t)) {
+				continue;
+			}
 			if (t.isWall) {	
 				if (Random.Range (1, 100) < 30) { //fator random
 					t.obstacle = 0; //trocar pelo nome do prefab
