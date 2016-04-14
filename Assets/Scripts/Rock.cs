@@ -19,22 +19,20 @@ public class Rock : MonoBehaviour {
 	void Start() {
 		transform.position = Player.instance.transform.position + new Vector3(0, Tile.size / 2, 0);
 		moveVector = GameManager.AngleToVector (Player.instance.character.lookingAngle) * speed;
+		Destroy (gameObject, lifeTime);
 	}
 
 	void Update () {
-		if (lifeTime > 0) {
-			if (MazeManager.GetTile ((Vector2)transform.position - new Vector2(0, Tile.size)).isWall) {
-				Destroy (gameObject);
-			}
-
+		Tile t = MazeManager.GetTile ((Vector2)transform.position - new Vector2 (0, Tile.size)); 
+		if (t == null || t.isWall) {
+			Destroy (gameObject);
+		} else {
 			Vector3 pos = transform.position;
 			pos.x += moveVector.x * 60 * Time.deltaTime;
 			pos.y += moveVector.y * 60 * Time.deltaTime;
 			pos.z += moveVector.y * 60 * Time.deltaTime;
 			transform.position = pos;
 			lifeTime -= Time.deltaTime;
-		} else {
-			Destroy (gameObject);
 		}
 	}
 
