@@ -43,5 +43,4 @@ public class Rock : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
-
 }

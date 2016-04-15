@@ -11,16 +11,22 @@ public class Enemy : MonoBehaviour {
 	public int damage = 1;
 	public int vision = 10;
 
+	public bool canSeePlayer;
+
 	protected virtual void Awake() {
+		canSeePlayer = false;
 		character = GetComponent<Character> ();
 	}
 
 	protected GridPath PathToPlayer() {
-		Tile playerTile = Player.instance.character.currentTile;
-		Tile myTile = character.currentTile;
-		if (PathFinder.EstimateCost (myTile, playerTile) >= vision)
-			return null;
-		return PathFinder.FindPath (playerTile, myTile, vision);
+		if (!canSeePlayer) {
+			Tile playerTile = Player.instance.character.currentTile;
+			Tile myTile = character.currentTile;
+			if (PathFinder.EstimateCost (myTile, playerTile) >= vision)
+				return null;
+			return PathFinder.FindPath (playerTile, myTile, vision);
+		}
+		return null;
 	}
 
 	void OnTriggerStay2D(Collider2D other) {
