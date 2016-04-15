@@ -39,9 +39,8 @@ public class Rock : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.CompareTag ("Enemy")) {
 			Character comp = collider.GetComponent<Character> ();
-			comp.StartCoroutine(comp.Damage (transform.position, damage));
+			comp.StartCoroutine(comp.Damage ((Vector2) transform.position - moveVector * 10, damage));
 			Destroy (gameObject);
 		}
 	}
-
 }
