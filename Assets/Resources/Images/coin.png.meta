@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e521d6d01892dc44ea36fd30d41f3f1a
-timeCreated: 1460633504
+timeCreated: 1460747637
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -59,9 +59,9 @@ TextureImporter:
         x: 0
         y: 0
         width: 24
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+        height: 17
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: coin_1
@@ -70,9 +70,9 @@ TextureImporter:
         x: 24
         y: 0
         width: 24
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+        height: 17
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: coin_2
@@ -81,9 +81,9 @@ TextureImporter:
         x: 48
         y: 0
         width: 24
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+        height: 17
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     outline: []

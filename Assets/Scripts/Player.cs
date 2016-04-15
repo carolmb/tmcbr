@@ -144,7 +144,7 @@ public class Player : MonoBehaviour {
 	// ===============================================================================
 
 	// Imunidade a dano
-	public bool immune { get; private set; }
+	public bool immune;
 	public float immuneTime = 1f;
 
 	// Tempo de mudança de vermelho pra branco

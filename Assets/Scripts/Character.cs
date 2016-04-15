@@ -104,7 +104,7 @@ public class Character : MonoBehaviour {
 	// Movimento
 	// ===============================================================================
 
-	public bool moving { get; private set; }
+	public bool moving;
 	public float speed = 2; // pixels per frame
 
 	// Move, dentro de um frame, o personagem em direção translation
@@ -195,8 +195,6 @@ public class Character : MonoBehaviour {
 
 	// Verifica se tal posição é passável para o personagem (checa cada ponto de seu colisor)
 	private bool CanMoveTo(Vector2 newPosition) {
-
-
 		float left 		= newPosition.x - boxCollider.bounds.extents.x + boxCollider.offset.x;
 		float right 	= newPosition.x + boxCollider.bounds.extents.x + boxCollider.offset.x;
 		float bottom 	= newPosition.y - boxCollider.bounds.extents.y + boxCollider.offset.y - Tile.size / 2;
@@ -234,7 +232,7 @@ public class Character : MonoBehaviour {
 	private float damageDuration = 0.25f;
 
 	// Serve para verificar se o personagem está levando dano
-	public bool damaging { get; private set; }
+	public bool damaging;
 
 	// Animação de dano
 	public IEnumerator Damage(Vector2 origin, int value) {
@@ -252,8 +250,6 @@ public class Character : MonoBehaviour {
 		// Death
 		if (lifePoints == 0) {
 			yield return StartCoroutine(Die());
-		} else {
-			damaging = false;
 		}
 	}
 
@@ -268,6 +264,7 @@ public class Character : MonoBehaviour {
 			yield return null;
 			time += Time.deltaTime;
 		}
+		damaging = false;
 		speed = previousSpeed;
 	}
 
