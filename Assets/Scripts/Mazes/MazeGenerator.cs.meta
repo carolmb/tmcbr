@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Mazes/MazeGenerator.cs.meta
 guid: 37aebaabb71b43941817f9d6d7460568
 timeCreated: 1460665945
+=======
+guid: 128af91c341933d4ca95c3e214d50ed3
+timeCreated: 1460715038
+>>>>>>> 03c1016513e66607aa4d10940ee48b99a43a1714:Assets/Scripts/Mazes/MazeGenerator.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

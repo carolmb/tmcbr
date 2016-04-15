@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 using System.IO;
 
 public static class SaveManager {
@@ -33,7 +34,11 @@ public static class SaveManager {
 		if (File.Exists (namePath)) {
 			BinaryFormatter bf = new BinaryFormatter();
 			FileStream file = File.Open(namePath, FileMode.Open);
-			allSaves = (GameSave[]) bf.Deserialize(file);
+			try {
+				allSaves = (GameSave[]) bf.Deserialize(file);
+			} catch(SerializationException) {
+				allSaves = new GameSave[maxSaves];
+			}
 			file.Close();
 		} else {
 			allSaves = new GameSave[maxSaves];

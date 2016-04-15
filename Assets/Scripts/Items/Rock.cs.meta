@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Items/Rock.cs.meta
 guid: f27893795ba377140bd8e8a23b754d06
 timeCreated: 1460665946
+=======
+guid: 99a70f2e5cb18de4ca06e87da1703b6c
+timeCreated: 1460715038
+>>>>>>> 03c1016513e66607aa4d10940ee48b99a43a1714:Assets/Scripts/Items/Rock.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

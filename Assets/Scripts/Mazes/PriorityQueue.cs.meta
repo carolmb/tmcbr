@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Mazes/PriorityQueue.cs.meta
 guid: a10376f49ff23ab4c95ba7e9040235ce
 timeCreated: 1460665946
+=======
+guid: c401aa42065731e4ebdab42b0cce6693
+timeCreated: 1460715038
+>>>>>>> 03c1016513e66607aa4d10940ee48b99a43a1714:Assets/Scripts/Mazes/PriorityQueue.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

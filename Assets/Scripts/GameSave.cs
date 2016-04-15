@@ -10,12 +10,10 @@ public class GameSave {
 	public Bag bag;
 	public int lifePoints;
 
-
 	public GameSave() {
 		mazes = StageGenerator.CreateStage ("Forest");
 
 		transition = new Transition(0, mazes[0].beginMaze.x, mazes[0].beginMaze.y, 0);
-
 		bag = new Bag ();
 		lifePoints = 5;
 	}

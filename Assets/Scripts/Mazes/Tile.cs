@@ -26,11 +26,20 @@ public class Tile {
 		get { return new Vector2 (x, y); }
 	}
 		
-	public bool isWall = false; // chão ou parede
-	public int obstacle = -1; // -1 é sem obstáculo
+	public int floorID = 1;
+	public int wallID = 0;
+	public int obstacleID = 0; // 0 é sem obstáculo
 	public string objectName = ""; // nome do objeto (inimigo ou item), se tiver 
 	public bool visited = false; // usado para checar se foi visitado pelo jogador
 	public Transition transition; // se ao tocar, para onde o player vai
+
+	public bool isWalkable {
+		get { return !isWall && obstacleID <= 0; }
+	}
+
+	public bool isWall {
+		get { return wallID > 0; }
+	}
 
 	public Tile() {}
 
@@ -42,13 +51,9 @@ public class Tile {
 	public Tile(Tile copy) {
 		this.x = copy.x;
 		this.y = copy.y;
-		this.isWall = copy.isWall;
-		this.obstacle = copy.obstacle;
-		//this.transition = copy.transition;
-	}
-
-	public bool isWalkable {
-		get { return !isWall && obstacle < 0; }
+		this.wallID = copy.wallID;
+		this.floorID = copy.floorID;
+		this.obstacleID = copy.obstacleID;
 	}
 
 	public List<Tile> GetNeighbours4() {

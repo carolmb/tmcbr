@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Mazes/GridPath.cs.meta
 guid: f49ff41ba938f434f97e45e044de563c
 timeCreated: 1460665949
+=======
+guid: 8f235c14e81c4bf4594463487b3ec844
+timeCreated: 1460715038
+>>>>>>> 03c1016513e66607aa4d10940ee48b99a43a1714:Assets/Scripts/Mazes/GridPath.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

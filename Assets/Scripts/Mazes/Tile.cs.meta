@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Mazes/Tile.cs.meta
 guid: 54e6029ec3cf6c84f98c571b36b895f4
 timeCreated: 1460665945
+=======
+guid: 372a61b8b5de979428d4703741c37945
+timeCreated: 1460715038
+>>>>>>> 03c1016513e66607aa4d10940ee48b99a43a1714:Assets/Scripts/Mazes/Tile.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

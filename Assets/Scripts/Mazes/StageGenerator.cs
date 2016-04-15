@@ -5,10 +5,10 @@ public static class StageGenerator {
 
 	const int mazeCount = 3;
 
-	public static Maze[] ExpandMazes (Maze[] mazes) {
+	public static Maze[] ExpandMazes (Maze[] mazes, MazeGenerator generator) {
 		for (int i = 0; i < mazeCount; i++) {
-			MazeGenerator.ExpandMaze (mazes [i], 2, 2);
-			MazeGenerator.CreateEnemies (mazes[i], mazes[i].theme);
+			generator.ExpandMaze (mazes [i], 2, 2);
+			generator.CreateEnemies (mazes[i]);
 		}
 		return mazes;
 	}
@@ -16,12 +16,11 @@ public static class StageGenerator {
 	public static Maze[] CreateStage (string theme) {
 		Tile initialTile, finalTile;
 
-		Maze[] mazes;
-
-		mazes = new Maze[mazeCount];
+		Maze[] mazes = new Maze[mazeCount];
+		MazeGenerator generator = MazeGenerator.GetGenerator (theme, 15, 15);
 
 		for (int i = 0; i < mazeCount; i++) {
-			mazes [i] = MazeGenerator.CreateMaze (i, theme, 15, 15);
+			mazes [i] = generator.Create(i);
 		}
 
 		int x = mazes[mazeCount - 1].width - 1, y;
@@ -38,28 +37,25 @@ public static class StageGenerator {
 
 			initialTile = mazes [i].beginMaze;
 
-			mazes [i].tiles [initialTile.x - 1, initialTile.y].isWall = false;
+			mazes [i].tiles [initialTile.x - 1, initialTile.y].wallID = 0;
 
 			if (i != 0) {
 				finalTile = mazes [i - 1].tiles [mazes [i].width - 1, initialTile.y];
-				finalTile.isWall = false;
+				finalTile.wallID = 0;
 
-				MazeGenerator.SetTransition (finalTile, initialTile, mazes [i - 1], mazes [i]);
-				MazeGenerator.SetTransition (mazes [i].tiles [initialTile.x - 1, initialTile.y], 
-					mazes[i - 1].tiles[finalTile.x - 1, finalTile.y], mazes [i], mazes [i - 1]);
+				generator.SetTransition (finalTile, initialTile, mazes [i - 1], mazes [i]);
+				generator.SetTransition (mazes [i].tiles [initialTile.x - 1, initialTile.y], 
+				mazes[i - 1].tiles[finalTile.x - 1, finalTile.y], mazes [i], mazes [i - 1]);
 			} else {
-				finalTile.isWall = false;
+				finalTile.wallID = 0;
 
-				MazeGenerator.SetTransition (finalTile, initialTile, mazes [mazeCount - 1], mazes [i]);
-				MazeGenerator.SetTransition (mazes [i].tiles [initialTile.x - 1, initialTile.y], 
-					mazes[mazeCount - 1].tiles[finalTile.x - 1, finalTile.y], mazes [i], mazes [mazeCount - 1]);
+				generator.SetTransition (finalTile, initialTile, mazes [mazeCount - 1], mazes [i]);
+				generator.SetTransition (mazes [i].tiles [initialTile.x - 1, initialTile.y], 
+				mazes[mazeCount - 1].tiles[finalTile.x - 1, finalTile.y], mazes [i], mazes [mazeCount - 1]);
 			}
 
 		}
-		return ExpandMazes(mazes);
+		return ExpandMazes(mazes, generator);
 	}
-
-
-
 
 }

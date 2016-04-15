@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Mazes/StaticStage.cs.meta
 guid: 0a46e9c9141c20148a6ad06866973605
 timeCreated: 1460665945
+=======
+guid: 49007c6db87fba64ca158334f2ed8f41
+timeCreated: 1460715038
+>>>>>>> 03c1016513e66607aa4d10940ee48b99a43a1714:Assets/Scripts/Mazes/StaticStage.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

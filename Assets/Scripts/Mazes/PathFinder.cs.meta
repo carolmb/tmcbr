@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Mazes/PathFinder.cs.meta
 guid: 2d66440aeeb6ade459375815c075d67b
 timeCreated: 1460665945
+=======
+guid: c61239e74b683ed41a6b64841a9e3a79
+timeCreated: 1460715038
+>>>>>>> 03c1016513e66607aa4d10940ee48b99a43a1714:Assets/Scripts/Mazes/PathFinder.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

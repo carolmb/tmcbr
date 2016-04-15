@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Items/Slingshot.cs.meta
 guid: b56a254acd08c9f43813c03012278701
 timeCreated: 1460665946
+=======
+guid: b1c83346d36a5db4686c7408c957c9d8
+timeCreated: 1460715038
+>>>>>>> 03c1016513e66607aa4d10940ee48b99a43a1714:Assets/Scripts/Items/Slingshot.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Items/Bag.cs.meta
 guid: 1aeb94ffb348a7742a3a3f3e30468c4e
 timeCreated: 1460665945
+=======
+guid: 112ae31f6f2d86e408eccb8b10b0abbb
+timeCreated: 1460715038
+>>>>>>> 03c1016513e66607aa4d10940ee48b99a43a1714:Assets/Scripts/Items/Bag.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
