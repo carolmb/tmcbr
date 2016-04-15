@@ -15,7 +15,7 @@ public class GameSave {
 
 		transition = new Transition(0, mazes[0].beginMaze.x, mazes[0].beginMaze.y, 0);
 		bag = new Bag ();
-		lifePoints = 5;
+		lifePoints = 1000;
 	}
 
 }
