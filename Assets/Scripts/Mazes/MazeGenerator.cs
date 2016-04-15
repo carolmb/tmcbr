@@ -56,10 +56,10 @@ public class MazeGenerator {
 			for (int j = 0; j < maze.height; j++) {
 				maze.tiles [i, j] = new Tile (i, j);
 				if (i % 2 == 1 && j % 2 == 1) {
-					maze.tiles [i, j].isWall = false;
+					maze.tiles [i, j].wallID = 0;
 					visited [i, j] = false;
 				} else {
-					maze.tiles [i, j].isWall = true;
+					maze.tiles [i, j].wallID = 1;
 					visited [i, j] = true;
 				}
 			}
@@ -72,7 +72,7 @@ public class MazeGenerator {
 
 		if (current.x + deltaX / 2 > 0 && current.y + deltaY / 2 > 0 && 
 			current.x + deltaX / 2 < maze.width && current.y + deltaY / 2 < maze.height) {
-			maze.tiles [current.x + deltaX / 2, current.y + deltaY / 2].isWall = false;
+			maze.tiles [current.x + deltaX / 2, current.y + deltaY / 2].wallID = 0;
 			visited [current.x + deltaX / 2, current.y + deltaY / 2] = true;
 		} 
 	}
@@ -83,7 +83,7 @@ public class MazeGenerator {
 		if (y % 2 == 0) {
 			y++;
 		}
-		maze.tiles [1, y].isWall = false;
+		maze.tiles [1, y].wallID = 0;
 		return maze.tiles [1, y];
 	}
 
@@ -104,7 +104,7 @@ public class MazeGenerator {
 		for (int i = tile.x - 1; i <= tile.x + 1; i++) {
 			for (int j = tile.y - 1; j <= tile.y + 1; j++) {
 				if (i >= 0 && i < maze.width && j >= 0 && j < maze.height) {
-					if (maze.tiles [i, j].obstacle >= 0) {
+					if (maze.tiles [i, j].obstacleID > 0) {
 						return false;
 					}
 				}
@@ -145,7 +145,7 @@ public class MazeGenerator {
 				}
 			} else {
 				if (Random.Range (0, 100) < 10 && t.isWalkable && NoObstaclesNear(maze, t)) {
-					t.obstacle = 0;
+					t.obstacleID = 1;
 				}
 			}
 		}
@@ -159,24 +159,21 @@ public class MazeGenerator {
 			}
 			if (t.isWall) {	
 				if (Random.Range (1, 100) < 30) { //fator random
-					t.obstacle = 0; //trocar pelo nome do prefab
+					t.obstacleID = 1;
 				} else if (Random.Range (1, 100) < 30) {
-					t.obstacle = 2;
-					t.isWall = false;
-				} else if (Random.Range (1, 100) < 30) {
-					t.obstacle = 4;
-					t.isWall = false;
+					t.obstacleID = 5;
+					t.wallID = 0;
 				}
 			}
 			if (t.isWalkable && NoObstaclesNear(maze, t) && t.transition == null) { 
 				if (Random.Range (1, 100) < 30) {
 					t.objectName = "Tomato";
 				} else if (Random.Range (1, 100) < 30) {
-					t.obstacle = 1;
+					t.obstacleID = 2;
 				} else if (Random.Range (1, 100) < 20) {
-					t.obstacle = 2;
+					t.obstacleID = 3;
 				} else if (Random.Range (1, 100) < 30) {
-					t.obstacle = 3;
+					t.obstacleID = 4;
 				}
 			}
 		}
@@ -244,7 +241,6 @@ public class MazeGenerator {
 		
 	private static Tile GetNeighbourForest(List<Tile> n){
 		int i = Random.Range (0, n.Count - 1);
-	//		Debug.Log (i + " " + n.Count);
 		return n [i];
 	}
 

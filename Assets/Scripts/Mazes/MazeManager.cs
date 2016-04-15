@@ -38,18 +38,17 @@ public class MazeManager : MonoBehaviour {
 			SaveManager.NewGame ();
 		}
 		maze = SaveManager.currentSave.mazes [currentTransition.mazeID];
-		Debug.Log ("id: " + currentTransition.mazeID);
 		foreach (Tile t in maze) {
-			GameObject floor = CreateTileGraphic (t.x, t.y, "floor");
+			GameObject floor = CreateTileGraphic (t.x, t.y, "floor" + t.floorID);
 			Vector3 pos = floor.transform.position;
 			pos.z = 999;
 			floor.transform.position = pos;
 
-			if (t.isWall) {
-				CreateTileGraphic (t.x, t.y, "wall").transform.Translate (0, 0, 1);
+			if (t.wallID > 0) {
+				CreateTileGraphic (t.x, t.y, "wall" + t.wallID).transform.Translate (0, 0, 1);
 			}
-			if (t.obstacle >= 0) {
-				CreateTileGraphic (t.x, t.y, "obstacle" + t.obstacle);
+			if (t.obstacleID > 0) {
+				CreateTileGraphic (t.x, t.y, "obstacle" + t.obstacleID);
 			}
 			if (t.objectName != "") {
 				CreateTileObject (t.x, t.y, t.objectName);

@@ -27,7 +27,7 @@ public static class StaticStage {
 					for (int j = 0; j < height; j++) {
 						value = sr.Read();
 						tiles[i, j] = new Tile(i, j);
-						tiles[i, j].isWall = value == 0 ? false : true; 
+						tiles[i, j].wallID = value; 
 					}
 				}
 			}
@@ -67,7 +67,7 @@ public static class StaticStage {
 					obstacle = sr.Read();
 					x = sr.Read();
 					y = sr.Read();
-					maze.tiles[x, y].obstacle = obstacle;
+					maze.tiles[x, y].obstacleID = obstacle;
 				}
 			}
 		}
