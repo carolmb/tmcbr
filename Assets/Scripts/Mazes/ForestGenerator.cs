@@ -14,6 +14,7 @@ public class ForestGenerator : MazeGenerator {
 	}
 
 	public override void CreateEnemies (Maze maze) {
+		this.maze = maze;
 		foreach (Tile t in maze.tiles) {
 			if (NearBegin (t)) {
 				continue;

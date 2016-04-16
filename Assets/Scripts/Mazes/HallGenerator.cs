@@ -17,6 +17,7 @@ public class HallGenerator : MazeGenerator {
 	}
 
 	public override void CreateEnemies (Maze maze) {
+		this.maze = maze;
 		foreach (Tile t in maze.tiles) {
 			if (EmptyRadiusToEnemies (t)) {
 				if (GetAllWallNeighbours (t).Count == 2 && t.isWalkable) { //mimics

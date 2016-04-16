@@ -108,7 +108,7 @@ public abstract class MazeGenerator {
 		} 
 	}
 
-	protected Tile BeginMazeGenerator () {
+	protected Tile FirstTile () {
 		int h = maze.height;
 		int y = Random.Range (1, h-2);
 		if (y % 2 == 0) {
@@ -159,7 +159,7 @@ public abstract class MazeGenerator {
 
 	// Cria um novo labirinto com o dado id
 	public Maze Create(int id, int width, int height) {
-		return Create (id, width, height, BeginMazeGenerator ().coordinates);
+		return Create (id, width, height, FirstTile ().coordinates);
 	}
 
 	public Maze Create(int id, int width, int height, Vector2 begin) {
@@ -169,6 +169,7 @@ public abstract class MazeGenerator {
 		InicializeNullMaze ();
 		Tile currentTile = maze.tiles[(int)begin.x, (int)begin.y];
 		maze.beginTile = currentTile;
+		maze.tiles [(int)begin.x - 1, (int)begin.y].wallID = 0;
 		Tile temp;
 		Stack<Tile> stack = new Stack<Tile> ();
 		List<Tile> neighbours;
@@ -186,57 +187,6 @@ public abstract class MazeGenerator {
 			}
 		}
 		return maze;
-	}
-
-	// Multiplica os tiles de um labirinto
-	// Apenas obstáculos, chão, parede e transição são replicados
-	public void ExpandMaze (Maze maze, int factorX, int factorY){
-		Tile[,] expandedTiles = new Tile[maze.width * factorX, maze.height * factorY];
-		for (int i = 0; i < maze.width; i++) {
-			for (int j = 0; j < maze.height; j++) {
-
-				for (int ki = 0; ki < factorX; ki++) {
-					for (int kj = 0; kj < factorY; kj++) {
-						int x = i * factorX + ki;
-						int y = j * factorY + kj;
-
-						// Criar tiles com as novas coordenadas
-						expandedTiles [x, y] = new Tile (maze.tiles [i, j]);
-						expandedTiles [x, y] .x = x;
-						expandedTiles [x, y] .y = y;
-
-						// Ajustar a transição que tiver no tile
-						if (maze.tiles [i, j].transition != null) {
-
-							int id = maze.tiles [i, j].transition.mazeID;
-							int dir = maze.tiles [i, j].transition.direction;
-							int dx = maze.tiles [i, j].transition.tileX * factorX + ki;
-							int dy = maze.tiles [i, j].transition.tileY * factorY + kj;
-							expandedTiles [x, y].transition = new Transition (id, dx, dy, dir);
-						}
-
-					}
-				}
-			}
-		}
-		this.maze = maze;
-		maze.beginTile = expandedTiles[maze.beginTile.x * factorX, maze.beginTile.y * factorY];
-		if(maze.endTile != null)
-			maze.endTile = expandedTiles [maze.endTile.x * factorX, maze.endTile.y * factorY];
-		maze.tiles = expandedTiles;
-	}
-
-	// Cria uma transição de um tile de um labirinto para outro
-	public void SetTransition (Tile origTile, Tile destTile, Maze origMaze, Maze destMaze) {
-		float angle = GameManager.VectorToAngle (origTile.coordinates - origMaze.center);
-		int direction = Character.AngleToDirection (Mathf.RoundToInt (angle / 90) * 90);
-		origTile.transition = new Transition (destMaze.id, destTile.x, destTile.y, direction);
-		Debug.Log ("transition");
-		Debug.Log (origTile.coordinates);
-		Debug.Log (destTile.coordinates);
-		Debug.Log ("origin " + origMaze.id);
-		Debug.Log ("dest " + destMaze.id);
-
 	}
 
 	// Cria um generator de acordo com o tema da fase
