@@ -29,7 +29,7 @@ public class HallGenerator : MazeGenerator {
 					}
 				} else if (GetAllWallNeighbours (t).Count == 3 && t.isWall) { //espelho
 					if (Random.Range (0, 100) < 60) {
-						t.objectName = "";
+						t.objectName = "Enemies/EnemyMirror";
 					}
 				}
 			} else {
