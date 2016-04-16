@@ -1,64 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof(BoxCollider2D))]
-public class Knife : MonoBehaviour {
+public class Knife : Item {
 
-	// Dano causado ao inimigo
-	public int damage = 1;
+	private GameObject knife;
+	private static GameObject knifeOnUse;
 
-	// Velocidade
-	public float speed = 5;
+	float lastUse = 0;
+	float delay = 0.1f;
 
-	// Tempo máximo até ser destruído
-	public float lifeTime = 1;
-
-	// Direção do movimento
-	private Vector2 moveVector;
-
-	void Start () {
-		float posx = 0, posy = 0, posz = 0;
-		switch (Player.instance.character.direction) {
-			case 0:
-				transform.Rotate(0,0,-90);
-				break;
-			case 1:
-				transform.Rotate (0, 0, 180);
-				posx = -(Tile.size/2);
-				posy = Tile.size/2;
-				break;
-			case 2:
-				transform.Rotate (0, 0, 0);
-				posx = Tile.size/2;
-				posy = Tile.size/2;
-				break;
-			case 3:
-				transform.Rotate (0, 0, 90);
-				posy = Tile.size;
-				posz = 10;
-				break;
-		}
-		transform.position = Player.instance.transform.position + new Vector3(posx, posy, posz);
-		moveVector = GameManager.AngleToVector(Player.instance.character.lookingAngle) * speed;
-		Destroy (gameObject, lifeTime);
+	public Knife(int id) : base(id, "Knife", false) {
+		knife = Resources.Load<GameObject>("Prefabs/Knife");
 	}
 
-	void Update () {
-		// Atacar
-		Tile t = MazeManager.GetTile ((Vector2)transform.position - new Vector2 (0, Tile.size)); 
-		if (t == null || Player.instance.character.damaging) {
-			Destroy (gameObject);
-		} else {
-			lifeTime -= Time.deltaTime;
+	public override void OnUse () {
+		if (Time.time - lastUse > delay && knifeOnUse == null) {
+			lastUse = Time.time;
+			knifeOnUse = GameObject.Instantiate(knife);
+			Player.instance.canMove = false;
+			Player.instance.character.Stop	();
 		}
 	}
 
-	// Verifica se um inimigo foi atingido
-	void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.CompareTag ("Enemy")) {
-			Character comp = collider.GetComponent<Character> ();
-			comp.StartCoroutine(comp.Damage (transform.position, damage));
-			Destroy (gameObject);
+	public static void checkTheEndOfTheAtack() {
+		if (knifeOnUse == null) {
+			Player.instance.canMove = true;
 		}
 	}
 }

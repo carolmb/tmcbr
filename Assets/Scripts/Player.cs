@@ -44,7 +44,7 @@ public class Player : MonoBehaviour {
 			}
 		}
 
-		Stab.checkTheEndOfTheAtack();
+		Knife.checkTheEndOfTheAtack();
 
 		if (paused || !canMove)
 			return;
@@ -190,9 +190,7 @@ public class Player : MonoBehaviour {
 
 	// Checar se está sob o efeito da capa
 	// TODO: mudar para o ID do item da capa
-	public bool visible {
-		get { return bag.selectedItemID != -1; }
-	}
+	public bool visible;
 
 	// Tempo restante para acabar o efeito do relepente
 	public float repelTime = 0;

@@ -31,12 +31,10 @@ public abstract class Item {
 		Item[] db = new Item[10];
 
 		db[0] = new Slingshot(0);
-		db[1] = new Stab(1);
+		db[1] = new Knife(1);
 		db[2] = new Medicine(2);
-
-		// TODO: criar os diferentes itens aqui
-		// OBS: todos os itens devem herdar dessa classe. Ex:
-		// db[3] = new Knife(3, "knife");
+		db[3] = new Repel(3);
+		db[4] = new InvisibilityCloak(4);
 
 		return db;
 	}
