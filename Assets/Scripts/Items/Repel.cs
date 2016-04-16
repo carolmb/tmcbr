@@ -3,20 +3,14 @@ using System.Collections;
 
 public class Repel : Item {
 
-	// Character
-	public Character character;
+	private GameObject repel;
 
-	public Repel(int id, string spriteName, bool consumable, Character character)
-		: base(id, spriteName, consumable){
-		this.id = id;
-		this.spriteName = spriteName;
-		this.consumable = consumable;
+	public Repel(int id) : base(id, "Repel", false) {
+		repel = Resources.Load<GameObject>("Prefabs/Repel");
 	}
 
-	//
-	public override void OnUse() {
-		// Percorrer todos os inimigos do labirinto e pôr true
-		// Esperar 10s
-		// Pôr false em todos
+	public override void OnUse () {
+		Player.instance.character.lifePoints++;
+		GameMenu.instance.UpdateLife(Player.instance.character.lifePoints);
 	}
 }

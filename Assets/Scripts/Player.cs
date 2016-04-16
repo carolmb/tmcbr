@@ -12,6 +12,8 @@ public class Player : MonoBehaviour {
 	public Character character;
 	private Vector2 moveVector;
 
+	public bool canMove;
+
 	void Awake () {
 		instance = this;
 		character = GetComponent<Character> ();
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour {
 
 	// Atualizar interface
 	void Start () {
+		canMove = true;
 		character.lifePoints = SaveManager.currentSave.lifePoints;
 		GameMenu.instance.UpdateLife (character.lifePoints);
 	}
@@ -41,7 +44,9 @@ public class Player : MonoBehaviour {
 			}
 		}
 
-		if (paused)
+		Knife.checkTheEndOfTheAtack();
+
+		if (paused || !canMove)
 			return;
 
 		// Guardar tile visitado
@@ -133,7 +138,7 @@ public class Player : MonoBehaviour {
 		if (selectedItem != null) {
 			selectedItem.OnUse ();
 			if (selectedItem.consumable) {
-				bag.itemIDs [bag.selectedSlot] = -1;
+				bag.itemIDs[bag.selectedSlot] = -1;
 				bag.selectedSlot = -1;
 			}
 		}
@@ -185,9 +190,7 @@ public class Player : MonoBehaviour {
 
 	// Checar se está sob o efeito da capa
 	// TODO: mudar para o ID do item da capa
-	public bool visible {
-		get { return bag.selectedItemID != -1; }
-	}
+	public bool visible;
 
 	// Tempo restante para acabar o efeito do relepente
 	public float repelTime = 0;

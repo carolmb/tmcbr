@@ -1,33 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof(BoxCollider2D))]
-public class Knife : MonoBehaviour {
+public class Knife : Item {
 
-	// Dano causado ao inimigo
-	public int damage = 1;
+	private GameObject knife;
+	private static GameObject knifeOnUse;
 
-	// Velocidade
-	public float speed = 10;
+	float lastUse = 0;
+	float delay = 0.1f;
 
-	// Tempo máximo até ser destruído
-	public float lifeTime = 5;
-
-	void Start () {
-		//
+	public Knife(int id) : base(id, "Knife", false) {
+		knife = Resources.Load<GameObject>("Prefabs/Knife");
 	}
 
-	void Update () {
-		// Atacar
-		Invoke ("", 1);
+	public override void OnUse () {
+		if (Time.time - lastUse > delay && knifeOnUse == null) {
+			lastUse = Time.time;
+			knifeOnUse = GameObject.Instantiate(knife);
+			Player.instance.canMove = false;
+			Player.instance.character.Stop	();
+		}
 	}
 
-	// Verifica se um inimigo foi atingido
-	void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.CompareTag ("Enemy")) {
-			Character comp = collider.GetComponent<Character> ();
-			comp.StartCoroutine(comp.Damage (transform.position, damage));
-			Destroy (gameObject);
+	public static void checkTheEndOfTheAtack() {
+		if (knifeOnUse == null) {
+			Player.instance.canMove = true;
 		}
 	}
 }
