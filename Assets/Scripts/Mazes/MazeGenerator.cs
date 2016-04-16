@@ -145,8 +145,8 @@ public abstract class MazeGenerator {
 	}
 
 	protected bool NearBegin (Tile tile) {
-		for (int i = maze.beginMaze.x - 1; i <= maze.beginMaze.x + 1; i++) {
-			for (int j = maze.beginMaze.y - 1; j <= maze.beginMaze.y + 1; j++) {
+		for (int i = maze.beginTile.x - 1; i <= maze.beginTile.x + 1; i++) {
+			for (int j = maze.beginTile.y - 1; j <= maze.beginTile.y + 1; j++) {
 				if (i >= 0 && i < maze.width && j >= 0 && j < maze.height) {
 					if (maze.tiles[i, j] == tile) {
 						return true;
@@ -168,7 +168,7 @@ public abstract class MazeGenerator {
 
 		InicializeNullMaze ();
 		Tile currentTile = maze.tiles[(int)begin.x, (int)begin.y];
-		maze.beginMaze = currentTile;
+		maze.beginTile = currentTile;
 		Tile temp;
 		Stack<Tile> stack = new Stack<Tile> ();
 		List<Tile> neighbours;
@@ -220,9 +220,9 @@ public abstract class MazeGenerator {
 			}
 		}
 		this.maze = maze;
-		maze.beginMaze = expandedTiles[maze.beginMaze.x * factorX, maze.beginMaze.y * factorY];
-		if(maze.endMaze != null)
-			maze.endMaze = expandedTiles [maze.endMaze.x * factorX, maze.endMaze.y * factorY];
+		maze.beginTile = expandedTiles[maze.beginTile.x * factorX, maze.beginTile.y * factorY];
+		if(maze.endTile != null)
+			maze.endTile = expandedTiles [maze.endTile.x * factorX, maze.endTile.y * factorY];
 		maze.tiles = expandedTiles;
 	}
 
@@ -231,6 +231,12 @@ public abstract class MazeGenerator {
 		float angle = GameManager.VectorToAngle (origTile.coordinates - origMaze.center);
 		int direction = Character.AngleToDirection (Mathf.RoundToInt (angle / 90) * 90);
 		origTile.transition = new Transition (destMaze.id, destTile.x, destTile.y, direction);
+		Debug.Log ("transition");
+		Debug.Log (origTile.coordinates);
+		Debug.Log (destTile.coordinates);
+		Debug.Log ("origin " + origMaze.id);
+		Debug.Log ("dest " + destMaze.id);
+
 	}
 
 	// Cria um generator de acordo com o tema da fase

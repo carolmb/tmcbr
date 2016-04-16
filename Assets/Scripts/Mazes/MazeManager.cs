@@ -18,6 +18,7 @@ public class MazeManager : MonoBehaviour {
 
 	public static void GoToMaze(Transition transition) {
 		Debug.Log (transition.mazeID);
+		Debug.Log (transition.tileX + ", " + transition.tileY);	 
 		SaveManager.currentSave.transition = transition;
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
@@ -36,9 +37,7 @@ public class MazeManager : MonoBehaviour {
 
 	// Resgata o labirinto atual e inicializa os tiles
 	void Awake () {
-		Maze m = new Maze (0, "Fireplace", 5, 5);
-		StaticStage.ReadFromFileBase (m, "Fireplace");
-
+		
 		if (SaveManager.currentSave == null) {
 			SaveManager.NewGame ();
 		}

@@ -9,8 +9,8 @@ public class Maze : IEnumerable {
 	public int id;
 	public Tile[,] tiles;
 
-	public Tile beginMaze;
-	public Tile endMaze;
+	public Tile beginTile;
+	public Tile endTile;
 	// Para saber qual gráfico vai ser utilizado
 	public string theme = "Hall";
 

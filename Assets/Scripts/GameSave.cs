@@ -16,7 +16,7 @@ public class GameSave {
 		NewGame ();
 		//criar transição entre as duas fases
 
-		transition = new Transition(0, mazes[0].beginMaze.x, mazes[0].beginMaze.y, 0);
+		transition = new Transition(0, mazes[0].beginTile.x, mazes[0].beginTile.y, 0);
 		bag = new Bag ();
 		lifePoints = 1000;
 	}
@@ -26,12 +26,12 @@ public class GameSave {
 
 		Maze[] stage1 = StageGenerator.CreateStage ("Forest", new Vector2 (1, 5), rangeStage, 0);
 	
-		Vector2 nextBegin = new Vector2 (1, stage1 [rangeStage - 1].endMaze.y);
+		Vector2 nextBegin = new Vector2 (1, stage1 [rangeStage - 1].endTile.y);
 
 		Maze[] stage2 = StageGenerator.CreateStage("Hall", nextBegin, rangeStage, rangeStage);
 
 		StageGenerator.CreateTransitionBetweenStages (stage1 [rangeStage - 1], stage2 [0], 
-			stage1 [rangeStage - 1].endMaze, stage2 [0].beginMaze);
+			stage1 [rangeStage - 1].endTile, stage2 [0].beginTile);
 
 		MazeGenerator generator1 = MazeGenerator.GetGenerator (stage1[0].theme);
 		StageGenerator.ExpandMazes(stage1, generator1);
@@ -42,6 +42,9 @@ public class GameSave {
 		mazes = new Maze[stage1.Length + stage2.Length];
 		Array.Copy(stage1, mazes, stage1.Length);
 		Array.Copy(stage2, 0, mazes, stage1.Length, stage2.Length);
+	
+		//Debug.Log ("IMPORTANTE1: " + stage1 [rangeStage - 1].endTile.transition.mazeID);
+		//Debug.Log ("IMPORTANTE: " + mazes [rangeStage - 1].endTile.transition.mazeID);
 	}
 
 }

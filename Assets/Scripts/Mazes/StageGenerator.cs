@@ -38,7 +38,7 @@ public static class StageGenerator {
 			//cria o final do maze anterior com base no inicio do atual
 			//faz transição
 
-			initialTile = mazes [i].beginMaze;
+			initialTile = mazes [i].beginTile;
 
 			mazes [i].tiles [initialTile.x - 1, initialTile.y].wallID = 0;
 
@@ -49,26 +49,36 @@ public static class StageGenerator {
 				generator.SetTransition (finalTile, initialTile, mazes [i - 1], mazes [i]);
 				generator.SetTransition (mazes [i].tiles [initialTile.x - 1, initialTile.y], 
 				mazes[i - 1].tiles[finalTile.x - 1, finalTile.y], mazes [i], mazes [i - 1]);
-				
-			} else {
-				finalTile.wallID = 0;
 
+			} /*else {
+				finalTile.wallID = 0;
 				generator.SetTransition (finalTile, initialTile, mazes [mazeCount - 1], mazes [i]);
 				generator.SetTransition (mazes [i].tiles [initialTile.x - 1, initialTile.y], 
 				mazes[mazeCount - 1].tiles[finalTile.x - 1, finalTile.y], mazes [i], mazes [mazeCount - 1]);
-			}
+
+				Debug.Log (finalTile.coordinates);
+				Debug.Log (initialTile.coordinates);
+				Debug.Log (" " + mazes [mazeCount - 1].id);
+				Debug.Log (" " + mazes [i].id);
+
+			}*/
 
 		}
-		mazes [mazeCount - 1].endMaze = finalTile;
-
+		mazes [mazeCount - 1].endTile = finalTile;
 		return mazes;
 	}
 
 	public static void CreateTransitionBetweenStages (Maze initialMaze, Maze finalMaze, Tile initialTile, Tile finalTile) {
-	//	float angle1 = GameManager.VectorToAngle (initialTile.coordinates - initialMaze.center);
-	//	int direction1 = Character.AngleToDirection (Mathf.RoundToInt (angle1 / 90) * 90);
-	//	initialTile.transition = new Transition (finalMaze.id, finalTile.x, finalTile.y, direction1);
+		float angle1 = GameManager.VectorToAngle (initialTile.coordinates - initialMaze.center);
+		int direction1 = Character.AngleToDirection (Mathf.RoundToInt (angle1 / 90) * 90);
+		initialTile.transition = new Transition (finalMaze.id, finalTile.x, finalTile.y, direction1);
+		Debug.Log (initialTile.transition.mazeID);
 
+		/*Debug.Log ("transition entre stages");
+		Debug.Log (initialTile.coordinates);
+		Debug.Log (finalTile.coordinates);
+		Debug.Log ("origin " + initialMaze.id);
+		Debug.Log ("dest " + finalMaze.id);*/
 
 	//	float angle2 = GameManager.VectorToAngle (finalTile.coordinates - finalMaze.center);
 	//	int direction2 = Character.AngleToDirection (Mathf.RoundToInt (angle2 / 90) * 90);
