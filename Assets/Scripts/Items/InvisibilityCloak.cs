@@ -10,11 +10,6 @@ public class InvisibilityCloak : Item {
 	}
 
 	public override void OnUse() {
-		/*if (Player.instance.visible) {
-			Player.instance.visible = false;
-		} else {
-			Player.instance.visible = true;
-		}*/
 		Player.instance.visible = !Player.instance.visible;
 	}
 }
