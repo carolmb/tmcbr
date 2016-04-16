@@ -14,6 +14,8 @@ public class Player : MonoBehaviour {
 
 	public bool canMove;
 
+	public bool repel;
+
 	void Awake () {
 		instance = this;
 		character = GetComponent<Character> ();
@@ -23,6 +25,8 @@ public class Player : MonoBehaviour {
 	// Atualizar interface
 	void Start () {
 		canMove = true;
+		visible = true;
+		repel = false;
 		character.lifePoints = SaveManager.currentSave.lifePoints;
 		GameMenu.instance.UpdateLife (character.lifePoints);
 	}
