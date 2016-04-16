@@ -18,6 +18,8 @@ public class Bag {
 			itemIDs [i] = -1;
 		}
 		itemIDs [0] = 0;
+		itemIDs [1] = 1;
+		itemIDs [2] = 2;
 		coins = 0;
 		roses = 0;
 		selectedSlot = 0;

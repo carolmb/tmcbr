@@ -46,7 +46,7 @@ public class Knife : MonoBehaviour {
 	void Update () {
 		// Atacar
 		Tile t = MazeManager.GetTile ((Vector2)transform.position - new Vector2 (0, Tile.size)); 
-		if (t == null) {
+		if (t == null || Player.instance.character.damaging) {
 			Destroy (gameObject);
 		} else {
 			lifeTime -= Time.deltaTime;

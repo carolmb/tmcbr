@@ -18,6 +18,7 @@ public class Stab : Item {
 			lastUse = Time.time;
 			knifeOnUse = GameObject.Instantiate(knife);
 			Player.instance.canMove = false;
+			Player.instance.character.Stop	();
 		}
 	}
 
