@@ -33,10 +33,10 @@ public class GameSave {
 		StageGenerator.CreateTransitionBetweenStages (stage1 [rangeStage - 1], stage2 [0], 
 			stage1 [rangeStage - 1].endMaze, stage2 [0].beginMaze);
 
-		MazeGenerator generator1 = MazeGenerator.GetGenerator (stage1[0].theme, 15, 15);
+		MazeGenerator generator1 = MazeGenerator.GetGenerator (stage1[0].theme);
 		StageGenerator.ExpandMazes(stage1, generator1);
 
-		MazeGenerator generator2 = MazeGenerator.GetGenerator (stage2[0].theme, 15, 15);
+		MazeGenerator generator2 = MazeGenerator.GetGenerator (stage2[0].theme);
 		StageGenerator.ExpandMazes(stage2, generator2);
 
 		mazes = new Maze[stage1.Length + stage2.Length];

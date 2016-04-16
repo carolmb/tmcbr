@@ -8,7 +8,7 @@ public class Tomato : Enemy {
 	// Use this for initialization
 
 	void Start () {
-		Spaw ();
+		Spawn ();
 	}
 	
 	void Update () {
@@ -16,14 +16,14 @@ public class Tomato : Enemy {
 			return;
 	}
 
-	void Spaw () {
+	void Spawn () {
 		if (!character.moving && !character.damaging) {
 			GridPath path = PathToPlayer ();
 			if (path != null && path.PreviousSteps != null) {
 				Invoke ("MiniTomato", 3);
 			}
 		}
-		Invoke ("Spaw", 6);
+		Invoke ("Spawn", 6);
 	}
 
 	void MiniTomato () {

@@ -105,7 +105,9 @@ public class Character : MonoBehaviour {
 	// ===============================================================================
 
 	public bool moving;
-	public float speed = 2; // pixels per frame
+	public float speed = 2; // pixels por frame
+
+	private Coroutine currentMovement;
 
 	// Move, dentro de um frame, o personagem em direção translation
 	// Retorna se foi possível mover
@@ -130,13 +132,20 @@ public class Character : MonoBehaviour {
 	// USE ESSA FUNÇÃO AQUI (lembrar de usar o StartCoroutine)
 	// Move o personagem uma distância gradativamente
 	// É possível verificar se o personagem está andando pela variável moving
-	public IEnumerator Move(Vector2 transition) {
+	public Coroutine Move(Vector2 transition) {
 		return MoveTo(transition + (Vector2)transform.position);
 	}
 
 	// OU ESSA
 	// Move o personagem para o ponto dest, gradativamente
-	public IEnumerator MoveTo(Vector2 dest) {
+	public Coroutine MoveTo(Vector2 dest) {
+		if (currentMovement != null)
+			StopCoroutine (currentMovement);
+		currentMovement = StartCoroutine (MoveTo_coroutine (dest));
+		return currentMovement;
+	}
+
+	private IEnumerator MoveTo_coroutine(Vector2 dest) {
 		moving = true;
 		Vector2 orig = (Vector2)transform.position;
 		float distance = (dest - orig).magnitude;
@@ -151,6 +160,7 @@ public class Character : MonoBehaviour {
 		}
 		moving = false;
 	}
+
 
 	// Sempre use essa função para finalizar o movimento do personagem
 	public void Stop () {
@@ -228,7 +238,7 @@ public class Character : MonoBehaviour {
 	public int lifePoints = 100;
 
 	// Quantos pixels o personagem vai andar para trás quando levar dano
-	private float damageSpeed = 3;
+	public float damageSpeed = 3;
 	private float damageDuration = 0.25f;
 
 	// Serve para verificar se o personagem está levando dano
@@ -243,9 +253,12 @@ public class Character : MonoBehaviour {
 
 		// Step
 		Stop();
-		TurnTo (origin);
-		yield return StartCoroutine (DamageStep(origin));
-		Stop();
+		if (damageSpeed > 0) {
+			TurnTo (origin);
+			yield return StartCoroutine (DamageStep (origin));
+			Stop ();
+		}
+		damaging = false;
 
 		// Death
 		if (lifePoints == 0) {
@@ -255,6 +268,11 @@ public class Character : MonoBehaviour {
 
 	// Passo que o personagem dá para trás quando leva dano
 	private IEnumerator DamageStep(Vector2 origin) {
+		if (currentMovement != null) {
+			StopCoroutine (currentMovement);
+			currentMovement = null;
+		}
+
 		Vector2 direction = ((Vector2)transform.position - origin).normalized;
 		float previousSpeed = speed;
 		speed = damageSpeed;

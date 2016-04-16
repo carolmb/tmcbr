@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Scripts/Items/Item.cs.meta
 guid: 3e8f05b1561865245988847cf6423143
-timeCreated: 1460665945
-=======
-guid: cd1710a3cb00d894fa2050f715c014df
-timeCreated: 1460715043
->>>>>>> 03c1016513e66607aa4d10940ee48b99a43a1714:Assets/Scripts/Items/Item.cs.meta
-licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []

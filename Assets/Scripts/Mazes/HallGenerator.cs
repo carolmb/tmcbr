@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 public class HallGenerator : MazeGenerator {
 
-	public HallGenerator(string theme, int w, int h) : base(theme, w, h) { }
+	protected override string Theme () {
+		return "Hall";
+	}
 
 	protected override Tile GetNeighbour(List<Tile> n){
 		if (Random.Range (1, 100) < 80 || n.Count == 1) {
@@ -19,11 +21,11 @@ public class HallGenerator : MazeGenerator {
 			if (EmptyRadiusToEnemies (t)) {
 				if (GetAllWallNeighbours (t).Count == 2 && t.isWalkable) { //mimics
 					if (Random.Range (0, 100) < 50) { //fator random
-						t.objectName = "Mimic"; //trocar pelo nome do prefab
+						t.objectName = "Enemies/Mimic"; //trocar pelo nome do prefab
 					}
 				} else if (GetAllWallNeighbours (t).Count == 3 && t.isWalkable) { //armadura
 					if (Random.Range (0, 100) < 30) { //fator random
-						t.objectName = "KnightArmor"; 
+						t.objectName = "Enemies/KnightArmor"; 
 					}
 				} else if (GetAllWallNeighbours (t).Count == 3 && t.isWall) { //espelho
 					if (Random.Range (0, 100) < 60) {

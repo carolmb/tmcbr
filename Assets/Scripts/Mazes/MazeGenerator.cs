@@ -7,18 +7,9 @@ public abstract class MazeGenerator {
 	protected Maze maze;
 	protected bool[,] visited;
 
-	protected int width, height;
-	protected string theme;
-
 	protected const int deltaEnemys = 4;
 
-	public MazeGenerator(string theme, int w, int h) {
-		this.theme = theme;
-		this.width = w;
-		this.height = h;
-		visited = new bool[w, h];
-	}
-		
+	protected abstract string Theme ();
 	public abstract void CreateEnemies (Maze maze);
 	protected abstract Tile GetNeighbour(List<Tile> n);
 
@@ -90,7 +81,7 @@ public abstract class MazeGenerator {
 		}
 		return false;
 	}
-		
+
 	protected void InicializeNullMaze () {
 		for (int i = 0; i < maze.width; i++) {
 			for (int j = 0; j < maze.height; j++) {
@@ -167,33 +158,13 @@ public abstract class MazeGenerator {
 	}
 
 	// Cria um novo labirinto com o dado id
-	public Maze Create(int id) {
-		maze = new Maze (id, theme, width, height);
-
-		InicializeNullMaze ();
-		Tile currentTile = BeginMazeGenerator();
-		maze.beginMaze = currentTile;
-		Tile temp;
-		Stack<Tile> stack = new Stack<Tile> ();
-		List<Tile> neighbours;
-
-		stack.Push (currentTile);
-		while (stack.Count > 0) {
-			currentTile = stack.Pop ();
-			visited [currentTile.x, currentTile.y] = true;
-			if (NotVisitedNeighbours (currentTile, 2)) {
-				neighbours = GetVisitedNeighbours (currentTile, 2);
-				temp = GetNeighbour (neighbours);
-				stack.Push (currentTile);
-				stack.Push (temp);
-				RemoveWall (currentTile, temp);
-			}
-		}
-		return maze;
+	public Maze Create(int id, int width, int height) {
+		return Create (id, width, height, BeginMazeGenerator ().coordinates);
 	}
 
-	public Maze Create(int id, Vector2 begin) {
-		maze = new Maze (id, theme, width, height);
+	public Maze Create(int id, int width, int height, Vector2 begin) {
+		maze = new Maze (id, Theme(), width, height);
+		visited = new bool[width, height];
 
 		InicializeNullMaze ();
 		Tile currentTile = maze.tiles[(int)begin.x, (int)begin.y];
@@ -217,14 +188,13 @@ public abstract class MazeGenerator {
 		return maze;
 	}
 
-
 	// Multiplica os tiles de um labirinto
 	// Apenas obstáculos, chão, parede e transição são replicados
 	public void ExpandMaze (Maze maze, int factorX, int factorY){
 		Tile[,] expandedTiles = new Tile[maze.width * factorX, maze.height * factorY];
 		for (int i = 0; i < maze.width; i++) {
 			for (int j = 0; j < maze.height; j++) {
-				
+
 				for (int ki = 0; ki < factorX; ki++) {
 					for (int kj = 0; kj < factorY; kj++) {
 						int x = i * factorX + ki;
@@ -237,7 +207,7 @@ public abstract class MazeGenerator {
 
 						// Ajustar a transição que tiver no tile
 						if (maze.tiles [i, j].transition != null) {
-							
+
 							int id = maze.tiles [i, j].transition.mazeID;
 							int dir = maze.tiles [i, j].transition.direction;
 							int dx = maze.tiles [i, j].transition.tileX * factorX + ki;
@@ -264,14 +234,14 @@ public abstract class MazeGenerator {
 	}
 
 	// Cria um generator de acordo com o tema da fase
-	public static MazeGenerator GetGenerator (string theme, int w, int h) {
+	public static MazeGenerator GetGenerator (string theme) {
 		switch (theme) {
 		case "Hall":
-			return new HallGenerator (theme, w, h);
+			return new HallGenerator ();
 		case "Cave":
-			return new CaveGenerator (theme, w, h);
+			return new CaveGenerator ();
 		case "Forest":
-			return new ForestGenerator (theme, w, h);
+			return new ForestGenerator ();
 		}
 		return null;
 	}

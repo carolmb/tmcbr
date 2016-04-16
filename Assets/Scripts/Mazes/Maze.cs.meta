@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Scripts/Mazes/Maze.cs.meta
 guid: 28ea17b476f1f624bab7c6440380106e
-timeCreated: 1460665945
-=======
-guid: 55d93abb9bb95a845a28eba387be938c
-timeCreated: 1460715038
->>>>>>> 03c1016513e66607aa4d10940ee48b99a43a1714:Assets/Scripts/Mazes/Maze.cs.meta
-licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []

@@ -12,14 +12,14 @@ public class Player : MonoBehaviour {
 	public Character character;
 	private Vector2 moveVector;
 
-	void Awake() {
+	void Awake () {
 		instance = this;
 		character = GetComponent<Character> ();
 		Resume ();
 	}
 
 	// Atualizar interface
-	void Start() {
+	void Start () {
 		character.lifePoints = SaveManager.currentSave.lifePoints;
 		GameMenu.instance.UpdateLife (character.lifePoints);
 	}
@@ -31,13 +31,13 @@ public class Player : MonoBehaviour {
 	public Button menuButton;
 
 	// Movimento pelo Input
-	void Update() {
+	void Update () {
 		if (Input.GetButtonDown ("Menu")) {
 			if (!paused) {
 				menuButton.onClick.Invoke ();
 			} else {
 				Resume ();
-				GameMenu.instance.CloseMenu();
+				GameMenu.instance.CloseMenu ();
 			}
 		}
 
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour {
 	}
 
 	// Verifica se o player chegou nem tile que tem uma transição
-	void CheckTransition() {
+	void CheckTransition () {
 		Tile tile = character.currentTile;
 		if (tile.transition != null) {
 			MazeManager.GoToMaze (tile.transition);
@@ -85,13 +85,13 @@ public class Player : MonoBehaviour {
 	// ===============================================================================
 
 	// Pausar jogo
-	public void Pause() {
+	public void Pause () {
 		paused = true;
 		Time.timeScale = 0;
 	}
 
 	// Despausar jogo
-	public void Resume() {
+	public void Resume () {
 		paused = false;
 		Time.timeScale = 1;
 	}
@@ -102,12 +102,12 @@ public class Player : MonoBehaviour {
 
 	public Bag bag { get { return SaveManager.currentSave.bag; } }
 
-	public void IncrementCoins(int value) {
+	public void IncrementCoins (int value) {
 		bag.coins += value;
 		GameMenu.instance.UpdateCoins (bag.coins);
 	}
 
-	public void IncrementRoses(int value) {
+	public void IncrementRoses (int value) {
 		bag.roses += value;
 		GameMenu.instance.UpdateRoses (bag.roses);
 	}
@@ -123,13 +123,13 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	public void ChooseItem(int id) {
+	public void ChooseItem (int id) {
 		bag.selectedSlot = id;
 		GameMenu.instance.UpdateItem (selectedItem);
 		Resume ();
 	}
 
-	public void UseItem() {
+	public void UseItem () {
 		if (selectedItem != null) {
 			selectedItem.OnUse ();
 			if (selectedItem.consumable) {
@@ -151,7 +151,7 @@ public class Player : MonoBehaviour {
 	public float blinkFreq = 0.075f;
 
 	// Atualizar interface e piscar
-	public void OnDamage() {
+	public void OnDamage () {
 		SaveManager.currentSave.lifePoints = character.lifePoints;
 		GameMenu.instance.UpdateLife (character.lifePoints);
 		if (character.lifePoints > 0)
@@ -159,7 +159,7 @@ public class Player : MonoBehaviour {
 	}
 
 	// Piscar quando o jogador leva dano
-	private IEnumerator Blink() {
+	private IEnumerator Blink () {
 		immune = true;
 		float time = 0;
 		bool red = false;
@@ -175,8 +175,26 @@ public class Player : MonoBehaviour {
 	}
 
 	// Sair do jogo quando morrer
-	public void OnDie() {
+	public void OnDie () {
 		GameMenu.instance.Quit ();
+	}
+
+	// ===============================================================================
+	// Efeitos de Itens
+	// ===============================================================================
+
+	// Checar se está sob o efeito da capa
+	// TODO: mudar para o ID do item da capa
+	public bool visible {
+		get { return bag.selectedItemID != -1; }
+	}
+
+	// Tempo restante para acabar o efeito do relepente
+	public float repelTime = 0;
+
+	// Checar se está sob efeito do repelente
+	public bool repelling {
+		get { return repelTime > 0; }
 	}
 
 }

@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Scripts/Mazes/StageGenerator.cs.meta
 guid: 72dc406c6d75e2947a5f35f4b9e5c542
-timeCreated: 1460665946
-=======
-guid: b547ef15d1e74a942a07fd0ec8470c54
-timeCreated: 1460715038
->>>>>>> 03c1016513e66607aa4d10940ee48b99a43a1714:Assets/Scripts/Mazes/StageGenerator.cs.meta
-licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []

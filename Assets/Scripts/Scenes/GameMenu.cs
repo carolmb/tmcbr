@@ -49,7 +49,7 @@ public class GameMenu : MonoBehaviour {
 				itemButtons [i].interactable = true;
 				icon.SetActive (true);
 				Image img = icon.GetComponent<Image> ();
-				img.sprite = Resources.Load<Sprite> ("Images/" + Item.DB [id].spriteName);
+				img.sprite = Resources.Load<Sprite> ("Images/Items/" + Item.DB [id].spriteName);
 			} else {
 				itemButtons [i].interactable = false;
 				icon.SetActive (false);
@@ -94,7 +94,7 @@ public class GameMenu : MonoBehaviour {
 			currentItem.gameObject.SetActive (false);
 		} else {
 			currentItem.gameObject.SetActive (true);
-			currentItem.sprite = Resources.Load<Sprite> ("Images/" + item.spriteName);
+			currentItem.sprite = Resources.Load<Sprite> ("Images/Items/" + item.spriteName);
 		}
 	}
 }

@@ -18,11 +18,11 @@ public static class StageGenerator {
 		Tile initialTile, finalTile;
 
 		Maze[] mazes = new Maze[mazeCount];
-		MazeGenerator generator = MazeGenerator.GetGenerator (theme, 15, 15);
+		MazeGenerator generator = MazeGenerator.GetGenerator (theme);
 
-		mazes [0] = generator.Create (initialID, beginCoordinates);
+		mazes [0] = generator.Create (initialID, 15, 15, beginCoordinates);
 		for (int i = 1, id = initialID + 1; i < mazeCount; i++, id++) {
-			mazes [i] = generator.Create(id);
+			mazes [i] = generator.Create(id, 15, 15);
 		}
 
 		//cria o final do nível

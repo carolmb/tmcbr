@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 public class ForestGenerator : MazeGenerator {
 
-	public ForestGenerator(string theme, int w, int h) : base(theme, w, h) { } 
+	protected override string Theme () {
+		return "Forest";
+	}
 
 	protected override Tile GetNeighbour(List<Tile> n){
 		int i = Random.Range (0, n.Count - 1);
@@ -24,9 +26,9 @@ public class ForestGenerator : MazeGenerator {
 					t.wallID = 0;
 				}
 			}
-			if (t.isWalkable && NoObstaclesNear(t) && !HasTransitionNear(t)) { 
+			if (t.isWalkable && NoObstaclesNear(t) && !HasTransitionNear(t) && !maze.tiles[t.x, t.y - 1].isWall) { 
 				if (Random.Range (1, 100) < 20) {
-					t.objectName = "Tomato";
+					t.objectName = "Enemies/Tomato";
 				} else if (Random.Range (1, 100) < 30) {
 					t.obstacleID = 2;
 				} else if (Random.Range (1, 100) < 20) {

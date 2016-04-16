@@ -9,6 +9,8 @@ public class Minimap : MonoBehaviour {
 
 	public Color visitedColor = Color.white;
 	public Color hiddenColor = Color.black;
+	public Color playerColor = Color.blue;
+	public Color transitionColor = Color.yellow;
 
 	void OnEnable() {
 		imageComp = GetComponent<Image> ();
@@ -17,11 +19,17 @@ public class Minimap : MonoBehaviour {
 
 		for (int i = 0; i < texture.width; i++) {
 			for (int j = 0; j < texture.height; j++) {
-				if (MazeManager.maze.tiles [i, j].visited) {
-					texture.SetPixel (i, j, visitedColor);
-				} else {
-					texture.SetPixel (i, j, hiddenColor);
+				if (MazeManager.maze.tiles [i, j].transition != null) {
+					texture.SetPixel (i, j, transitionColor);
+				} else { 
+					if (MazeManager.maze.tiles [i, j].visited) {
+						texture.SetPixel (i, j, visitedColor);
+					} else {
+						texture.SetPixel (i, j, hiddenColor);
+					}
 				}
+				Tile t = Player.instance.character.currentTile;
+				texture.SetPixel (t.x, t.y, playerColor);
 			}
 		}
 		texture.Apply ();

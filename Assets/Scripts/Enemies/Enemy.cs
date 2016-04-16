@@ -6,20 +6,16 @@ public class Enemy : MonoBehaviour {
 	public GameObject coin;
 
 	protected Character character;
-	protected Coroutine currentMovement;
 
 	public int damage = 1;
 	public int vision = 10;
 
-	public bool canSeePlayer;
-
 	protected virtual void Awake() {
-		canSeePlayer = false;
 		character = GetComponent<Character> ();
 	}
 
 	protected GridPath PathToPlayer() {
-		if (!canSeePlayer) {
+		if (Player.instance.visible) {
 			Tile playerTile = Player.instance.character.currentTile;
 			Tile myTile = character.currentTile;
 			if (PathFinder.EstimateCost (myTile, playerTile) >= vision)
@@ -36,11 +32,23 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	void OnDamage() {
-		if (currentMovement != null) {
-			StopCoroutine (currentMovement);
-			currentMovement = null;
+	protected void OnDamage() {
+		StartCoroutine (DamageLight ());
+	}
+
+	private IEnumerator DamageLight() {
+		Color color = Color.red;
+		while (color.r < 1) {
+			color.r += 0.25f;
+			character.spriteRenderer.color = color;
+			yield return null;
 		}
+		while (color.r > 0) {
+			color.r -= 0.25f;
+			character.spriteRenderer.color = color;
+			yield return null;
+		}
+		character.spriteRenderer.color = Color.white;
 	}
 
 	protected void OnDie() {

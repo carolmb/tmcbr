@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 public class CaveGenerator : MazeGenerator {
 
-	public CaveGenerator(string theme, int w, int h) : base(theme, w, h) { } 
+	protected override string Theme () {
+		return "Cave";
+	}
 
 	protected override Tile GetNeighbour(List<Tile> n) {
 		return null;
