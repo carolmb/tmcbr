@@ -17,6 +17,7 @@ public class MazeManager : MonoBehaviour {
 	}
 
 	public static void GoToMaze(Transition transition) {
+		Debug.Log (transition.mazeID);
 		SaveManager.currentSave.transition = transition;
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}

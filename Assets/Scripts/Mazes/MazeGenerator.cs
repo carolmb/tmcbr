@@ -192,6 +192,32 @@ public abstract class MazeGenerator {
 		return maze;
 	}
 
+	public Maze Create(int id, Vector2 begin) {
+		maze = new Maze (id, theme, width, height);
+
+		InicializeNullMaze ();
+		Tile currentTile = maze.tiles[(int)begin.x, (int)begin.y];
+		maze.beginMaze = currentTile;
+		Tile temp;
+		Stack<Tile> stack = new Stack<Tile> ();
+		List<Tile> neighbours;
+
+		stack.Push (currentTile);
+		while (stack.Count > 0) {
+			currentTile = stack.Pop ();
+			visited [currentTile.x, currentTile.y] = true;
+			if (NotVisitedNeighbours (currentTile, 2)) {
+				neighbours = GetVisitedNeighbours (currentTile, 2);
+				temp = GetNeighbour (neighbours);
+				stack.Push (currentTile);
+				stack.Push (temp);
+				RemoveWall (currentTile, temp);
+			}
+		}
+		return maze;
+	}
+
+
 	// Multiplica os tiles de um labirinto
 	// Apenas obstáculos, chão, parede e transição são replicados
 	public void ExpandMaze (Maze maze, int factorX, int factorY){
@@ -225,6 +251,8 @@ public abstract class MazeGenerator {
 		}
 		this.maze = maze;
 		maze.beginMaze = expandedTiles[maze.beginMaze.x * factorX, maze.beginMaze.y * factorY];
+		if(maze.endMaze != null)
+			maze.endMaze = expandedTiles [maze.endMaze.x * factorX, maze.endMaze.y * factorY];
 		maze.tiles = expandedTiles;
 	}
 
