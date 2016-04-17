@@ -8,7 +8,7 @@ public class CaveGenerator : MazeGenerator {
 		return "Cave";
 	}
 
-	protected override Tile GetNeighbour(List<Tile> n) {
+	protected override Tile GetNeighbour(Tile t) {
 		return null;
 	}
 

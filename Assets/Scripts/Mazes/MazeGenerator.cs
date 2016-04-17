@@ -11,7 +11,7 @@ public abstract class MazeGenerator {
 
 	protected abstract string Theme ();
 	public abstract void CreateEnemies (Maze maze);
-	protected abstract Tile GetNeighbour(List<Tile> n);
+	protected abstract Tile GetNeighbour(Tile t);
 
 	protected bool HasTransitionNear(Tile t) {
 		if (t.transition != null)
@@ -179,8 +179,7 @@ public abstract class MazeGenerator {
 			currentTile = stack.Pop ();
 			visited [currentTile.x, currentTile.y] = true;
 			if (NotVisitedNeighbours (currentTile, 2)) {
-				neighbours = GetVisitedNeighbours (currentTile, 2);
-				temp = GetNeighbour (neighbours);
+				temp = GetNeighbour (currentTile);
 				stack.Push (currentTile);
 				stack.Push (temp);
 				RemoveWall (currentTile, temp);

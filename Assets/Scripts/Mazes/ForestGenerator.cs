@@ -8,8 +8,9 @@ public class ForestGenerator : MazeGenerator {
 		return "Forest";
 	}
 
-	protected override Tile GetNeighbour(List<Tile> n){
-		int i = Random.Range (0, n.Count - 1);
+	protected override Tile GetNeighbour (Tile t){
+		List<Tile> n = GetVisitedNeighbours (t, 2);
+		int i = Random.Range (0, n.Count);
 		return n [i];
 	}
 
@@ -27,7 +28,7 @@ public class ForestGenerator : MazeGenerator {
 					t.wallID = 0;
 				}
 			}
-			if (t.isWalkable && NoObstaclesNear(t) && !HasTransitionNear(t) && !maze.tiles[t.x, t.y - 1].isWall) { 
+			if (t.isWalkable && NoObstaclesNear (t) && !HasTransitionNear (t) && !maze.tiles[t.x, t.y - 1].isWall) { 
 				if (Random.Range (1, 100) < 20) {
 					t.objectName = "Enemies/Tomato";
 				} else if (Random.Range (1, 100) < 30) {

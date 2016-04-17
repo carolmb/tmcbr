@@ -8,11 +8,31 @@ public class HallGenerator : MazeGenerator {
 		return "Hall";
 	}
 
-	protected override Tile GetNeighbour(List<Tile> n){
-		if (Random.Range (1, 100) < 80 || n.Count == 1) {
-			return n[0];
+	private bool vertical = true;
+
+	protected override Tile GetNeighbour(Tile t) {
+		if (Random.Range (0, 100) < 15) {
+			vertical = !vertical;
+		}
+
+		if (vertical) {
+			if (t.y + 2 < maze.height - 1 && !visited [t.x, t.y + 2]) {
+				return maze.tiles [t.x, t.y + 2];
+			} else if (t.y - 2 > 0 && !visited [t.x, t.y - 2]) {
+				return maze.tiles [t.x, t.y - 2];
+			} else {
+				vertical = false;
+				return GetNeighbour (t);
+			}
 		} else {
-			return n [Random.Range (1, n.Count - 1)];
+			if (t.x + 2 < maze.width - 1 && !visited [t.x + 2, t.y]) {
+				return maze.tiles [t.x + 2, t.y];
+			} else if (t.x - 2 > 0 && !visited [t.x - 2, t.y]) {
+				return maze.tiles [t.x - 2, t.y];
+			} else {
+				vertical = true;
+				return GetNeighbour (t);
+			}
 		}
 	}
 

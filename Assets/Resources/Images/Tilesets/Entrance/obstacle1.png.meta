@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 0f41a7b90b9399d4591c53828fa059e3
-timeCreated: 1460921094
+guid: e557c27133b024140a93fbf5a9679f2c
+timeCreated: 1460924782
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: obstacle3_0
-    21300002: obstacle3_1
-    21300004: obstacle3_2
+    21300000: obstacle1_0
+    21300002: obstacle1_1
+    21300004: obstacle1_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -44,8 +44,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.5, y: 0.15}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 1
   alphaIsTransparency: 1
@@ -53,69 +53,57 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: obstacle3_0
+    - name: obstacle1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -2, y: 37.8}
-        - {x: -13, y: 32.8}
-        - {x: -15, y: 30.8}
-        - {x: -15, y: 6.799999}
-        - {x: -14, y: -4.200001}
-        - {x: -10, y: -7.200001}
-        - {x: 11, y: -7.200001}
-        - {x: 16, y: -6.200001}
-        - {x: 16, y: 33.8}
-        - {x: 7, y: 37.8}
-    - name: obstacle3_1
+      - - {x: -21, y: 48}
+        - {x: -24, y: 46}
+        - {x: -24, y: 0}
+        - {x: 24, y: 0}
+        - {x: 24, y: 44}
+        - {x: 23, y: 48}
+    - name: obstacle1_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 48
         y: 0
-        width: 32
+        width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -2, y: 37.8}
-        - {x: -13, y: 32.8}
-        - {x: -15, y: 30.8}
-        - {x: -15, y: 6.799999}
-        - {x: -14, y: -4.200001}
-        - {x: -10, y: -7.200001}
-        - {x: 11, y: -7.200001}
-        - {x: 16, y: -6.200001}
-        - {x: 16, y: 33.8}
-        - {x: 7, y: 37.8}
-    - name: obstacle3_2
+      - - {x: -21, y: 48}
+        - {x: -24, y: 46}
+        - {x: -24, y: 0}
+        - {x: 24, y: 0}
+        - {x: 24, y: 44}
+        - {x: 23, y: 48}
+    - name: obstacle1_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 96
         y: 0
-        width: 32
+        width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -2, y: 37.8}
-        - {x: -13, y: 32.8}
-        - {x: -15, y: 30.8}
-        - {x: -15, y: 6.799999}
-        - {x: -14, y: -4.200001}
-        - {x: -10, y: -7.200001}
-        - {x: 11, y: -7.200001}
-        - {x: 16, y: -6.200001}
-        - {x: 16, y: 33.8}
-        - {x: 7, y: 37.8}
+      - - {x: -24, y: 0}
+        - {x: 24, y: 0}
+        - {x: 24, y: 47}
+        - {x: 23, y: 48}
+        - {x: -21, y: 48}
+        - {x: -24, y: 46}
     outline: []
   spritePackingTag: 
   userData: 
