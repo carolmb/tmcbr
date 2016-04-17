@@ -6,30 +6,38 @@ public class EnemyMirror : Enemy {
 
 	public GameObject knightArmor;
 
+	private bool spawned;
+
 	protected override void Awake () {
 		base.Awake ();
 	}
 
-	void Start () {
-		Spawn ();
+	void Start() {
+		spawned = false;
 	}
 
 	void Update () {
 		//
 		if (!Player.instance.repel) {
-			//
+			Spawn();
 		}
 	}
 
 	void Spawn () {
-		// Verificar que esta na frente
-		GridPath path = PathToPlayer ();
-		if (path != null && path.PreviousSteps != null) {
-			Invoke ("Enemy", 3);
+		if (!spawned) {
+			// Verificar que esta na frente
+			GridPath path = PathToPlayer ();
+			if (path != null && path.PreviousSteps != null) {
+				Invoke ("Enemy", 3);
+			}
+			spawned = true;
 		}
 	}
 
 	void Enemy () {
 		Instantiate (knightArmor, character.transform.position, character.transform.rotation);
+	}
+
+	protected void OnDamage() {
 	}
 }
