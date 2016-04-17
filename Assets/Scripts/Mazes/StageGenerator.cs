@@ -4,18 +4,9 @@ using System.Collections.Generic;
 
 public static class StageGenerator {
 
-	public static Maze[] ExpandMazes (Maze[] mazes, MazeGenerator generator) {
-		for (int i = 0; i < mazes.Length; i++) {
-			mazes [i].Expand(2, 2);
-			generator.CreateEnemies (mazes[i]);
-		}
-		return mazes;
-	}
-
 	// Retorna o tile final da fase
-	public static Tile CreateStage (Maze[] mazes, string theme, Vector2 beginCoordinates, int initialID) {
+	public static Tile CreateStage (Maze[] mazes, MazeGenerator generator, Vector2 beginCoordinates, int initialID) {
 		int mazeCount = mazes.Length;
-		MazeGenerator generator = MazeGenerator.GetGenerator (theme);
 
 		mazes [0] = generator.Create (initialID, 15, 15, beginCoordinates);
 		for (int i = 1, id = initialID + 1; i < mazeCount; i++, id++) {
@@ -40,51 +31,6 @@ public static class StageGenerator {
 		} while (mazes[mazeCount - 1].tiles [x, y].isWall || y%2 == 0);
 		Debug.Log (new Vector2 (x, y));
 		return mazes[mazeCount - 1].tiles [x, y];
-
-		/*
-		do {
-			y = Random.Range (1, mazes[mazeCount -1 ].height - 1);
-		} while (mazes[mazeCount - 1].tiles [x, y].isWall && y%2 == 0);
-		finalTile = mazes[mazeCount-1].tiles [x, y];
-		mazes [mazeCount - 1].endTile = finalTile;
-
-		initialTile = mazes [1].tiles [mazes [1].beginTile.x - 1, mazes [1].beginTile.y];
-
-		for (int i = 1; i < mazeCount; i++) {
-
-			//pega o inicio do maze atual
-			//cria o final do maze anterior com base no inicio do atual
-			//faz transição
-
-			initialTile = mazes [i].beginTile;
-			mazes [i].tiles [initialTile.x - 1, initialTile.y].wallID = 0;
-
-			finalTile = mazes [i - 1].tiles [mazes [i].width - 1, initialTile.y];
-			finalTile.wallID = 0;
-
-			SetTransition (	mazes [i - 1], 
-							finalTile, 
-							mazes [i], 
-							initialTile);
-			SetTransition (	mazes [i], 
-							mazes [i].tiles [initialTile.x - 1, initialTile.y], 
-							mazes [i - 1],
-							mazes[i - 1].tiles[finalTile.x - 1, finalTile.y]);
-		
-			else {
-				finalTile.wallID = 0;
-				generator.SetTransition (finalTile, initialTile, mazes [mazeCount - 1], mazes [i]);
-				generator.SetTransition (mazes [i].tiles [initialTile.x - 1, initialTile.y], 
-				mazes[mazeCount - 1].tiles[finalTile.x - 1, finalTile.y], mazes [i], mazes [mazeCount - 1]);
-
-				Debug.Log (finalTile.coordinates);
-				Debug.Log (initialTile.coordinates);
-				Debug.Log (" " + mazes [mazeCount - 1].id);
-				Debug.Log (" " + mazes [i].id);
-
-			}
-
-		} */
 	}
 
 	// Cria uma transição de um tile de um labirinto para outro
