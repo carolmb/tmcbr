@@ -57,7 +57,7 @@ public class HallGenerator : MazeGenerator {
 				} else if (t.isWalkable && NoObstaclesNear (t)) {
 					if (Random.Range (0, 100) < 15) {
 						t.obstacleID = 3; // Flores
-					} else if (Random.Range (0, 100) < 15 && maze.tiles [t.x, t.y + 1].isWall) {
+					} else if (Random.Range (0, 100) < 15 && !maze.tiles [t.x, t.y - 1].isWall) {
 						t.obstacleID = 1; // Mesa
 					} else if (Random.Range (0, 100) < 15 && maze.tiles [t.x, t.y + 1].isWall) {
 						t.obstacleID = 2; // Cadeira

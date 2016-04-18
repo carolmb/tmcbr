@@ -193,14 +193,17 @@ public class Character : MonoBehaviour {
 	// Tenta se mover no dado ângulo
 	// Se conseguir, move e retorna true; se não, apenas retorna false
 	bool TryMove(float angle, bool animate) {
-		Vector2 translation = GameManager.AngleToVector (angle) * speed;
+		Vector2 translation = GameManager.AngleToVector (angle) * speed * 60 * Time.deltaTime;
 		return InstantMove (translation, animate);
 	}
 
 	// Verifica se tal posição é passável para o personagem (checa cada ponto de seu colisor)
 	private bool CanMoveTo(Vector2 newPosition) {
-		if (!collides)
-			return true;
+		if (!collides) {
+			return newPosition.x >= 0 && newPosition.y >= 0 &&
+				newPosition.x <= (MazeManager.maze.width - 1) * Tile.size &&
+				newPosition.y <= (MazeManager.maze.height - 1) * Tile.size;
+		}
 		
 		float left 		= newPosition.x - boxCollider.bounds.extents.x + boxCollider.offset.x;
 		float right 	= newPosition.x + boxCollider.bounds.extents.x + boxCollider.offset.x;

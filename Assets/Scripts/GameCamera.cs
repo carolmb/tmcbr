@@ -8,8 +8,8 @@ public class GameCamera : MonoBehaviour {
 	// Limites do cenário
 	private float maxX { get { return MazeManager.maze.worldWidth - size.x / 2 - Tile.size / 2; } }
 	private float minX { get { return size.x / 2 - Tile.size / 2; }	}
-	private float maxY { get { return MazeManager.maze.worldHeight - size.y / 2; } }
-	private float minY { get { return size.y / 2; } }
+	private float maxY { get { return MazeManager.maze.worldHeight - size.y / 2 - Tile.size / 2; } }
+	private float minY { get { return size.y / 2 - Tile.size / 2; } }
 
 	// Tamanho da câmera (em coordenadas do jogo)
 	public static Vector2 size {

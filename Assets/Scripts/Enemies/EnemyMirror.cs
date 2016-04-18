@@ -18,7 +18,7 @@ public class EnemyMirror : Enemy {
 
 	void Update () {
 		//
-		if (!Player.instance.repel) {
+		if (!Player.instance.repelling) {
 			Spawn();
 		}
 	}

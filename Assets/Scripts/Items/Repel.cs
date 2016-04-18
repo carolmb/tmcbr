@@ -10,6 +10,6 @@ public class Repel : Item {
 	}
 
 	public override void OnUse () {
-		Player.instance.repel = true;
+		Player.instance.repelTime = 10;
 	}
 }

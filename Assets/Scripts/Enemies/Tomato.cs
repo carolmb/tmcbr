@@ -15,8 +15,10 @@ public class Tomato : Enemy {
 		if (Player.instance.paused)
 			return;
 
-		if (Player.instance.repel) {
-			ChasePlayer ();
+		if (Player.instance.repelling) {
+			RunFromPlayer ();
+		} else {
+			character.Stop ();
 		}
 	}
 

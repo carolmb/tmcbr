@@ -170,16 +170,14 @@ public abstract class MazeGenerator {
 		Tile currentTile = maze.tiles[(int)begin.x, (int)begin.y];
 		maze.beginTile = currentTile;
 		maze.tiles [(int)begin.x - 1, (int)begin.y].wallID = 0;
-		Tile temp;
 		Stack<Tile> stack = new Stack<Tile> ();
-		List<Tile> neighbours;
 
 		stack.Push (currentTile);
 		while (stack.Count > 0) {
 			currentTile = stack.Pop ();
 			visited [currentTile.x, currentTile.y] = true;
 			if (NotVisitedNeighbours (currentTile, 2)) {
-				temp = GetNeighbour (currentTile);
+				Tile temp = GetNeighbour (currentTile);
 				stack.Push (currentTile);
 				stack.Push (temp);
 				RemoveWall (currentTile, temp);

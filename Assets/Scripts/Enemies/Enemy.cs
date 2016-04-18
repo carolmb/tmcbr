@@ -34,29 +34,45 @@ public class Enemy : MonoBehaviour {
 	protected virtual Tile FarestToPlayer() {
 		Tile playerTile = Player.instance.character.currentTile;
 		Tile myTile = character.currentTile;
-		Vector2 coord;
-		return null;
-		//TODO
+		Vector2 dif = playerTile.coordinates - myTile.coordinates;
+		if (Mathf.Abs (dif.x) > Mathf.Abs (dif.y)) {
+			int x = dif.x > 0 ? -1 : 1;
+			x += myTile.x;
+			if (x >= 0 && x < MazeManager.maze.width)
+				return MazeManager.maze.tiles [x, myTile.y];
+			else
+				return null;
+		} else {
+			int y = dif.y > 0 ? -1 : 1;
+			y += myTile.y;
+			if (y >= 0 && y < MazeManager.maze.height)
+				return MazeManager.maze.tiles [myTile.x, y];
+			else
+				return null;
+		}
 	}
 
-	protected void ChasePlayer() {
+	protected bool ChasePlayer() {
 		Tile nextTile = ClosestToPlayer ();
 		if (nextTile != null) {
 			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPosition (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
 			character.TurnTo (nextPosition);
 			character.MoveTo (nextPosition);
+			return true;
+		} else {
+			return false;
 		}
 	}
 
-	protected void RunFromPlayer() {
+	protected bool RunFromPlayer() {
 		Tile nextTile = FarestToPlayer ();
 		if (nextTile != null) {
 			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPosition (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
-			Vector2 np = new Vector2 (nextPosition.x - transform.position.x, nextPosition.y - transform.position.y);
-			np.x *= -1;
-			np.y *= -1;
-			character.TurnTo (np);
-			character.MoveTo (np + (Vector2)transform.position);
+			character.TurnTo (nextPosition);
+			character.MoveTo (nextPosition);
+			return true;
+		} else {
+			return false;
 		}
 	}
 

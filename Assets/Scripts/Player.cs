@@ -14,8 +14,6 @@ public class Player : MonoBehaviour {
 
 	public bool canMove;
 
-	public bool repel;
-
 	void Awake () {
 		instance = this;
 		character = GetComponent<Character> ();
@@ -26,7 +24,6 @@ public class Player : MonoBehaviour {
 	void Start () {
 		canMove = true;
 		visible = true;
-		repel = false;
 		character.lifePoints = SaveManager.currentSave.lifePoints;
 		GameMenu.instance.UpdateLife (character.lifePoints);
 	}
@@ -50,6 +47,10 @@ public class Player : MonoBehaviour {
 
 		Knife.checkTheEndOfTheAtack();
 
+		if (repelling) {
+			repelTime -= Time.deltaTime;
+		}
+
 		if (paused || !canMove)
 			return;
 
@@ -69,7 +70,7 @@ public class Player : MonoBehaviour {
 			// Se não apertou botão
 			character.Stop ();
 		} else {
-			float angle = character.TryMove (moveVector * 60 * Time.deltaTime);
+			float angle = character.TryMove (moveVector);
 			if (!float.IsNaN(angle)) {
 				// Se moveu
 				character.TurnTo (angle);

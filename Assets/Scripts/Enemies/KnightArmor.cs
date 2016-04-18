@@ -16,7 +16,7 @@ public class KnightArmor : Enemy {
 		if (!character.moving && !character.damaging) {
 			ChasePlayer ();
 		}
-		if (Player.instance.repel) {
+		if (Player.instance.repelling) {
 			RunFromPlayer ();
 		}
 	}

@@ -13,7 +13,7 @@ public class Mimic : Enemy {
 			return;
 
 		if (!character.moving && !character.damaging) {
-			if (Player.instance.repel) {
+			if (Player.instance.repelling) {
 				RunFromPlayer ();
 			} else {
 				ChasePlayer ();

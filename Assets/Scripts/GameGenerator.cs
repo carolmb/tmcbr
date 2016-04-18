@@ -9,7 +9,7 @@ public class GameGenerator {
 		Maze[] stage1 = new Maze[rangeStage];
 		Maze[] stage2 = new Maze[rangeStage];
 
-		MazeGenerator generator1 = MazeGenerator.GetGenerator ("Forest");
+		MazeGenerator generator1 = MazeGenerator.GetGenerator ("Cave");
 		MazeGenerator generator2 = MazeGenerator.GetGenerator ("Hall");
 
 		Vector2 stageBegin = new Vector2 (1, Random.Range(1, rangeStage - 1));
