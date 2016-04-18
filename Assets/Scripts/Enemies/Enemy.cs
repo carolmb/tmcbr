@@ -14,15 +14,50 @@ public class Enemy : MonoBehaviour {
 		character = GetComponent<Character> ();
 	}
 
-	protected virtual GridPath PathToPlayer() {
+	protected virtual Tile ClosestToPlayer() {
 		if (Player.instance.visible) {
 			Tile playerTile = Player.instance.character.currentTile;
 			Tile myTile = character.currentTile;
 			if (PathFinder.EstimateCost (myTile, playerTile) >= vision)
 				return null;
-			return PathFinder.FindPath (playerTile, myTile, vision);
+
+			GridPath path = PathFinder.FindPath (playerTile, myTile, vision);
+			if (path != null && path.PreviousSteps != null) {
+				return path.PreviousSteps.LastStep;
+			} else {
+				return null;
+			}
 		}
 		return null;
+	}
+
+	protected virtual Tile FarestToPlayer() {
+		Tile playerTile = Player.instance.character.currentTile;
+		Tile myTile = character.currentTile;
+		Vector2 coord;
+		return null;
+		//TODO
+	}
+
+	protected void ChasePlayer() {
+		Tile nextTile = ClosestToPlayer ();
+		if (nextTile != null) {
+			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPosition (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
+			character.TurnTo (nextPosition);
+			character.MoveTo (nextPosition);
+		}
+	}
+
+	protected void RunFromPlayer() {
+		Tile nextTile = FarestToPlayer ();
+		if (nextTile != null) {
+			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPosition (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
+			Vector2 np = new Vector2 (nextPosition.x - transform.position.x, nextPosition.y - transform.position.y);
+			np.x *= -1;
+			np.y *= -1;
+			character.TurnTo (np);
+			character.MoveTo (np + (Vector2)transform.position);
+		}
 	}
 
 	void OnTriggerStay2D(Collider2D other) {

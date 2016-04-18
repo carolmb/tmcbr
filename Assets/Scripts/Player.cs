@@ -69,7 +69,7 @@ public class Player : MonoBehaviour {
 			// Se não apertou botão
 			character.Stop ();
 		} else {
-			float angle = character.TryMove (moveVector);
+			float angle = character.TryMove (moveVector * 60 * Time.deltaTime);
 			if (!float.IsNaN(angle)) {
 				// Se moveu
 				character.TurnTo (angle);

@@ -117,7 +117,6 @@ public class Character : MonoBehaviour {
 	// Move, dentro de um frame, o personagem para o point
 	// Retorna se foi possível mover
 	public bool InstantMoveTo(Vector2 point, bool animate = true) {
-		AdjustToFPS (ref point);
 		if (CanMoveTo (point)) {
 			transform.position = point;
 			if (animate)
@@ -152,8 +151,8 @@ public class Character : MonoBehaviour {
 		float percSpeed = speed / distance;
 		while (percentage <= 1) {
 			if (!Player.instance.paused) {
-				InstantMoveTo (Vector2.Lerp (orig, dest, percentage + percSpeed));
 				percentage += percSpeed * 60 * Time.deltaTime;
+				InstantMoveTo (Vector2.Lerp (orig, dest, percentage));
 			}
 			yield return null;
 		}
@@ -173,12 +172,6 @@ public class Character : MonoBehaviour {
 	// ===============================================================================
 
 	public bool collides = true;
-
-	private void AdjustToFPS(ref Vector2 newPosition) {
-		Vector2 movement = newPosition - (Vector2) transform.position;
-		movement *= 60 * Time.deltaTime;
-		newPosition = (Vector2)transform.position + movement;
-	}
 
 	// Tenta se mover na direção do atual moveVector
 	// Se conseguir, move e retorna o ângulo que andou; se não, retorna NaN

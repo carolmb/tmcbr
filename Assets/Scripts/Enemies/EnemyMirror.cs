@@ -26,8 +26,8 @@ public class EnemyMirror : Enemy {
 	void Spawn () {
 		if (!spawned) {
 			// Verificar que esta na frente
-			GridPath path = PathToPlayer ();
-			if (path != null && path.PreviousSteps != null) {
+			Tile t = ClosestToPlayer();
+			if (t != null) {
 				Invoke ("Enemy", 3);
 			}
 			spawned = true;
