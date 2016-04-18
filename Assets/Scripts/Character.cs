@@ -152,8 +152,8 @@ public class Character : MonoBehaviour {
 		float percSpeed = speed / distance;
 		while (percentage <= 1) {
 			if (!Player.instance.paused) {
-				percentage += percSpeed;
-				InstantMoveTo (Vector2.Lerp (orig, dest, percentage));
+				InstantMoveTo (Vector2.Lerp (orig, dest, percentage + percSpeed));
+				percentage += percSpeed * 60 * Time.deltaTime;
 			}
 			yield return null;
 		}

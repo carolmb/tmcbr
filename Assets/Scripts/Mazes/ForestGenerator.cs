@@ -8,8 +8,9 @@ public class ForestGenerator : MazeGenerator {
 		return "Forest";
 	}
 
-	protected override Tile GetNeighbour(List<Tile> n){
-		int i = Random.Range (0, n.Count - 1);
+	protected override Tile GetNeighbour (Tile t){
+		List<Tile> n = GetVisitedNeighbours (t, 2);
+		int i = Random.Range (0, n.Count);
 		return n [i];
 	}
 

@@ -41,23 +41,36 @@ public class Bat : Enemy {
 					character.TurnTo (nextPosition);
 					character.MoveTo (nextPosition);
 				}
-			} 
+			} else {
+				inAttackMode = false;
+			}
 		} else {
 			//List<Tile> neighbours = character.currentTile.GetNeighbours4();
 			if (!character.moving && !character.damaging) {
 				List<Vector2> neighbours = new List<Vector2> ();
 
-				if (transform.position.x - Tile.size * 1 >= 0) {
-					neighbours.Add ((Vector2)transform.position - new Vector2 (Tile.size, 0));
+				Vector2 pos = (Vector2)transform.position - new Vector2 (0, Tile.size / 2);
+				Debug.Log ("last position: " + pos);
+
+				if (pos.x - Tile.size * 1 >= 0) {
+					neighbours.Add (pos - new Vector2 (Tile.size, 0));
+					Debug.Log ("added X: " + (pos.x - Tile.size * 1));
+					Debug.Log ("added: " + (pos - new Vector2 (Tile.size, 0)));
 				}
-				if (transform.position.x + Tile.size * 1 <= (MazeManager.maze.width - 1) * Tile.size) {
-					neighbours.Add ((Vector2)transform.position + new Vector2 (Tile.size, 0));
+				if (pos.x + Tile.size * 1 <= (MazeManager.maze.width - 1) * Tile.size) {
+					neighbours.Add (pos + new Vector2 (Tile.size, 0));
+					Debug.Log ("added X: " + (pos.x + Tile.size * 1));
+					Debug.Log ("added: " + (pos + new Vector2 (Tile.size, 0)));
 				}
-				if (transform.position.y - Tile.size * 1 >= 0) {
-					neighbours.Add ((Vector2)transform.position - new Vector2 (0, Tile.size));
+				if (pos.y - Tile.size * 1 >= 0) {
+					neighbours.Add (pos - new Vector2 (0, Tile.size));
+					Debug.Log ("added Y: " + (pos.y - Tile.size * 1));
+					Debug.Log ("added: " + (pos - new Vector2 (0, Tile.size)));
 				}
-				if (transform.position.y + Tile.size * 1 <= (MazeManager.maze.height - 1) * Tile.size) {
-					neighbours.Add ((Vector2)transform.position + new Vector2 (0, Tile.size));
+				if (pos.y + Tile.size * 1 <= (MazeManager.maze.height - 1) * Tile.size) {
+					neighbours.Add (pos + new Vector2 (0, Tile.size));
+					Debug.Log ("added Y: " + (pos.y + Tile.size * 1));
+					Debug.Log ("added: " + (pos + new Vector2 (0, Tile.size)));
 				}
 
 
@@ -87,6 +100,8 @@ public class Bat : Enemy {
 				Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPosition (nextPositionTile.coordinates) + new Vector2(0, Tile.size / 2);
 				*/
 				Vector2 nextPosition = neighbours [Random.Range (0, neighbours.Count)];
+				Debug.Log ("choosen pos: " + nextPosition);
+				nextPosition += new Vector2(0, Tile.size / 2);
 				character.TurnTo (nextPosition);
 				character.MoveTo (nextPosition);
 			}
