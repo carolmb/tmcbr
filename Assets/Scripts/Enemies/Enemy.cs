@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour {
 		character = GetComponent<Character> ();
 	}
 
-	protected GridPath PathToPlayer() {
+	protected virtual GridPath PathToPlayer() {
 		if (Player.instance.visible) {
 			Tile playerTile = Player.instance.character.currentTile;
 			Tile myTile = character.currentTile;
@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	protected void OnDamage() {
+	protected virtual void OnDamage() {
 		StartCoroutine (DamageLight ());
 	}
 

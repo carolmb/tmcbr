@@ -27,10 +27,12 @@ public class ForestGenerator : MazeGenerator {
 					t.wallID = 0;
 				}
 			}
-			if (t.isWalkable && NoObstaclesNear(t) && !HasTransitionNear(t) && !maze.tiles[t.x, t.y - 1].isWall) { 
+			if (t.isWalkable && NoObstaclesNear (t) && !HasTransitionNear (t) && !maze.tiles [t.x, t.y - 1].isWall) { 
 				if (Random.Range (1, 100) < 20) {
 					t.objectName = "Enemies/Tomato";
-				} else if (Random.Range (1, 100) < 30) {
+				} else if (Random.Range (1, 100) < 10) {
+			//		t.objectName = "Enemies/Bat";
+				}else if (Random.Range (1, 100) < 30) {
 					t.obstacleID = 2;
 				} else if (Random.Range (1, 100) < 20) {
 					t.obstacleID = 3;

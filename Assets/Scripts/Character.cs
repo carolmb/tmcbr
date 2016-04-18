@@ -20,7 +20,6 @@ public class Character : MonoBehaviour {
 
 	// Ajusta a coordenada Z do personagem para ser igual à Y
 	void LateUpdate () {
-		//Vector3 pos = new Vector3 (Mathf.Round(transform.position.x), Mathf.Round(transform.position.y));
 		Vector3 pos = transform.position;
 		pos.z = pos.y;
 		transform.position = pos;
@@ -173,6 +172,8 @@ public class Character : MonoBehaviour {
 	// Colisão
 	// ===============================================================================
 
+	public bool collides = true;
+
 	private void AdjustToFPS(ref Vector2 newPosition) {
 		Vector2 movement = newPosition - (Vector2) transform.position;
 		movement *= 60 * Time.deltaTime;
@@ -205,6 +206,9 @@ public class Character : MonoBehaviour {
 
 	// Verifica se tal posição é passável para o personagem (checa cada ponto de seu colisor)
 	private bool CanMoveTo(Vector2 newPosition) {
+		if (!collides)
+			return true;
+		
 		float left 		= newPosition.x - boxCollider.bounds.extents.x + boxCollider.offset.x;
 		float right 	= newPosition.x + boxCollider.bounds.extents.x + boxCollider.offset.x;
 		float bottom 	= newPosition.y - boxCollider.bounds.extents.y + boxCollider.offset.y - Tile.size / 2;

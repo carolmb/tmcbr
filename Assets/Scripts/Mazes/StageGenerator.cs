@@ -29,7 +29,6 @@ public static class StageGenerator {
 		do {
 			y = Random.Range (1, mazes[mazeCount - 1 ].height - 1);
 		} while (mazes[mazeCount - 1].tiles [x, y].isWall || y%2 == 0);
-		Debug.Log (new Vector2 (x, y));
 		return mazes[mazeCount - 1].tiles [x, y];
 	}
 
