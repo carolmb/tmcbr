@@ -152,7 +152,7 @@ public class Character : MonoBehaviour {
 		while (percentage <= 1) {
 			if (!Player.instance.paused) {
 				percentage += percSpeed * 60 * Time.deltaTime;
-				InstantMoveTo (Vector2.Lerp (orig, dest, percentage));
+				TryMove(Vector2.Lerp (orig, dest, percentage) - (Vector2) transform.position);
 			}
 			yield return null;
 		}

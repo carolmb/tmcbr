@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Bag {
 
-	public static readonly int maxItems = 4;
+	public static readonly int maxItems = 12;
 
 	public int coins;
 	public int roses;
@@ -28,6 +28,14 @@ public class Bag {
 
 	public int selectedItemID {
 		get { return itemIDs [selectedSlot]; }
+	}
+
+	public Item GetItem(int position) {
+		if (position < 0 || position >= maxItems)
+			return null;
+		if (itemIDs [position] == -1)
+			return null;
+		return Item.DB [itemIDs [position]];
 	}
 
 }

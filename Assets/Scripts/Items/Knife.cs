@@ -22,7 +22,7 @@ public class Knife : Item {
 		}
 	}
 
-	public static void checkTheEndOfTheAtack() {
+	public static void CheckAttackEnd() {
 		if (knifeOnUse == null) {
 			Player.instance.canMove = true;
 		}

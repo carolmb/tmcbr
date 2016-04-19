@@ -38,6 +38,4 @@ public class EnemyMirror : Enemy {
 		Instantiate (knightArmor, character.transform.position, character.transform.rotation);
 	}
 
-	protected void OnDamage() {
-	}
 }
