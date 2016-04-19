@@ -59,6 +59,7 @@ public static class StageGenerator {
 			break;
 		}
 
+		Debug.Log (tile1.x + " " + tile1.y);
 		origTile = maze1.tiles [tile1.x + deltaX, tile1.y + deltaY];
 		origTile.wallID = 0;
 		SetTransition (maze1, origTile, maze2, tile2, direction);

@@ -85,6 +85,8 @@ public class Maze : IEnumerable {
 				}
 			}
 		}
+		if (beginTile == null)
+			Debug.Log ("beginTile == null");
 		beginTile = expandedTiles[beginTile.x * factorX, beginTile.y * factorY];
 		if(endTile != null)
 			endTile = expandedTiles [endTile.x * factorX, endTile.y * factorY];
