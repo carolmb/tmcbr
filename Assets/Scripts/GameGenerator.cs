@@ -15,8 +15,9 @@ public class GameGenerator {
 		MazeGenerator generator2 = MazeGenerator.GetGenerator ("Hall");
 
 		Vector2 stageBegin = new Vector2 (1, Random.Range(1, rangeStage - 1));
-		Tile finalTile = StageGenerator.CreateStage (stage1, generator1, stageBegin, 0);
-
+		Tile finalTile = StageGenerator.CreateStage (stage1, generator1, stageBegin, 1);
+	
+		Debug.Log (stage1 [0].id + " " + stage1[0].beginTile.coordinates);
 		StageGenerator.SetTransitions (
 			stage0 [stage0.Length - 1],
 			stage0 [stage0.Length - 1].endTile, 
@@ -26,8 +27,8 @@ public class GameGenerator {
 		);
 			
 		stageBegin = new Vector2 (1, finalTile.y);
-		StageGenerator.CreateStage(stage2, generator2, stageBegin, rangeStage);
-
+		StageGenerator.CreateStage(stage2, generator2, stageBegin, 2);
+		Debug.Log (stage2 [0].id + " " + stage2[0].beginTile.coordinates);
 			StageGenerator.SetTransitions (
 			stage1 [rangeStage - 1],
 			finalTile, 
@@ -36,15 +37,15 @@ public class GameGenerator {
 			Character.RIGHT
 		);
 
-		ExpandMazes (stage0);
+		ExpandTransition (stage0[0]); //PROVISÓRIO
 		ExpandMazes(stage1, generator1);
 		ExpandMazes(stage2, generator2);
-
+		Debug.Log (stage1 [0].beginTile.coordinates);
 		Maze[] mazes = new Maze[stage0.Length + stage1.Length + stage2.Length];
 		System.Array.Copy(stage0, mazes, stage0.Length);
 		System.Array.Copy(stage1, 0, mazes, stage0.Length, stage1.Length);
-		System.Array.Copy(stage2, 0, mazes, stage1.Length, stage2.Length);
-
+		System.Array.Copy(stage2, 0, mazes, stage0.Length + stage1.Length, stage2.Length);
+	
 		return mazes;
 	}
 
@@ -56,11 +57,14 @@ public class GameGenerator {
 		return mazes;
 	}
 
-	public static Maze[] ExpandMazes (Maze[] mazes) {
-		for (int i = 0; i < mazes.Length; i++) {
-			mazes [i].Expand(2, 2);
+	public static void ExpandTransition (Maze maze) {
+		foreach (Tile t in maze.tiles) {
+			if (t.transition != null) {
+				t.transition.tileX *= 2;
+				t.transition.tileY *= 2;
+				break;
+			}
 		}
-		return mazes;
 	}
 
 }
