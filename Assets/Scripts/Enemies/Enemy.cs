@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour {
 	protected bool ChasePlayer() {
 		Tile nextTile = ClosestToPlayer ();
 		if (nextTile != null) {
-			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPosition (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
+			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
 			character.TurnTo (nextPosition);
 			character.MoveTo (nextPosition);
 			return true;
@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour {
 	protected bool RunFromPlayer() {
 		Tile nextTile = FarestToPlayer ();
 		if (nextTile != null) {
-			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPosition (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
+			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
 			character.TurnTo (nextPosition);
 			character.MoveTo (nextPosition);
 			return true;

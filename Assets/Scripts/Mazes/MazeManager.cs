@@ -28,14 +28,13 @@ public class MazeManager : MonoBehaviour {
 	// Coloca o player na posição inicial
 	void Start() {
 		Vector2 tilePos = new Vector2 (currentTransition.tileX, currentTransition.tileY);
-		Vector2 initPos = TileToWorldPosition (tilePos) + new Vector3 (0, Tile.size / 2, 0);
+		Vector2 initPos = TileToWorldPos (tilePos) + new Vector3 (0, Tile.size / 2, 0);
 		Player.instance.transform.position = initPos;
 		Player.instance.character.direction = currentTransition.direction;
 	}
 
 	// Resgata o labirinto atual e inicializa os tiles
 	void Awake () {
-		
 		if (SaveManager.currentSave == null) {
 			SaveManager.NewGame ();
 		}
@@ -76,7 +75,7 @@ public class MazeManager : MonoBehaviour {
 	GameObject CreateTileGraphic(int x, int y, string spriteName) {
 		GameObject obj = new GameObject ();
 		obj.name = "Tile[" + spriteName + "] (" + x + ", " + y + ")";
-		obj.transform.position = TileToWorldPosition (new Vector2 (x, y));
+		obj.transform.position = TileToWorldPos (new Vector2 (x, y));
 		SpriteRenderer sr = obj.AddComponent<SpriteRenderer> ();
 		sr.sprite = Resources.Load<Sprite> ("Images/Tilesets/" + maze.theme + "/" + spriteName);
 		obj.transform.SetParent (transform);
@@ -87,7 +86,7 @@ public class MazeManager : MonoBehaviour {
 	GameObject CreateTileObject(int x, int y, string prefabName) {
 		GameObject prefab = Resources.Load<GameObject> ("Prefabs/" + prefabName);
 		GameObject obj = Instantiate (prefab);
-		obj.transform.position = TileToWorldPosition (new Vector2 (x, y)) + new Vector3(0, Tile.size / 2, Tile.size / 2);
+		obj.transform.position = TileToWorldPos (new Vector2 (x, y)) + new Vector3(0, Tile.size / 2, Tile.size / 2);
 		obj.transform.SetParent (transform);
 		obj.name = prefabName;
 		return obj;
@@ -106,7 +105,7 @@ public class MazeManager : MonoBehaviour {
 	// ===============================================================================
 
 	// Converte coordenada em tiles para posição de jogo (em pixels)
-	public static Vector3 TileToWorldPosition(Vector2 tilePos) {
+	public static Vector3 TileToWorldPos(Vector2 tilePos) {
 		tilePos = tilePos * Tile.size;
 		return new Vector3 (tilePos.x, tilePos.y, tilePos.y);
 	}
@@ -152,6 +151,6 @@ public class MazeManager : MonoBehaviour {
 		r.center = obstacles [tx, ty].bounds.center - new Vector3(0, Tile.size / 2, 0);
 		return r.Contains (new Vector2 (x, y));
 	}
-		
+
 }
 	

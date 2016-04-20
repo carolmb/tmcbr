@@ -64,7 +64,7 @@ public class Bat : Enemy {
 					neighbours.Add (new Vector2(t.x, t.y + 1));
 				}
 
-				Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPosition (neighbours [Random.Range (0, neighbours.Count)]) + 
+				Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (neighbours [Random.Range (0, neighbours.Count)]) + 
 					new Vector2(0, Tile.size / 2);
 
 				character.TurnTo (nextPosition);

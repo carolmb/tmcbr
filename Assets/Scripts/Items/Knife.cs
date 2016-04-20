@@ -7,7 +7,7 @@ public class Knife : Item {
 	private static GameObject knifeOnUse;
 
 	float lastUse = 0;
-	float delay = 0.1f;
+	float delay = 0.01f;
 
 	public Knife(int id) : base(id, "Knife", false) {
 		knife = Resources.Load<GameObject>("Prefabs/Knife");
@@ -22,7 +22,7 @@ public class Knife : Item {
 		}
 	}
 
-	public static void checkTheEndOfTheAtack() {
+	public static void CheckAttackEnd() {
 		if (knifeOnUse == null) {
 			Player.instance.canMove = true;
 		}

@@ -14,18 +14,32 @@ public class Player : MonoBehaviour {
 
 	public bool canMove;
 
+	// Guardar referências
 	void Awake () {
 		instance = this;
 		character = GetComponent<Character> ();
-		Resume ();
 	}
 
-	// Atualizar interface
+	// Estado inicial
 	void Start () {
+		Resume ();
 		canMove = true;
 		visible = true;
 		character.lifePoints = SaveManager.currentSave.lifePoints;
 		GameMenu.instance.UpdateLife (character.lifePoints);
+	}
+
+	// Inputs e checagem de estados
+	void Update () {
+		CheckPause ();
+		if (paused) 
+			return;
+
+		// Guardar tile visitado
+		character.currentTile.visited = true;
+
+		CheckItems ();
+		CheckMovement ();
 	}
 
 	// ===============================================================================
@@ -34,8 +48,8 @@ public class Player : MonoBehaviour {
 
 	public Button menuButton;
 
-	// Movimento pelo Input
-	void Update () {
+	// Verificar botão de pause
+	void CheckPause() {
 		if (Input.GetButtonDown ("Menu")) {
 			if (!paused) {
 				menuButton.onClick.Invoke ();
@@ -44,32 +58,49 @@ public class Player : MonoBehaviour {
 				GameMenu.instance.CloseMenu ();
 			}
 		}
+	}
 
-		Knife.checkTheEndOfTheAtack();
-
+	// Atualizar uso de itens
+	void CheckItems() {
+		Knife.CheckAttackEnd();
 		if (repelling) {
 			repelTime -= Time.deltaTime;
 		}
-
-		if (paused || !canMove)
-			return;
-
-		// Guardar tile visitado
-		character.currentTile.visited = true;
-
-		if (character.damaging)
-			return;
-
-		if (Input.GetButtonDown ("Item")) {
+		if (canMove && Input.GetButtonDown ("Item")) {
 			UseItem ();
 		}
+	}
+
+	// Movimento pelo Input
+	void CheckMovement() {
+		//MoveByMouse ();
+		MoveByKeyboard ();
+	}
+
+	void MoveByMouse() {
+		if (Input.GetMouseButton (0)) {
+			Vector2 point = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			point = MazeManager.TileToWorldPos (MazeManager.WorldToTilePos (point));
+			character.TurnTo (point);
+			character.MoveTo (point);
+		}
+	}
+
+	void MoveByKeyboard() {
+		if (!canMove || character.damaging)
+			return;
 
 		moveVector.x = Input.GetAxisRaw ("Horizontal");
 		moveVector.y = Input.GetAxisRaw ("Vertical");
+
 		if (moveVector.x == 0 && moveVector.y == 0) {
 			// Se não apertou botão
-			character.Stop ();
+			if (!character.moving)
+				character.Stop ();
 		} else {
+			if (character.moving)
+				character.Stop();
+
 			float angle = character.TryMove (moveVector);
 			if (!float.IsNaN(angle)) {
 				// Se moveu
@@ -186,7 +217,7 @@ public class Player : MonoBehaviour {
 
 	// Sair do jogo quando morrer
 	public void OnDie () {
-		GameMenu.instance.Quit ();
+		MazeManager.GoToMaze (MazeManager.currentTransition);
 	}
 
 	// ===============================================================================

@@ -30,6 +30,10 @@ public class GameMenu : MonoBehaviour {
 		UpdateItem (Player.instance.selectedItem);
 	}
 
+	// ===============================================================================
+	// Save Window
+	// ===============================================================================
+
 	public void UpdateSaveButtons() {
 		SaveManager.LoadSaves ();
 		for (int i = 0; i < SaveManager.maxSaves; i++) {
@@ -41,15 +45,32 @@ public class GameMenu : MonoBehaviour {
 		}
 	}
 
+	public void Save(int id) {
+		SaveManager.SaveGame (id, saveName.text);
+		UpdateSaveButtons ();
+	}
+
+	// ===============================================================================
+	// Item Window
+	// ===============================================================================
+
+	int beginItemIndex = 0;
+
+	public Button itemLeft;
+	public Button itemRight;
+
 	public void UpdateItemButtons() {
-		for (int i = 0; i < Bag.maxItems; i++) {
-			int id = Player.instance.bag.itemIDs [i];
+		itemLeft.interactable = beginItemIndex > 0;
+		itemRight.interactable = beginItemIndex + itemButtons.Length < Bag.maxItems;
+			
+		for (int i = 0; i < itemButtons.Length; i++) {
 			GameObject icon = itemButtons [i].transform.GetChild (0).gameObject;
-			if (id > -1) {
+			Item item = Player.instance.bag.GetItem (i + beginItemIndex);
+			if (item != null) {
 				itemButtons [i].interactable = true;
 				icon.SetActive (true);
 				Image img = icon.GetComponent<Image> ();
-				img.sprite = Resources.Load<Sprite> ("Images/Items/" + Item.DB [id].spriteName);
+				img.sprite = Resources.Load<Sprite> ("Images/Items/" + item.spriteName);
 			} else {
 				itemButtons [i].interactable = false;
 				icon.SetActive (false);
@@ -57,10 +78,19 @@ public class GameMenu : MonoBehaviour {
 		}
 	}
 
-	public void Save(int id) {
-		SaveManager.SaveGame (id, saveName.text);
-		UpdateSaveButtons ();
+	public void ItemLeft() {
+		beginItemIndex -= itemButtons.Length;
+		UpdateItemButtons ();
 	}
+
+	public void ItemRight() {
+		beginItemIndex += itemButtons.Length;
+		UpdateItemButtons ();
+	}
+
+	// ===============================================================================
+	// Main window
+	// ===============================================================================
 
 	public void Quit() {
 		SceneManager.LoadScene ("MainMenu");
@@ -73,9 +103,9 @@ public class GameMenu : MonoBehaviour {
 		gameInterface.SetActive (true);
 	}
 
-	public void CloseAll() {
-		// TODO
-	}
+	// ===============================================================================
+	// Game Interface
+	// ===============================================================================
 
 	public void UpdateLife(int value) {
 		lifeText.text = "x" + value;
