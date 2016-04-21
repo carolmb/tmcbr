@@ -7,7 +7,13 @@ public class GameGenerator {
 
 	public static Maze[] Create () {
 		Maze[] stage0 = StaticStage.LoadStaticStage ("Entrance", 0);
-		Maze[] stage1 = new Maze[1], stage2 = new Maze[1], stage3 = new Maze[1]; //provisório
+		//Maze[] stage1 = new Maze[UnityEngine.Random.Range (3, 5)];
+		//Maze[] stage2 = new Maze[UnityEngine.Random.Range (3, 5)];
+		//Maze[] stage3 = new Maze[UnityEngine.Random.Range (3, 5)]; 
+
+		Maze[] stage1 = new Maze[1];
+		Maze[] stage2 = new Maze[1];
+		Maze[] stage3 = new Maze[1]; 
 
 		MazeGenerator generator1 = MazeGenerator.GetGenerator ("Hall");
 		MazeGenerator generator2 = MazeGenerator.GetGenerator ("Cave");
@@ -21,23 +27,18 @@ public class GameGenerator {
 		SetTransitionStages (stage1, stage2, Character.DOWN); //hall para cave
 		SetTransitionStages (stage2, stage3, Character.LEFT); //cave para forest
 
+		CreateEnemies (stage1, generator1);
+		CreateEnemies (stage2, generator2);
+		CreateEnemies (stage3, generator3);
+
 		Maze[] mazes = new Maze[stage0.Length + stage1.Length + stage2.Length + stage3.Length];
 		System.Array.Copy(stage0, mazes, stage0.Length);
 		System.Array.Copy(stage1, 0, mazes, stage0.Length, stage1.Length);
 		System.Array.Copy(stage2, 0, mazes, stage0.Length + stage1.Length, stage2.Length);
 		System.Array.Copy(stage3, 0, mazes, stage0.Length + stage1.Length + stage2.Length, stage3.Length);	
-	
-		return mazes;
-	}
 
-/*	public static Maze[] ExpandMazes (Maze[] mazes, MazeGenerator generator) {
-		for (int i = 0; i < mazes.Length; i++) {
-			mazes [i].Expand(2, 2);
-			generator.CreateEnemies (mazes[i]);
-		}
 		return mazes;
 	}
-*/
 
 	static void SetTransitionStages (Maze[] stage1, Maze[] stage2, int dir) {
 		StageGenerator.CreateTransition (
@@ -45,6 +46,12 @@ public class GameGenerator {
 			stage2 [0], 
 			dir
 		);
+	}
+
+	static void CreateEnemies(Maze[] mazes, MazeGenerator generator) {
+		for (int i = 0; i < mazes.Length; i++) {
+			generator.CreateEnemies (mazes [i]);
+		}
 	}
 
 }

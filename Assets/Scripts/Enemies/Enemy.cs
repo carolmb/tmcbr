@@ -6,15 +6,21 @@ public class Enemy : MonoBehaviour {
 	public GameObject coin;
 
 	protected Character character;
+	protected Tile originalTile;
 
 	public int damage = 1;
 	public int vision = 10;
+	public float spawnTime = 1200f; // 20min
 
-	protected virtual void Awake() {
+	protected virtual void Awake () {
 		character = GetComponent<Character> ();
 	}
 
-	protected virtual Tile ClosestToPlayer() {
+	protected virtual void Start () {
+		originalTile = character.currentTile;
+	}
+
+	protected virtual Tile ClosestToPlayer () {
 		if (Player.instance.visible) {
 			Tile playerTile = Player.instance.character.currentTile;
 			Tile myTile = character.currentTile;
@@ -31,7 +37,7 @@ public class Enemy : MonoBehaviour {
 		return null;
 	}
 
-	protected virtual Tile FarestToPlayer() {
+	protected virtual Tile FarestToPlayer () {
 		Tile playerTile = Player.instance.character.currentTile;
 		Tile myTile = character.currentTile;
 		Vector2 dif = playerTile.coordinates - myTile.coordinates;
@@ -52,7 +58,7 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	protected bool ChasePlayer() {
+	protected bool ChasePlayer () {
 		Tile nextTile = ClosestToPlayer ();
 		if (nextTile != null) {
 			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
@@ -64,7 +70,7 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	protected bool RunFromPlayer() {
+	protected bool RunFromPlayer () {
 		Tile nextTile = FarestToPlayer ();
 		if (nextTile != null) {
 			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
@@ -76,18 +82,18 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerStay2D(Collider2D other) {
+	void OnTriggerStay2D (Collider2D other) {
 		if (other.CompareTag ("Player")) {
 			if (!Player.instance.character.damaging  && !Player.instance.immune)
 				StartCoroutine(Player.instance.character.Damage ((Vector2) transform.position, damage));
 		}
 	}
 
-	protected virtual void OnDamage() {
+	protected virtual void OnDamage () {
 		StartCoroutine (DamageLight ());
 	}
 
-	private IEnumerator DamageLight() {
+	private IEnumerator DamageLight () {
 		Color color = Color.red;
 		while (color.r < 1) {
 			color.r += 0.25f;
@@ -103,6 +109,8 @@ public class Enemy : MonoBehaviour {
 	}
 
 	protected void OnDie() {
+		if (spawnTime >= 0)
+			originalTile.spawnTime = spawnTime;
 		Instantiate (coin, transform.position, transform.rotation);
 	}
 

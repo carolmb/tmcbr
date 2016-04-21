@@ -17,7 +17,7 @@ public class CaveGenerator : MazeGenerator {
 	public override void CreateEnemies (Maze maze) {
 		this.maze = maze;
 		foreach (Tile t in maze.tiles) {
-			if (NearBegin (t)) {
+			if (HasTransitionNear (t)) {
 				continue;
 			}
 
@@ -31,7 +31,7 @@ public class CaveGenerator : MazeGenerator {
 						t.wallID = 0;
 					}
 				}
-				if (t.isWalkable && !HasTransitionNear (t) && !maze.tiles [t.x, t.y - 1].isWall) { 
+				if (t.isWalkable) { 
 					if (Random.Range (1, 100) < 20) {
 						t.objectName = "Enemies/Tomato";
 					} else if (Random.Range (1, 100) < 30) { //fator random

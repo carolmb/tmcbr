@@ -39,9 +39,9 @@ public class HallGenerator : MazeGenerator {
 	public override void CreateEnemies (Maze maze) {
 		this.maze = maze;
 		foreach (Tile t in maze.tiles) {
-			if (!HasTransitionNear (t)) {
+			if (HasTransitionNear (t)) {
 				if (EmptyRadiusToEnemies (t)) {
-					if (GetAllWallNeighbours (t).Count == 2 && t.isWalkable) { //mimics
+					if (GetAllWallNeighbours (t).Count == 1 && t.isWalkable) { //mimics
 						if (Random.Range (0, 100) < 50) { //fator random
 							t.objectName = "Enemies/Mimic"; //trocar pelo nome do prefab
 						}

@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-
 public class Bat : Enemy {
 
 	bool inAttackMode;
 
-	void Start() {
+	protected override void Start () {
+		base.Start ();
 		inAttackMode = false;
 		character.spriteRenderer.sortingLayerName = "Bat";
 	}

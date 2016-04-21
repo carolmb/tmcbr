@@ -143,19 +143,7 @@ public abstract class MazeGenerator {
 		}
 		return true;
 	}
-
-	protected bool NearBegin (Tile tile) {
-		for (int i = maze.beginTile.x - 1; i <= maze.beginTile.x + 1; i++) {
-			for (int j = maze.beginTile.y - 1; j <= maze.beginTile.y + 1; j++) {
-				if (i >= 0 && i < maze.width && j >= 0 && j < maze.height) {
-					if (maze.tiles[i, j] == tile) {
-						return true;
-					}
-				}
-			}
-		}
-		return false;
-	}
+		
 
 	public Maze Create(int id, int width, int height) {
 		maze = new Maze (id, Theme(), width, height);
@@ -165,7 +153,6 @@ public abstract class MazeGenerator {
 
 		Tile currentTile = maze.tiles[(int)begin.x, (int)begin.y];
 		maze.beginTile = currentTile;
-		maze.tiles [(int)begin.x - 1, (int)begin.y].wallID = 0;
 		Stack<Tile> stack = new Stack<Tile> ();
 
 		stack.Push (currentTile);
@@ -179,6 +166,8 @@ public abstract class MazeGenerator {
 				RemoveWall (currentTile, temp);
 			}
 		}
+		maze.beginTile = null;
+		maze.endTile = null;
 		return maze;
 	}
 

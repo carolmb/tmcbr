@@ -17,7 +17,7 @@ public class ForestGenerator : MazeGenerator {
 	public override void CreateEnemies (Maze maze) {
 		this.maze = maze;
 		foreach (Tile t in maze.tiles) {
-			if (NearBegin (t)) {
+			if (HasTransitionNear(t)) {
 				continue;
 			}
 			if (t.isWall) {	
@@ -28,11 +28,11 @@ public class ForestGenerator : MazeGenerator {
 					t.wallID = 0;
 				}
 			}
-			if (t.isWalkable && NoObstaclesNear (t) && !HasTransitionNear (t) && !maze.tiles [t.x, t.y - 1].isWall) { 
+			if (t.isWalkable && NoObstaclesNear (t)) { 
 				if (Random.Range (1, 100) < 20) {
 					t.objectName = "Enemies/Tomato";
 				} else if (Random.Range (1, 100) < 10) {
-			//		t.objectName = "Enemies/Bat";
+					t.objectName = "Enemies/Bat";
 				}else if (Random.Range (1, 100) < 30) {
 					t.obstacleID = 2;
 				} else if (Random.Range (1, 100) < 20) {
