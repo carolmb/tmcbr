@@ -5,10 +5,10 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Transition {
 	public int mazeID;
-	public int tileX;
-	public int tileY;
+	public float tileX;
+	public float tileY;
 	public int direction;
-	public Transition(int id, int x, int y, int dir) {
+	public Transition(int id, float x, float y, int dir) {
 		mazeID = id;
 		tileX = x;
 		tileY = y;

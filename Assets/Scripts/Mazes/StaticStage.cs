@@ -5,16 +5,15 @@ using System.IO;
 
 public static class StaticStage {
 
-	public static Maze[] LoadStaticStage (string stageName, int id) {
-		Maze[] mazes = new Maze[1];
-		mazes [0] = ReadFromFileBase (stageName, id);
-		ReadFromFileFloor (mazes [0]);
-		ReadFromFileWalls (mazes[0]);
-		ReadFromFileObstacles (mazes[0]);
-		return mazes;
+	public static Stage LoadStaticStage (string stageName, int id) {
+		Stage stage = ReadFromFileBase (stageName, id);
+		ReadFromFileFloor (stage.mazes[0]);
+		ReadFromFileWalls (stage.mazes[0]);
+		ReadFromFileObstacles (stage.mazes[0]);
+		return stage;
 	}
 
-	public static Maze ReadFromFileBase(string stageName, int id) {
+	public static Stage ReadFromFileBase(string stageName, int id) {
 		try { 
 			using (StreamReader sr = new StreamReader (Application.dataPath + "/MazeData/"  + stageName + "/base.txt")) { // "nomedafase/objectos.txt"
 				string line = sr.ReadLine();
@@ -22,6 +21,7 @@ public static class StaticStage {
 				int width = Int32.Parse(info[0]);
 				int height = Int32.Parse(info[1]);
 				Maze maze = new Maze (id, stageName, width, height);
+				Stage stage = new Stage(new Maze[] {maze} );
 
 				for(int i = 0; i < width; i++) {
 					for(int j = 0; j < height; j++) {
@@ -33,15 +33,19 @@ public static class StaticStage {
 				info = line.Split(' ');
 				int x = Int32.Parse(info[0]);
 				int y = Int32.Parse(info[1]);
-				maze.beginTile = maze.tiles[x, y];
+				int dir = Int32.Parse(info[2]);
+				stage.beginTile = maze.tiles[x, y];
+				stage.beginDir = dir;
 
 				line = sr.ReadLine();
 				info = line.Split(' ');
 				x = Int32.Parse(info[0]);
 				y = Int32.Parse(info[1]);
-				maze.endTile = maze.tiles[x, y];
+				dir = Int32.Parse(info[2]);
+				stage.endTile = maze.tiles[x, y];
+				stage.endDir = dir;
 
-				return maze;
+				return stage;
 			}
 		} catch (IOException) {
 			Debug.Log ("The file could not be read:");

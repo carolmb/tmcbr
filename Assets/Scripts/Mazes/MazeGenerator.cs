@@ -23,6 +23,16 @@ public abstract class MazeGenerator {
 		return false;
 	}
 
+	protected bool HasObstaclesNear (Tile t) {
+		if (t.obstacleID > 0)
+			return true;
+		foreach (Tile n in GetNeighbours(t, 1)) {
+			if (n.obstacleID > 0)
+				return true;
+		}
+		return false;
+	}
+
 	protected List<Tile> GetAllWallNeighbours (Tile tile) {
 		List<Tile> neighbours = new List<Tile> ();
 		if (tile.x - 1 >= 0 && maze.tiles[tile.x - 1, tile.y].isWall) {
@@ -130,19 +140,6 @@ public abstract class MazeGenerator {
 		}
 		return true;
 	}
-
-	protected bool NoObstaclesNear (Tile tile) {
-		for (int i = tile.x - 1; i <= tile.x + 1; i++) {
-			for (int j = tile.y - 1; j <= tile.y + 1; j++) {
-				if (i >= 0 && i < maze.width && j >= 0 && j < maze.height) {
-					if (maze.tiles [i, j].obstacleID > 0) {
-						return false;
-					}
-				}
-			}
-		}
-		return true;
-	}
 		
 
 	public Maze Create(int id, int width, int height) {
@@ -152,7 +149,7 @@ public abstract class MazeGenerator {
 		Vector2 begin = FirstTile ().coordinates;
 
 		Tile currentTile = maze.tiles[(int)begin.x, (int)begin.y];
-		maze.beginTile = currentTile;
+		//maze.beginTile = currentTile;
 		Stack<Tile> stack = new Stack<Tile> ();
 
 		stack.Push (currentTile);
@@ -166,8 +163,8 @@ public abstract class MazeGenerator {
 				RemoveWall (currentTile, temp);
 			}
 		}
-		maze.beginTile = null;
-		maze.endTile = null;
+		//maze.beginTile = null;
+		//maze.endTile = null;
 		return maze;
 	}
 

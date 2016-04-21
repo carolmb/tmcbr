@@ -28,7 +28,7 @@ public class ForestGenerator : MazeGenerator {
 					t.wallID = 0;
 				}
 			}
-			if (t.isWalkable && NoObstaclesNear (t)) { 
+			if (t.isWalkable && !HasObstaclesNear (t)) { 
 				if (Random.Range (1, 100) < 20) {
 					t.objectName = "Enemies/Tomato";
 				} else if (Random.Range (1, 100) < 10) {

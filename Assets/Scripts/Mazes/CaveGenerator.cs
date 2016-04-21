@@ -21,7 +21,7 @@ public class CaveGenerator : MazeGenerator {
 				continue;
 			}
 
-			if (NoObstaclesNear (t)) {
+			if (!HasObstaclesNear (t)) {
 				if (t.isWall) {	
 					if (Random.Range (1, 100) < 30) { //fator random
 						t.obstacleID = 1;

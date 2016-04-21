@@ -14,10 +14,11 @@ public static class StageGenerator {
 			mazes [i].Expand (2, 2);
 		}
 		for (int i = 0, j = 1; j < mazeCount; i++, j++) {
-			initialDir = CreateTransition (
+			initialDir = GenerateDir (initialDir);
+			SetTransitions (
 				mazes [i], 
 				mazes [j], 
-				GenerateDir(initialDir)
+				initialDir
 			);
 		}
 	}
@@ -40,27 +41,7 @@ public static class StageGenerator {
 		return directions [UnityEngine.Random.Range (0, directions.Count)];
 	}
 
-	//retorna a direção da transição criada 
-	public static int CreateTransition(Maze maze1, Maze maze2, int dir) {
-		Tile tile1 = GenerateFinalTile (
-			maze1, 
-			dir,
-			Math.Min (maze1.width, maze2.width),
-			Math.Min (maze1.height, maze2.height)
-		);
-		Tile tile2 = GenerateInitialTile (
-			maze2, 
-			tile1, 
-			dir
-		);
-		SetTransitions (maze1, tile1, maze2, tile2, dir);
-		return dir;
-	}
-
-	static Tile GenerateFinalTile(Maze maze, int dir, int w, int h){
-		if (maze.endTile != null)
-			return maze.endTile;
-
+	public static Tile GenerateFinalTile(Maze maze, int dir, int w, int h){
 		int x = 0, y = 0;
 		Tile finalTile = null;
 		switch (dir) {
@@ -97,10 +78,8 @@ public static class StageGenerator {
 			return finalTile;
 	}
 
-	static Tile GenerateInitialTile(Maze maze, Tile finalTile, int dir) { //ver funcionamento para transição entre stages estaticos e procedurais
-		if(maze.beginTile != null)
-			return maze.beginTile;
-		
+	public static Tile GenerateInitialTile(Maze maze, Tile finalTile, int dir) { 
+		//ver funcionamento para transição entre stages estaticos e procedurais
 		Vector2 initialTile = new Vector2();
 		switch (dir) {
 		case Character.UP:
@@ -129,59 +108,77 @@ public static class StageGenerator {
 		origTile.transition = transition;
 	}
 
+	// Transições de ida e volta para os mazes 
+	// Tile1, Tile2: os tiles ANTERIORES às transições
+	public static void SetTransitions(Maze maze1, Maze maze2, int direction, int size = 2) {
+		SetTransitions (maze1, null, maze2, null, direction, size);
+	}
+
 	// Transições de ida e volta para os mazes
 	// Tile1, Tile2: os tiles ANTERIORES às transições
-	public static void SetTransitions(Maze maze1, Tile tile1, Maze maze2, Tile tile2, int direction = Character.RIGHT) {
-		Tile destTile, neighbor;
+	public static void SetTransitions(Maze maze1, Tile tile1, Maze maze2, Tile tile2, int direction, int size = 2) {
+		if (tile1 == null) {
+			tile1 = GenerateFinalTile (
+				maze1, 
+				direction,
+				Math.Min (maze1.width, maze2.width),
+				Math.Min (maze1.height, maze2.height)
+			);
+		}
+		if (tile2 == null) {
+			tile2 = GenerateInitialTile (
+				maze2, 
+				tile1, 
+				direction
+			);
+		}
+
 		int deltaX = 0;
 		int deltaY = 0;
 
-		int neighborX = 0;
-		int neighborY = 0;
+		int neighborX = 1;
+		int neighborY = 1;
 
 		switch (direction) {
 		case Character.UP:
 			deltaY = 1;
-			neighborX = 1;
+			neighborX = size;
 			break;
 		case Character.LEFT:
 			deltaX = -1;
-			neighborY = 1;
+			neighborY = size;
 			break;
 		case Character.RIGHT:
 			deltaX = 1;
-			neighborY = 1;
+			neighborY = size;
 			break;
 		case Character.DOWN:
 			deltaY = -1;
-			neighborX = 1;
+			neighborX = size;
 			break;
 		}
-		//ida 
-		destTile = maze2.tiles [tile2.x + deltaX, tile2.y + deltaY];
-		SetTransition (maze1, tile1, maze2, destTile, direction);
-		tile1.wallID = 0;
-		destTile.wallID = 0;
 
-		//ida vizinho
-		destTile = maze2.tiles [tile2.x + deltaX + neighborX, tile2.y + deltaY + neighborY];
-		neighbor = maze1.tiles [tile1.x + neighborX, tile1.y + neighborY];
-		SetTransition (maze1, neighbor, maze2, destTile, direction);
-		neighbor.wallID = 0;
-		destTile.wallID = 0;
+		// Ida para todos os vizinhos
+		for(int i = 0; i < neighborX; i++) {
+			for (int j = 0; j < neighborY; j++) {
+				Tile tile = maze1.tiles [tile1.x + i, tile1.y + j];
+				Tile destTile = maze2.tiles [tile2.x + deltaX + i, tile2.y + deltaY + j];
+				SetTransition (maze1, tile, maze2, destTile, direction);
+				tile.wallID = 0;
+				destTile.wallID = 0;
+			}
+		}
 
-		//volta
-		destTile = maze1.tiles [tile1.x - deltaX, tile1.y - deltaY];
-		SetTransition (maze2, tile2, maze1, destTile, 3 - direction);
-		tile2.wallID = 0;
-		destTile.wallID = 0;
-
-		//volta vizinho
-		destTile = maze1.tiles [tile1.x - deltaX + neighborX, tile1.y - deltaY + neighborY];
-		neighbor = maze2.tiles [tile2.x + neighborX, tile2.y + neighborY];
-		SetTransition (maze2, neighbor, maze1, destTile, direction);
-		neighbor.wallID = 0;
-		destTile.wallID = 0;
+		// Volta para todos os vizinhos
+		for(int i = 0; i < neighborX; i++) {
+			for (int j = 0; j < neighborY; j++) {
+				Tile tile = maze2.tiles [tile2.x + i, tile2.y + j];
+				Tile destTile = maze1.tiles [tile1.x - deltaX + i, tile1.y - deltaY + j];
+				SetTransition (maze2, tile, maze1, destTile, 3 - direction);
+				tile.wallID = 0;
+				destTile.wallID = 0;
+			}
+		}
 	}
 
 }
