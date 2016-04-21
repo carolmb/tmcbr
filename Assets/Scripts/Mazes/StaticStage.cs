@@ -37,12 +37,6 @@ public static class StaticStage {
 				int x = Int32.Parse(info[0]);
 				int y = Int32.Parse(info[1]);
 				maze.beginTile = maze.tiles[x, y];
-
-				line = sr.ReadLine();
-				info = line.Split(' ');
-				x = Int32.Parse(info[0]);
-				y = Int32.Parse(info[1]);
-				maze.endTile = maze.tiles[x, y];
 			}
 		}
 		catch (Exception e) {

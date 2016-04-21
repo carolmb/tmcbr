@@ -14,7 +14,7 @@ public class GameSave {
 		mazes = GameGenerator.Create ();
 
 		// TODO: Substituir pelo primeiro tile da cena de introdução
-		transition = new Transition(0, mazes[0].beginTile.x, mazes[0].beginTile.y, Character.RIGHT);
+		transition = new Transition(0, mazes[0].beginTile.x, mazes[0].beginTile.y, Character.UP);
 
 		bag = new Bag ();
 		lifePoints = 1000;

@@ -8,9 +8,7 @@ public class Maze : IEnumerable {
 
 	public int id;
 	public Tile[,] tiles;
-
 	public Tile beginTile;
-	public Tile endTile;
 	// Para saber qual gráfico vai ser utilizado
 	public string theme = "Hall";
 
@@ -71,23 +69,11 @@ public class Maze : IEnumerable {
 						expandedTiles [x, y] .x = x;
 						expandedTiles [x, y] .y = y;
 
-						// Ajustar a transição que tiver no tile
-						if (tiles [i, j].transition != null) {
-
-							int id = tiles [i, j].transition.mazeID;
-							int dir = tiles [i, j].transition.direction;
-							int dx = tiles [i, j].transition.tileX * factorX + ki;
-							int dy = tiles [i, j].transition.tileY * factorY + kj;
-							expandedTiles [x, y].transition = new Transition (id, dx, dy, dir);
-						}
-
 					}
 				}
 			}
 		}
-		beginTile = expandedTiles[beginTile.x * factorX, beginTile.y * factorY];
-		if(endTile != null)
-			endTile = expandedTiles [endTile.x * factorX, endTile.y * factorY];
+
 		tiles = expandedTiles;
 	}
 

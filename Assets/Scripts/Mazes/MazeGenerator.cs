@@ -157,16 +157,12 @@ public abstract class MazeGenerator {
 		return false;
 	}
 
-	// Cria um novo labirinto com o dado id
 	public Maze Create(int id, int width, int height) {
-		return Create (id, width, height, FirstTile ().coordinates);
-	}
-
-	public Maze Create(int id, int width, int height, Vector2 begin) {
 		maze = new Maze (id, Theme(), width, height);
 		visited = new bool[width, height];
-
 		InicializeNullMaze ();
+		Vector2 begin = FirstTile ().coordinates;
+
 		Tile currentTile = maze.tiles[(int)begin.x, (int)begin.y];
 		maze.beginTile = currentTile;
 		maze.tiles [(int)begin.x - 1, (int)begin.y].wallID = 0;
