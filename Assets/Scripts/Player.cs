@@ -7,6 +7,8 @@ public class Player : MonoBehaviour {
 
 	public static Player instance;
 
+	public AudioSource sound;
+
 	public bool paused;
 
 	public Character character;
@@ -40,6 +42,10 @@ public class Player : MonoBehaviour {
 
 		CheckItems ();
 		CheckMovement ();
+
+		if (!character.moving) {
+			sound.Stop ();
+		}
 	}
 
 	// ===============================================================================
@@ -106,6 +112,10 @@ public class Player : MonoBehaviour {
 				// Se moveu
 				character.TurnTo (angle);
 				CheckTransition ();
+
+				if (!sound.isPlaying) {
+					sound.Play ();
+				}
 			} else {
 				character.TurnTo(GameManager.VectorToAngle(moveVector));
 				character.Stop ();
