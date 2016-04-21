@@ -9,6 +9,7 @@ public class GameSave {
 	public Transition transition;
 	public Bag bag;
 	public int lifePoints;
+	public float playTime;
 
 	public GameSave() {
 		mazes = GameGenerator.Create ();
@@ -18,6 +19,7 @@ public class GameSave {
 
 		bag = new Bag ();
 		lifePoints = 1000;
+		playTime = 0;
 	}
 
 }

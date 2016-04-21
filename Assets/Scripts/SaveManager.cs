@@ -12,9 +12,20 @@ public static class SaveManager {
 	public static GameSave[] allSaves;
 	public static int maxSaves = 3;
 
+	// o tempo (em segundos) que se passou desde o início da aplicação até quando o salvo foi carregado
+	public static float loadTime = 0f; 
+
+	// o tempo de jogo total até agora
+	public static float currentPlayTime {
+		get {
+			return currentSave.playTime + (Time.time - loadTime); 
+		}
+	}
+
 	// Guardar num arquivo o salvo atual
 	public static void SaveGame(int id, string name) {
 		currentSave.name = name;
+		currentSave.playTime = currentPlayTime;
 		allSaves [id] = currentSave;
 		StoreSaves ();
 	}
@@ -22,11 +33,13 @@ public static class SaveManager {
 	// Carregar um jogo
 	public static void LoadGame(int id) {
 		currentSave = allSaves [id];
+		loadTime = Time.time;
 	}
 
 	// Ao criar um novo jogo
 	public static void NewGame() {
 		currentSave = new GameSave();
+		loadTime = Time.time;
 	}
 				
 	public static void LoadSaves() {

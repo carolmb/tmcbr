@@ -10,9 +10,6 @@ public class EnemyMirror : Enemy {
 
 	protected override void Awake () {
 		base.Awake ();
-	}
-
-	void Start() {
 		spawned = false;
 	}
 
