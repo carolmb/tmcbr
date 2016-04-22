@@ -30,6 +30,7 @@ public class Tile {
 	public int floorID = 1; // nunca é 0 (se não só tem um vácuo)
 	public int wallID = 0; // 0 é sem parede
 	public int obstacleID = 0; // 0 é sem obstáculo
+	public int type; // tipo do tile
 
 	// Informações do objeto do tile
 	public string objectName = ""; // nome do objeto (inimigo ou item), se tiver 

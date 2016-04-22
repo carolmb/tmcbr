@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 [RequireComponent (typeof(Character))]
@@ -7,7 +8,7 @@ public class Player : MonoBehaviour {
 
 	public static Player instance;
 
-	public AudioSource sound;
+	public List<AudioSource> sounds = new List<AudioSource>();
 
 	public bool paused;
 
@@ -42,10 +43,6 @@ public class Player : MonoBehaviour {
 
 		CheckItems ();
 		CheckMovement ();
-
-		if (!character.moving) {
-			sound.Stop ();
-		}
 	}
 
 	// ===============================================================================
@@ -112,10 +109,6 @@ public class Player : MonoBehaviour {
 				// Se moveu
 				character.TurnTo (angle);
 				CheckTransition ();
-
-				if (!sound.isPlaying) {
-					sound.Play ();
-				}
 			} else {
 				character.TurnTo(GameManager.VectorToAngle(moveVector));
 				character.Stop ();
@@ -207,6 +200,13 @@ public class Player : MonoBehaviour {
 		GameMenu.instance.UpdateLife (character.lifePoints);
 		if (character.lifePoints > 0)
 			StartCoroutine (Blink ());
+	}
+
+	// Som dos passos
+	public void Footstep() {
+		//
+		int i = Random.Range(0, 3);
+		sounds[i].Play();
 	}
 
 	// Piscar quando o jogador leva dano
