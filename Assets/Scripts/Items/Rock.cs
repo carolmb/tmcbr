@@ -16,6 +16,9 @@ public class Rock : MonoBehaviour {
 	// Direção do movimento
 	private Vector2 moveVector;
 
+	// Som
+	public AudioClip sound;
+
 	void Start() {
 		transform.position = Player.instance.transform.position + new Vector3(0, Tile.size / 2, 0);
 		moveVector = GameManager.AngleToVector (Player.instance.character.lookingAngle) * speed;
@@ -25,6 +28,9 @@ public class Rock : MonoBehaviour {
 	void Update () {
 		Tile t = MazeManager.GetTile ((Vector2)transform.position - new Vector2 (0, Tile.size)); 
 		if (t == null || t.isWall) {
+			if (t != null && t.isWall) {
+				AudioSource.PlayClipAtPoint(sound, transform.position);
+			}
 			Destroy (gameObject);
 		} else {
 			Vector3 pos = transform.position;
@@ -40,6 +46,8 @@ public class Rock : MonoBehaviour {
 		if (collider.CompareTag ("Enemy")) {
 			Character comp = collider.GetComponent<Character> ();
 			comp.StartCoroutine(comp.Damage ((Vector2) transform.position - moveVector * 10, damage));
+			AudioSource audio = GameObject.Find("punch").GetComponent<AudioSource>();
+			audio.Play ();
 			Destroy (gameObject);
 		}
 	}
