@@ -205,6 +205,7 @@ public class Player : MonoBehaviour {
 	// Som dos passos
 	public void Footstep() {
 		//
+		// if (character.currentTile.type == ) // 0, 1 - piso, grama
 		int i = Random.Range(0, 3);
 		sounds[i].Play();
 	}
