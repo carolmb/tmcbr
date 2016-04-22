@@ -1,10 +1,19 @@
 fileFormatVersion: 2
 guid: 40399dd7a37371845a4b78e6e021c25c
-timeCreated: 1460247123
+timeCreated: 1461332969
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - saveName: {instanceID: 0}
+  - coinText: {instanceID: 0}
+  - roseText: {instanceID: 0}
+  - lifeText: {instanceID: 0}
+  - currentItem: {instanceID: 0}
+  - gameInterface: {instanceID: 0}
+  - sound: {fileID: 8300000, guid: f7650291928e54813b484c7cb0f33253, type: 3}
+  - itemLeft: {instanceID: 0}
+  - itemRight: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
