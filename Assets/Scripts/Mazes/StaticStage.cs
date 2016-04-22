@@ -10,6 +10,7 @@ public static class StaticStage {
 		ReadFromFileFloor (stage.mazes[0]);
 		ReadFromFileWalls (stage.mazes[0]);
 		ReadFromFileObstacles (stage.mazes[0]);
+		ReadFromFileTypes (stage.mazes [0]);
 		return stage;
 	}
 
@@ -101,4 +102,21 @@ public static class StaticStage {
 			Debug.Log ("The file could not be read:");
 		}
 	}
+
+	static void ReadFromFileTypes (Maze maze) {
+		try { 
+			using (StreamReader sr = new StreamReader (Application.dataPath + "/MazeData/"  + maze.theme + "/types.txt")) { 
+				for (int i = 0; i < maze.height; i++) {
+					string line = sr.ReadLine();
+					string [] info = line.Split(' ');
+					for (int j = 0; j < maze.width; j++) {
+						maze.tiles[j, (maze.height - 1) - i].type = Int32.Parse(info[j]); 
+					}
+				}
+			}
+		} catch (IOException) {
+			Debug.Log ("The file could not be read:");
+		}
+	}
+
 }

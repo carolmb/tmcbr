@@ -17,6 +17,8 @@ public class ForestGenerator : MazeGenerator {
 	public override void CreateEnemies (Maze maze) {
 		this.maze = maze;
 		foreach (Tile t in maze.tiles) {
+			t.type = 1; // grama
+
 			if (HasTransitionNear(t)) {
 				continue;
 			}

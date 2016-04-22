@@ -202,14 +202,6 @@ public class Player : MonoBehaviour {
 			StartCoroutine (Blink ());
 	}
 
-	// Som dos passos
-	public void Footstep() {
-		//
-		// if (character.currentTile.type == ) // 0, 1 - piso, grama
-		int i = Random.Range(0, 3);
-		sounds[i].Play();
-	}
-
 	// Piscar quando o jogador leva dano
 	private IEnumerator Blink () {
 		immune = true;
@@ -239,12 +231,26 @@ public class Player : MonoBehaviour {
 	// TODO: mudar para o ID do item da capa
 	public bool visible;
 
-	// Tempo restante para acabar o efeito do relepente
+	// Tempo restante para acabar o efeito do repelente
 	public float repelTime = 0;
 
 	// Checar se está sob efeito do repelente
 	public bool repelling {
 		get { return repelTime > 0; }
+	}
+
+	// ===============================================================================
+	// Sons
+	// ===============================================================================
+
+	// Som dos passos
+	public void Footstep () {
+		int i;
+		if (character.currentTile.type == 0) // 0, 1 - piso, grama
+			i = Random.Range(0, 3);
+		else
+			i = Random.Range(3, 6);
+		sounds[i].Play();
 	}
 
 }
