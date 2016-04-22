@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e381b67bd27fb6843860bbc8f04b5982
-timeCreated: 1460590792
+timeCreated: 1461323366
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -69,18 +69,18 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -5, y: 21}
-        - {x: -7, y: 17}
-        - {x: -7, y: 7}
-        - {x: -6, y: 6}
-        - {x: 3, y: 6}
-        - {x: 8, y: 8}
-        - {x: 8, y: 17}
-        - {x: 4, y: 21}
+      - - {x: -5, y: 5}
+        - {x: -7, y: 1}
+        - {x: -7, y: -9}
+        - {x: -6, y: -10}
+        - {x: 3, y: -10}
+        - {x: 8, y: -8}
+        - {x: 8, y: 1}
+        - {x: 4, y: 5}
     - name: minitomato_1
       rect:
         serializedVersion: 2
@@ -88,18 +88,18 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -2, y: 21}
-        - {x: -6, y: 17}
-        - {x: -6, y: 10}
-        - {x: -1, y: 6}
-        - {x: 6, y: 6}
-        - {x: 9, y: 12}
-        - {x: 9, y: 17}
-        - {x: 3, y: 21}
+      - - {x: -2, y: 5}
+        - {x: -6, y: 1}
+        - {x: -6, y: -6}
+        - {x: -1, y: -10}
+        - {x: 6, y: -10}
+        - {x: 9, y: -4}
+        - {x: 9, y: 1}
+        - {x: 3, y: 5}
     - name: minitomato_2
       rect:
         serializedVersion: 2
@@ -107,18 +107,18 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9, y: 21}
-        - {x: -10, y: 18}
-        - {x: -10, y: 7}
-        - {x: -9, y: 6}
-        - {x: 1, y: 6}
-        - {x: 5, y: 7}
-        - {x: 5, y: 17}
-        - {x: 1, y: 21}
+      - - {x: -9, y: 5}
+        - {x: -10, y: 2}
+        - {x: -10, y: -9}
+        - {x: -9, y: -10}
+        - {x: 1, y: -10}
+        - {x: 5, y: -9}
+        - {x: 5, y: 1}
+        - {x: 1, y: 5}
     - name: minitomato_3
       rect:
         serializedVersion: 2
@@ -126,19 +126,19 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 4, y: 22}
-        - {x: -3, y: 22}
-        - {x: -7, y: 17}
-        - {x: -7, y: 12}
-        - {x: -2, y: 7}
-        - {x: 3, y: 7}
-        - {x: 7, y: 10}
-        - {x: 8, y: 13}
-        - {x: 8, y: 18}
+      - - {x: 4, y: 6}
+        - {x: -3, y: 6}
+        - {x: -7, y: 1}
+        - {x: -7, y: -4}
+        - {x: -2, y: -9}
+        - {x: 3, y: -9}
+        - {x: 7, y: -6}
+        - {x: 8, y: -3}
+        - {x: 8, y: 2}
     - name: minitomato_4
       rect:
         serializedVersion: 2
@@ -146,18 +146,18 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -2, y: 22}
-        - {x: -6, y: 18}
-        - {x: -6, y: 11}
-        - {x: -1, y: 7}
-        - {x: 6, y: 7}
-        - {x: 9, y: 13}
-        - {x: 9, y: 18}
-        - {x: 3, y: 22}
+      - - {x: -2, y: 6}
+        - {x: -6, y: 2}
+        - {x: -6, y: -5}
+        - {x: -1, y: -9}
+        - {x: 6, y: -9}
+        - {x: 9, y: -3}
+        - {x: 9, y: 2}
+        - {x: 3, y: 6}
     - name: minitomato_5
       rect:
         serializedVersion: 2
@@ -165,18 +165,18 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9, y: 22}
-        - {x: -10, y: 19}
-        - {x: -10, y: 8}
-        - {x: -9, y: 7}
-        - {x: 1, y: 7}
-        - {x: 5, y: 8}
-        - {x: 5, y: 18}
-        - {x: 1, y: 22}
+      - - {x: -9, y: 6}
+        - {x: -10, y: 3}
+        - {x: -10, y: -8}
+        - {x: -9, y: -9}
+        - {x: 1, y: -9}
+        - {x: 5, y: -8}
+        - {x: 5, y: 2}
+        - {x: 1, y: 6}
     - name: minitomato_6
       rect:
         serializedVersion: 2
@@ -184,19 +184,19 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 4, y: 23}
-        - {x: -3, y: 23}
-        - {x: -7, y: 18}
-        - {x: -7, y: 13}
-        - {x: -2, y: 8}
-        - {x: 3, y: 8}
-        - {x: 7, y: 11}
-        - {x: 8, y: 14}
-        - {x: 8, y: 19}
+      - - {x: 4, y: 7}
+        - {x: -3, y: 7}
+        - {x: -7, y: 2}
+        - {x: -7, y: -3}
+        - {x: -2, y: -8}
+        - {x: 3, y: -8}
+        - {x: 7, y: -5}
+        - {x: 8, y: -2}
+        - {x: 8, y: 3}
     - name: minitomato_7
       rect:
         serializedVersion: 2
@@ -204,18 +204,18 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -2, y: 23}
-        - {x: -6, y: 19}
-        - {x: -6, y: 12}
-        - {x: -1, y: 8}
-        - {x: 6, y: 8}
-        - {x: 9, y: 14}
-        - {x: 9, y: 19}
-        - {x: 3, y: 23}
+      - - {x: -2, y: 7}
+        - {x: -6, y: 3}
+        - {x: -6, y: -4}
+        - {x: -1, y: -8}
+        - {x: 6, y: -8}
+        - {x: 9, y: -2}
+        - {x: 9, y: 3}
+        - {x: 3, y: 7}
     - name: minitomato_8
       rect:
         serializedVersion: 2
@@ -223,18 +223,18 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9, y: 23}
-        - {x: -10, y: 20}
-        - {x: -10, y: 9}
-        - {x: -9, y: 8}
-        - {x: 1, y: 8}
-        - {x: 5, y: 9}
-        - {x: 5, y: 19}
-        - {x: 1, y: 23}
+      - - {x: -9, y: 7}
+        - {x: -10, y: 4}
+        - {x: -10, y: -7}
+        - {x: -9, y: -8}
+        - {x: 1, y: -8}
+        - {x: 5, y: -7}
+        - {x: 5, y: 3}
+        - {x: 1, y: 7}
     - name: minitomato_9
       rect:
         serializedVersion: 2
@@ -242,19 +242,19 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 4, y: 23}
-        - {x: -3, y: 23}
-        - {x: -7, y: 18}
-        - {x: -7, y: 13}
-        - {x: -2, y: 8}
-        - {x: 3, y: 8}
-        - {x: 7, y: 11}
-        - {x: 8, y: 14}
-        - {x: 8, y: 19}
+      - - {x: 4, y: 7}
+        - {x: -3, y: 7}
+        - {x: -7, y: 2}
+        - {x: -7, y: -3}
+        - {x: -2, y: -8}
+        - {x: 3, y: -8}
+        - {x: 7, y: -5}
+        - {x: 8, y: -2}
+        - {x: 8, y: 3}
     - name: minitomato_10
       rect:
         serializedVersion: 2
@@ -262,18 +262,18 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -2, y: 23}
-        - {x: -6, y: 19}
-        - {x: -6, y: 12}
-        - {x: -1, y: 8}
-        - {x: 6, y: 8}
-        - {x: 9, y: 14}
-        - {x: 9, y: 19}
-        - {x: 3, y: 23}
+      - - {x: -2, y: 7}
+        - {x: -6, y: 3}
+        - {x: -6, y: -4}
+        - {x: -1, y: -8}
+        - {x: 6, y: -8}
+        - {x: 9, y: -2}
+        - {x: 9, y: 3}
+        - {x: 3, y: 7}
     - name: minitomato_11
       rect:
         serializedVersion: 2
@@ -281,18 +281,18 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9, y: 23}
-        - {x: -10, y: 20}
-        - {x: -10, y: 9}
-        - {x: -9, y: 8}
-        - {x: 1, y: 8}
-        - {x: 5, y: 9}
-        - {x: 5, y: 19}
-        - {x: 1, y: 23}
+      - - {x: -9, y: 7}
+        - {x: -10, y: 4}
+        - {x: -10, y: -7}
+        - {x: -9, y: -8}
+        - {x: 1, y: -8}
+        - {x: 5, y: -7}
+        - {x: 5, y: 3}
+        - {x: 1, y: 7}
     outline: []
   spritePackingTag: 
   userData: 

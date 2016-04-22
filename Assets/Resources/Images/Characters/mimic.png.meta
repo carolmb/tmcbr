@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0dcf1a5752701754bbca0f20045c231e
-timeCreated: 1460374157
+timeCreated: 1461323234
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -69,19 +69,19 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 1, y: 25}
-        - {x: -2, y: 25}
-        - {x: -8, y: 16}
-        - {x: -12, y: 1}
-        - {x: -11, y: 0}
-        - {x: 11, y: 0}
-        - {x: 12, y: 1}
-        - {x: 7, y: 15}
-        - {x: 4, y: 21}
+      - - {x: 1, y: 18.599998}
+        - {x: -2, y: 18.599998}
+        - {x: -8, y: 9.599998}
+        - {x: -12, y: -5.4000015}
+        - {x: -11, y: -6.4000015}
+        - {x: 11, y: -6.4000015}
+        - {x: 12, y: -5.4000015}
+        - {x: 7, y: 8.599998}
+        - {x: 4, y: 14.599998}
     - name: mimic_1
       rect:
         serializedVersion: 2
@@ -89,17 +89,17 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 24}
-        - {x: -12, y: 7}
-        - {x: -12, y: 0}
-        - {x: 11, y: 0}
-        - {x: 12, y: 1}
-        - {x: 12, y: 8}
-        - {x: 3, y: 24}
+      - - {x: -7, y: 17.599998}
+        - {x: -12, y: 0.5999985}
+        - {x: -12, y: -6.4000015}
+        - {x: 11, y: -6.4000015}
+        - {x: 12, y: -5.4000015}
+        - {x: 12, y: 1.5999985}
+        - {x: 3, y: 17.599998}
     - name: mimic_2
       rect:
         serializedVersion: 2
@@ -107,17 +107,17 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -2, y: 25}
-        - {x: -6, y: 19}
-        - {x: -12, y: 3}
-        - {x: -12, y: 0}
-        - {x: 12, y: 0}
-        - {x: 12, y: 8}
-        - {x: 2, y: 25}
+      - - {x: -2, y: 18.599998}
+        - {x: -6, y: 12.599998}
+        - {x: -12, y: -3.4000015}
+        - {x: -12, y: -6.4000015}
+        - {x: 12, y: -6.4000015}
+        - {x: 12, y: 1.5999985}
+        - {x: 2, y: 18.599998}
     - name: mimic_3
       rect:
         serializedVersion: 2
@@ -125,19 +125,19 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 1, y: 25}
-        - {x: -2, y: 25}
-        - {x: -8, y: 16}
-        - {x: -12, y: 1}
-        - {x: -11, y: 0}
-        - {x: 11, y: 0}
-        - {x: 12, y: 1}
-        - {x: 7, y: 15}
-        - {x: 4, y: 21}
+      - - {x: 1, y: 18.599998}
+        - {x: -2, y: 18.599998}
+        - {x: -8, y: 9.599998}
+        - {x: -12, y: -5.4000015}
+        - {x: -11, y: -6.4000015}
+        - {x: 11, y: -6.4000015}
+        - {x: 12, y: -5.4000015}
+        - {x: 7, y: 8.599998}
+        - {x: 4, y: 14.599998}
     - name: mimic_4
       rect:
         serializedVersion: 2
@@ -145,17 +145,17 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 24}
-        - {x: -12, y: 7}
-        - {x: -12, y: 0}
-        - {x: 11, y: 0}
-        - {x: 12, y: 1}
-        - {x: 12, y: 8}
-        - {x: 3, y: 24}
+      - - {x: -7, y: 17.599998}
+        - {x: -12, y: 0.5999985}
+        - {x: -12, y: -6.4000015}
+        - {x: 11, y: -6.4000015}
+        - {x: 12, y: -5.4000015}
+        - {x: 12, y: 1.5999985}
+        - {x: 3, y: 17.599998}
     - name: mimic_5
       rect:
         serializedVersion: 2
@@ -163,17 +163,17 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -3, y: 26}
-        - {x: -5, y: 24}
-        - {x: -12, y: 10}
-        - {x: -12, y: 0}
-        - {x: 12, y: 0}
-        - {x: 12, y: 11}
-        - {x: 4, y: 26}
+      - - {x: -3, y: 19.599998}
+        - {x: -5, y: 17.599998}
+        - {x: -12, y: 3.5999985}
+        - {x: -12, y: -6.4000015}
+        - {x: 12, y: -6.4000015}
+        - {x: 12, y: 4.5999985}
+        - {x: 4, y: 19.599998}
     - name: mimic_6
       rect:
         serializedVersion: 2
@@ -181,17 +181,17 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 24}
-        - {x: -12, y: 7}
-        - {x: -12, y: 0}
-        - {x: 11, y: 0}
-        - {x: 12, y: 1}
-        - {x: 12, y: 8}
-        - {x: 3, y: 24}
+      - - {x: -7, y: 17.599998}
+        - {x: -12, y: 0.5999985}
+        - {x: -12, y: -6.4000015}
+        - {x: 11, y: -6.4000015}
+        - {x: 12, y: -5.4000015}
+        - {x: 12, y: 1.5999985}
+        - {x: 3, y: 17.599998}
     - name: mimic_7
       rect:
         serializedVersion: 2
@@ -199,17 +199,17 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -2, y: 25}
-        - {x: -6, y: 19}
-        - {x: -12, y: 3}
-        - {x: -12, y: 0}
-        - {x: 12, y: 0}
-        - {x: 12, y: 8}
-        - {x: 2, y: 25}
+      - - {x: -2, y: 18.599998}
+        - {x: -6, y: 12.599998}
+        - {x: -12, y: -3.4000015}
+        - {x: -12, y: -6.4000015}
+        - {x: 12, y: -6.4000015}
+        - {x: 12, y: 1.5999985}
+        - {x: 2, y: 18.599998}
     - name: mimic_8
       rect:
         serializedVersion: 2
@@ -217,17 +217,17 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -3, y: 26}
-        - {x: -5, y: 24}
-        - {x: -12, y: 10}
-        - {x: -12, y: 0}
-        - {x: 12, y: 0}
-        - {x: 12, y: 11}
-        - {x: 4, y: 26}
+      - - {x: -3, y: 19.599998}
+        - {x: -5, y: 17.599998}
+        - {x: -12, y: 3.5999985}
+        - {x: -12, y: -6.4000015}
+        - {x: 12, y: -6.4000015}
+        - {x: 12, y: 4.5999985}
+        - {x: 4, y: 19.599998}
     - name: mimic_9
       rect:
         serializedVersion: 2
@@ -235,17 +235,17 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -3, y: 26}
-        - {x: -5, y: 24}
-        - {x: -12, y: 10}
-        - {x: -12, y: 0}
-        - {x: 12, y: 0}
-        - {x: 12, y: 11}
-        - {x: 4, y: 26}
+      - - {x: -3, y: 19.6}
+        - {x: -5, y: 17.6}
+        - {x: -12, y: 3.6000004}
+        - {x: -12, y: -6.3999996}
+        - {x: 12, y: -6.3999996}
+        - {x: 12, y: 4.6000004}
+        - {x: 4, y: 19.6}
     - name: mimic_10
       rect:
         serializedVersion: 2
@@ -253,17 +253,17 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -3, y: 25}
-        - {x: -7, y: 19}
-        - {x: -13, y: 3}
-        - {x: -13, y: 0}
-        - {x: 11, y: 0}
-        - {x: 11, y: 8}
-        - {x: 1, y: 25}
+      - - {x: -3, y: 18.6}
+        - {x: -7, y: 12.6}
+        - {x: -13, y: -3.3999996}
+        - {x: -13, y: -6.3999996}
+        - {x: 11, y: -6.3999996}
+        - {x: 11, y: 1.6000004}
+        - {x: 1, y: 18.6}
     - name: mimic_11
       rect:
         serializedVersion: 2
@@ -271,17 +271,17 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -4, y: 26}
-        - {x: -6, y: 24}
-        - {x: -13, y: 10}
-        - {x: -13, y: 0}
-        - {x: 11, y: 0}
-        - {x: 11, y: 11}
-        - {x: 3, y: 26}
+      - - {x: -4, y: 19.6}
+        - {x: -6, y: 17.6}
+        - {x: -13, y: 3.6000004}
+        - {x: -13, y: -6.3999996}
+        - {x: 11, y: -6.3999996}
+        - {x: 11, y: 4.6000004}
+        - {x: 3, y: 19.6}
     outline: []
   spritePackingTag: 
   userData: 

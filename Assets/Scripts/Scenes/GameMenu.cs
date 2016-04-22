@@ -127,4 +127,10 @@ public class GameMenu : MonoBehaviour {
 			currentItem.sprite = Resources.Load<Sprite> ("Images/Items/" + item.spriteName);
 		}
 	}
+
+	public void ClickItemSound() {
+		Debug.Log("asd");
+		AudioSource audio = GameObject.Find("click_confirm").GetComponent<AudioSource>();
+		audio.Play ();
+	}
 }

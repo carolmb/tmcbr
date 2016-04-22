@@ -25,6 +25,10 @@ public class Rock : MonoBehaviour {
 	void Update () {
 		Tile t = MazeManager.GetTile ((Vector2)transform.position - new Vector2 (0, Tile.size)); 
 		if (t == null || t.isWall) {
+			if (t != null && t.isWall) {
+				AudioSource audio = GameObject.Find("punch").GetComponent<AudioSource>();
+				audio.Play ();
+			}
 			Destroy (gameObject);
 		} else {
 			Vector3 pos = transform.position;
@@ -40,6 +44,8 @@ public class Rock : MonoBehaviour {
 		if (collider.CompareTag ("Enemy")) {
 			Character comp = collider.GetComponent<Character> ();
 			comp.StartCoroutine(comp.Damage ((Vector2) transform.position - moveVector * 10, damage));
+			AudioSource audio = GameObject.Find("punch").GetComponent<AudioSource>();
+			audio.Play ();
 			Destroy (gameObject);
 		}
 	}
