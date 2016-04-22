@@ -41,48 +41,44 @@ public static class StageGenerator {
 		return directions [UnityEngine.Random.Range (0, directions.Count)];
 	}
 
-	public static Tile GenerateFinalTile(Maze maze1, Maze maze2, int dir, int w, int h){
+	public static Tile GenerateFinalTile(Maze maze, int dir){
 		int x = 0, y = 0;
 		Tile finalTile = null;
 		switch (dir) {
 		case Character.UP:
-			y = h - 1;
+			y = maze.height - 1;
 			do {
-				x = UnityEngine.Random.Range (0, maze1.width - 1);
-			} while (maze1.tiles [x, y - 2].wallID != 0 || maze1.tiles [x + 1, y - 2].wallID != 0
-					|| maze2.tiles[x, 2].wallID != 0 || maze2.tiles[x + 1, 2].wallID != 0);
+				x = UnityEngine.Random.Range (0, maze.width - 1);
+			} while (maze.tiles [x, y - 2].wallID != 0 || maze.tiles [x + 1, y - 2].wallID != 0);
 			break;
 		
 		case Character.LEFT:
 			x = 0;
 			do {
-				y = UnityEngine.Random.Range (0, maze1.height - 1);
-			} while (maze1.tiles[x + 2, y].wallID != 0 || maze1.tiles[x + 2, y + 1].wallID != 0
-					|| maze2.tiles[maze2.width - 3, y].wallID != 0 || maze2.tiles[maze2.width - 3, y + 1].wallID != 0);
+				y = UnityEngine.Random.Range (0, maze.height - 1);
+			} while (maze.tiles[x + 2, y].wallID != 0 || maze.tiles[x + 2, y + 1].wallID != 0);
 			break;
 		
 		case Character.RIGHT:
-			x = w - 1;
+			x = maze.width - 1;
 			do {
-				y = UnityEngine.Random.Range (0, maze1.height - 1);
-			} while (maze1.tiles[x - 2, y].wallID != 0 || maze1.tiles[x - 2, y + 1].wallID != 0
-					|| maze2.tiles[2, y].wallID != 0 || maze2.tiles[2, y + 1].wallID != 0);
+				y = UnityEngine.Random.Range (0, maze.height - 1);
+			} while (maze.tiles[x - 2, y].wallID != 0 || maze.tiles[x - 2, y + 1].wallID != 0);
 			break;
 		
 		case Character.DOWN:
 			y = 0;
 			do {
-				x = UnityEngine.Random.Range (0, maze1.width - 1);
-			} while (maze1.tiles[x, y + 2].wallID != 0 || maze1.tiles[x + 1, y + 2].wallID != 0
-					|| maze2.tiles[x, maze2.height - 3].wallID != 0 || maze2.tiles[x + 1, maze2.height - 3].wallID != 0);
+				x = UnityEngine.Random.Range (0, maze.width - 1);
+			} while (maze.tiles[x, y + 2].wallID != 0 || maze.tiles[x + 1, y + 2].wallID != 0);
 			break;
 		}
 
-		finalTile = maze1.tiles [x, y];
-		List<Tile> n = GetNeighbours (maze1, finalTile, 6);
+		finalTile = maze.tiles [x, y];
+		List<Tile> n = GetNeighbours (maze, finalTile, 6);
 		foreach (Tile t in n) {
 			if (t.transition != null)
-				return GenerateFinalTile (maze1, maze2, dir, w, h);
+				return GenerateFinalTile (maze, dir);
 		}
 
 		return finalTile;
@@ -101,9 +97,9 @@ public static class StageGenerator {
 		return neighbours;
 	} 
 
-	public static Tile GenerateInitialTile(Maze maze, Tile finalTile, int dir) { 
+	public static Tile GenerateInitialTile(Maze maze, int dir) { 
 		//ver funcionamento para transição entre stages estaticos e procedurais
-		Vector2 initialTile = new Vector2();
+		/*Vector2 initialTile = new Vector2();
 		switch (dir) {
 		case Character.UP:
 			initialTile.x = finalTile.x;
@@ -130,7 +126,8 @@ public static class StageGenerator {
 				return GenerateFinalTile (maze, maze, Character.UP, maze.width, maze.height);
 			break;
 		}
-		return maze.tiles[(int)initialTile.x, (int)initialTile.y];
+		return maze.tiles[(int)initialTile.x, (int)initialTile.y];*/
+		return GenerateFinalTile (maze, 3 - dir);
 	}
 
 	// Cria uma transição de um tile de um labirinto para outro
@@ -151,16 +148,12 @@ public static class StageGenerator {
 		if (tile1 == null) {
 			tile1 = GenerateFinalTile (
 				maze1,
-				maze2,
-				direction,
-				Math.Min (maze1.width, maze2.width),
-				Math.Min (maze1.height, maze2.height)
+				direction
 			);
 		}
 		if (tile2 == null) {
 			tile2 = GenerateInitialTile (
 				maze2, 
-				tile1, 
 				direction
 			);
 		}

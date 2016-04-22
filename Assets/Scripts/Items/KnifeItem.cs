@@ -46,7 +46,7 @@ public class KnifeItem : MonoBehaviour {
 
 	void Update () {
 		// Atacar
-		Tile t = MazeManager.GetTile ((Vector2)transform.position - new Vector2 (0, Tile.size)); 
+//		Tile t = MazeManager.GetTile ((Vector2)transform.position - new Vector2 (0, Tile.size)); 
 		Quaternion target = Quaternion.Euler(0, 0, 0);
 		switch (Player.instance.character.direction) {
 		case 0:
