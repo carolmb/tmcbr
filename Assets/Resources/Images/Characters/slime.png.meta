@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5963bf74be72c834ba20048b19f93806
-timeCreated: 1460395085
+timeCreated: 1461323487
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -69,17 +69,17 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -13, y: 30}
-        - {x: -16, y: 25}
-        - {x: -16, y: 3}
-        - {x: 14, y: 3}
-        - {x: 16, y: 5}
-        - {x: 16, y: 29}
-        - {x: 13, y: 30}
+      - - {x: -13, y: 20.400002}
+        - {x: -16, y: 15.400002}
+        - {x: -16, y: -6.5999985}
+        - {x: 14, y: -6.5999985}
+        - {x: 16, y: -4.5999985}
+        - {x: 16, y: 19.400002}
+        - {x: 13, y: 20.400002}
     - name: slime_1
       rect:
         serializedVersion: 2
@@ -87,19 +87,19 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9, y: 32}
-        - {x: -14, y: 24}
-        - {x: -16, y: 14}
-        - {x: -16, y: 5}
-        - {x: -13, y: 3}
-        - {x: 14, y: 3}
-        - {x: 16, y: 4}
-        - {x: 16, y: 26}
-        - {x: 12, y: 32}
+      - - {x: -9, y: 22.400002}
+        - {x: -14, y: 14.400002}
+        - {x: -16, y: 4.4000015}
+        - {x: -16, y: -4.5999985}
+        - {x: -13, y: -6.5999985}
+        - {x: 14, y: -6.5999985}
+        - {x: 16, y: -5.5999985}
+        - {x: 16, y: 16.400002}
+        - {x: 12, y: 22.400002}
     - name: slime_2
       rect:
         serializedVersion: 2
@@ -107,19 +107,19 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -3, y: 32}
-        - {x: -14, y: 28}
-        - {x: -16, y: 18}
-        - {x: -16, y: 6}
-        - {x: -15, y: 3}
-        - {x: 13, y: 3}
-        - {x: 16, y: 5}
-        - {x: 16, y: 29}
-        - {x: 15, y: 32}
+      - - {x: -3, y: 22.400002}
+        - {x: -14, y: 18.400002}
+        - {x: -16, y: 8.400002}
+        - {x: -16, y: -3.5999985}
+        - {x: -15, y: -6.5999985}
+        - {x: 13, y: -6.5999985}
+        - {x: 16, y: -4.5999985}
+        - {x: 16, y: 19.400002}
+        - {x: 15, y: 22.400002}
     - name: slime_3
       rect:
         serializedVersion: 2
@@ -127,20 +127,20 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 12, y: 24}
-        - {x: 10, y: 28}
-        - {x: 5, y: 29}
-        - {x: -7, y: 29}
-        - {x: -13, y: 24}
-        - {x: -16, y: 15}
-        - {x: -16, y: 3}
-        - {x: 15, y: 3}
-        - {x: 16, y: 4}
-        - {x: 16, y: 9}
+      - - {x: 12, y: 14.400002}
+        - {x: 10, y: 18.400002}
+        - {x: 5, y: 19.400002}
+        - {x: -7, y: 19.400002}
+        - {x: -13, y: 14.400002}
+        - {x: -16, y: 5.4000015}
+        - {x: -16, y: -6.5999985}
+        - {x: 15, y: -6.5999985}
+        - {x: 16, y: -5.5999985}
+        - {x: 16, y: -0.5999985}
     - name: slime_4
       rect:
         serializedVersion: 2
@@ -148,19 +148,19 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 7, y: 32}
-        - {x: -7, y: 32}
-        - {x: -13, y: 25}
-        - {x: -14, y: 9}
-        - {x: -14, y: 5}
-        - {x: -11, y: 3}
-        - {x: 14, y: 3}
-        - {x: 16, y: 5}
-        - {x: 16, y: 28}
+      - - {x: 7, y: 22.400002}
+        - {x: -7, y: 22.400002}
+        - {x: -13, y: 15.400002}
+        - {x: -14, y: -0.5999985}
+        - {x: -14, y: -4.5999985}
+        - {x: -11, y: -6.5999985}
+        - {x: 14, y: -6.5999985}
+        - {x: 16, y: -4.5999985}
+        - {x: 16, y: 18.400002}
     - name: slime_5
       rect:
         serializedVersion: 2
@@ -168,17 +168,17 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -8, y: 30}
-        - {x: -14, y: 29}
-        - {x: -14, y: 5}
-        - {x: -11, y: 3}
-        - {x: 16, y: 3}
-        - {x: 16, y: 18}
-        - {x: 12, y: 30}
+      - - {x: -8, y: 20.400002}
+        - {x: -14, y: 19.400002}
+        - {x: -14, y: -4.5999985}
+        - {x: -11, y: -6.5999985}
+        - {x: 16, y: -6.5999985}
+        - {x: 16, y: 8.400002}
+        - {x: 12, y: 20.400002}
     - name: slime_6
       rect:
         serializedVersion: 2
@@ -186,17 +186,17 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -10, y: 30}
-        - {x: -16, y: 23}
-        - {x: -16, y: 3}
-        - {x: 11, y: 3}
-        - {x: 14, y: 5}
-        - {x: 14, y: 19}
-        - {x: 10, y: 30}
+      - - {x: -10, y: 20.400002}
+        - {x: -16, y: 13.400002}
+        - {x: -16, y: -6.5999985}
+        - {x: 11, y: -6.5999985}
+        - {x: 14, y: -4.5999985}
+        - {x: 14, y: 9.400002}
+        - {x: 10, y: 20.400002}
     - name: slime_7
       rect:
         serializedVersion: 2
@@ -204,17 +204,17 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -16, y: 3}
-        - {x: 15, y: 3}
-        - {x: 15, y: 24}
-        - {x: 14, y: 26}
-        - {x: 8, y: 32}
-        - {x: -7, y: 32}
-        - {x: -16, y: 29}
+      - - {x: -16, y: -6.5999985}
+        - {x: 15, y: -6.5999985}
+        - {x: 15, y: 14.400002}
+        - {x: 14, y: 16.400002}
+        - {x: 8, y: 22.400002}
+        - {x: -7, y: 22.400002}
+        - {x: -16, y: 19.400002}
     - name: slime_8
       rect:
         serializedVersion: 2
@@ -222,17 +222,17 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9, y: 29}
-        - {x: -11, y: 24}
-        - {x: -16, y: 5}
-        - {x: -14, y: 3}
-        - {x: 16, y: 3}
-        - {x: 16, y: 25}
-        - {x: 8, y: 29}
+      - - {x: -9, y: 19.400002}
+        - {x: -11, y: 14.400002}
+        - {x: -16, y: -4.5999985}
+        - {x: -14, y: -6.5999985}
+        - {x: 16, y: -6.5999985}
+        - {x: 16, y: 15.400002}
+        - {x: 8, y: 19.400002}
     - name: slime_9
       rect:
         serializedVersion: 2
@@ -240,16 +240,16 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -12, y: 32}
-        - {x: -16, y: 24}
-        - {x: -16, y: 3}
-        - {x: 14, y: 3}
-        - {x: 14, y: 29}
-        - {x: 8, y: 32}
+      - - {x: -12, y: 22.4}
+        - {x: -16, y: 14.4}
+        - {x: -16, y: -6.6000004}
+        - {x: 14, y: -6.6000004}
+        - {x: 14, y: 19.4}
+        - {x: 8, y: 22.4}
     - name: slime_10
       rect:
         serializedVersion: 2
@@ -257,18 +257,18 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 9, y: 32}
-        - {x: -8, y: 32}
-        - {x: -13, y: 24}
-        - {x: -16, y: 14}
-        - {x: -16, y: 3}
-        - {x: 16, y: 3}
-        - {x: 16, y: 17}
-        - {x: 12, y: 31}
+      - - {x: 9, y: 22.4}
+        - {x: -8, y: 22.4}
+        - {x: -13, y: 14.4}
+        - {x: -16, y: 4.3999996}
+        - {x: -16, y: -6.6000004}
+        - {x: 16, y: -6.6000004}
+        - {x: 16, y: 7.3999996}
+        - {x: 12, y: 21.4}
     - name: slime_11
       rect:
         serializedVersion: 2
@@ -276,16 +276,16 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -11, y: 32}
-        - {x: -14, y: 20}
-        - {x: -14, y: 3}
-        - {x: 16, y: 3}
-        - {x: 16, y: 22}
-        - {x: 12, y: 32}
+      - - {x: -11, y: 22.4}
+        - {x: -14, y: 10.4}
+        - {x: -14, y: -6.6000004}
+        - {x: 16, y: -6.6000004}
+        - {x: 16, y: 12.4}
+        - {x: 12, y: 22.4}
     outline: []
   spritePackingTag: 
   userData: 

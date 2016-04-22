@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6608d276d8a8845a0b22bcbd7dc6dc35
-timeCreated: 1459352476
+timeCreated: 1461324434
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -69,8 +69,8 @@ TextureImporter:
         y: 96
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: player_1
@@ -80,8 +80,8 @@ TextureImporter:
         y: 96
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: player_2
@@ -91,8 +91,8 @@ TextureImporter:
         y: 96
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: player_3
@@ -102,8 +102,8 @@ TextureImporter:
         y: 64
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: player_4
@@ -113,8 +113,8 @@ TextureImporter:
         y: 64
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: player_5
@@ -124,8 +124,8 @@ TextureImporter:
         y: 64
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: player_6
@@ -135,8 +135,8 @@ TextureImporter:
         y: 32
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: player_7
@@ -146,8 +146,8 @@ TextureImporter:
         y: 32
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: player_8
@@ -157,8 +157,8 @@ TextureImporter:
         y: 32
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: player_9
@@ -168,8 +168,8 @@ TextureImporter:
         y: 0
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: player_10
@@ -179,8 +179,8 @@ TextureImporter:
         y: 0
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: player_11
@@ -190,8 +190,8 @@ TextureImporter:
         y: 0
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     outline: []
