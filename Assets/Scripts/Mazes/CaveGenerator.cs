@@ -32,7 +32,7 @@ public class CaveGenerator : MazeGenerator {
 					}
 				} else if (t.isWalkable && EmptyRadiusToEnemies(t)) { 
 					if (Random.Range (1, 100) < 30) {
-						t.objectName = "Enemies/Tomato";
+						t.objectName = "Enemies/Bat";
 					}
 				} else if (t.isWalkable && !HasObstaclesNear(t)){ 
 					if (Random.Range (1, 100) < 30) { //fator random
