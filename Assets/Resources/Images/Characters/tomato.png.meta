@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: cc718ddad3a718d469c867badbc26278
-timeCreated: 1460586772
+timeCreated: 1461323625
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -19,7 +19,7 @@ TextureImporter:
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -69,19 +69,19 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 3, y: 25}
-        - {x: -6, y: 25}
-        - {x: -11, y: 23}
-        - {x: -11, y: 5}
-        - {x: -9, y: 3}
-        - {x: 9, y: 3}
-        - {x: 11, y: 11}
-        - {x: 11, y: 21}
-        - {x: 9, y: 24}
+      - - {x: 3, y: 9}
+        - {x: -6, y: 9}
+        - {x: -11, y: 7}
+        - {x: -11, y: -11}
+        - {x: -9, y: -13}
+        - {x: 9, y: -13}
+        - {x: 11, y: -5}
+        - {x: 11, y: 5}
+        - {x: 9, y: 8}
     - name: tomato_1
       rect:
         serializedVersion: 2
@@ -89,19 +89,19 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6, y: 23}
-        - {x: -11, y: 16}
-        - {x: -11, y: 9}
-        - {x: -10, y: 7}
-        - {x: -7, y: 3}
-        - {x: 6, y: 3}
-        - {x: 11, y: 4}
-        - {x: 11, y: 22}
-        - {x: 4, y: 23}
+      - - {x: -6, y: 7}
+        - {x: -11, y: 0}
+        - {x: -11, y: -7}
+        - {x: -10, y: -9}
+        - {x: -7, y: -13}
+        - {x: 6, y: -13}
+        - {x: 11, y: -12}
+        - {x: 11, y: 6}
+        - {x: 4, y: 7}
     - name: tomato_2
       rect:
         serializedVersion: 2
@@ -109,18 +109,18 @@ TextureImporter:
         y: 96
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 6, y: 23}
-        - {x: -8, y: 23}
-        - {x: -12, y: 18}
-        - {x: -12, y: 7}
-        - {x: -6, y: 3}
-        - {x: 7, y: 3}
-        - {x: 12, y: 7}
-        - {x: 12, y: 17}
+      - - {x: 6, y: 7}
+        - {x: -8, y: 7}
+        - {x: -12, y: 2}
+        - {x: -12, y: -9}
+        - {x: -6, y: -13}
+        - {x: 7, y: -13}
+        - {x: 12, y: -9}
+        - {x: 12, y: 1}
     - name: tomato_3
       rect:
         serializedVersion: 2
@@ -128,18 +128,18 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 27}
-        - {x: -13, y: 24}
+      - - {x: -7, y: 11}
         - {x: -13, y: 8}
-        - {x: -11, y: 4}
-        - {x: 11, y: 4}
-        - {x: 13, y: 9}
-        - {x: 13, y: 23}
-        - {x: 8, y: 27}
+        - {x: -13, y: -8}
+        - {x: -11, y: -12}
+        - {x: 11, y: -12}
+        - {x: 13, y: -7}
+        - {x: 13, y: 7}
+        - {x: 8, y: 11}
     - name: tomato_4
       rect:
         serializedVersion: 2
@@ -147,18 +147,18 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -3, y: 25}
-        - {x: -10, y: 22}
-        - {x: -10, y: 11}
-        - {x: -3, y: 4}
-        - {x: 3, y: 4}
-        - {x: 10, y: 11}
-        - {x: 9, y: 19}
-        - {x: 6, y: 25}
+      - - {x: -3, y: 9}
+        - {x: -10, y: 6}
+        - {x: -10, y: -5}
+        - {x: -3, y: -12}
+        - {x: 3, y: -12}
+        - {x: 10, y: -5}
+        - {x: 9, y: 3}
+        - {x: 6, y: 9}
     - name: tomato_5
       rect:
         serializedVersion: 2
@@ -166,18 +166,18 @@ TextureImporter:
         y: 64
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9, y: 27}
-        - {x: -12, y: 25}
-        - {x: -12, y: 8}
-        - {x: -11, y: 4}
-        - {x: 5, y: 4}
-        - {x: 12, y: 7}
-        - {x: 12, y: 21}
-        - {x: 7, y: 27}
+      - - {x: -9, y: 11}
+        - {x: -12, y: 9}
+        - {x: -12, y: -8}
+        - {x: -11, y: -12}
+        - {x: 5, y: -12}
+        - {x: 12, y: -9}
+        - {x: 12, y: 5}
+        - {x: 7, y: 11}
     - name: tomato_6
       rect:
         serializedVersion: 2
@@ -185,18 +185,18 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9, y: 26}
-        - {x: -12, y: 24}
-        - {x: -12, y: 7}
-        - {x: -11, y: 3}
-        - {x: 5, y: 3}
-        - {x: 12, y: 6}
-        - {x: 12, y: 20}
-        - {x: 7, y: 26}
+      - - {x: -9, y: 10}
+        - {x: -12, y: 8}
+        - {x: -12, y: -9}
+        - {x: -11, y: -13}
+        - {x: 5, y: -13}
+        - {x: 12, y: -10}
+        - {x: 12, y: 4}
+        - {x: 7, y: 10}
     - name: tomato_7
       rect:
         serializedVersion: 2
@@ -204,18 +204,18 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -3, y: 24}
-        - {x: -10, y: 21}
-        - {x: -10, y: 10}
-        - {x: -3, y: 3}
-        - {x: 3, y: 3}
-        - {x: 10, y: 10}
-        - {x: 9, y: 18}
-        - {x: 6, y: 24}
+      - - {x: -3, y: 8}
+        - {x: -10, y: 5}
+        - {x: -10, y: -6}
+        - {x: -3, y: -13}
+        - {x: 3, y: -13}
+        - {x: 10, y: -6}
+        - {x: 9, y: 2}
+        - {x: 6, y: 8}
     - name: tomato_8
       rect:
         serializedVersion: 2
@@ -223,18 +223,18 @@ TextureImporter:
         y: 32
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 26}
-        - {x: -13, y: 23}
+      - - {x: -7, y: 10}
         - {x: -13, y: 7}
-        - {x: -11, y: 3}
-        - {x: 11, y: 3}
-        - {x: 13, y: 8}
-        - {x: 13, y: 22}
-        - {x: 8, y: 26}
+        - {x: -13, y: -9}
+        - {x: -11, y: -13}
+        - {x: 11, y: -13}
+        - {x: 13, y: -8}
+        - {x: 13, y: 6}
+        - {x: 8, y: 10}
     - name: tomato_9
       rect:
         serializedVersion: 2
@@ -242,19 +242,19 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 3, y: 25}
-        - {x: -6, y: 25}
-        - {x: -11, y: 23}
-        - {x: -11, y: 5}
-        - {x: -9, y: 3}
-        - {x: 9, y: 3}
-        - {x: 11, y: 11}
-        - {x: 11, y: 21}
-        - {x: 9, y: 24}
+      - - {x: 3, y: 9}
+        - {x: -6, y: 9}
+        - {x: -11, y: 7}
+        - {x: -11, y: -11}
+        - {x: -9, y: -13}
+        - {x: 9, y: -13}
+        - {x: 11, y: -5}
+        - {x: 11, y: 5}
+        - {x: 9, y: 8}
     - name: tomato_10
       rect:
         serializedVersion: 2
@@ -262,19 +262,19 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6, y: 23}
-        - {x: -11, y: 16}
-        - {x: -11, y: 9}
-        - {x: -10, y: 7}
-        - {x: -7, y: 3}
-        - {x: 6, y: 3}
-        - {x: 11, y: 4}
-        - {x: 11, y: 22}
-        - {x: 4, y: 23}
+      - - {x: -6, y: 7}
+        - {x: -11, y: 0}
+        - {x: -11, y: -7}
+        - {x: -10, y: -9}
+        - {x: -7, y: -13}
+        - {x: 6, y: -13}
+        - {x: 11, y: -12}
+        - {x: 11, y: 6}
+        - {x: 4, y: 7}
     - name: tomato_11
       rect:
         serializedVersion: 2
@@ -282,18 +282,18 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 6, y: 23}
-        - {x: -8, y: 23}
-        - {x: -12, y: 18}
-        - {x: -12, y: 7}
-        - {x: -6, y: 3}
-        - {x: 7, y: 3}
-        - {x: 12, y: 7}
-        - {x: 12, y: 17}
+      - - {x: 6, y: 7}
+        - {x: -8, y: 7}
+        - {x: -12, y: 2}
+        - {x: -12, y: -9}
+        - {x: -6, y: -13}
+        - {x: 7, y: -13}
+        - {x: 12, y: -9}
+        - {x: 12, y: 1}
     outline: []
   spritePackingTag: 
   userData: 
