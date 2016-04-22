@@ -7,7 +7,7 @@ public abstract class MazeGenerator {
 	protected Maze maze;
 	protected bool[,] visited;
 
-	protected const int deltaEnemys = 4;
+	protected const int deltaEnemys = 8;
 
 	protected abstract string Theme ();
 	public abstract void CreateEnemies (Maze maze);
@@ -26,7 +26,7 @@ public abstract class MazeGenerator {
 	protected bool HasObstaclesNear (Tile t) {
 		if (t.obstacleID > 0)
 			return true;
-		foreach (Tile n in GetNeighbours(t, 1)) {
+		foreach (Tile n in GetNeighbours(t, 6)) {
 			if (n.obstacleID > 0)
 				return true;
 		}
@@ -53,6 +53,14 @@ public abstract class MazeGenerator {
 
 	protected List<Tile> GetNeighbours (Tile tile, int delta) {
 		List<Tile> neighbours = new List<Tile> ();
+		for (int i = tile.x - delta; i < tile.x + delta; i++) {
+			for (int j = tile.y - delta; j < tile.y + delta; j++) {
+				if (i >= 0 && i < maze.width && j >= 0 && j < maze.height) {
+					neighbours.Add (maze.tiles [i, j]);
+				}
+			}
+		}
+		/*
 		if (tile.x - delta > 0) {
 			neighbours.Add (maze.tiles [tile.x - delta, tile.y]);
 		}
@@ -64,7 +72,7 @@ public abstract class MazeGenerator {
 		} 
 		if (tile.y + delta < maze.height - 1) {
 			neighbours.Add (maze.tiles [tile.x, tile.y + delta]);
-		}
+		}*/
 		return neighbours;
 	}
 
@@ -129,7 +137,7 @@ public abstract class MazeGenerator {
 	}
 
 	protected bool EmptyRadiusToEnemies (Tile tile) {
-		for (int i = tile.x - deltaEnemys; i < tile.y + deltaEnemys; i++) {
+		for (int i = tile.x - deltaEnemys; i < tile.x + deltaEnemys; i++) {
 			for (int j = tile.y - deltaEnemys; j < tile.y + deltaEnemys; j++) {
 				if (i >= 0 && i < maze.width && j >= 0 && j < maze.height) {
 					if (maze.tiles [i, j].objectName != "") {

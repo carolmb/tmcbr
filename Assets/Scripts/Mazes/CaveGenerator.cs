@@ -21,7 +21,7 @@ public class CaveGenerator : MazeGenerator {
 				continue;
 			}
 
-			if (!HasObstaclesNear (t)) {
+			if (EmptyRadiusToEnemies(t)) {
 				if (t.isWall) {	
 					if (Random.Range (1, 100) < 30) { //fator random
 						t.obstacleID = 1;
@@ -30,11 +30,12 @@ public class CaveGenerator : MazeGenerator {
 						t.obstacleID = 2;
 						t.wallID = 0;
 					}
-				}
-				if (t.isWalkable) { 
-					if (Random.Range (1, 100) < 20) {
+				} else if (t.isWalkable && EmptyRadiusToEnemies(t)) { 
+					if (Random.Range (1, 100) < 30) {
 						t.objectName = "Enemies/Tomato";
-					} else if (Random.Range (1, 100) < 30) { //fator random
+					}
+				} else if (t.isWalkable && !HasObstaclesNear(t)){ 
+					if (Random.Range (1, 100) < 30) { //fator random
 						t.obstacleID = 1;
 					} else if (Random.Range (1, 100) < 30) {
 						t.obstacleID = 2;

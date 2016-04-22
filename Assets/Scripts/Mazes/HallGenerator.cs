@@ -42,7 +42,7 @@ public class HallGenerator : MazeGenerator {
 			if (!HasTransitionNear (t)) {
 				if (EmptyRadiusToEnemies (t)) {
 					if (GetAllWallNeighbours (t).Count == 1 && t.isWalkable) { //mimics
-						if (Random.Range (0, 100) < 50) { //fator random
+						if (Random.Range (0, 100) < 20) { //fator random
 							t.objectName = "Enemies/Mimic"; //trocar pelo nome do prefab
 						}
 					} else if (GetAllWallNeighbours (t).Count == 3 && t.isWalkable) { //armadura
