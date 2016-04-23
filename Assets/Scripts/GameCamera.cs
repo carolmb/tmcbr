@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameCamera : MonoBehaviour {
 
+	public static GameCamera instance;
 	public Transform player;
 
 	// Limites do cenário
@@ -10,6 +11,11 @@ public class GameCamera : MonoBehaviour {
 	private float minX { get { return size.x / 2 - Tile.size / 2; }	}
 	private float maxY { get { return MazeManager.maze.worldHeight - size.y / 2; } }
 	private float minY { get { return size.y / 2; } }
+
+	// Para acesso à camera por outras classes
+	void Awake() {
+		instance = this;
+	}
 
 	// Tamanho da câmera (em coordenadas do jogo)
 	public static Vector2 size {
@@ -50,6 +56,23 @@ public class GameCamera : MonoBehaviour {
 		}
 
 		return moved;
+	}
+		
+	// ===============================================================================
+	// Sons
+	// ===============================================================================
+
+	public static void PlayAudioClip(AudioClip clip, float volume = 1) {
+		GameObject go = new GameObject ();
+		go.transform.SetParent (instance.transform);
+		go.transform.localPosition = Vector3.zero;
+
+		AudioSource audio = go.AddComponent<AudioSource> ();
+		audio.clip = clip;
+		audio.volume = volume;
+		audio.Play ();
+
+		Destroy (go, clip.length);
 	}
 
 }

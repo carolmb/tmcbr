@@ -10,37 +10,37 @@ public class KnifeItem : MonoBehaviour {
 	// Velocidade
 	public float speed = 5;
 
-	// Direção do movimento
-	private Vector2 moveVector;
-
 	// Tempo máximo até ser destruído
 	public float lifeTime = 2;
 
+	public AudioClip sound;
+
 	void Start () {
+		GameCamera.PlayAudioClip (sound, 0.5f);
+
 		float posx = 0, posy = 0, posz = 0;
 		switch (Player.instance.character.direction) {
 			case 0:
 				transform.Rotate(0, 0,-120);
-				posy = Tile.size/4;
+				//posy = Tile.size/4;
 				break;
 			case 1:
 				transform.Rotate (0, 0, 150);
-				posy = Tile.size/2;
+				posy = Tile.size/4;
 				posx = -Tile.size/4;
 				break;
 			case 2:
 				transform.Rotate (0, 0, -30);
 				posx = Tile.size/4;
-				posy = Tile.size/2;
+				posy = Tile.size/4;
 				break;
 			case 3:
 				transform.Rotate (0, 0, 60);
 				posy = Tile.size/1.8f;
-				posz = 10;
+				posz = 1;
 				break;
 		}
 		transform.position = Player.instance.transform.position + new Vector3(posx, posy, posz);
-		moveVector = GameManager.AngleToVector(Player.instance.character.lookingAngle) * speed;
 		Destroy (gameObject, lifeTime);
 	}
 

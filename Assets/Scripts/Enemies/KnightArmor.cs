@@ -14,10 +14,12 @@ public class KnightArmor : Enemy {
 			return;
 
 		if (!character.moving && !character.damaging) {
-			ChasePlayer ();
-		}
-		if (Player.instance.repelling) {
-			RunFromPlayer ();
+			if (Player.instance.repelling) {
+				RunFromPlayer ();
+			} else {
+				ChasePlayer ();
+			}
 		}
 	}
+
 }

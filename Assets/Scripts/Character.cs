@@ -110,13 +110,13 @@ public class Character : MonoBehaviour {
 
 	// Move, dentro de um frame, o personagem em direção translation
 	// Retorna se foi possível mover
-	public bool InstantMove(Vector2 translation, bool animate = true) {
+	private bool InstantMove(Vector2 translation, bool animate = true) {
 		return InstantMoveTo((Vector2) transform.position + translation, animate);
 	}
 
 	// Move, dentro de um frame, o personagem para o point
 	// Retorna se foi possível mover
-	public bool InstantMoveTo(Vector2 point, bool animate = true) {
+	private bool InstantMoveTo(Vector2 point, bool animate = true) {
 		if (CanMoveTo (point)) {
 			transform.position = point;
 			if (animate)
@@ -244,12 +244,19 @@ public class Character : MonoBehaviour {
 	// Serve para verificar se o personagem está levando dano
 	public bool damaging;
 
+	// Som ao levar dano
+	public AudioClip damageSound;
+
 	// Animação de dano
 	public IEnumerator Damage(Vector2 origin, int value) {
 		damaging = true;
 
 		lifePoints = Mathf.Max (0, lifePoints - value);
 		SendMessage ("OnDamage");
+
+		if (damageSound != null) {
+			GameCamera.PlayAudioClip (damageSound);
+		}
 
 		// Step
 		Stop();

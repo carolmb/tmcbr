@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	protected virtual Tile ClosestToPlayer () {
-		if (Player.instance.visible) {
+		if (Player.visible) {
 			Tile playerTile = Player.instance.character.currentTile;
 			Tile myTile = character.currentTile;
 			if (PathFinder.EstimateCost (myTile, playerTile) >= vision)

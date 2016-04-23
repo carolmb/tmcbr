@@ -14,6 +14,9 @@ public class Slingshot : Item {
 
 	public override void OnUse () {
 		if (Time.time - lastUse >= delay) {
+			AudioClip clip = Resources.Load<AudioClip> ("Sounds/throw");
+			GameCamera.PlayAudioClip (clip, 0.5f);
+
 			lastUse = Time.time;
 			GameObject.Instantiate (rock);
 		}

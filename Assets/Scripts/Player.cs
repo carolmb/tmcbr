@@ -8,8 +8,6 @@ public class Player : MonoBehaviour {
 
 	public static Player instance;
 
-	public List<AudioSource> sounds = new List<AudioSource>();
-
 	public bool paused;
 
 	public Character character;
@@ -27,9 +25,11 @@ public class Player : MonoBehaviour {
 	void Start () {
 		Resume ();
 		canMove = true;
-		visible = true;
 		character.lifePoints = SaveManager.currentSave.lifePoints;
 		GameMenu.instance.UpdateLife (character.lifePoints);
+		if (!visible) {
+			character.spriteRenderer.color -= new Color (0, 0, 0, 0.5f);
+		}
 	}
 
 	// Inputs e checagem de estados
@@ -179,6 +179,7 @@ public class Player : MonoBehaviour {
 			if (selectedItem.consumable) {
 				bag.itemIDs[bag.selectedSlot] = -1;
 				bag.selectedSlot = -1;
+				GameMenu.instance.UpdateItem (null);
 			}
 		}
 	}
@@ -198,6 +199,7 @@ public class Player : MonoBehaviour {
 	public void OnDamage () {
 		SaveManager.currentSave.lifePoints = character.lifePoints;
 		GameMenu.instance.UpdateLife (character.lifePoints);
+		visible = true;
 		if (character.lifePoints > 0)
 			StartCoroutine (Blink ());
 	}
@@ -228,8 +230,7 @@ public class Player : MonoBehaviour {
 	// ===============================================================================
 
 	// Checar se está sob o efeito da capa
-	// TODO: mudar para o ID do item da capa
-	public bool visible;
+	public static bool visible = true;
 
 	// Tempo restante para acabar o efeito do repelente
 	public float repelTime = 0;
@@ -243,14 +244,12 @@ public class Player : MonoBehaviour {
 	// Sons
 	// ===============================================================================
 
+	public AudioClip[] stepSounds;
+
 	// Som dos passos
 	public void Footstep () {
-		int i;
-		if (character.currentTile.type == 0) // 0, 1 - piso, grama
-			i = Random.Range(0, 3);
-		else
-			i = Random.Range(3, 6);
-		sounds[i].Play();
+		int type = character.currentTile.type;
+		GameCamera.PlayAudioClip (stepSounds [type * 3 + Random.Range (0, 3)], 0.5f);
 	}
 
 }

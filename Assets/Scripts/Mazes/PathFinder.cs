@@ -20,7 +20,6 @@ public class PathFinder {
 			for (int j = 0; j < MazeManager.maze.height; j++)
 				closedTiles [i, j] = false;
 
-
 		while (!queue.IsEmpty) {
 			GridPath currentPath = queue.Dequeue ();
 			Tile currentTile = currentPath.LastStep;

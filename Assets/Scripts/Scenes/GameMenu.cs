@@ -7,9 +7,7 @@ public class GameMenu : MonoBehaviour {
 
 	public static GameMenu instance;
 
-	public Text saveName;
-	public Button[] saveButtons;
-	public Button[] itemButtons;
+	public AudioClip confirmSound;
 
 	public Text coinText;
 	public Text roseText;
@@ -17,90 +15,45 @@ public class GameMenu : MonoBehaviour {
 
 	public Image currentItem;
 
-	public GameObject[] menuWindows;
-	public GameObject gameInterface;
+	public GameObject gameWindow;
+	public MenuWindow mainWindow;
+	public ItemWindow itemWindow;
+	public MapWindow mapWindow;
+	public SaveWindow saveWindow;
 
 	void Awake() {
 		instance = this;
 	}
 
 	void Start() {
-		UpdateSaveButtons ();
-		UpdateItemButtons ();
+		saveWindow.UpdateSaveButtons ();
+		itemWindow.UpdateItemButtons ();
 		UpdateItem (Player.instance.selectedItem);
 	}
 
-	// ===============================================================================
-	// Save Window
-	// ===============================================================================
-
-	public void UpdateSaveButtons() {
-		SaveManager.LoadSaves ();
-		for (int i = 0; i < SaveManager.maxSaves; i++) {
-			if (SaveManager.allSaves [i] != null) {
-				saveButtons [i].GetComponentInChildren<Text> ().text = SaveManager.allSaves [i].name;
-			} else {
-				saveButtons [i].GetComponentInChildren<Text> ().text = "Empty";
-			}
-		}
-	}
-
-	public void Save(int id) {
-		SaveManager.SaveGame (id, saveName.text);
-		UpdateSaveButtons ();
-	}
-
-	// ===============================================================================
-	// Item Window
-	// ===============================================================================
-
-	int beginItemIndex = 0;
-
-	public Button itemLeft;
-	public Button itemRight;
-
-	public void UpdateItemButtons() {
-		itemLeft.interactable = beginItemIndex > 0;
-		itemRight.interactable = beginItemIndex + itemButtons.Length < Bag.maxItems;
-			
-		for (int i = 0; i < itemButtons.Length; i++) {
-			GameObject icon = itemButtons [i].transform.GetChild (0).gameObject;
-			Item item = Player.instance.bag.GetItem (i + beginItemIndex);
-			if (item != null) {
-				itemButtons [i].interactable = true;
-				icon.SetActive (true);
-				Image img = icon.GetComponent<Image> ();
-				img.sprite = Resources.Load<Sprite> ("Images/Items/" + item.spriteName);
-			} else {
-				itemButtons [i].interactable = false;
-				icon.SetActive (false);
-			}
-		}
-	}
-
-	public void ItemLeft() {
-		beginItemIndex -= itemButtons.Length;
-		UpdateItemButtons ();
-	}
-
-	public void ItemRight() {
-		beginItemIndex += itemButtons.Length;
-		UpdateItemButtons ();
-	}
-
-	// ===============================================================================
-	// Main window
-	// ===============================================================================
-
-	public void Quit() {
-		SceneManager.LoadScene ("MainMenu");
+	public void ClickItemSound() {
+		GameCamera.PlayAudioClip (confirmSound);
 	}
 
 	public void CloseMenu() {
-		foreach (GameObject go in menuWindows) {
-			go.SetActive (false);
-		}
-		gameInterface.SetActive (true);
+		ClickItemSound ();
+		mainWindow.gameObject.SetActive (false);
+		itemWindow.gameObject.SetActive (false);
+		mapWindow.gameObject.SetActive (false);
+		saveWindow.gameObject.SetActive (false);
+		gameWindow.SetActive (true);
+	}
+
+	public void MenuButton() {
+		ClickItemSound ();
+		Player.instance.Pause ();
+		gameWindow.gameObject.SetActive (false);
+		mainWindow.gameObject.SetActive (true);
+	}
+
+	public void ItemSlot() {
+		ClickItemSound ();
+		Player.instance.UseItem ();
 	}
 
 	// ===============================================================================
@@ -128,9 +81,4 @@ public class GameMenu : MonoBehaviour {
 		}
 	}
 
-	public void ClickItemSound() {
-		Debug.Log("asd");
-		AudioSource audio = GameObject.Find("click_confirm").GetComponent<AudioSource>();
-		audio.Play ();
-	}
 }

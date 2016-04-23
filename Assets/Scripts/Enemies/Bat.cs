@@ -18,7 +18,7 @@ public class Bat : Enemy {
 	}
 
 	protected override Tile ClosestToPlayer () {
-		if (Player.instance.visible) {
+		if (Player.visible) {
 			Tile tile = Player.instance.character.currentTile;
 			if (PathFinder.EstimateCost (character.currentTile, tile) > vision)
 				return null;
@@ -33,12 +33,22 @@ public class Bat : Enemy {
 		return null;
 	}
 
-	void Update () {
-		if (Player.instance.repelling) {
-			RunFromPlayer ();
-			inAttackMode = false;
-		}
 
+	void Update () {
+		if (Player.instance.paused)
+			return;
+
+		if (!character.moving && !character.damaging) {
+			if (Player.instance.repelling) {
+				RunFromPlayer ();
+				inAttackMode = false;
+			} else {
+				DefaultMovement ();
+			}
+		}
+	}
+
+	void DefaultMovement () {
 		if (inAttackMode) {
 			if (!character.moving && !character.damaging) {
 				if (!ChasePlayer ()) {
@@ -46,7 +56,6 @@ public class Bat : Enemy {
 				}
 			}
 		} else {
-			//List<Tile> neighbours = character.currentTile.GetNeighbours4();
 			if (!character.moving && !character.damaging) {
 				List<Vector2> neighbours = new List<Vector2> ();
 				Tile t = character.currentTile;

@@ -6,7 +6,18 @@ public class InvisibilityCloak : Item {
 	public InvisibilityCloak(int id) : base(id, "InvisibilityCloak", false) {}
 
 	public override void OnUse() {
-		Player.instance.visible = !Player.instance.visible;
+		AudioClip clip = Resources.Load<AudioClip> ("Sounds/cloth");
+		GameCamera.PlayAudioClip (clip);
+
+		Color c = Player.instance.character.spriteRenderer.color;
+		if (Player.visible) {
+			Player.visible = false;
+			c.a = 0.5f;
+		} else {
+			Player.visible = true;
+			c.a = 1;
+		}
+		Player.instance.character.spriteRenderer.color = c;
 	}
 }
 

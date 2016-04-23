@@ -21,6 +21,7 @@ public class Bag {
 		itemIDs [1] = 1;
 		itemIDs [2] = 2;
 		itemIDs [3] = 3;
+		itemIDs [4] = 4;
 		coins = 0;
 		roses = 0;
 		selectedSlot = 0;
