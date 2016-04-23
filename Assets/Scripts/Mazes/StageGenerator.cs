@@ -131,15 +131,15 @@ public static class StageGenerator {
 	}
 
 	// Cria uma transição de um tile de um labirinto para outro
-	private static void SetTransition (Maze origMaze, Tile origTile, Maze destMaze, Tile destTile, int direction) {
-		Transition transition = new Transition (destMaze.id, (int)destTile.x, (int)destTile.y, direction);
+	private static void SetTransition (Maze origMaze, Tile origTile, Maze destMaze, Vector2 destVector, int direction) {
+		Transition transition = new Transition (destMaze.id, destVector.x, destVector.y, direction);
 		origTile.transition = transition;
 	}
 
 	// Transições de ida e volta para os mazes 
 	// Tile1, Tile2: os tiles ANTERIORES às transições
-	public static void SetTransitions(Maze maze1, Maze maze2, int direction, int size = 2) {
-		SetTransitions (maze1, null, maze2, null, direction, size);
+	public static void SetTransitions(Maze maze1, Maze maze2, int direction, int size1 = 2, int size2 = 2) {
+		SetTransitions (maze1, null, maze2, null, direction, size1, size2);
 	}
 
 	// Transições de ida e volta para os mazes
@@ -161,60 +161,58 @@ public static class StageGenerator {
 				size2
 			);
 		}
+		//ida
+		SetTransitionsSide (maze1, tile1, maze2, tile2, direction, size1, size2);
 
+		//volta
+		SetTransitionsSide (maze2, tile2, maze1, tile1, 3 - direction, size2, size1);
+	}
+
+	static void SetTransitionsSide(Maze maze1, Tile tile1, Maze maze2, Tile tile2, int direction, int size1, int size2){
 		int deltaX = 0;
 		int deltaY = 0;
 
 		int neighborX = 1;
 		int neighborY = 1;
 
-		switch (direction) {
-		case Character.UP:
+		// tem que passar por toda a entrada transformando em chão 
+		// tem que calcular o tile central
+		// Ida para todos os vizinhos
+		float x = 0, y = 0;
+
+		if (direction == Character.UP) {
 			deltaY = 1;
-			neighborX = size2;
-			break;
-		case Character.LEFT:
+			neighborX = size1;
+			x = (float)(tile2.x + deltaX + size2 * 0.5 - 0.5);
+			y = tile2.y + 1;
+		} else if (direction == Character.LEFT) {
 			deltaX = -1;
-			neighborY = size2;
-			break;
-		case Character.RIGHT:
+			neighborY = size1;
+			x = tile2.x - 1;
+			y = (float)(tile2.y + deltaY + size2 * 0.5 - 0.5);
+		} else if (direction == Character.RIGHT) {
 			deltaX = 1;
-			neighborY = size2;
-			break;
-		case Character.DOWN:
+			neighborY = size1;
+			x = tile2.x + 1;
+			y = (float)(tile2.y + deltaY + size2 * 0.5 - 0.5);
+		} else if (direction == Character.DOWN) {
 			deltaY = -1;
-			neighborX = size2;
-			break;
+			neighborX = size1;
+			x = (float)(tile2.x + deltaX + size2 * 0.5 - 0.5);
+			y = tile2.y - 1;
 		}
 
-		// Ida para todos os vizinhos
+		Vector2 destVector = new Vector2 (x, y);
+
 		for(int i = 0; i < neighborX; i++) {
 			for (int j = 0; j < neighborY; j++) {
 				Tile tile = maze1.tiles [tile1.x + i, tile1.y + j];
 				Tile destTile = maze2.tiles [tile2.x + deltaX + i, tile2.y + deltaY + j];
-				SetTransition (maze1, tile, maze2, destTile, direction);
+				SetTransition (maze1, tile, maze2, destVector, direction);
 				tile.wallID = 0;
 				destTile.wallID = 0;
 			}
 		}
-
-		if (neighborX != 1) {
-			neighborX = size1;
-		}
-		if (neighborY != 1) {
-			neighborY = size1;
-		}
-
-		// Volta para todos os vizinhos
-		for(int i = 0; i < neighborX; i++) {
-			for (int j = 0; j < neighborY; j++) {
-				Tile tile = maze2.tiles [tile2.x + i, tile2.y + j];
-				Tile destTile = maze1.tiles [tile1.x - deltaX + i, tile1.y - deltaY + j];
-				SetTransition (maze2, tile, maze1, destTile, 3 - direction);
-				tile.wallID = 0;
-				destTile.wallID = 0;
-			}
-		}
-	}
+	} 
 
 }
