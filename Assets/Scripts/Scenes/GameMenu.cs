@@ -52,7 +52,6 @@ public class GameMenu : MonoBehaviour {
 	}
 
 	public void ItemSlot() {
-		ClickItemSound ();
 		Player.instance.UseItem ();
 	}
 

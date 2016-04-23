@@ -1,9 +1,21 @@
 fileFormatVersion: 2
 guid: e1b2307690bc14c4fa5db3d88d173d12
-timeCreated: 1460661255
+timeCreated: 1461451618
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: raven_0
+    21300002: raven_1
+    21300004: raven_2
+    21300006: raven_3
+    21300008: raven_4
+    21300010: raven_5
+    21300012: raven_6
+    21300014: raven_7
+    21300016: raven_8
+    21300018: raven_9
+    21300020: raven_10
+    21300022: raven_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -38,7 +50,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +61,236 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: raven_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 23.800003}
+        - {x: -13, y: 10.800003}
+        - {x: -13, y: 4.800003}
+        - {x: -7, y: -3.199997}
+        - {x: 7, y: -3.199997}
+        - {x: 12, y: 0.80000305}
+        - {x: 12, y: 16.800003}
+        - {x: 8, y: 23.800003}
+    - name: raven_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 24.800003}
+        - {x: -13, y: 11.800003}
+        - {x: -13, y: -3.199997}
+        - {x: 11, y: -3.199997}
+        - {x: 12, y: -1.199997}
+        - {x: 12, y: 19.800003}
+        - {x: 5, y: 24.800003}
+    - name: raven_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 23.800003}
+        - {x: -8, y: 23.800003}
+        - {x: -13, y: 10.800003}
+        - {x: -13, y: 3.800003}
+        - {x: -11, y: 0.80000305}
+        - {x: -6, y: -3.199997}
+        - {x: 7, y: -3.199997}
+        - {x: 12, y: 4.800003}
+        - {x: 12, y: 17.800003}
+    - name: raven_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 23.800003}
+        - {x: -15, y: 11.800003}
+        - {x: -15, y: 0.80000305}
+        - {x: -11, y: -3.199997}
+        - {x: 10, y: -3.199997}
+        - {x: 13, y: 0.80000305}
+        - {x: 13, y: 12.800003}
+        - {x: 9, y: 23.800003}
+    - name: raven_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 24.800003}
+        - {x: -15, y: 13.800003}
+        - {x: -15, y: 6.800003}
+        - {x: -5, y: -3.199997}
+        - {x: 7, y: -3.199997}
+        - {x: 13, y: 2.800003}
+        - {x: 13, y: 14.800003}
+        - {x: 9, y: 24.800003}
+    - name: raven_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 23.800003}
+        - {x: -9, y: 19.800003}
+        - {x: -15, y: 9.800003}
+        - {x: -15, y: 6.800003}
+        - {x: -11, y: -3.199997}
+        - {x: 13, y: -3.199997}
+        - {x: 13, y: 23.800003}
+    - name: raven_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 23.8}
+        - {x: -13, y: 12.799999}
+        - {x: -13, y: 1.7999992}
+        - {x: -8, y: -3.2000008}
+        - {x: 8, y: -3.2000008}
+        - {x: 15, y: 3.7999992}
+        - {x: 15, y: 9.799999}
+        - {x: 7, y: 23.8}
+    - name: raven_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 24.8}
+        - {x: -13, y: 17.8}
+        - {x: -13, y: -0.20000076}
+        - {x: -8, y: -3.2000008}
+        - {x: 5, y: -3.2000008}
+        - {x: 15, y: 4.799999}
+        - {x: 15, y: 10.799999}
+        - {x: 7, y: 24.8}
+    - name: raven_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 23.8}
+        - {x: -10, y: 23.8}
+        - {x: -13, y: 12.799999}
+        - {x: -13, y: 1.7999992}
+        - {x: -10, y: -3.2000008}
+        - {x: 12, y: -3.2000008}
+        - {x: 15, y: 3.7999992}
+        - {x: 15, y: 7.799999}
+    - name: raven_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 25.8}
+        - {x: -5, y: 25.8}
+        - {x: -13, y: 21.8}
+        - {x: -13, y: 6.8}
+        - {x: -7, y: -3.1999998}
+        - {x: 5, y: -3.1999998}
+        - {x: 13, y: 6.8}
+        - {x: 13, y: 9.8}
+        - {x: 10, y: 22.8}
+    - name: raven_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6, y: 24.8}
+        - {x: -9, y: 24.8}
+        - {x: -13, y: 14.8}
+        - {x: -13, y: -3.1999998}
+        - {x: 10, y: -3.1999998}
+        - {x: 12, y: 2.8000002}
+        - {x: 12, y: 12.8}
+        - {x: 11, y: 17.8}
+    - name: raven_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 25.8}
+        - {x: -12, y: 20.8}
+        - {x: -13, y: 15.8}
+        - {x: -13, y: 2.8000002}
+        - {x: -6, y: -3.1999998}
+        - {x: 6, y: -3.1999998}
+        - {x: 13, y: 5.8}
+        - {x: 13, y: 13.8}
+        - {x: 7, y: 25.8}
     outline: []
   spritePackingTag: 
   userData: 

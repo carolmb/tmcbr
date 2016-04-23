@@ -14,7 +14,7 @@ public class GameSave {
 	public GameSave() {
 		Stage bigStage = GameGenerator.Create ();
 		mazes = bigStage.mazes;
-		transition = new Transition (0, bigStage.beginTile.x + 0.5f, bigStage.beginTile.y, bigStage.beginDir);
+		transition = new Transition (0, bigStage.beginTile.x + (bigStage.beginSize - 1) * 0.5f, bigStage.beginTile.y, bigStage.beginDir);
 
 		bag = new Bag ();
 		lifePoints = 1000;

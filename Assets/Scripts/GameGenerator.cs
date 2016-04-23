@@ -7,9 +7,11 @@ using System.Collections.Generic;
 public class Stage {
 	public Maze[] mazes;
 	public Tile beginTile = null;
-	public int beginDir;
+	public int beginDir = -1;
+	public int beginSize = 2;
 	public Tile endTile = null;
-	public int endDir;
+	public int endDir = -1;
+	public int endSize = 2;
 	public Stage(Maze[] mazes) {
 		this.mazes = mazes;
 	}
@@ -21,38 +23,54 @@ public class Stage {
 public class GameGenerator {
 
 	public static Stage Create () {
-		Stage[] stages = new Stage[4];
+		Stage[] stages = new Stage[6];
+
+		int size1 = 1; // Random.Range(5, 7);
+		int size3 = 1;
+		int size5 = 1;
 
 		stages[0] = StaticStage.LoadStaticStage ("Entrance", 0);
-		stages[1] = new Stage (1); // new Stage(Random.Range(5, 7));
-		stages[2] = new Stage (1);
-		stages[3] = new Stage (1);
+		stages[1] = new Stage (size1);
+		stages[2] = StaticStage.LoadStaticStage("Mirror room", size1 + 1);
+		stages[3] = new Stage (size3);
+		stages[4] = StaticStage.LoadStaticStage("Fireplace", size1 + size3 + 2);
+		stages[5] = new Stage (size5);
 
-		MazeGenerator generator1 = MazeGenerator.GetGenerator ("Hall");
-		MazeGenerator generator2 = MazeGenerator.GetGenerator ("Cave");
-		MazeGenerator generator3 = MazeGenerator.GetGenerator ("Forest");
+		MazeGenerator[] generators = new MazeGenerator[3];
 
-		StageGenerator.CreateStage (stages[1].mazes, generator1, GetBeginID(stages, 1), Character.UP);
-		StageGenerator.CreateStage (stages[2].mazes, generator2, GetBeginID(stages, 2), Character.DOWN);
-		StageGenerator.CreateStage (stages[3].mazes, generator3, GetBeginID(stages, 3), Character.DOWN);
+		generators[0] = MazeGenerator.GetGenerator ("Hall");
+		generators[1] = MazeGenerator.GetGenerator ("Cave");
+		generators[2] = MazeGenerator.GetGenerator ("Forest");
 
-		SetTransitionStages (stages[0], stages[1], Character.UP); //entrance para hall
-		SetTransitionStages (stages[1], stages[2], Character.DOWN); //hall para cave
-		SetTransitionStages (stages[2], stages[3], Character.LEFT); //cave para forest
+		// Cria cada uma das stages que acordo com a direção da "stage de transição" anterior
+		for (int i = 0; i < generators.Length; i++) {
+			StageGenerator.CreateStage (stages[2*i + 1].mazes, generators[i], GetBeginID(stages, 2*i + 1), stages[2*i].endDir);
+		}
 
-		CreateEnemies (stages[1].mazes, generator1);
-		CreateEnemies (stages[2].mazes, generator2);
-		CreateEnemies (stages[3].mazes, generator3);
+		// Seta as transições de uma stage para outra
+		for (int i = 0; i < stages.Length - 1; i++) {
+			int direction = stages [i].endDir; // Direção de final da stage atual
+			if (direction == -1) { // Caso não haja
+				direction = stages [i + 1].beginDir; // Pegar a direção do início da próxima stage
+			}
+			SetTransitionStages (stages[i], stages[i + 1], direction); //entrance para hall
+		}
+			
+		// Completar os labirintos gerados com obstáculos e inimigos
+		for (int i = 0; i < generators.Length; i++) {
+			CreateEnemies (stages[2*i + 1].mazes, generators[i]);
+		}
 
 		Stage bigStage = new Stage(GetMazeArray(stages));
 		bigStage.beginTile = stages [0].beginTile;
 		bigStage.beginDir = stages [0].beginDir;
+		bigStage.beginSize = stages [0].beginSize;
 		return bigStage;
 	}
 
-	static int GetBeginID(Stage[] allStages, int mazeID) {
+	static int GetBeginID(Stage[] allStages, int stageID) {
 		int beginID = 0;
-		for(int i = 0; i < mazeID; i++) {
+		for(int i = 0; i < stageID; i++) {
 			beginID += allStages [i].mazes.Length;
 		}
 		return beginID;

@@ -34,17 +34,21 @@ public static class StaticStage {
 				info = line.Split(' ');
 				int x = Int32.Parse(info[0]);
 				int y = Int32.Parse(info[1]);
-				int dir = Int32.Parse(info[2]);
+				int d = Int32.Parse(info[2]);
+				int s = Int32.Parse(info[3]);
 				stage.beginTile = maze.tiles[x, y];
-				stage.beginDir = dir;
+				stage.beginDir = d;
+				stage.beginSize = s;
 
 				line = sr.ReadLine();
 				info = line.Split(' ');
 				x = Int32.Parse(info[0]);
 				y = Int32.Parse(info[1]);
-				dir = Int32.Parse(info[2]);
+				d = Int32.Parse(info[2]);
+				s = Int32.Parse(info[3]);
 				stage.endTile = maze.tiles[x, y];
-				stage.endDir = dir;
+				stage.endDir = d;
+				stage.endSize = s;
 
 				return stage;
 			}
