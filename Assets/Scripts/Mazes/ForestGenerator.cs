@@ -34,7 +34,7 @@ public class ForestGenerator : MazeGenerator {
 				if (Random.Range (1, 100) < 20) {
 					t.objectName = "Enemies/Tomato";
 				} else if (Random.Range (1, 100) < 20) {
-				//	t.objectName = "Enemies/Bat";
+					t.objectName = "Enemies/Butterfly";
 				}
 			} else if (t.isWalkable && !HasObstaclesNear(t)){
 				if (Random.Range (1, 100) < 40) {
