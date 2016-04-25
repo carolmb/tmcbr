@@ -20,10 +20,10 @@ public class Chest : MonoBehaviour {
 
 	// Abre o baú
 	public void openChest() {
-		Vector2 position = MazeManager.WorldToTilePos (Player.instance.character.transform.position);
+		Vector2 position = MazeManager.WorldToTilePos(transform.position);
 		// Verifica se o player está em alguma das quatro posições adjacentes ao baú
-		//if (position
-		//	== MazeManager.WorldToTilePos(transform.position)) {
+		//if (MazeManager.WorldToTilePos (Player.instance.character.transform.position)
+		//	== position) {
 		//	return;
 		//}
 		opened = true;
