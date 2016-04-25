@@ -48,28 +48,28 @@ public static class StageGenerator {
 		case Character.UP:
 			y = maze.height - 1;
 			do {
-				x = UnityEngine.Random.Range (0, maze.width - size);
+				x = UnityEngine.Random.Range (size/2, maze.width - size/2);
 			} while (maze.tiles [x, y - 2].wallID != 0 || maze.tiles [x + 1, y - 2].wallID != 0);
 			break;
 		
 		case Character.LEFT:
 			x = 0;
 			do {
-				y = UnityEngine.Random.Range (0, maze.height - size);
+				y = UnityEngine.Random.Range (size/2, maze.height - size/2);
 			} while (maze.tiles[x + 2, y].wallID != 0 || maze.tiles[x + 2, y + 1].wallID != 0);
 			break;
 		
 		case Character.RIGHT:
 			x = maze.width - 1;
 			do {
-				y = UnityEngine.Random.Range (0, maze.height - size);
+				y = UnityEngine.Random.Range (size/2, maze.height - size/2);
 			} while (maze.tiles[x - 2, y].wallID != 0 || maze.tiles[x - 2, y + 1].wallID != 0);
 			break;
 		
 		case Character.DOWN:
 			y = 0;
 			do {
-				x = UnityEngine.Random.Range (0, maze.width - size);
+				x = UnityEngine.Random.Range (size/2, maze.width - size/2);
 			} while (maze.tiles[x, y + 2].wallID != 0 || maze.tiles[x + 1, y + 2].wallID != 0);
 			break;
 		}
@@ -147,7 +147,7 @@ public static class StageGenerator {
 	// size1: tamanho da saída no maze1
 	// size2: tamanho da entrada no maze2
 	public static void SetTransitions(Maze maze1, Tile tile1, Maze maze2, Tile tile2, int direction, int size1 = 2, int size2 = 3) {
-		Debug.Log (maze1.theme + " to " + maze2.theme); 
+		//Debug.Log (maze1.theme + " to " + maze2.theme); 
 
 		if (tile1 == null) {
 			tile1 = GenerateFinalTile (
@@ -156,7 +156,7 @@ public static class StageGenerator {
 				size1
 			);
 		}
-		Debug.Log (tile1.coordinates);
+		//Debug.Log (tile1.coordinates);
 		if (tile2 == null) {
 			tile2 = GenerateInitialTile (
 				maze2, 
@@ -164,7 +164,7 @@ public static class StageGenerator {
 				size2
 			);
 		}
-		Debug.Log (tile2.coordinates);
+		//Debug.Log (tile2.coordinates);
 		//ida
 		SetTransitionsSide (maze1, tile1, maze2, tile2, direction, size1, size2);
 

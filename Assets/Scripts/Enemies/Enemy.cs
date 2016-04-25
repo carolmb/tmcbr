@@ -114,4 +114,8 @@ public class Enemy : MonoBehaviour {
 		Instantiate (coin, transform.position, transform.rotation);
 	}
 
+	void OnDestroy() {
+		originalTile.currentTileObject.x = character.currentTile.x;
+		originalTile.currentTileObject.y = character.currentTile.y;
+	}
 }

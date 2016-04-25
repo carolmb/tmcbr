@@ -34,6 +34,7 @@ public class Tile {
 
 	// Informações do objeto do tile
 	public string objectName = ""; // nome do objeto (inimigo ou item), se tiver 
+	public Vector2 currentTileObject;
 
 	// Spawn de objeto
 	public float lastSpawn = 0f;
