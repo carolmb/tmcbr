@@ -46,6 +46,8 @@ public class HallGenerator : MazeGenerator {
 							t.objectName = "Enemies/Mimic"; 
 						} else if (Random.Range (0, 100) < 30) { //fator random
 							t.objectName = "Enemies/KnightArmor"; 
+						} else if (Random.Range (0, 100) < 40) { //fator random
+							t.objectName = "Chest";
 						}
 					}
 				} else if (t.isWalkable && !HasObstaclesNear (t)) {
