@@ -28,7 +28,9 @@ public class Chest : MonoBehaviour {
 		opened = true;
 		Debug.Log ("Opened");
 		Player.instance.bag.coins += coins;
-		MazeManager.maze.tiles [(int) position.x, (int) position.y].objectName = "OpenedChest";
+		Tile t = MazeManager.maze.tiles [(int)position.x, (int)position.y];
+		t.objectName = "OpenedChest";
+		t.obstacleID = 1;
 		Destroy (this);
 	}
 }

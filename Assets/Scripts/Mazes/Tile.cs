@@ -72,7 +72,7 @@ public class Tile {
 		this.floorID = copy.floorID;
 		this.obstacleID = copy.obstacleID;
 	}
-		
+
 	public List<Tile> GetNeighbours4() {
 		List<Tile> neighbours = new List<Tile> ();
 		if (x - 1 >= 0) {
