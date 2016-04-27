@@ -1,0 +1,296 @@
+fileFormatVersion: 2
+guid: 4c381786bacbed54aa0bd85a3a99b578
+timeCreated: 1461753022
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: armor_0
+    21300002: armor_1
+    21300004: armor_2
+    21300006: armor_3
+    21300008: armor_4
+    21300010: armor_5
+    21300012: armor_6
+    21300014: armor_7
+    21300016: armor_8
+    21300018: armor_9
+    21300020: armor_10
+    21300022: armor_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 1
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: armor_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 40.199997}
+        - {x: -12, y: 33.199997}
+        - {x: -13, y: 21.199997}
+        - {x: -13, y: 7.199997}
+        - {x: -8, y: -4.800003}
+        - {x: 7, y: -4.800003}
+        - {x: 14, y: 0.19999695}
+        - {x: 14, y: 30.199997}
+        - {x: 10, y: 40.199997}
+    - name: armor_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 41.199997}
+        - {x: -15, y: 23.199997}
+        - {x: -15, y: 3.199997}
+        - {x: -9, y: -4.800003}
+        - {x: 10, y: -4.800003}
+        - {x: 16, y: 2.199997}
+        - {x: 16, y: 26.199997}
+        - {x: 12, y: 41.199997}
+    - name: armor_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 40.199997}
+        - {x: -12, y: 33.199997}
+        - {x: -13, y: 27.199997}
+        - {x: -13, y: 2.199997}
+        - {x: -5, y: -4.800003}
+        - {x: 14, y: -4.800003}
+        - {x: 14, y: 39.199997}
+        - {x: 11, y: 40.199997}
+    - name: armor_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 40.199997}
+        - {x: -13, y: 38.199997}
+        - {x: -13, y: 9.199997}
+        - {x: -12, y: 1.199997}
+        - {x: -10, y: -4.800003}
+        - {x: 9, y: -4.800003}
+        - {x: 11, y: -3.800003}
+        - {x: 11, y: 37.199997}
+        - {x: 9, y: 40.199997}
+    - name: armor_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 41.199997}
+        - {x: -13, y: 39.199997}
+        - {x: -13, y: 6.199997}
+        - {x: -12, y: -1.800003}
+        - {x: -8, y: -4.800003}
+        - {x: 11, y: -4.800003}
+        - {x: 11, y: 40.199997}
+        - {x: 9, y: 41.199997}
+    - name: armor_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 40.199997}
+        - {x: -13, y: 38.199997}
+        - {x: -13, y: 7.199997}
+        - {x: -11, y: -4.800003}
+        - {x: 9, y: -4.800003}
+        - {x: 12, y: 1.199997}
+        - {x: 12, y: 32.199997}
+        - {x: 10, y: 40.199997}
+    - name: armor_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 40.2}
+        - {x: -11, y: 39.2}
+        - {x: -11, y: -4.799999}
+        - {x: 12, y: -4.799999}
+        - {x: 13, y: -2.7999992}
+        - {x: 13, y: 40.2}
+    - name: armor_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 41.2}
+        - {x: -11, y: 35.2}
+        - {x: -11, y: 24.2}
+        - {x: -9, y: -3.7999992}
+        - {x: -7, y: -4.799999}
+        - {x: 6, y: -4.799999}
+        - {x: 13, y: 9.200001}
+        - {x: 13, y: 39.2}
+        - {x: 12, y: 41.2}
+    - name: armor_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 40.2}
+        - {x: -12, y: 38.2}
+        - {x: -12, y: -4.799999}
+        - {x: 12, y: -4.799999}
+        - {x: 13, y: 2.2000008}
+        - {x: 13, y: 38.2}
+        - {x: 10, y: 40.2}
+    - name: armor_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 40.2}
+        - {x: -13, y: 36.2}
+        - {x: -13, y: -4.799999}
+        - {x: 7, y: -4.799999}
+        - {x: 14, y: 0.20000076}
+        - {x: 14, y: 32.2}
+        - {x: 11, y: 40.2}
+    - name: armor_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 41.2}
+        - {x: -15, y: 22.2}
+        - {x: -15, y: 1.2000008}
+        - {x: -11, y: -4.799999}
+        - {x: 10, y: -4.799999}
+        - {x: 16, y: 0.20000076}
+        - {x: 16, y: 29.2}
+        - {x: 11, y: 41.2}
+    - name: armor_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 40.2}
+        - {x: -13, y: 35.2}
+        - {x: -13, y: -3.7999992}
+        - {x: -10, y: -4.799999}
+        - {x: 10, y: -4.799999}
+        - {x: 14, y: 5.200001}
+        - {x: 14, y: 29.2}
+        - {x: 10, y: 40.2}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
