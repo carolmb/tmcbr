@@ -19,18 +19,23 @@ public class Chest : MonoBehaviour {
 	}
 
 	// Abre o baú
-	public void openChest() {
+	public void OnMouseDown() {
 		Vector2 position = MazeManager.WorldToTilePos(transform.position);
 		// Verifica se o player está em alguma das quatro posições adjacentes ao baú
 		//if (MazeManager.WorldToTilePos (Player.instance.character.transform.position) == position) {
 		//	return;
 		//}
 		opened = true;
-		Debug.Log ("Opened");
-		Player.instance.bag.coins += coins;
+		// Adiciona as moedas
+		Player.instance.IncrementCoins(coins);
+		// Muda para o baú aberto
 		Tile t = MazeManager.maze.tiles [(int)position.x, (int)position.y];
-		t.objectName = "OpenedChest";
-		t.obstacleID = 1;
-		Destroy (this);
+		if (t.isWalkable) {
+			Debug.Log ("Certo");
+		} else {
+			Debug.Log ("Errado");
+		}
+		t.objectName = "Obstacles/obstacle5";
+		Destroy (this.gameObject);
 	}
 }
