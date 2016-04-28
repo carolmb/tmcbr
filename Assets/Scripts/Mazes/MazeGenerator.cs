@@ -23,10 +23,10 @@ public abstract class MazeGenerator {
 		return false;
 	}
 
-	protected bool HasObstaclesNear (Tile t) {
+	protected bool HasObstaclesNear (Tile t, int vision = 6) {
 		if (t.obstacleID > 0)
 			return true;
-		foreach (Tile n in GetNeighbours(t, 6)) {
+		foreach (Tile n in GetNeighbours(t, vision)) {
 			if (n.obstacleID > 0)
 				return true;
 		}

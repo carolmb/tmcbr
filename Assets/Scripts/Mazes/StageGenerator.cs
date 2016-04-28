@@ -146,7 +146,7 @@ public static class StageGenerator {
 	// Tile1, Tile2: os tiles ANTERIORES às transições
 	// size1: tamanho da saída no maze1
 	// size2: tamanho da entrada no maze2
-	public static void SetTransitions(Maze maze1, Tile tile1, Maze maze2, Tile tile2, int direction, int size1 = 2, int size2 = 3) {
+	public static void SetTransitions(Maze maze1, Tile tile1, Maze maze2, Tile tile2, int direction, int size1 = 2, int size2 = 2) {
 		//Debug.Log (maze1.theme + " to " + maze2.theme); 
 
 		if (tile1 == null) {

@@ -22,27 +22,35 @@ public class ForestGenerator : MazeGenerator {
 			if (HasTransitionNear(t)) {
 				continue;
 			}
-			if (t.isWall) {	
-				if (Random.Range (1, 100) < 30) { //fator random
-					t.obstacleID = 1;
-				} else if (Random.Range (1, 100) < 30) {
-					t.obstacleID = 5;
-					t.wallID = 0;
+			if (Random.Range (1, 100) < 70) {
+				if (t.isWalkable) {
+					if (EmptyRadiusToEnemies (t)) { 
+						if (Random.Range (1, 100) < 30) {
+							t.objectName = "Enemies/Tomato";
+						} else if (Random.Range (1, 100) < 20) {
+							t.objectName = "Enemies/Butterfly";
+						}
+					}
+				}
+			} else { 
+				if (t.isWalkable) {
+					if (!HasObstaclesNear (t, 3)) {
+						if (Random.Range (1, 100) < 50) {
+							t.obstacleID = 2;
+						} else if (Random.Range (1, 100) < 50) {
+							t.obstacleID = 3;
+						} else {
+							t.obstacleID = 4;
+						}
+					}
 				}
 			}
-			if (t.isWalkable && EmptyRadiusToEnemies (t)) { 
-				if (Random.Range (1, 100) < 20) {
-					t.objectName = "Enemies/Tomato";
-				} else if (Random.Range (1, 100) < 20) {
-					t.objectName = "Enemies/Butterfly";
-				}
-			} else if (t.isWalkable && !HasObstaclesNear(t)){
-				if (Random.Range (1, 100) < 40) {
-					t.obstacleID = 2;
-				} else if (Random.Range (1, 100) < 40) {
-					t.obstacleID = 3;
-				} else if (Random.Range (1, 100) < 40) {
-					t.obstacleID = 4;
+			if (t.isWall) {	
+				if (!HasObstaclesNear(t, 3) && Random.Range (1, 100) < 30) { //fator random
+					t.obstacleID = 1;
+				} else if (!HasObstaclesNear(t, 3) && Random.Range (1, 100) < 30) {
+					t.obstacleID = 5;
+					t.wallID = 0;
 				}
 			}
 		}

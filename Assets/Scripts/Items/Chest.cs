@@ -31,6 +31,13 @@ public class Chest : MonoBehaviour {
 		Tile t = MazeManager.maze.tiles [(int)position.x, (int)position.y];
 		t.objectName = "OpenedChest";
 		t.obstacleID = 1;
+
+		GameObject prefab = Resources.Load<GameObject> ("Prefabs/OpenedChest");
+		GameObject obj = Instantiate (prefab);
+		obj.transform.position = MazeManager.TileToWorldPos (new Vector2 (t.x, t.y)) + new Vector3(0, Tile.size / 2, Tile.size / 2);
+		obj.transform.SetParent (transform);
+		obj.name = "OpenedChest";
+
 		Destroy (this);
 	}
 }
