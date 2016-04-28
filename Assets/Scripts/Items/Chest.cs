@@ -13,31 +13,28 @@ public class Chest : MonoBehaviour {
 		coins = Random.Range (0, 5);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		//
-	}
-
 	// Abre o baú
-	public void openChest() {
+	public void OnMouseDown() {
 		Vector2 position = MazeManager.WorldToTilePos(transform.position);
-		// Verifica se o player está em alguma das quatro posições adjacentes ao baú
-		//if (MazeManager.WorldToTilePos (Player.instance.character.transform.position) == position) {
-		//	return;
-		//}
-		opened = true;
-		Debug.Log ("Opened");
-		Player.instance.bag.coins += coins;
 		Tile t = MazeManager.maze.tiles [(int)position.x, (int)position.y];
-		t.objectName = "OpenedChest";
-		t.obstacleID = 1;
 
-		GameObject prefab = Resources.Load<GameObject> ("Prefabs/OpenedChest");
+		// Muda para o baú aberto
+		opened = true;
+
+		// Adiciona as moedas
+		Player.instance.IncrementCoins(coins);
+
+		// Cria o objeto novo
+		GameObject prefab = Resources.Load<GameObject> ("Prefabs/Obstacles/Hall/obstacle5");
 		GameObject obj = Instantiate (prefab);
-		obj.transform.position = MazeManager.TileToWorldPos (new Vector2 (t.x, t.y)) + new Vector3(0, Tile.size / 2, Tile.size / 2);
-		obj.transform.SetParent (transform);
-		obj.name = "OpenedChest";
+		obj.transform.position = MazeManager.TileToWorldPos (new Vector2 (t.x, t.y)) + new Vector3(0, Tile.size / 2, Tile.size / 2);;
+		obj.name = "Tile[obstacle] (" + t.x + ", " + t.y + ")";
+		MazeManager.obstacles [t.x, t.y] = obj.GetComponent<BoxCollider2D> ();
 
-		Destroy (this);
+		// Muda o tipo do objeto 
+		t.obstacleID = 5;
+
+		// Destrói o antigo
+		Destroy (this.gameObject);
 	}
 }
