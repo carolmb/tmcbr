@@ -8,6 +8,9 @@ public class Chest : MonoBehaviour {
 	private bool opened;
 	private ClickItem ci;
 
+	// Barulho abrir baú
+	public AudioClip collisionSound;
+
 	// Use this for initialization
 	void Start () {
 		ci = new ClickItem ();
@@ -41,6 +44,8 @@ public class Chest : MonoBehaviour {
 
 		// Muda o tipo do objeto 
 		t.obstacleID = 5;
+
+		GameCamera.PlayAudioClip (collisionSound);
 
 		// Destrói o antigo
 		Destroy (this.gameObject);
