@@ -6,15 +6,23 @@ public class Chest : MonoBehaviour {
 	// Moedas
 	private int coins;
 	private bool opened;
+	private ClickItem ci;
 
 	// Use this for initialization
 	void Start () {
+		ci = new ClickItem ();
 		opened = false;
 		coins = Random.Range (0, 5);
 	}
+
+	public void OnMouseUp() {
+		if (ci.Close == true) {
+			OpenChest();
+		}
+	}
 	
 	// Abre o baú
-	public void OnMouseDown() {
+	public void OpenChest() {
 		Vector2 position = MazeManager.WorldToTilePos(transform.position);
 		Tile t = MazeManager.maze.tiles [(int)position.x, (int)position.y];
 
