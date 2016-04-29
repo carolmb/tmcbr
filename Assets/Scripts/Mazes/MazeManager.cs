@@ -48,8 +48,11 @@ public class MazeManager : MonoBehaviour {
 			}
 			if (t.obstacleID > 0) {
 				CreateTileObstacle (t.x, t.y, t.obstacleID);
-			}
-			if (t.objectName != "" && t.canSpawn) {
+			} else if (t.chest > 0) {
+				GameObject chest = CreateTileObject (t.x, t.y, "chest" + t.chest);
+				obstacles [t.x, t.y] = chest.GetComponent<BoxCollider2D> ();
+				Debug.Log ("blah");
+			} else if (t.objectName != "" && t.canSpawn) {
 				CreateTileObject (t.x, t.y, t.objectName);
 				t.lastSpawn = SaveManager.currentPlayTime;
 			}
@@ -95,8 +98,13 @@ public class MazeManager : MonoBehaviour {
 
 	// Criar prefabs de obstáculos
 	GameObject CreateTileObstacle(int x, int y, int id) {
-		GameObject g = CreateTileObject (x, y, "Obstacles/" + maze.theme + "/obstacle" + id);
-		g.name = "Tile[obstacle] (" + x + ", " + y + ")";
+		return CreateTileObstacle (x, y, "Obstacles/" + maze.theme + "/obstacle" + id);
+	}
+
+	// Criar prefabs de obstáculos fora da pasta de obstacles 
+	GameObject CreateTileObstacle(int x, int y, string name) {
+		GameObject g = CreateTileObject (x, y, name);
+		g.name = "Tile[" + name + "] (" + x + ", " + y + ")";
 		obstacles [x, y] = g.GetComponent<BoxCollider2D> ();
 		return g;
 	}
@@ -114,8 +122,6 @@ public class MazeManager : MonoBehaviour {
 	// Converte posição de jogo (pixels) para coordenada em tiles
 	public static Vector2 WorldToTilePos(Vector2 worldPos) {
 		Vector2 tilePos = new Vector2(Mathf.Round(worldPos.x / Tile.size), Mathf.Round(worldPos.y / Tile.size));
-		//Debug.Log ("world: " + worldPos);
-		//Debug.Log ("tile: " + tilePos);
 		return tilePos;
 	}
 

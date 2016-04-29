@@ -7,7 +7,6 @@ public class MenuWindow : MonoBehaviour {
 
 	public void ItemButton() {
 		GameMenu.instance.ClickItemSound ();
-		GameMenu.instance.itemWindow.UpdateItemButtons ();
 		GameMenu.instance.itemWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
@@ -21,7 +20,6 @@ public class MenuWindow : MonoBehaviour {
 
 	public void SaveButton() {
 		GameMenu.instance.ClickItemSound ();
-		GameMenu.instance.saveWindow.UpdateSaveButtons ();
 		GameMenu.instance.saveWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}

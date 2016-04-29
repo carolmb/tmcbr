@@ -18,6 +18,7 @@ public class GameMenu : MonoBehaviour {
 	public GameObject gameWindow;
 	public MenuWindow mainWindow;
 	public ItemWindow itemWindow;
+	public ItemChoices itemChoices;
 	public MapWindow mapWindow;
 	public SaveWindow saveWindow;
 
@@ -26,8 +27,6 @@ public class GameMenu : MonoBehaviour {
 	}
 
 	void Start() {
-		saveWindow.UpdateSaveButtons ();
-		itemWindow.UpdateItemButtons ();
 		UpdateItem (Player.instance.selectedItem);
 	}
 
@@ -41,6 +40,7 @@ public class GameMenu : MonoBehaviour {
 		itemWindow.gameObject.SetActive (false);
 		mapWindow.gameObject.SetActive (false);
 		saveWindow.gameObject.SetActive (false);
+		itemChoices.gameObject.SetActive (false);
 		gameWindow.SetActive (true);
 	}
 
@@ -64,20 +64,28 @@ public class GameMenu : MonoBehaviour {
 	}
 
 	public void UpdateCoins(int value) {
-		coinText.text = "x" + value;
+		UpdateCoins (value, coinText);
+	}
+
+	public void UpdateCoins(int value, Text text) {
+		text.text = "x" + value;
 	}
 
 	public void UpdateRoses(int value) {
 		roseText.text = "x" + value;
 	}
 
-	public void UpdateItem(Item item) {
+	public void UpdateItem(Item item, Image image) {
 		if (item == null) {
-			currentItem.gameObject.SetActive (false);
+			image.gameObject.SetActive (false);
 		} else {
-			currentItem.gameObject.SetActive (true);
-			currentItem.sprite = Resources.Load<Sprite> ("Images/Items/" + item.spriteName);
+			image.gameObject.SetActive (true);
+			image.sprite = Resources.Load<Sprite> ("Images/Items/" + item.spriteName);
 		}
+	}
+
+	public void UpdateItem(Item item) {
+		UpdateItem (item, currentItem);
 	}
 
 }

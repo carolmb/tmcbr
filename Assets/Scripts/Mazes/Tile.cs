@@ -40,6 +40,9 @@ public class Tile {
 	public float lastSpawn = 0f;
 	public float spawnTime = 0f;
 
+	// Informações de baú
+	public int chest = 0; // 0 = não tem; 1 = baú fechado; 2 = baú aberto
+
 	// Se o tempo de spawn já deu
 	public bool canSpawn {
 		get {
@@ -51,7 +54,7 @@ public class Tile {
 	public Transition transition; // se ao tocar, para onde o player vai
 
 	public bool isWalkable {
-		get { return !isWall && obstacleID <= 0; }
+		get { return !isWall && obstacleID <= 0 && chest <= 0; }
 	}
 
 	public bool isWall {

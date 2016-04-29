@@ -39,4 +39,8 @@ public class Bag {
 		return Item.DB [itemIDs [position]];
 	}
 
+	public void Discard(int slot) {
+		// TODO
+	}
+
 }

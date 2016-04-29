@@ -7,7 +7,7 @@ public class SaveWindow : MonoBehaviour {
 	public Text saveName;
 	public Button[] saveButtons;
 
-	public void UpdateSaveButtons() {
+	public void OnEnable() {
 		SaveManager.LoadSaves ();
 		for (int i = 0; i < SaveManager.maxSaves; i++) {
 			if (SaveManager.allSaves [i] != null) {
@@ -21,7 +21,7 @@ public class SaveWindow : MonoBehaviour {
 	public void Save(int id) {
 		GameMenu.instance.ClickItemSound ();
 		SaveManager.SaveGame (id, saveName.text);
-		UpdateSaveButtons ();
+		OnEnable ();
 	}
 
 	public void Return() {
