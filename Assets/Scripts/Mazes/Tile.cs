@@ -34,7 +34,7 @@ public class Tile {
 
 	// Informações do objeto do tile
 	public string objectName = ""; // nome do objeto (inimigo ou item), se tiver 
-	public Vector2 currentTileObject;
+	public Vector2 lastObjectPos;
 
 	// Spawn de objeto
 	public float lastSpawn = 0f;
@@ -58,11 +58,10 @@ public class Tile {
 		get { return wallID > 0; }
 	}
 
-	public Tile() {}
-
 	public Tile(int x, int y) {
 		this.x = x;
 		this.y = y;
+		ResetObjectTile ();
 	}
 
 	public Tile(Tile copy) {
@@ -71,9 +70,14 @@ public class Tile {
 		this.wallID = copy.wallID;
 		this.floorID = copy.floorID;
 		this.obstacleID = copy.obstacleID;
+		this.lastObjectPos = copy.lastObjectPos;
 	}
 
-	public List<Tile> GetNeighbours4() {
+	public void ResetObjectTile() {
+		lastObjectPos = (Vector2)MazeManager.TileToWorldPos (coordinates) + new Vector2(0, Tile.size / 2);
+	}
+
+	public List<Tile> GetNeighbours4 () {
 		List<Tile> neighbours = new List<Tile> ();
 		if (x - 1 >= 0) {
 			neighbours.Add (MazeManager.maze.tiles [x - 1, y]);
@@ -90,7 +94,7 @@ public class Tile {
 		return neighbours;
 	}
 
-	public List<Tile> GetNeighbours8() {
+	public List<Tile> GetNeighbours8 () {
 		List<Tile> neightbours = new List<Tile> ();
 		neightbours.Add (MazeManager.maze.tiles [x, y + 1]);
 		neightbours.Add (MazeManager.maze.tiles [x, y - 1]);

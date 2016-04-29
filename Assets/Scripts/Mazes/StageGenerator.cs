@@ -134,6 +134,7 @@ public static class StageGenerator {
 	private static void SetTransition (Maze origMaze, Tile origTile, Maze destMaze, Vector2 destVector, int direction) {
 		Transition transition = new Transition (destMaze.id, destVector.x, destVector.y, direction);
 		origTile.transition = transition;
+		origTile.wallID = 0;
 	}
 
 	// Transições de ida e volta para os mazes 
@@ -214,8 +215,6 @@ public static class StageGenerator {
 				i < (int)System.Math.Ceiling ((double)(neighborX)) + 1; i++) {
 				Tile tile = maze1.tiles [tile1.x + i, tile1.y + j];
 				SetTransition (maze1, tile, maze2, destVector, direction);
-				//Debug.Log (tile.coordinates);
-				tile.wallID = 0;
 				maze1.tiles [tile.x, tile.y - deltaY].wallID = 0;
 			}
 		} else {
@@ -224,8 +223,6 @@ public static class StageGenerator {
 				j < (int)System.Math.Ceiling ((double)(neighborY)) + 1; j++) {
 				Tile tile = maze1.tiles [tile1.x + i, tile1.y + j];
 				SetTransition (maze1, tile, maze2, destVector, direction);
-				//Debug.Log (tile.coordinates);
-				tile.wallID = 0;
 				maze1.tiles [tile.x - deltaX, tile.y].wallID = 0;
 			}
 		}

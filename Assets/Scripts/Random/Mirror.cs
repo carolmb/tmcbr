@@ -33,6 +33,7 @@ public class Mirror : MonoBehaviour {
 
 	void ShowReflex() {
 		Player.instance.canMove = false;
+		Player.instance.character.Stop ();
 		broke = true;
 		sr.sprite = reflex;
 		Invoke ("Break", 0.5f);

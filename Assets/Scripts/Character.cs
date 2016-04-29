@@ -176,14 +176,15 @@ public class Character : MonoBehaviour {
 	// Tenta se mover na direção do atual moveVector
 	// Se conseguir, move e retorna o ângulo que andou; se não, retorna NaN
 	public float TryMove(Vector2 moveVector, bool animate = true) {
+		float spd = moveVector.magnitude;
 		float angle = GameManager.VectorToAngle (moveVector);
 		angle = Mathf.Round (angle / 45) * 45;
 
-		if (TryMove (angle, animate)) {
+		if (TryMove (angle, spd, animate)) {
 			return angle;
-		} else if (TryMove (angle + 45, animate)) {
+		} else if (TryMove (angle + 45, spd, animate)) {
 			return angle + 45; 
-		} else if (TryMove (angle - 45, animate)) {
+		} else if (TryMove (angle - 45, spd, animate)) {
 			return angle - 45;
 		} else {
 			return float.NaN;
@@ -192,7 +193,7 @@ public class Character : MonoBehaviour {
 
 	// Tenta se mover no dado ângulo
 	// Se conseguir, move e retorna true; se não, apenas retorna false
-	bool TryMove(float angle, bool animate) {
+	bool TryMove(float angle, float speed, bool animate) {
 		Vector2 translation = GameManager.AngleToVector (angle) * speed * 60 * Time.deltaTime;
 		return InstantMove (translation, animate);
 	}
@@ -227,6 +228,8 @@ public class Character : MonoBehaviour {
 		get {
 			Vector2 tileCoord = MazeManager.WorldToTilePos(transform.position - new Vector3(0, Tile.size / 2, 0));
 			return MazeManager.maze.tiles [(int)tileCoord.x, (int)tileCoord.y];
+		} set {
+			transform.position = MazeManager.TileToWorldPos (value.coordinates) + new Vector3 (0, Tile.size / 2, 0);
 		}
 	}
 
@@ -280,9 +283,7 @@ public class Character : MonoBehaviour {
 			currentMovement = null;
 		}
 
-		Vector2 direction = ((Vector2)transform.position - origin).normalized;
-		float previousSpeed = speed;
-		speed = damageSpeed;
+		Vector2 direction = ((Vector2)transform.position - origin).normalized * damageSpeed;
 		float time = 0;
 		while (time < damageDuration) {
 			TryMove (direction, false);
@@ -290,7 +291,6 @@ public class Character : MonoBehaviour {
 			time += Time.deltaTime;
 		}
 		damaging = false;
-		speed = previousSpeed;
 	}
 
 	// Animação de morte

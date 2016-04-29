@@ -50,11 +50,7 @@ public class MazeManager : MonoBehaviour {
 				CreateTileObstacle (t.x, t.y, t.obstacleID);
 			}
 			if (t.objectName != "" && t.canSpawn) {
-				if (t.currentTileObject.x == 0 && t.currentTileObject.y == 0) {
-					CreateTileObject (t.x, t.y, t.objectName);
-				} else {
-					CreateTileObject ((int)t.currentTileObject.x, (int)t.currentTileObject.y, t.objectName);
-				}
+				CreateTileObject (t.x, t.y, t.objectName);
 				t.lastSpawn = SaveManager.currentPlayTime;
 			}
 		}

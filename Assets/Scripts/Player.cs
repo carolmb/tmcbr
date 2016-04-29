@@ -28,7 +28,8 @@ public class Player : MonoBehaviour {
 		character.lifePoints = SaveManager.currentSave.lifePoints;
 		GameMenu.instance.UpdateLife (character.lifePoints);
 		if (!visible) {
-			character.spriteRenderer.color -= new Color (0, 0, 0, 0.5f);
+			visible = true;
+			SetVisible (false);
 		}
 	}
 
@@ -65,7 +66,6 @@ public class Player : MonoBehaviour {
 
 	// Atualizar uso de itens
 	void CheckItems() {
-		Knife.CheckAttackEnd();
 		if (repelling) {
 			repelTime -= Time.deltaTime;
 		}
@@ -93,8 +93,8 @@ public class Player : MonoBehaviour {
 		if (!canMove || character.damaging)
 			return;
 
-		moveVector.x = Input.GetAxisRaw ("Horizontal");
-		moveVector.y = Input.GetAxisRaw ("Vertical");
+		moveVector.x = Input.GetAxisRaw ("Horizontal") * character.speed;
+		moveVector.y = Input.GetAxisRaw ("Vertical") * character.speed;
 
 		if (moveVector.x == 0 && moveVector.y == 0) {
 			// Se não apertou botão
@@ -170,6 +170,7 @@ public class Player : MonoBehaviour {
 	public void ChooseItem (int id) {
 		bag.selectedSlot = id;
 		GameMenu.instance.UpdateItem (selectedItem);
+		SetVisible (true);
 		Resume ();
 	}
 
@@ -229,15 +230,30 @@ public class Player : MonoBehaviour {
 	// Efeitos de Itens
 	// ===============================================================================
 
-	// Checar se está sob o efeito da capa
-	public static bool visible = true;
-
 	// Tempo restante para acabar o efeito do repelente
 	public float repelTime = 0;
 
 	// Checar se está sob efeito do repelente
 	public bool repelling {
 		get { return repelTime > 0; }
+	}
+
+	// Checar se está sob o efeito da capa
+	public static bool visible = true;
+
+	// Mudar visibilidade alterando a cor junto
+	public void SetVisible(bool value) {
+		if (value) {
+			if (!visible) {
+				character.spriteRenderer.color += new Color (0, 0, 0, 0.5f);
+			}
+			visible = true;
+		} else {
+			if (visible) {
+				character.spriteRenderer.color -= new Color (0, 0, 0, 0.5f);
+			}
+			visible = false;
+		}
 	}
 
 	// ===============================================================================

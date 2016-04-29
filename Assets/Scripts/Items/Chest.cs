@@ -13,7 +13,7 @@ public class Chest : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		ci = new ClickItem ();
+		ci = GetComponent<ClickItem> ();
 		opened = false;
 		coins = Random.Range (0, 5);
 	}

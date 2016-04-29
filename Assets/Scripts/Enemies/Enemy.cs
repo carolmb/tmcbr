@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour {
 
 	protected virtual void Start () {
 		originalTile = character.currentTile;
+		transform.position = originalTile.lastObjectPos;
 	}
 
 	protected virtual Tile ClosestToPlayer () {
@@ -37,7 +38,7 @@ public class Enemy : MonoBehaviour {
 		return null;
 	}
 
-	protected virtual Tile FarestToPlayer () {
+	protected virtual Tile FarestFromPlayer () {
 		Tile playerTile = Player.instance.character.currentTile;
 		Tile myTile = character.currentTile;
 		Vector2 dif = playerTile.coordinates - myTile.coordinates;
@@ -71,7 +72,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	protected bool RunFromPlayer () {
-		Tile nextTile = FarestToPlayer ();
+		Tile nextTile = FarestFromPlayer ();
 		if (nextTile != null) {
 			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
 			character.TurnTo (nextPosition);
@@ -109,13 +110,14 @@ public class Enemy : MonoBehaviour {
 	}
 
 	protected void OnDie() {
-		if (spawnTime >= 0)
+		if (spawnTime >= 0) 
 			originalTile.spawnTime = spawnTime;
 		Instantiate (coin, transform.position, transform.rotation);
+		character.currentTile = originalTile;
 	}
 
 	void OnDestroy() {
-		originalTile.currentTileObject.x = character.currentTile.x;
-		originalTile.currentTileObject.y = character.currentTile.y;
+		originalTile.lastObjectPos = transform.position;
 	}
+
 }

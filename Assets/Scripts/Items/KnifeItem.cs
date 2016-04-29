@@ -71,6 +71,7 @@ public class KnifeItem : MonoBehaviour {
 	}
 
 	void DestroyKnife() {
+		Player.instance.canMove = true;
 		Destroy (gameObject);
 	}
 
