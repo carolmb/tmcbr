@@ -174,8 +174,8 @@ public static class StageGenerator {
 	}
 
 	static void SetTransitionsSide(Maze maze1, Tile tile1, Maze maze2, Tile tile2, int direction, int size1, int size2){
-		//Debug.Log (maze1.theme + " to " + maze2.theme); 
-		//Debug.Log (tile1.coordinates);
+		Debug.Log (maze1.theme + " to " + maze2.theme); 
+		Debug.Log (tile1.coordinates + " entrance");
 		int deltaX = 0;
 		int deltaY = 0;
 
@@ -186,11 +186,12 @@ public static class StageGenerator {
 		// Ida para todos os vizinhos
 		float x = 0, y = 0;
 
-		if (direction == Character.UP) {
+		/*if (direction == Character.UP) {
 			deltaY = 1;
 			neighborX = (double)size1/2;
 			x = (float)(tile2.x + size2 * 0.5 - 0.5);
 			y = tile2.y + 1;
+		
 		} else if (direction == Character.LEFT) {
 			deltaX = -1;
 			neighborY = (double)size1/2;
@@ -206,22 +207,47 @@ public static class StageGenerator {
 			neighborX = (double)size1/2;
 			x = (float)(tile2.x + size2 * 0.5 - 0.5);
 			y = tile2.y - 1;
+		}*/
+
+		if (direction == Character.UP) {
+			deltaY = 1;
+			neighborX = ((double)size1)/2;
+			x = (float)(tile2.x + (size2%2 == 0 ? + 0.5 : 0));
+			y = tile2.y + 1;
+
+		} else if (direction == Character.LEFT) {
+			deltaX = -1;
+			neighborY = ((double)size1)/2;
+			x = tile2.x - 1;
+			y = (float)(tile2.y + (size2%2 == 0 ? + 0.5 : 0));
+		} else if (direction == Character.RIGHT) {
+			deltaX = 1;
+			neighborY = ((double)size1)/2;
+			x = tile2.x + 1;
+			y = (float)(tile2.y + (size2%2 == 0 ? + 0.5 : 0));
+		} else if (direction == Character.DOWN) {
+			deltaY = -1;
+			neighborX = ((double)size1)/2;
+			x = (float)(tile2.x + (size2%2 == 0 ? + 0.5 : 0));
+			y = tile2.y - 1;
 		}
 
 		Vector2 destVector = new Vector2 (x, y);
 		if (direction == Character.UP || direction == Character.DOWN) {
 			int j = 0;
-			for (int i = -(int)System.Math.Floor ((double)(neighborX)) + 1; 
-				i < (int)System.Math.Ceiling ((double)(neighborX)) + 1; i++) {
+			for (int i = -(int)System.Math.Ceiling(neighborX) + 1; 
+				i < (int)System.Math.Floor (neighborX) + 1; i++) {
 				Tile tile = maze1.tiles [tile1.x + i, tile1.y + j];
+				Debug.Log (tile.coordinates);
 				SetTransition (maze1, tile, maze2, destVector, direction);
 				maze1.tiles [tile.x, tile.y - deltaY].wallID = 0;
 			}
 		} else {
 			int i = 0;
-			for (int j = -(int)System.Math.Floor ((double)(neighborY)) + 1; 
-				j < (int)System.Math.Ceiling ((double)(neighborY)) + 1; j++) {
+			for (int j = -(int)System.Math.Ceiling(neighborY) + 1; 
+				j < (int)System.Math.Floor (neighborY) + 1; j++) {
 				Tile tile = maze1.tiles [tile1.x + i, tile1.y + j];
+				Debug.Log (tile.coordinates);
 				SetTransition (maze1, tile, maze2, destVector, direction);
 				maze1.tiles [tile.x - deltaX, tile.y].wallID = 0;
 			}

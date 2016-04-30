@@ -97,7 +97,7 @@ public class GameGenerator {
 		Tile t1 = stage1.endTile;
 		Tile t2 = stage2.beginTile;
 
-		StageGenerator.SetTransitions (prevMaze, t1, nextMaze, t2, dir);
+		StageGenerator.SetTransitions (prevMaze, t1, nextMaze, t2, dir, stage1.endSize, stage2.beginSize);
 	}
 
 	static void CreateEnemies(Maze[] mazes, MazeGenerator generator) {
