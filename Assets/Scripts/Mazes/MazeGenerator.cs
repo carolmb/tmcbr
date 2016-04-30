@@ -60,19 +60,6 @@ public abstract class MazeGenerator {
 				}
 			}
 		}
-		/*
-		if (tile.x - delta > 0) {
-			neighbours.Add (maze.tiles [tile.x - delta, tile.y]);
-		}
-		if (tile.x + delta < maze.width - 1) {
-			neighbours.Add (maze.tiles [tile.x + delta, tile.y]);
-		} 
-		if (tile.y - delta > 0) {
-			neighbours.Add (maze.tiles [tile.x, tile.y - delta]);
-		} 
-		if (tile.y + delta < maze.height - 1) {
-			neighbours.Add (maze.tiles [tile.x, tile.y + delta]);
-		}*/
 		return neighbours;
 	}
 
@@ -140,7 +127,7 @@ public abstract class MazeGenerator {
 		for (int i = tile.x - deltaEnemys; i < tile.x + deltaEnemys; i++) {
 			for (int j = tile.y - deltaEnemys; j < tile.y + deltaEnemys; j++) {
 				if (i >= 0 && i < maze.width && j >= 0 && j < maze.height) {
-					if (maze.tiles [i, j].objectName != "") {
+					if (maze.tiles [i, j].objectName != "" || !maze.tiles[i,j].isWalkable) {
 						return false;
 					}
 				}
@@ -157,7 +144,6 @@ public abstract class MazeGenerator {
 		Vector2 begin = FirstTile ().coordinates;
 
 		Tile currentTile = maze.tiles[(int)begin.x, (int)begin.y];
-		//maze.beginTile = currentTile;
 		Stack<Tile> stack = new Stack<Tile> ();
 
 		stack.Push (currentTile);
@@ -171,8 +157,6 @@ public abstract class MazeGenerator {
 				RemoveWall (currentTile, temp);
 			}
 		}
-		//maze.beginTile = null;
-		//maze.endTile = null;
 		return maze;
 	}
 

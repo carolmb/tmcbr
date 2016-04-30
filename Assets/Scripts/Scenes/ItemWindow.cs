@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class ItemWindow : MonoBehaviour {
 
+	public static bool moveAction = false;
+
 	public Button[] itemButtons;
 
 	int beginItemIndex = 0;
@@ -11,7 +13,9 @@ public class ItemWindow : MonoBehaviour {
 	public Button itemLeft;
 	public Button itemRight;
 
-	public void UpdateItemButtons() {
+	public Image itemIcon;
+
+	public void OnEnable() {
 		itemLeft.interactable = beginItemIndex > 0;
 		itemRight.interactable = beginItemIndex + itemButtons.Length < Bag.maxItems;
 
@@ -28,29 +32,40 @@ public class ItemWindow : MonoBehaviour {
 				icon.SetActive (false);
 			}
 		}
+
+		GameMenu.instance.UpdateItem (Player.instance.selectedItem, itemIcon);
 	}
 
 	public void ItemLeft() {
 		GameMenu.instance.ClickItemSound ();
 		beginItemIndex -= itemButtons.Length;
-		UpdateItemButtons ();
+		OnEnable ();
 	}
 
 	public void ItemRight() {
 		GameMenu.instance.ClickItemSound ();
 		beginItemIndex += itemButtons.Length;
-		UpdateItemButtons ();
+		OnEnable ();
 	}
 
 	public void ItemButton(int i) {
-		//GameMenu.instance.ClickItemSound ();
-		Player.instance.ChooseItem (i + beginItemIndex);
-		GameMenu.instance.CloseMenu ();
+		if (moveAction) {
+			// TODO
+		} else {
+			GameMenu.instance.ClickItemSound ();
+			ItemChoices.slot = i + beginItemIndex;
+			GameMenu.instance.itemChoices.gameObject.SetActive (true);
+			gameObject.SetActive (false);
+		}
 	}
 
 	public void Return() {
 		GameMenu.instance.ClickItemSound ();
-		GameMenu.instance.mainWindow.gameObject.SetActive (true);
+		if (moveAction) {
+			GameMenu.instance.itemChoices.gameObject.SetActive (true);
+		} else {
+			GameMenu.instance.mainWindow.gameObject.SetActive (true);
+		}
 		gameObject.SetActive (false);
 	}
 

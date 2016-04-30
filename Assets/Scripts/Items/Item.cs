@@ -10,11 +10,15 @@ public abstract class Item {
 	public string spriteName;
 
 	public bool consumable;
+	public bool canDiscard;
+	public bool canEquip;
 
-	public Item(int id, string spriteName, bool consumable) {
+	public Item(int id, string spriteName, bool consumable, bool canDiscard = true, bool canEquip = true) {
 		this.id = id;
 		this.spriteName = spriteName;
 		this.consumable = consumable;
+		this.canDiscard = canDiscard;
+		this.canEquip = canEquip;
 	}
 
 	// O que acontece quando o jogador usa o item

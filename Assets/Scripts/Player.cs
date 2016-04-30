@@ -167,8 +167,8 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	public void ChooseItem (int id) {
-		bag.selectedSlot = id;
+	public void ChooseItem (int slot) {
+		bag.selectedSlot = slot;
 		GameMenu.instance.UpdateItem (selectedItem);
 		SetVisible (true);
 		Resume ();
