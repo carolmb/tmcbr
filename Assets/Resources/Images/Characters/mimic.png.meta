@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0dcf1a5752701754bbca0f20045c231e
-timeCreated: 1461721956
+timeCreated: 1462187252
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -69,8 +69,8 @@ TextureImporter:
         y: 72
         width: 24
         height: 24
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: mimic_1
@@ -80,8 +80,8 @@ TextureImporter:
         y: 72
         width: 24
         height: 24
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: mimic_2
@@ -91,8 +91,8 @@ TextureImporter:
         y: 72
         width: 24
         height: 24
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: mimic_3
@@ -102,8 +102,8 @@ TextureImporter:
         y: 48
         width: 24
         height: 24
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: mimic_4
@@ -113,8 +113,8 @@ TextureImporter:
         y: 48
         width: 24
         height: 24
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: mimic_5
@@ -124,8 +124,8 @@ TextureImporter:
         y: 48
         width: 24
         height: 24
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: mimic_6
@@ -135,8 +135,8 @@ TextureImporter:
         y: 24
         width: 24
         height: 24
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: mimic_7
@@ -146,8 +146,8 @@ TextureImporter:
         y: 24
         width: 24
         height: 24
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: mimic_8
@@ -157,8 +157,8 @@ TextureImporter:
         y: 24
         width: 24
         height: 24
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: mimic_9
@@ -168,8 +168,8 @@ TextureImporter:
         y: 0
         width: 24
         height: 24
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: mimic_10
@@ -179,8 +179,8 @@ TextureImporter:
         y: 0
         width: 24
         height: 24
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: mimic_11
@@ -190,8 +190,8 @@ TextureImporter:
         y: 0
         width: 24
         height: 24
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     outline: []

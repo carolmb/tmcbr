@@ -64,20 +64,20 @@ public class Tile {
 	public Tile(int x, int y) {
 		this.x = x;
 		this.y = y;
-		ResetObjectTile ();
+		ResetObjectPos ();
 	}
 
-	public Tile(Tile copy) {
-		this.x = copy.x;
-		this.y = copy.y;
+	public Tile(Tile copy, int newX, int newY) {
+		this.x = newX;
+		this.y = newY;
 		this.wallID = copy.wallID;
 		this.floorID = copy.floorID;
 		this.obstacleID = copy.obstacleID;
-		this.lastObjectPos = copy.lastObjectPos;
+		ResetObjectPos ();
 	}
 
-	public void ResetObjectTile() {
-		lastObjectPos = (Vector2)MazeManager.TileToWorldPos (coordinates) + new Vector2(0, Tile.size / 2);
+	public void ResetObjectPos () {
+		lastObjectPos = MazeManager.TileToWorldPos (new Vector2 (x, y)) + new Vector3 (0, Tile.size / 2, Tile.size / 2);
 	}
 
 	public List<Tile> GetNeighbours4 () {

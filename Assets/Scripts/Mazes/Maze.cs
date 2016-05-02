@@ -66,10 +66,7 @@ public class Maze : IEnumerable {
 						int y = j * factorY + kj;
 
 						// Criar tiles com as novas coordenadas
-						expandedTiles [x, y] = new Tile (tiles [i, j]);
-						expandedTiles [x, y] .x = x;
-						expandedTiles [x, y] .y = y;
-
+						expandedTiles [x, y] = new Tile (tiles [i, j], x, y);
 					}
 				}
 			}

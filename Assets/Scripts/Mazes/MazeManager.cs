@@ -88,9 +88,9 @@ public class MazeManager : MonoBehaviour {
 
 	// Cria objeto do tile (prefab do item/inimigo deve estar na pasta Resources/Prefabs)
 	GameObject CreateTileObject(int x, int y, string prefabName) {
+		Vector3 pos = TileToWorldPos (new Vector2 (x, y)) + new Vector3(0, Tile.size / 2, Tile.size / 2);
 		GameObject prefab = Resources.Load<GameObject> ("Prefabs/" + prefabName);
-		GameObject obj = Instantiate (prefab);
-		obj.transform.position = TileToWorldPos (new Vector2 (x, y)) + new Vector3(0, Tile.size / 2, Tile.size / 2);
+		GameObject obj = (GameObject) Instantiate(prefab, pos, Quaternion.identity);
 		obj.transform.SetParent (transform);
 		obj.name = prefabName;
 		return obj;
