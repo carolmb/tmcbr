@@ -39,16 +39,16 @@ public class HallGenerator : MazeGenerator {
 	public override void CreateEnemies (Maze maze) {
 		this.maze = maze;
 		foreach (Tile t in maze.tiles) {
-			if (!HasTransitionNear (t)) {
+			if (!HasTransitionNear (t) && t.isWalkable) {
 				if (EmptyRadiusToEnemies (t)) {
-					if (GetAllWallNeighbours (t).Count == 1 && t.isWalkable) { //mimics
+					if (GetAllWallNeighbours(t).Count > 0 && !maze.tiles [t.x, t.y - 1].isWall) { //mimics
 						if (Random.Range (0, 100) < 20) { //fator random
 							t.objectName = "Enemies/Mimic";
 						} else if (Random.Range (0, 100) < 30) { //fator random
 							t.objectName = "Enemies/KnightArmor";
 						}
 					}
-				} else if (t.isWalkable && !HasObstaclesNear (t)) {
+				} else if (!HasObstaclesNear (t)) {
 					if (Random.Range (0, 100) < 15) {
 						t.obstacleID = 3; // Flores
 					} else if (Random.Range (0, 100) < 15 && !maze.tiles [t.x, t.y - 1].isWall) {

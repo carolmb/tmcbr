@@ -174,8 +174,6 @@ public static class StageGenerator {
 	}
 
 	static void SetTransitionsSide(Maze maze1, Tile tile1, Maze maze2, Tile tile2, int direction, int size1, int size2){
-		Debug.Log (maze1.theme + " to " + maze2.theme); 
-		Debug.Log (tile1.coordinates + " entrance");
 		int deltaX = 0;
 		int deltaY = 0;
 

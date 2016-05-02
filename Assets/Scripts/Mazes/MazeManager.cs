@@ -51,7 +51,7 @@ public class MazeManager : MonoBehaviour {
 			} else if (t.chest > 0) {
 				GameObject chest = CreateTileObject (t.x, t.y, "chest" + t.chest);
 				obstacles [t.x, t.y] = chest.GetComponent<BoxCollider2D> ();
-				Debug.Log ("blah");
+				// Debug.Log ("blah");
 			} else if (t.objectName != "" && t.canSpawn) {
 				CreateTileObject (t.x, t.y, t.objectName);
 				t.lastSpawn = SaveManager.currentPlayTime;
