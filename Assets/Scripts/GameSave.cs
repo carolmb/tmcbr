@@ -17,7 +17,7 @@ public class GameSave {
 		transition = new Transition (0, bigStage.beginTile.x + (bigStage.beginSize - 1) * 0.5f, bigStage.beginTile.y, bigStage.beginDir);
 
 		bag = new Bag ();
-		lifePoints = 1000;
+		lifePoints = 99;
 		playTime = 0;
 	}
 

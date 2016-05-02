@@ -22,7 +22,8 @@ public class ItemChoices : MonoBehaviour {
 
 	public void Equip () {
 		Player.instance.ChooseItem (slot);
-		Return ();
+		GameMenu.instance.CloseMenu ();
+		Player.instance.Resume ();
 	}
 
 	public void Visualize () {

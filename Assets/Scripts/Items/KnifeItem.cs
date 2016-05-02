@@ -11,76 +11,66 @@ public class KnifeItem : MonoBehaviour {
 	public float speed = 5;
 
 	// Tempo máximo até ser destruído
-	public float lifeTime = 2;
+	public float lifeTime = 0.1f;
 
+	// Som da espada
 	public AudioClip sound;
+
+	// O quanto a espada vai rotacionar
+	private Quaternion dest;
+	private Quaternion orig;
+	private float rotPerc = 0;
 
 	void Start () {
 		GameCamera.PlayAudioClip (sound, 0.5f);
 
-		float posx = 0, posy = 0, posz = 0;
+		Vector3 pos = Vector3.zero;
 		switch (Player.instance.character.direction) {
-			case 0:
-				transform.Rotate(0, 0,-120);
-				//posy = Tile.size/4;
-				break;
-			case 1:
-				transform.Rotate (0, 0, 150);
-				posy = Tile.size/4;
-				posx = -Tile.size/4;
-				break;
-			case 2:
-				transform.Rotate (0, 0, -30);
-				posx = Tile.size/4;
-				posy = Tile.size/4;
-				break;
-			case 3:
-				transform.Rotate (0, 0, 60);
-				posy = Tile.size/1.8f;
-				posz = 1;
-				break;
+		case 0: // Pra baixo
+			orig = Quaternion.Euler(0, 0,-135);
+			dest = Quaternion.Euler(0, 0, -45);
+			break;
+		case 1: // Pra esquerda
+			orig = Quaternion.Euler(0, 0, 135);
+			dest = Quaternion.Euler(0, 0, 225);
+			pos.y = 6;
+			pos.x = -6;
+			break;
+		case 2: // Pra direita
+			orig = Quaternion.Euler(0, 0, 45);
+			dest = Quaternion.Euler(0, 0, -45);
+			pos.x = 6;
+			pos.y = 6;
+			break;
+		case 3: // Pra cima
+			orig = Quaternion.Euler(0, 0, 45);
+			dest = Quaternion.Euler(0, 0, 135);
+			pos.y = 16;
+			pos.z = 1;
+			break;
 		}
-		transform.position = Player.instance.transform.position + new Vector3(posx, posy, posz);
-		Destroy (gameObject, lifeTime);
+		transform.position = Player.instance.transform.position + pos;
+		transform.rotation = orig;
+		Destroy(gameObject, lifeTime);
 	}
 
 	void Update () {
-		// Atacar
-//		Tile t = MazeManager.GetTile ((Vector2)transform.position - new Vector2 (0, Tile.size)); 
-		Quaternion target = Quaternion.Euler(0, 0, 0);
-		switch (Player.instance.character.direction) {
-		case 0:
-			Debug.Log("0");
-			target = Quaternion.Euler(0, 0, -30);
-			break;
-		case 1:
-			Debug.Log("1");
-			target = Quaternion.Euler(0, 0, 240);
-			break;
-		case 2:
-			Debug.Log("2");
-			target = Quaternion.Euler(0, 0, 30);
-			break;
-		case 3:
-			Debug.Log("3");
-			target = Quaternion.Euler(0, 0, 120);
-			break;
-		}
-		transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 42);
-		Invoke ("DestroyKnife", 0.1f);
+		rotPerc += Time.deltaTime / lifeTime;
+		transform.rotation = Quaternion.Slerp(orig, dest, rotPerc);
 	}
 
-	void DestroyKnife() {
+	void OnDestroy () {
 		Player.instance.canMove = true;
-		Destroy (gameObject);
+		Player.instance.character.Stop ();
 	}
 
 	// Verifica se um inimigo foi atingido
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.CompareTag ("Enemy")) {
 			Character comp = collider.GetComponent<Character> ();
-			comp.StartCoroutine(comp.Damage (transform.position, damage));
+			comp.Damage (transform.position, damage);
 			Destroy (gameObject);
 		}
 	}
+
 }

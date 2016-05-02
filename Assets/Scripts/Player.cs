@@ -171,7 +171,6 @@ public class Player : MonoBehaviour {
 		bag.selectedSlot = slot;
 		GameMenu.instance.UpdateItem (selectedItem);
 		SetVisible (true);
-		Resume ();
 	}
 
 	public void UseItem () {
@@ -265,7 +264,7 @@ public class Player : MonoBehaviour {
 	// Som dos passos
 	public void Footstep () {
 		int type = character.currentTile.type;
-		GameCamera.PlayAudioClip (stepSounds [type * 3 + Random.Range (0, 3)], 0.5f);
+		GameCamera.PlayAudioClip (stepSounds [type * 3 + Random.Range (0, 3)], 0.5f - 0.35f * type);
 	}
 
 }
