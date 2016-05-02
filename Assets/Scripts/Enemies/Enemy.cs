@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour {
 
@@ -19,6 +20,24 @@ public class Enemy : MonoBehaviour {
 	protected virtual void Start () {
 		originalTile = character.currentTile;
 		transform.position = originalTile.lastObjectPos;
+	}
+
+	protected virtual bool NextToPlayer () {
+		Tile currentTile = character.currentTile;
+		if (character.direction == Character.DOWN) {
+			if (MazeManager.maze.tiles [currentTile.x, currentTile.y - 1] == Player.instance.character.currentTile) {
+				return true;
+			}
+		} else if (character.direction == Character.LEFT) {
+			if (MazeManager.maze.tiles [currentTile.x - 1, currentTile.y] == Player.instance.character.currentTile) {
+				return true;
+			}
+		} else if (character.direction == Character.RIGHT) {
+			if (MazeManager.maze.tiles [currentTile.x + 1, currentTile.y] == Player.instance.character.currentTile) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	protected virtual Tile ClosestToPlayer () {

@@ -5,17 +5,16 @@ using System.Collections.Generic;
 [RequireComponent (typeof(Character))]
 public class KnightArmor : Enemy {
 
-	bool isEnemy;
+	bool isChasing;
 
 	protected override void Awake () {
 		base.Awake ();
-
 	}
 
 	protected override void Start() {
 		base.Start ();
+		isChasing = false;
 		InitialDirection ();
-		isEnemy = Random.Range (0, 2) == 0;
 	}
 
 	void InitialDirection () {
@@ -35,15 +34,23 @@ public class KnightArmor : Enemy {
 	}
 
 	void Update () {
-		if (Player.instance.paused || !isEnemy)
+		if (Player.instance.paused)
 			return;
 
 		if (!character.moving && !character.damaging) {
 			if (Player.instance.repelling) {
 				RunFromPlayer ();
 			} else {
-				ChasePlayer ();
+				UpdateChasing();
+				if (isChasing)
+					ChasePlayer ();
 			}
+		}
+	}
+
+	void UpdateChasing () {
+		if (NextToPlayer ()) {
+			isChasing = true;
 		}
 	}
 

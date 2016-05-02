@@ -57,6 +57,8 @@ public class HallGenerator : MazeGenerator {
 						t.obstacleID = 2; // Cadeira
 					} else if (Random.Range (0, 100) < 50 && !maze.tiles [t.x, t.y - 1].isWall) {
 						t.chest = 1;
+					} else if (Random.Range (0, 100) < 60 && !maze.tiles [t.x, t.y - 1].isWall) {
+						t.obstacleID = 4;
 					}
 				}
 			}
