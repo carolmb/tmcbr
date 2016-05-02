@@ -98,35 +98,6 @@ public static class StageGenerator {
 	} 
 
 	public static Tile GenerateInitialTile(Maze maze, int dir, int size) { 
-		//ver funcionamento para transição entre stages estaticos e procedurais
-		/*Vector2 initialTile = new Vector2();
-		switch (dir) {
-		case Character.UP:
-			initialTile.x = finalTile.x;
-			initialTile.y = 0;
-			if (maze.tiles [(int)initialTile.x, (int)initialTile.y + 2].isWall)
-				return GenerateFinalTile (maze, maze, Character.DOWN, maze.width, maze.height);
-			break;
-		case Character.LEFT:
-			initialTile.x = maze.width - 1;
-			initialTile.y = finalTile.y;
-			if (maze.tiles [(int)initialTile.x - 2, (int)initialTile.y].isWall)
-				return GenerateFinalTile (maze, maze, Character.RIGHT, maze.width, maze.height);
-			break;
-		case Character.RIGHT:
-			initialTile.x = 0;
-			initialTile.y = finalTile.y;
-			if (maze.tiles [(int)initialTile.x + 2, (int)initialTile.y].isWall)
-				return GenerateFinalTile (maze, maze, Character.LEFT, maze.width, maze.height);
-			break;
-		case Character.DOWN:
-			initialTile.x = finalTile.x;
-			initialTile.y = maze.height - 1;
-			if (maze.tiles [(int)initialTile.x, (int)initialTile.y - 2].isWall)
-				return GenerateFinalTile (maze, maze, Character.UP, maze.width, maze.height);
-			break;
-		}
-		return maze.tiles[(int)initialTile.x, (int)initialTile.y];*/
 		return GenerateFinalTile (maze, 3 - dir, size);
 	}
 
@@ -183,30 +154,6 @@ public static class StageGenerator {
 		// tem que passar por toda a entrada transformando em chão 
 		// Ida para todos os vizinhos
 		float x = 0, y = 0;
-
-		/*if (direction == Character.UP) {
-			deltaY = 1;
-			neighborX = (double)size1/2;
-			x = (float)(tile2.x + size2 * 0.5 - 0.5);
-			y = tile2.y + 1;
-		
-		} else if (direction == Character.LEFT) {
-			deltaX = -1;
-			neighborY = (double)size1/2;
-			x = tile2.x - 1;
-			y = (float)(tile2.y + size2 * 0.5 - 0.5);
-		} else if (direction == Character.RIGHT) {
-			deltaX = 1;
-			neighborY = (double)size1/2;
-			x = tile2.x + 1;
-			y = (float)(tile2.y + size2 * 0.5 - 0.5);
-		} else if (direction == Character.DOWN) {
-			deltaY = -1;
-			neighborX = (double)size1/2;
-			x = (float)(tile2.x + size2 * 0.5 - 0.5);
-			y = tile2.y - 1;
-		}*/
-
 		if (direction == Character.UP) {
 			deltaY = 1;
 			neighborX = ((double)size1)/2;

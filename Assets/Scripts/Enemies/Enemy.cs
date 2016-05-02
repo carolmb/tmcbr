@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour {
 	void OnTriggerStay2D (Collider2D other) {
 		if (other.CompareTag ("Player")) {
 			if (!Player.instance.character.damaging  && !Player.instance.immune)
-				StartCoroutine(Player.instance.character.Damage ((Vector2) transform.position, damage));
+				Player.instance.character.Damage ((Vector2) transform.position, damage);
 		}
 	}
 

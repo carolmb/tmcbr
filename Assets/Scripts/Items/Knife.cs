@@ -18,7 +18,7 @@ public class Knife : Item {
 			lastUse = Time.time;
 			knifeOnUse = GameObject.Instantiate(knife);
 			Player.instance.canMove = false;
-			Player.instance.character.Stop	();
+			Player.instance.character.PlayAnimation ("Walking"); // Temporário (TODO: animação "slash")
 		}
 	}
 

@@ -8,6 +8,7 @@ public class Medicine : Item {
 	public override void OnUse () {
 		Player.instance.character.lifePoints++;
 		GameMenu.instance.UpdateLife(Player.instance.character.lifePoints);
+		//Player.instance.character.PlayAnimation ("Drink", false);
 	}
 
 }

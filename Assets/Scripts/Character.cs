@@ -167,6 +167,11 @@ public class Character : MonoBehaviour {
 		moving = false;
 	}
 
+	public void PlayAnimation(string name, bool usesDirection = true) {
+		animator.Play (usesDirection ? name + direction : name);
+		animator.speed = 1;
+	}
+
 	// ===============================================================================
 	// Colisão
 	// ===============================================================================
@@ -193,13 +198,13 @@ public class Character : MonoBehaviour {
 
 	// Tenta se mover no dado ângulo
 	// Se conseguir, move e retorna true; se não, apenas retorna false
-	bool TryMove(float angle, float speed, bool animate) {
+	bool TryMove (float angle, float speed, bool animate) {
 		Vector2 translation = GameManager.AngleToVector (angle) * speed * 60 * Time.deltaTime;
 		return InstantMove (translation, animate);
 	}
 
 	// Verifica se tal posição é passável para o personagem (checa cada ponto de seu colisor)
-	private bool CanMoveTo(Vector2 newPosition) {
+	private bool CanMoveTo (Vector2 newPosition) {
 		if (!collides) {
 			return newPosition.x >= 0 && newPosition.y >= 0 &&
 				newPosition.x <= (MazeManager.maze.width - 1) * Tile.size &&
@@ -219,7 +224,7 @@ public class Character : MonoBehaviour {
 	}
 
 	// Verifica se um dado ponto está colidindo em algum tile
-	public bool Collides(float x, float y) {
+	public bool Collides (float x, float y) {
 		return MazeManager.Collides (x, y);
 	}
 
@@ -251,7 +256,15 @@ public class Character : MonoBehaviour {
 	public AudioClip damageSound;
 
 	// Animação de dano
-	public IEnumerator Damage(Vector2 origin, int value) {
+	public Coroutine Damage(Vector2 origin, int value) {
+		if (currentMovement != null) {
+			StopCoroutine (currentMovement);
+		}
+		currentMovement = StartCoroutine (Damage_coroutine (origin, value));
+		return currentMovement;
+	}
+
+	private IEnumerator Damage_coroutine(Vector2 origin, int value) {
 		damaging = true;
 
 		lifePoints = Mathf.Max (0, lifePoints - value);
@@ -278,11 +291,6 @@ public class Character : MonoBehaviour {
 
 	// Passo que o personagem dá para trás quando leva dano
 	private IEnumerator DamageStep(Vector2 origin) {
-		if (currentMovement != null) {
-			StopCoroutine (currentMovement);
-			currentMovement = null;
-		}
-
 		Vector2 direction = ((Vector2)transform.position - origin).normalized * damageSpeed;
 		float time = 0;
 		while (time < damageDuration) {
