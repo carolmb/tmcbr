@@ -21,6 +21,17 @@ public static class StageGenerator {
 				initialDir
 			);
 		}
+
+		for (int i = 0; i < mazeCount; i++) {
+			int x = UnityEngine.Random.Range (0, mazeCount);
+			int y = UnityEngine.Random.Range (0, mazeCount);
+			initialDir = GenerateDir (initialDir);
+			SetTransitions (
+				mazes [x],
+				mazes [y],
+				initialDir
+			);
+		}
 	}
 
 	//retorna uma direção diferente do argumento dado
@@ -75,7 +86,7 @@ public static class StageGenerator {
 		}
 
 		finalTile = maze.tiles [x, y];
-		List<Tile> n = GetNeighbours (maze, finalTile, 6);
+		List<Tile> n = GetNeighbours (maze, finalTile, size/2 + 1);
 		foreach (Tile t in n) {
 			if (t.transition != null)
 				return GenerateFinalTile (maze, dir, size);
@@ -142,6 +153,9 @@ public static class StageGenerator {
 
 		//volta
 		SetTransitionsSide (maze2, tile2, maze1, tile1, 3 - direction, size2, size1);
+
+		tile1 = null;
+		tile2 = null;
 	}
 
 	static void SetTransitionsSide(Maze maze1, Tile tile1, Maze maze2, Tile tile2, int direction, int size1, int size2){

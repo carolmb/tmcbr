@@ -25,7 +25,7 @@ public class GameGenerator {
 	public static Stage Create () {
 		Stage[] stages = new Stage[6];
 
-		int size1 = 1; // Random.Range(5, 7);
+		int size1 = 3; // Random.Range(5, 7);
 		int size3 = 1;
 		int size5 = 1;
 
