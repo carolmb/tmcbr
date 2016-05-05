@@ -9,16 +9,27 @@ public abstract class Item {
 	// Item picture
 	public string spriteName;
 
-	public bool consumable;
+	public int price;
+	public int count;
+
 	public bool canDiscard;
 	public bool canEquip;
 
-	public Item(int id, string spriteName, bool consumable, bool canDiscard = true, bool canEquip = true) {
+	public Item(int id, string spriteName, int price, int count = 0, bool canDiscard = true, bool canEquip = true) {
 		this.id = id;
 		this.spriteName = spriteName;
-		this.consumable = consumable;
+		this.price = price;
+		this.count = count;
 		this.canDiscard = canDiscard;
 		this.canEquip = canEquip;
+	}
+
+	public bool consumable {
+		get { return count > 0; }
+	}
+
+	public int totalPrice {
+		get { return consumable ? price * count : price; }
 	}
 
 	// O que acontece quando o jogador usa o item

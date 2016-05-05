@@ -3,7 +3,7 @@ using System.Collections;
 
 public class InvisibilityCloak : Item {
 
-	public InvisibilityCloak(int id) : base(id, "InvisibilityCloak", false) {}
+	public InvisibilityCloak(int id) : base(id, "InvisibilityCloak", 100) {}
 
 	public override void OnUse() {
 		AudioClip clip = Resources.Load<AudioClip> ("Sounds/cloth");

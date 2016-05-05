@@ -8,7 +8,7 @@ public class Slingshot : Item {
 	float lastUse = 0;
 	float delay = 0.25f;
 
-	public Slingshot(int id) : base(id, "Slingshot", false) {
+	public Slingshot(int id) : base(id, "Slingshot", 10, 5) {
 		rock = Resources.Load<GameObject> ("Prefabs/Rock");
 	}
 

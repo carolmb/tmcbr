@@ -1,70 +1,80 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ItemWindow : MonoBehaviour {
+public class ShopWindow : MonoBehaviour {
 
-	public static bool moveAction = false;
+	public static int[] items;
+
+	public static Item GetItem(int position) {
+		if (position < 0 || position >= items.Length)
+			return null;
+		if (items [position] == -1)
+			return null;
+		return Item.DB [items [position]];
+	}
 
 	public Button[] itemButtons;
-
+	
 	int beginItemIndex = 0;
-
+	
 	public Button itemLeft;
 	public Button itemRight;
-
-	public Image itemIcon;
 
 	public void OnEnable() {
 		itemLeft.interactable = beginItemIndex > 0;
 		itemRight.interactable = beginItemIndex + itemButtons.Length < Bag.maxItems;
-
+		
 		for (int i = 0; i < itemButtons.Length; i++) {
 			GameObject icon = itemButtons [i].transform.GetChild (0).gameObject;
-			Item item = Player.instance.bag.GetItem (i + beginItemIndex);
+			Item item = GetItem (i + beginItemIndex);
 			if (item != null) {
-				itemButtons [i].interactable = true;
+				itemButtons [i].interactable = !AlreadyHave(item);
 
 				icon.SetActive (true);
 				Image img = icon.GetComponent<Image> ();
 				GameMenu.instance.UpdateItem (item, img);
-
 			} else {
 				itemButtons [i].interactable = false;
 				icon.SetActive (false);
 			}
 		}
-
-		GameMenu.instance.UpdateItem (Player.instance.selectedItem, itemIcon);
 	}
 
-	public void ItemLeft() {
+	public bool AlreadyHave(Item item) {
+		if (item.consumable)
+			return false;
+		foreach(Item i in SaveManager.currentSave.bag) {
+			if (i.id == item.id)
+				return true;
+		}
+		return false;
+	}
+	
+	public void ShopLeft() {
 		GameMenu.instance.ClickItemSound ();
 		beginItemIndex -= itemButtons.Length;
 		OnEnable ();
 	}
-
-	public void ItemRight() {
+	
+	public void ShopRight() {
 		GameMenu.instance.ClickItemSound ();
 		beginItemIndex += itemButtons.Length;
 		OnEnable ();
 	}
-
+	
 	public void ItemButton(int i) {
 		GameMenu.instance.ClickItemSound ();
-		ItemChoices.slot = i + beginItemIndex;
-		GameMenu.instance.itemChoices.gameObject.SetActive (true);
+		ShopMenu.instance.shopChoices.SetItem (GetItem (i + beginItemIndex));
+		ShopMenu.instance.shopChoices.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
 
 	public void Return() {
-		GameMenu.instance.ClickItemSound ();
-		if (moveAction) {
-			GameMenu.instance.itemChoices.gameObject.SetActive (true);
-		} else {
-			GameMenu.instance.mainWindow.gameObject.SetActive (true);
-		}
+		GameMenu.instance.CloseMenu ();
 		gameObject.SetActive (false);
 	}
+
 
 }

@@ -177,9 +177,8 @@ public class Player : MonoBehaviour {
 		if (selectedItem != null) {
 			selectedItem.OnUse ();
 			if (selectedItem.consumable) {
-				bag.itemIDs[bag.selectedSlot] = -1;
-				bag.selectedSlot = -1;
-				GameMenu.instance.UpdateItem (null);
+				bag.Consume(bag.selectedSlot);
+				GameMenu.instance.UpdateItem (selectedItem);
 			}
 		}
 	}

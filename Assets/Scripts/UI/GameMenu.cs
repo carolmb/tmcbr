@@ -81,6 +81,8 @@ public class GameMenu : MonoBehaviour {
 		} else {
 			image.gameObject.SetActive (true);
 			image.sprite = Resources.Load<Sprite> ("Images/Items/" + item.spriteName);
+			Text t = image.GetComponentInChildren<Text> ();
+			t.text = item.consumable ? "x" + item.count : "";
 		}
 	}
 

@@ -11,9 +11,7 @@ public class Gate : MonoBehaviour {
 		pos.z = pos.y - 1;
 		transform.position = pos;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+	//TODO: animaçao de abrir quando o player se aproximar, parecida com o do espelho
+
 }

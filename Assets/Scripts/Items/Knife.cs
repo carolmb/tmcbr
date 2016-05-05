@@ -9,7 +9,7 @@ public class Knife : Item {
 	float lastUse = 0;
 	float delay = 0.01f;
 
-	public Knife(int id) : base(id, "Knife", false) {
+	public Knife(int id) : base(id, "Knife", 50) {
 		knife = Resources.Load<GameObject>("Prefabs/Knife");
 	}
 
