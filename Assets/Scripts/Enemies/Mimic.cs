@@ -4,8 +4,11 @@ using System.Collections.Generic;
 
 public class Mimic : Enemy {
 
+	bool isChasing;
+
 	protected override void Awake () {
 		base.Awake ();
+		isChasing = false;
 	}
 
 	void Update () {
@@ -15,10 +18,13 @@ public class Mimic : Enemy {
 		if (!character.moving && !character.damaging) {
 			if (Player.instance.repelling) {
 				RunFromPlayer ();
-			} else {
+			} else if (isChasing) {
 				ChasePlayer ();
 			}
 		}
 	}
 
+	void OnInteract() {
+		isChasing = true;
+	}
 }

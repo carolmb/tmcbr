@@ -29,6 +29,9 @@ public class KnightArmor : Enemy {
 		} else if (MazeManager.maze.tiles [x - 1, y].isWall) {
 			Vector3 wpos = MazeManager.TileToWorldPos (new Vector2 (x + 1, y)) + new Vector3 (0, Tile.size / 2, 0);
 			character.TurnTo (new Vector2 (wpos.x, wpos.y));
+		} else if (MazeManager.maze.tiles [x, y - 1].isWall) {
+			Vector3 wpos = MazeManager.TileToWorldPos (new Vector2 (x, y + 1)) + new Vector3 (0, Tile.size / 2, 0);
+			character.TurnTo (new Vector2 (wpos.x, wpos.y));		
 		}
 		character.Stop ();
 	}
@@ -42,16 +45,26 @@ public class KnightArmor : Enemy {
 				RunFromPlayer ();
 			} else {
 				UpdateChasing();
-				if (isChasing)
-					ChasePlayer ();
+				if (isChasing) {
+					if (!ChasePlayer ())
+						InitialDirection ();
+				}
 			}
 		}
 	}
 
 	void UpdateChasing () {
-		if (NextToPlayer ()) {
-			isChasing = true;
+		if (!isChasing && NextToPlayer ()) {
+			Invoke ("StartChasing", 1);
 		}
 	}
 
+	void StartChasing() {
+		isChasing = true;
+	}
+
+	protected override void OnDamage () {
+		base.OnDamage ();
+		StartChasing ();
+	}
 }
