@@ -5,14 +5,12 @@ using UnityEngine.UI;
 
 public class ShopWindow : ItemWindow {
 
-	public static int[] items;
-
 	public override Item GetItem(int position) {
-		if (position < 0 || position >= items.Length)
+		if (position < 0 || position >= ShopMenu.itemList.Length)
 			return null;
-		if (items [position] == -1)
+		if (ShopMenu.itemList [position] == -1)
 			return null;
-		return Item.DB [items [position]];
+		return Item.DB [ShopMenu.itemList [position]];
 	}
 
 	public override int GetCount (int slot) {
@@ -20,7 +18,11 @@ public class ShopWindow : ItemWindow {
 	}
 
 	public override int MaxItems() {
-		return items.Length;
+		return ShopMenu.itemList.Length;
+	}
+
+	public override void OnEnable () {
+		SetButtons ();
 	}
 
 	public override bool ButtonEnable(int slot) {

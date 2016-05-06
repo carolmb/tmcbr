@@ -11,7 +11,7 @@ public class ShopMenu : MenuBase {
 
 	public static int[] itemList;
 
-	void Awake() {
+	void Awake () {
 		instance = this;
 	}
 

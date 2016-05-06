@@ -1,27 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Chest : MonoBehaviour {
-
-	private Animator animator;
-
-	public Sprite[] sprites;
+public class Chest : CharacterBase {
 
 	// Moedas
-	private int coins;
+	public AudioClip coinSound;
 
-	// Barulho abrir baú
+	public bool open = false;
+
+	// Barulho de abrir baú
 	public AudioClip openSound;
-	public int direction;
+
+	public Sprite[] openSprites;
 
 	// Use this for initialization
 	void Start () {
-		coins = Random.Range (0, 5);
 		animator = GetComponent<Animator> ();
-
-		// TODO: mudar direção (direction e sprite)
-
-		GetComponent<SpriteRenderer> ().sprite = sprites [direction];
+		InitialDirection ();
+		if (open) {
+			spriteRenderer.sprite = openSprites [direction];
+		}
 	}
 
 	public void OnInteract() {
@@ -35,14 +33,20 @@ public class Chest : MonoBehaviour {
 		// Não é mais possível interagir
 		Destroy (GetComponent<Interactable> ());
 
-		// Adiciona as moedas
-		Player.instance.IncrementCoins(coins);
-
 		// Muda o tipo do objeto
 		t.chest = 2; // Baú aberto
 
-		animator.Play ("Open" + direction);
+		animator.speed = 1;
 		GameCamera.PlayAudioClip (openSound);
+		Invoke ("IncrementCoins", openSound.length);
+	}
+
+	void IncrementCoins() {
+		// Adiciona as moedas
+		int coins = Random.Range (0, 5);
+
+		Player.instance.IncrementCoins(coins);
+		GameCamera.PlayAudioClip (coinSound);
 	}
 
 }

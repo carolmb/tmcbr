@@ -19,7 +19,7 @@ TextureImporter:
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -244,13 +244,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 40.2}
-        - {x: -13, y: 36.2}
-        - {x: -13, y: -4.799999}
-        - {x: 7, y: -4.799999}
-        - {x: 14, y: 0.20000076}
-        - {x: 14, y: 32.2}
-        - {x: 11, y: 40.2}
+      - - {x: 13, y: 34.2}
+        - {x: 10, y: 40.2}
+        - {x: -7, y: 40.2}
+        - {x: -13, y: 37.2}
+        - {x: -13, y: 9.200001}
+        - {x: -10, y: -3.7999992}
+        - {x: -8, y: -4.799999}
+        - {x: 5, y: -4.799999}
+        - {x: 9, y: 0.20000076}
+        - {x: 14, y: 7.200001}
+        - {x: 14, y: 23.2}
     - name: armor_10
       rect:
         serializedVersion: 2
@@ -282,13 +286,12 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: -7, y: 40.2}
-        - {x: -13, y: 35.2}
-        - {x: -13, y: -3.7999992}
-        - {x: -10, y: -4.799999}
-        - {x: 10, y: -4.799999}
-        - {x: 14, y: 5.200001}
-        - {x: 14, y: 29.2}
-        - {x: 10, y: 40.2}
+        - {x: -13, y: 37.2}
+        - {x: -13, y: -4.799999}
+        - {x: 13, y: -4.799999}
+        - {x: 14, y: -3.7999992}
+        - {x: 14, y: 39.2}
+        - {x: 13, y: 40.2}
     outline: []
   spritePackingTag: 
   userData: 

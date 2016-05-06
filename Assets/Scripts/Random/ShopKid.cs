@@ -8,7 +8,7 @@ public class ShopKid : MonoBehaviour {
 
 	public void OnInteract() {
 		ShopMenu.itemList = itemList;
-		ShopMenu.instance.Open ();
+		GameHUD.instance.shopMenu.Open ();
 	}
 
 }

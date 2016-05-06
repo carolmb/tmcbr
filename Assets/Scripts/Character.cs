@@ -2,19 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[RequireComponent (typeof(Animator))]
-[RequireComponent (typeof(SpriteRenderer))]
-[RequireComponent (typeof(BoxCollider2D))]
-public class Character : MonoBehaviour {
+public class Character : CharacterBase {
 
-	private Animator animator;
-	public SpriteRenderer spriteRenderer { get; private set; }
 	private BoxCollider2D boxCollider;
-		
-	void Awake () {
-		animator = GetComponent<Animator> ();
+
+	protected override void Awake () {
+		base.Awake ();
 		boxCollider = GetComponent<BoxCollider2D> ();
-		spriteRenderer = GetComponent<SpriteRenderer> ();
 		Stop ();
 	}
 
@@ -23,80 +17,6 @@ public class Character : MonoBehaviour {
 		Vector3 pos = transform.position;
 		pos.z = pos.y;
 		transform.position = pos;
-	}
-
-	public bool isPlayer {
-		get { return Player.instance.gameObject == gameObject; }
-	}
-
-	// ===============================================================================
-	// Direção
-	// ===============================================================================
-
-	// Valores do Animator Controller equivalente a cada direção
-	public const int DOWN = 0;
-	public const int LEFT = 1;
-	public const int RIGHT = 2;
-	public const int UP = 3;
-
-	// Parâmaetro direção (usa diretamente o parâmetro do Animator Controller
-	public int direction {
-		get {
-			return animator.GetInteger ("Direction");
-		}
-		set {
-			animator.SetInteger ("Direction", value);
-		}
-	}
-
-	public int lookingAngle {
-		get {
-			return DirectionToAngle (direction);
-		}
-	}
-
-	// Converte um ângulo para uma direção (usar a imagem do personagem como referência)
-	public static int AngleToDirection(int angle) {
-		while (angle < 0)
-			angle += 360;
-		while (angle >= 360)
-			angle -= 360;
-		switch (angle) {
-		case 0:
-			return RIGHT;
-		case 90:
-			return UP;
-		case 180:
-			return LEFT;
-		case 270:
-			return DOWN;
-		}
-		return 0;
-	}
-
-	// Converte um ângulo para uma direção
-	public static int DirectionToAngle(int direction) {
-		switch (direction) {
-		case RIGHT:
-			return 0;
-		case UP:
-			return 90;
-		case LEFT:
-			return 180;
-		case DOWN:
-			return 270;
-		}
-		return 0;
-	}
-
-	// Olha na direção de um ângulo
-	public void TurnTo(float angle) {
-		direction = AngleToDirection(Mathf.RoundToInt (angle / 90) * 90);
-	}
-
-	// Olha em direção a um ponto
-	public void TurnTo(Vector2 point) {
-		TurnTo (GameManager.VectorToAngle (point - (Vector2)transform.position));
 	}
 
 	// ===============================================================================
@@ -123,7 +43,7 @@ public class Character : MonoBehaviour {
 				animator.speed = 1;
 			return true;
 		} else {
-			Debug.Log ("couldn't move");
+			//Debug.Log ("couldn't move");
 			return false;
 		}
 	}
@@ -164,17 +84,9 @@ public class Character : MonoBehaviour {
 		moving = false;
 	}
 
-
-	// Sempre use essa função para finalizar o movimento do personagem
-	public void Stop () {
-		animator.Play("Walking" + direction, -1, 0);
-		animator.speed = 0;
+	public override void Stop() {
+		base.Stop ();
 		moving = false;
-	}
-
-	public void PlayAnimation(string name, bool usesDirection = true) {
-		animator.Play (usesDirection ? name + direction : name);
-		animator.speed = 1;
 	}
 
 	// ===============================================================================
@@ -233,16 +145,6 @@ public class Character : MonoBehaviour {
 		return MazeManager.Collides (x, y);
 	}
 
-	// Tile atual do personagem
-	public Tile currentTile {
-		get {
-			Vector2 tileCoord = MazeManager.WorldToTilePos(transform.position - new Vector3(0, Tile.size / 2, 0));
-			return MazeManager.maze.tiles [(int)tileCoord.x, (int)tileCoord.y];
-		} set {
-			transform.position = MazeManager.TileToWorldPos (value.coordinates) + new Vector3 (0, Tile.size / 2, 0);
-		}
-	}
-
 	// ===============================================================================
 	// Dano e Morte
 	// ===============================================================================
@@ -298,8 +200,13 @@ public class Character : MonoBehaviour {
 	private IEnumerator DamageStep(Vector2 origin) {
 		Vector2 direction = ((Vector2)transform.position - origin).normalized * damageSpeed;
 		float time = 0;
+		bool broke = false;
 		while (time < damageDuration) {
-			TryMove (direction, false);
+			if (!broke) {
+				if (float.IsNaN(TryMove (direction, false))) {
+					broke = true;
+				}
+			}
 			yield return null;
 			time += Time.deltaTime;
 		}

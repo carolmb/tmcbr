@@ -6,8 +6,9 @@ public class Mimic : Enemy {
 
 	bool isChasing;
 
-	protected override void Awake () {
-		base.Awake ();
+	protected override void Start () {
+		base.Start ();
+		character.InitialDirection ();
 		isChasing = false;
 	}
 

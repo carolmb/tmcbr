@@ -9,12 +9,12 @@ public class ShopChoiceWindow : SlotChoiceWindow {
 	public AudioClip buySound;
 
 	void OnEnable () {
-		UpdatePrice (item.price);
+		UpdatePrice (item.totalPrice);
 		UpdateItem (item, item.count);
 		buyButton.interactable = Bag.current.coins >= item.totalPrice;
 	}
 		
-	public void UpdatePrice(int value) {
+	public void UpdatePrice (int value) {
 		priceText.text = "x" + value;
 	}
 

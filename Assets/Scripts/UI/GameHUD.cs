@@ -6,6 +6,9 @@ public class GameHUD : MonoBehaviour {
 
 	public static GameHUD instance;
 
+	public MainMenu mainMenu;
+	public ShopMenu shopMenu;
+
 	void Awake () {
 		instance = this;
 	}

@@ -183,6 +183,7 @@ public class Player : MonoBehaviour {
 				int pos = Bag.current.selectedPosition;
 				ItemSlot slot = Bag.current.selectedSlot;
 				Bag.current.Consume(pos);
+				slot = Bag.current.selectedSlot;
 				if (slot == null)
 					GameHUD.instance.UpdateItem (null, 0);
 				else

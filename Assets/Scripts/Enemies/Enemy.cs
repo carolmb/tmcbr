@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour {
 		transform.position = originalTile.lastObjectPos;
 	}
 
-	protected virtual bool NextToPlayer () {
+	protected virtual bool PlayerInFront () {
 		Tile currentTile = character.currentTile;
 		if (character.direction == Character.DOWN) {
 			if (MazeManager.maze.tiles [currentTile.x, currentTile.y - 1] == Player.instance.character.currentTile) {
@@ -34,6 +34,10 @@ public class Enemy : MonoBehaviour {
 			}
 		} else if (character.direction == Character.RIGHT) {
 			if (MazeManager.maze.tiles [currentTile.x + 1, currentTile.y] == Player.instance.character.currentTile) {
+				return true;
+			}
+		} else {
+			if (MazeManager.maze.tiles [currentTile.x, currentTile.y + 1] == Player.instance.character.currentTile) {
 				return true;
 			}
 		}
@@ -129,9 +133,11 @@ public class Enemy : MonoBehaviour {
 	}
 
 	protected void OnDie() {
+		Destroy (character.spriteRenderer);
 		if (spawnTime >= 0) 
 			originalTile.spawnTime = spawnTime;
 		Instantiate (coin, transform.position, transform.rotation);
+
 		character.currentTile = originalTile;
 	}
 

@@ -6,6 +6,7 @@ public class MenuBase : MonoBehaviour {
 
 	public virtual void Open () {
 		GameHUD.ClickItemSound ();
+		GameHUD.instance.gameObject.SetActive(false);
 		Player.instance.Pause ();
 		gameObject.SetActive (true);
 	}
@@ -15,6 +16,7 @@ public class MenuBase : MonoBehaviour {
 			transform.GetChild (i).gameObject.SetActive (false);
 		}
 		Player.instance.Resume ();
+		GameHUD.instance.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
 

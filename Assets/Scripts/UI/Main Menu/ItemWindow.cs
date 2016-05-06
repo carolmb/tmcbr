@@ -30,7 +30,7 @@ public class ItemWindow : MonoBehaviour {
 		return true;
 	}
 
-	public void OnEnable () {
+	public virtual void OnEnable () {
 		SetButtons ();
 		if (Bag.current.selectedSlot == null) {
 			MainMenu.instance.UpdateItem (null, 0);

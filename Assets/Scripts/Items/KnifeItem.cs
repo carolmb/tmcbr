@@ -68,7 +68,9 @@ public class KnifeItem : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.CompareTag ("Enemy")) {
 			Character comp = collider.GetComponent<Character> ();
-			comp.Damage (transform.position, damage);
+			if (!comp.damaging) {
+				comp.Damage (transform.position, damage);
+			}
 			Destroy (gameObject);
 		}
 	}
