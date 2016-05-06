@@ -27,4 +27,16 @@ public class Mimic : Enemy {
 	void OnInteract() {
 		isChasing = true;
 	}
+
+	protected override void OnDamage () {
+		base.OnDamage ();
+		isChasing = true;
+	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+		if (other.CompareTag ("Player")) {
+			isChasing = true;
+		}
+	}
+
 }

@@ -19,14 +19,14 @@ public class SaveWindow : MonoBehaviour {
 	}
 
 	public void Save(int id) {
-		GameMenu.instance.ClickItemSound ();
+		GameHUD.ClickItemSound ();
 		SaveManager.SaveGame (id, saveName.text);
 		OnEnable ();
 	}
 
 	public void Return() {
-		GameMenu.instance.ClickItemSound ();
-		GameMenu.instance.mainWindow.gameObject.SetActive (true);
+		GameHUD.ClickItemSound ();
+		MainMenu.instance.mainWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
 

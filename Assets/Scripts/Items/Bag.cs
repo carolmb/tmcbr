@@ -3,39 +3,52 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
+public class ItemSlot {
+	// Classe auxiliar para armazenas ID + quantidade
+	public int id;
+	public int count;
+	public ItemSlot(int id, int count = 1) {
+		this.id = id;
+		this.count = count;
+	}
+}
+
+[System.Serializable]
 public class Bag : IEnumerable<Item> {
 
 	public static readonly int maxItems = 12;
 
 	private ItemSlot[] itemSlots;
-	public int selectedSlot;
+	public int selectedPosition;
 	public int coins;
 	public int roses;
 
-	[System.Serializable]
-	private class ItemSlot {
-		public int id;
-		public int count;
-		public ItemSlot(int id, int count = 1) {
-			this.id = id;
-			this.count = count;
-		}
-	}
-
 	public Bag () {
 		itemSlots = new ItemSlot[maxItems];
-		itemSlots [0] = new ItemSlot (0, 1);
+		itemSlots [0] = new ItemSlot (0, 4);
 		itemSlots [1] = new ItemSlot (1, 1);
 		itemSlots [2] = new ItemSlot (2, 1);
 		itemSlots [3] = new ItemSlot (3, 1);
 		itemSlots [4] = new ItemSlot (4, 1);
 		coins = 0;
 		roses = 0;
-		selectedSlot = 0;
+		selectedPosition = 0;
 	}
 
-	public int selectedItemID {
-		get { return itemSlots [selectedSlot] == null ? -1 : itemSlots [selectedSlot].id; }
+	public static Bag current {
+		get { return SaveManager.currentSave.bag; }
+	}
+
+	// ===============================================================================
+	// Acesso aos slots
+	// ===============================================================================
+
+	public Item selectedItem {
+		get { return GetItem(selectedPosition); }
+	}
+
+	public ItemSlot selectedSlot {
+		get { return GetSlot (selectedPosition); }
 	}
 
 	public Item GetItem(int position) {
@@ -46,11 +59,15 @@ public class Bag : IEnumerable<Item> {
 		return Item.DB [itemSlots [position].id];
 	}
 
-	public int GetCount(int position) {
+	public ItemSlot GetSlot(int position) {
 		if (position < 0 || position >= maxItems)
-			return 0;
-		return itemSlots [position].count;
+			return null;
+		return itemSlots [position];
 	}
+
+	// ===============================================================================
+	// Adicionar e remover itens
+	// ===============================================================================
 
 	public void Add(Item item, int slot) {
 		itemSlots [slot] = new ItemSlot (item.id, item.count);
@@ -60,6 +77,10 @@ public class Bag : IEnumerable<Item> {
 		itemSlots [slot].count++;
 	}
 
+	public void Discard(int slot) {
+		itemSlots[slot] = null;
+	}
+
 	public void Consume(int slot) {
 		itemSlots [slot].count --;
 		if (itemSlots[slot].count == 0) {
@@ -67,9 +88,9 @@ public class Bag : IEnumerable<Item> {
 		}
 	}
 
-	public void Discard(int slot) {
-		itemSlots[slot] = null;
-	}
+	// ===============================================================================
+	// Percorrer os itens
+	// ===============================================================================
 
 	public IEnumerator<Item> GetEnumerator() {
 		for (int i = 0; i < itemSlots.Length; i++) {

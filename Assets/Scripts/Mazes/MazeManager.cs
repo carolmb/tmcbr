@@ -145,17 +145,21 @@ public class MazeManager : MonoBehaviour {
 		if (p.x < 0 || p.x >= maze.width || p.y < 0 || p.y >= maze.height) {
 			return true;
 		}
-		int tx = (int)p.x;
-		int ty = (int)p.y;
-		if (maze.tiles [tx, ty].isWall) {
+		Tile t = maze.tiles [(int)p.x, (int)p.y];
+		if (t.isWall) {
 			return true;
 		}
-		if (obstacles [tx, ty] == null) {
+		return CollidesObstacle (t, x, y);
+	}
+
+	// Verifica se o ponto (x, y) colide com algum obstaculo no tile t
+	public static bool CollidesObstacle(Tile t, float x, float y) {
+		if (obstacles [t.x, t.y] == null) {
 			return false;
 		}
 		Rect r = new Rect ();
-		r.size = obstacles [tx, ty].size;
-		r.center = obstacles [tx, ty].bounds.center - new Vector3(0, Tile.size / 2, 0);
+		r.size = obstacles [t.x, t.y].size;
+		r.center = obstacles [t.x, t.y].bounds.center - new Vector3(0, Tile.size / 2, 0);
 		return r.Contains (new Vector2 (x, y));
 	}
 

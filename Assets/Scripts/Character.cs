@@ -123,6 +123,7 @@ public class Character : MonoBehaviour {
 				animator.speed = 1;
 			return true;
 		} else {
+			Debug.Log ("couldn't move");
 			return false;
 		}
 	}
@@ -130,20 +131,20 @@ public class Character : MonoBehaviour {
 	// USE ESSA FUNÇÃO AQUI (lembrar de usar o StartCoroutine)
 	// Move o personagem uma distância gradativamente
 	// É possível verificar se o personagem está andando pela variável moving
-	public Coroutine Move(Vector2 transition) {
-		return MoveTo(transition + (Vector2)transform.position);
+	public Coroutine Move(Vector2 transition, bool breakOnCollision = false) {
+		return MoveTo(transition + (Vector2)transform.position, breakOnCollision);
 	}
 
 	// OU ESSA
 	// Move o personagem para o ponto dest, gradativamente
-	public Coroutine MoveTo(Vector2 dest) {
+	public Coroutine MoveTo(Vector2 dest, bool breakOnCollision = false) {
 		if (currentMovement != null)
 			StopCoroutine (currentMovement);
-		currentMovement = StartCoroutine (MoveTo_coroutine (dest));
+		currentMovement = StartCoroutine (MoveTo_coroutine (dest, breakOnCollision));
 		return currentMovement;
 	}
 
-	private IEnumerator MoveTo_coroutine(Vector2 dest) {
+	private IEnumerator MoveTo_coroutine(Vector2 dest, bool breakOnCollision) {
 		moving = true;
 		Vector2 orig = (Vector2)transform.position;
 		float distance = (dest - orig).magnitude;
@@ -152,7 +153,11 @@ public class Character : MonoBehaviour {
 		while (percentage <= 1) {
 			if (!Player.instance.paused) {
 				percentage += percSpeed * 60 * Time.deltaTime;
-				TryMove(Vector2.Lerp (orig, dest, percentage) - (Vector2) transform.position);
+				Vector2 moveVetor = Vector2.Lerp (orig, dest, percentage) - (Vector2)transform.position;
+				float angle = TryMove(moveVetor);
+				if (breakOnCollision && float.IsNaN(angle)) {
+					break;
+				}
 			}
 			yield return null;
 		}
@@ -183,7 +188,7 @@ public class Character : MonoBehaviour {
 	public float TryMove(Vector2 moveVector, bool animate = true) {
 		float spd = moveVector.magnitude;
 		float angle = GameManager.VectorToAngle (moveVector);
-		angle = Mathf.Round (angle / 45) * 45;
+		//angle = Mathf.Round (angle / 45) * 45;
 
 		if (TryMove (angle, spd, animate)) {
 			return angle;

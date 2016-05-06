@@ -67,4 +67,11 @@ public class KnightArmor : Enemy {
 		base.OnDamage ();
 		StartChasing ();
 	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+		if (other.CompareTag ("Player")) {
+			StartChasing ();
+		}
+	}
+
 }

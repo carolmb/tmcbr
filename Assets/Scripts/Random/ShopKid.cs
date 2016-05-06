@@ -7,8 +7,8 @@ public class ShopKid : MonoBehaviour {
 	public int[] itemList;
 
 	public void OnInteract() {
-		Debug.Log ("open shop");
-		ShopMenu.instance.OpenShop (itemList);
+		ShopMenu.itemList = itemList;
+		ShopMenu.instance.Open ();
 	}
 
 }

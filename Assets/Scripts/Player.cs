@@ -26,7 +26,7 @@ public class Player : MonoBehaviour {
 		Resume ();
 		canMove = true;
 		character.lifePoints = SaveManager.currentSave.lifePoints;
-		GameMenu.instance.UpdateLife (character.lifePoints);
+		GameHUD.instance.UpdateLife (character.lifePoints);
 		if (!visible) {
 			visible = true;
 			SetVisible (false);
@@ -36,6 +36,7 @@ public class Player : MonoBehaviour {
 	// Inputs e checagem de estados
 	void Update () {
 		CheckPause ();
+		CheckInteract ();
 		if (paused) 
 			return;
 
@@ -47,10 +48,27 @@ public class Player : MonoBehaviour {
 	}
 
 	// ===============================================================================
+	// Interação
+	// ===============================================================================
+
+	public Vector2 interactedPoint { get; private set; }
+
+	private void CheckInteract() {
+		if (GameManager.InteractInput ()) {
+			Vector2 point = GameManager.InputPosition ();
+			interactedPoint = Camera.main.ScreenToWorldPoint (point);
+			Debug.Log (interactedPoint);
+		} else {
+			interactedPoint = Vector2.zero;
+		}
+	}
+
+	// ===============================================================================
 	// Movimento
 	// ===============================================================================
 
 	public Button menuButton;
+	public Button returnButton;
 
 	// Verificar botão de pause
 	void CheckPause() {
@@ -58,8 +76,7 @@ public class Player : MonoBehaviour {
 			if (!paused) {
 				menuButton.onClick.Invoke ();
 			} else {
-				Resume ();
-				GameMenu.instance.CloseMenu ();
+				returnButton.onClick.Invoke ();
 			}
 		}
 	}
@@ -80,7 +97,7 @@ public class Player : MonoBehaviour {
 		MoveByKeyboard ();
 	}
 
-	void MoveByMouse() {
+	void MoveByMouse () {
 		if (Input.GetMouseButton (0)) {
 			Vector2 point = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			point = MazeManager.TileToWorldPos (MazeManager.WorldToTilePos (point));
@@ -89,7 +106,7 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	void MoveByKeyboard() {
+	void MoveByKeyboard () {
 		if (!canMove || character.damaging)
 			return;
 
@@ -102,15 +119,15 @@ public class Player : MonoBehaviour {
 				character.Stop ();
 		} else {
 			if (character.moving)
-				character.Stop();
+				character.Stop ();
 
 			float angle = character.TryMove (moveVector);
-			if (!float.IsNaN(angle)) {
+			if (!float.IsNaN (angle)) {
 				// Se moveu
 				character.TurnTo (angle);
 				CheckTransition ();
 			} else {
-				character.TurnTo(GameManager.VectorToAngle(moveVector));
+				character.TurnTo(GameManager.VectorToAngle (moveVector));
 				character.Stop ();
 			}
 		}
@@ -144,41 +161,32 @@ public class Player : MonoBehaviour {
 	// Itens
 	// ===============================================================================
 
-	public Bag bag { get { return SaveManager.currentSave.bag; } }
-
 	public void IncrementCoins (int value) {
-		bag.coins += value;
-		GameMenu.instance.UpdateCoins (bag.coins);
+		Bag.current.coins += value;
 	}
 
 	public void IncrementRoses (int value) {
-		bag.roses += value;
-		GameMenu.instance.UpdateRoses (bag.roses);
+		Bag.current.roses += value;
 	}
 
-	public Item selectedItem {
-		get { 
-			if (bag.selectedSlot > -1) {
-				int itemID = bag.selectedItemID;
-				if (itemID > -1)
-					return Item.DB [itemID];
-			}
-			return null;
-		}
-	}
-
-	public void ChooseItem (int slot) {
-		bag.selectedSlot = slot;
-		GameMenu.instance.UpdateItem (selectedItem);
+	public void ChooseItem (int pos) {
+		Bag.current.selectedPosition = pos;
+		GameHUD.instance.UpdateItem (Bag.current.selectedItem, Bag.current.selectedSlot.count);
 		SetVisible (true);
 	}
 
 	public void UseItem () {
-		if (selectedItem != null) {
-			selectedItem.OnUse ();
-			if (selectedItem.consumable) {
-				bag.Consume(bag.selectedSlot);
-				GameMenu.instance.UpdateItem (selectedItem);
+		Item item = Bag.current.selectedItem;
+		if (item != null) {
+			item.OnUse ();
+			if (item.consumable) {
+				int pos = Bag.current.selectedPosition;
+				ItemSlot slot = Bag.current.selectedSlot;
+				Bag.current.Consume(pos);
+				if (slot == null)
+					GameHUD.instance.UpdateItem (null, 0);
+				else
+					GameHUD.instance.UpdateItem (item, slot.count);
 			}
 		}
 	}
@@ -197,7 +205,7 @@ public class Player : MonoBehaviour {
 	// Atualizar interface e piscar
 	public void OnDamage () {
 		SaveManager.currentSave.lifePoints = character.lifePoints;
-		GameMenu.instance.UpdateLife (character.lifePoints);
+		GameHUD.instance.UpdateLife (character.lifePoints);
 		visible = true;
 		if (character.lifePoints > 0)
 			StartCoroutine (Blink ());

@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour {
+public class TitleMenu : MonoBehaviour {
 
 	public Button loadButton;
 	public Button[] saveButtons;
