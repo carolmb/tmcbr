@@ -57,7 +57,6 @@ public class Player : MonoBehaviour {
 		if (GameManager.InteractInput ()) {
 			Vector2 point = GameManager.InputPosition ();
 			interactedPoint = Camera.main.ScreenToWorldPoint (point);
-			Debug.Log (interactedPoint);
 		} else {
 			interactedPoint = Vector2.zero;
 		}
@@ -177,7 +176,7 @@ public class Player : MonoBehaviour {
 
 	public void UseItem () {
 		Item item = Bag.current.selectedItem;
-		if (item != null) {
+		if (item != null && item.CanUse()) {
 			item.OnUse ();
 			if (item.consumable) {
 				int pos = Bag.current.selectedPosition;

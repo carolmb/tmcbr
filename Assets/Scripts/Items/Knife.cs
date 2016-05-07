@@ -13,13 +13,15 @@ public class Knife : Item {
 		knife = Resources.Load<GameObject>("Prefabs/Knife");
 	}
 
+	public override bool CanUse () {
+		return Time.time - lastUse > delay && knifeOnUse == null;
+	}
+
 	public override void OnUse () {
-		if (Time.time - lastUse > delay && knifeOnUse == null) {
-			lastUse = Time.time;
-			knifeOnUse = GameObject.Instantiate(knife);
-			Player.instance.canMove = false;
-			Player.instance.character.PlayAnimation ("Walking"); // Temporário (TODO: animação "slash")
-		}
+		lastUse = Time.time;
+		knifeOnUse = GameObject.Instantiate(knife);
+		Player.instance.canMove = false;
+		Player.instance.character.PlayAnimation ("Walking"); // Temporário (TODO: animação "slash")
 	}
 
 }

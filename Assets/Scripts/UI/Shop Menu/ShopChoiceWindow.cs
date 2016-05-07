@@ -8,6 +8,12 @@ public class ShopChoiceWindow : SlotChoiceWindow {
 	public Button buyButton;
 	public AudioClip buySound;
 
+	public GameObject fullBagMessage;
+
+	private Item item {
+		get { return GameHUD.instance.shopMenu.shopWindow.GetItem (position); }
+	}
+
 	void OnEnable () {
 		UpdatePrice (item.totalPrice);
 		UpdateItem (item, item.count);
@@ -20,23 +26,49 @@ public class ShopChoiceWindow : SlotChoiceWindow {
 
 	public void Buy () {
 		if (item.consumable) {
+			// Procura o item na mochila, e se achar, incrementa
 			for (int i = 0; i < Bag.maxItems; i++) {
-				if (SaveManager.currentSave.bag.GetItem(i).id == item.id) {
+				Item item2 = Bag.current.GetItem (i);
+				if (item2 != null && item2.id == item.id) {
 					BuySound ();
-					SaveManager.currentSave.bag.coins -= item.totalPrice;
-					SaveManager.currentSave.bag.Increment(i);
-					Return ();
-					break;
+					Bag.current.coins -= item.totalPrice;
+					Bag.current.Increment(i);
+					BackToShopWindow ();
+					return;
 				}
 			}
-			ShopMenu.instance.shopWindow.slotSelection = true;
+			// Não achou o item na mochila, então cria slot novo
+			for (int i = 0; i < Bag.maxItems; i++) {
+				ItemSlot slot = Bag.current.GetSlot (i);
+				if (slot == null) {
+					BuySound ();
+					Bag.current.Add (item, i);
+					Bag.current.coins -= item.totalPrice;
+					BackToShopWindow ();
+					return;
+				}
+			}
+			// Se a mochila estiver cheia
+			FullBagError();
+			return;
 		}
-		Return ();
+	}
+
+	public void FullBagError () {
+		GameHUD.ClickItemSound ();
+		gameObject.SetActive (false);
+		fullBagMessage.SetActive (true);
 	}
 
 	public void Return () {
+		GameHUD.ClickItemSound ();
+		BackToShopWindow ();
+	}
+
+	public void BackToShopWindow () {
 		gameObject.SetActive (false);
-		ShopMenu.instance.shopWindow.gameObject.SetActive (true);
+		GameHUD.instance.shopMenu.UpdateCoins (Bag.current.coins);
+		GameHUD.instance.shopMenu.shopWindow.gameObject.SetActive (true);
 	}
 
 	public void BuySound () {

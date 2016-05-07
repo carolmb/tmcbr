@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class MainMenu : MenuBase {
 
-	public static MainMenu instance;
-
 	public MainWindow mainWindow;
 	public ItemWindow itemWindow;
 	public MapWindow mapWindow;
@@ -15,10 +13,6 @@ public class MainMenu : MenuBase {
 	public Text roseText;
 
 	public Image itemIcon;
-
-	void Awake () {
-		instance = this;
-	}
 
 	public override void Open () {
 		base.Open ();

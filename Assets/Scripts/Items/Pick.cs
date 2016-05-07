@@ -13,13 +13,15 @@ public class Pick : Item {
 		pick = Resources.Load<GameObject>("Prefabs/Pick");
 	}
 
+	public override bool CanUse () {
+		return Time.time - lastUse > delay && pickOnUse == null;
+	}
+
 	public override void OnUse () {
-		if (Time.time - lastUse > delay && pickOnUse == null) {
-			lastUse = Time.time;
-			pickOnUse = GameObject.Instantiate(pick);
-			Player.instance.canMove = false;
-			Player.instance.character.PlayAnimation ("Walking"); // Temporário (TODO: animação "slash")
-		}
+		lastUse = Time.time;
+		pickOnUse = GameObject.Instantiate(pick);
+		Player.instance.canMove = false;
+		Player.instance.character.PlayAnimation ("Walking"); // Temporário (TODO: animação "slash")
 	}
 
 }

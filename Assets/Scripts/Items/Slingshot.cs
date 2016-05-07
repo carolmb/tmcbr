@@ -12,14 +12,16 @@ public class Slingshot : Item {
 		rock = Resources.Load<GameObject> ("Prefabs/Rock");
 	}
 
+	public override bool CanUse () {
+		return Time.time - lastUse >= delay;
+	}
+
 	public override void OnUse () {
-		if (Time.time - lastUse >= delay) {
-			AudioClip clip = Resources.Load<AudioClip> ("Sounds/throw");
-			GameCamera.PlayAudioClip (clip, 0.5f);
-			Player.instance.character.PlayAnimation ("Walking"); // Temporário (TODO: animação "throw")
-			lastUse = Time.time;
-			GameObject.Instantiate (rock);
-		}
+		AudioClip clip = Resources.Load<AudioClip> ("Sounds/throw");
+		GameCamera.PlayAudioClip (clip, 0.5f);
+		Player.instance.character.PlayAnimation ("Walking"); // Temporário (TODO: animação "throw")
+		lastUse = Time.time;
+		GameObject.Instantiate (rock);
 	}
 
 }

@@ -8,6 +8,10 @@ public class ItemChoiceWindow : SlotChoiceWindow {
 	public Button equipButton;
 	public Button discardButton;
 
+	private Item item {
+		get { return Bag.current.GetItem (position); }
+	}
+
 	void OnEnable () {
 		UpdateItem (item, bag.GetSlot(position).count);
 		equipButton.interactable = item.canEquip;
@@ -17,7 +21,7 @@ public class ItemChoiceWindow : SlotChoiceWindow {
 	public void Equip () {
 		GameHUD.ClickItemSound ();
 		Player.instance.ChooseItem (position);
-		MainMenu.instance.Close ();
+		GameHUD.instance.mainMenu.Close ();
 	}
 
 	public void Visualize () {
@@ -28,7 +32,7 @@ public class ItemChoiceWindow : SlotChoiceWindow {
 
 	public void Move () {
 		GameHUD.ClickItemSound ();
-		MainMenu.instance.itemWindow.slotSelection = true;
+		GameHUD.instance.mainMenu.itemWindow.slotSelection = true;
 		Return ();
 	}
 
@@ -45,7 +49,7 @@ public class ItemChoiceWindow : SlotChoiceWindow {
 
 	public void Return () {
 		GameHUD.ClickItemSound ();
-		MainMenu.instance.itemWindow.gameObject.SetActive (true);
+		GameHUD.instance.mainMenu.itemWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
 

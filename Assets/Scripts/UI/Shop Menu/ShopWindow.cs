@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ShopWindow : ItemWindow {
+public class ShopWindow : SlotWindow {
 
 	public override Item GetItem(int position) {
 		if (position < 0 || position >= ShopMenu.itemList.Length)
@@ -21,10 +21,6 @@ public class ShopWindow : ItemWindow {
 		return ShopMenu.itemList.Length;
 	}
 
-	public override void OnEnable () {
-		SetButtons ();
-	}
-
 	public override bool ButtonEnable(int slot) {
 		Item item = GetItem (slot + beginItemIndex);
 		if (item.consumable)
@@ -36,12 +32,13 @@ public class ShopWindow : ItemWindow {
 		return true;
 	}
 
-	public override void Return() {
-		if (slotSelection) {
-			choiceWindow.gameObject.SetActive (true);
-			gameObject.SetActive (false);
+	public void Return () {
+		GameHUD.ClickItemSound ();
+		GameHUD.instance.shopMenu.Close ();
+		if (Bag.current.selectedSlot == null) {
+			GameHUD.instance.UpdateItem (null, 0);
 		} else {
-			ShopMenu.instance.Close ();
+			GameHUD.instance.UpdateItem (Bag.current.selectedItem, Bag.current.selectedSlot.count);
 		}
 	}
 

@@ -32,8 +32,11 @@ public abstract class Item {
 		get { return consumable ? price * count : price; }
 	}
 
+	// Checa se pode usar o item
+	public abstract bool CanUse ();
+
 	// O que acontece quando o jogador usa o item
-	public abstract void OnUse();
+	public abstract void OnUse ();
 
 	// ===============================================================================
 	// Database

@@ -26,7 +26,7 @@ public class SaveWindow : MonoBehaviour {
 
 	public void Return() {
 		GameHUD.ClickItemSound ();
-		MainMenu.instance.mainWindow.gameObject.SetActive (true);
+		GameHUD.instance.mainMenu.mainWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
 

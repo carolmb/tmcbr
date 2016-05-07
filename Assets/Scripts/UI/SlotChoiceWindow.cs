@@ -11,10 +11,6 @@ public abstract class SlotChoiceWindow : MonoBehaviour {
 		get { return SaveManager.currentSave.bag; }
 	}
 
-	protected Item item {
-		get { return bag.GetItem (position); }
-	}
-
 	public void UpdateItem(Item item, int count) {
 		if (item == null) {
 			itemIcon.gameObject.SetActive (false);

@@ -23,7 +23,7 @@ public class GameHUD : MonoBehaviour {
 	public void MenuButton () {
 		ClickItemSound ();
 		Player.instance.Pause ();
-		MainMenu.instance.Open ();
+		mainMenu.Open ();
 		gameObject.SetActive (false);
 	}
 

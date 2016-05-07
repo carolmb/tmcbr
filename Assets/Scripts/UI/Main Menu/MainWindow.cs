@@ -7,20 +7,20 @@ public class MainWindow : MonoBehaviour {
 
 	public void ItemButton () {
 		GameHUD.ClickItemSound ();
-		MainMenu.instance.itemWindow.gameObject.SetActive (true);
+		GameHUD.instance.mainMenu.itemWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
 
 	public void MapButton () {
 		GameHUD.ClickItemSound ();
-		MainMenu.instance.mapWindow.UpdateTexture ();
-		MainMenu.instance.mapWindow.gameObject.SetActive (true);
+		GameHUD.instance.mainMenu.mapWindow.UpdateTexture ();
+		GameHUD.instance.mainMenu.mapWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
 
 	public void SaveButton () {
 		GameHUD.ClickItemSound ();
-		MainMenu.instance.saveWindow.gameObject.SetActive (true);
+		GameHUD.instance.mainMenu.saveWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
 
@@ -33,7 +33,7 @@ public class MainWindow : MonoBehaviour {
 		GameHUD.ClickItemSound ();
 		Player.instance.Resume ();
 		GameHUD.instance.gameObject.SetActive (true);
-		MainMenu.instance.Close ();
+		GameHUD.instance.mainMenu.Close ();
 	}
 
 }

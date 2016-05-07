@@ -74,7 +74,7 @@ public class Bag : IEnumerable<Item> {
 	}
 
 	public void Increment (int slot) {
-		itemSlots [slot].count++;
+		itemSlots [slot].count += GetItem(slot).count;
 	}
 
 	public void Discard (int slot) {
