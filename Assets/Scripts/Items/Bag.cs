@@ -25,14 +25,15 @@ public class Bag : IEnumerable<Item> {
 
 	public Bag () {
 		itemSlots = new ItemSlot[maxItems];
-		itemSlots [0] = new ItemSlot (0, 4);
-		itemSlots [1] = new ItemSlot (1, 1);
-		itemSlots [2] = new ItemSlot (2, 1);
-		itemSlots [3] = new ItemSlot (3, 1);
-		itemSlots [4] = new ItemSlot (4, 1);
+		itemSlots [0] = new ItemSlot (5);
+		itemSlots [1] = new ItemSlot (0, 4);
+		itemSlots [2] = new ItemSlot (1);
+		itemSlots [3] = new ItemSlot (2, 5);
+		itemSlots [4] = new ItemSlot (3, 4);
+		itemSlots [5] = new ItemSlot (4);
 		coins = 50;
 		roses = 0;
-		selectedPosition = 0;
+		selectedPosition = 1;
 	}
 
 	public static Bag current {

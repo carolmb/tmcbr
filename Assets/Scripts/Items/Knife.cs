@@ -24,4 +24,9 @@ public class Knife : Item {
 		Player.instance.character.PlayAnimation ("Walking"); // Temporário (TODO: animação "slash")
 	}
 
+	public static void DestroyKnife() {
+		if (knifeOnUse != null)
+			GameObject.Destroy (knifeOnUse);
+	}
+
 }

@@ -53,6 +53,7 @@ public abstract class Item {
 		db[2] = new Medicine(2);
 		db[3] = new Repel(3);
 		db[4] = new InvisibilityCloak(4);
+		db[5] = new KeyItem (5, "Photography");
 
 		return db;
 	}

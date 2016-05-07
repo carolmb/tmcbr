@@ -24,7 +24,7 @@ public class Mirror : MonoBehaviour {
 		if (Player.instance.character.direction != 3)
 			return;
 		
-		if (Mathf.Abs (Player.instance.transform.position.x - transform.position.x) < 8) {
+		if (Mathf.Abs (Player.instance.transform.position.x - transform.position.x) < 24) {
 			if (transform.position.y - Player.instance.transform.position.y < 48) {
 				ShowReflex ();
 			}

@@ -207,6 +207,7 @@ public class Player : MonoBehaviour {
 		SaveManager.currentSave.lifePoints = character.lifePoints;
 		GameHUD.instance.UpdateLife (character.lifePoints);
 		visible = true;
+		Knife.DestroyKnife ();
 		if (character.lifePoints > 0)
 			StartCoroutine (Blink ());
 	}
