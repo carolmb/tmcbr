@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 public static class StageGenerator {
 
@@ -10,7 +9,7 @@ public static class StageGenerator {
 		//int mazeCount = UnityEngine.Random.Range(5, 7);
 		int mazeCount = mazes.Length;
 		for (int i = 0, id = initialID; i < mazeCount; i++, id++) {
-			mazes [i] = generator.Create (id, 5, 5);
+			mazes [i] = generator.Create (id, 1 + 2 * Random.Range(5, 8), 1 + 2 * Random.Range(5, 8));
 			mazes [i].Expand (2, 2);
 		}
 		for (int i = 0, j = 1; j < mazeCount; i++, j++) {

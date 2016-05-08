@@ -4,11 +4,13 @@ using System.Collections;
 public class CharacterBase : MonoBehaviour {
 
 	public SpriteRenderer spriteRenderer { get; private set; }
-	protected Animator animator;
+	public Animator animator { get; private set; }
+	public BoxCollider2D boxCollider { get; private set; }
 
 	protected virtual void Awake () {
 		animator = GetComponent<Animator> ();
 		spriteRenderer = GetComponent<SpriteRenderer> ();
+		boxCollider = GetComponent<BoxCollider2D> ();
 	}
 
 	public bool isPlayer {
@@ -18,30 +20,41 @@ public class CharacterBase : MonoBehaviour {
 	// Tile atual do personagem
 	public Tile currentTile {
 		get {
-			Vector2 tileCoord = MazeManager.WorldToTilePos(transform.position - new Vector3(0, Tile.size / 2, 0));
+			Vector2 tileCoord = MazeManager.WorldToTilePos(transform.position - new Vector3(0, Tile.size / 2, Tile.size / 2));
 			return MazeManager.maze.tiles [(int)tileCoord.x, (int)tileCoord.y];
 		} set {
-			transform.position = MazeManager.TileToWorldPos (value.coordinates) + new Vector3 (0, Tile.size / 2, 0);
+			transform.position = MazeManager.TileToWorldPos (value.coordinates) + new Vector3 (0, Tile.size / 2, Tile.size / 2);
 		}
 	}
 		
-	public void InitialDirection () {
+	public virtual void InitialDirection () {
+		Vector2 offset = Vector2.zero;
 		int x = currentTile.x;
 		int y = currentTile.y;
-		if (MazeManager.maze.tiles [x, y + 1].isWall) {
+
+		if (MazeManager.maze.tiles [x, y + 1].isWall) { // Virado para baixo
 			Vector3 wpos = MazeManager.TileToWorldPos (new Vector2 (x, y - 1)) + new Vector3 (0, Tile.size / 2, 0);
 			TurnTo (new Vector2 (wpos.x, wpos.y));
-		} else if (MazeManager.maze.tiles [x + 1, y].isWall) {
+			offset.y += (Tile.size - boxCollider.size.y) / 2;
+
+		} else if (MazeManager.maze.tiles [x + 1, y].isWall) { // Virado para a esquerda
 			Vector3 wpos = MazeManager.TileToWorldPos (new Vector2 (x - 1, y)) + new Vector3 (0, Tile.size / 2, 0);
 			TurnTo (new Vector2 (wpos.x, wpos.y));
-		} else if (MazeManager.maze.tiles [x - 1, y].isWall) {
+			offset.x += (Tile.size - boxCollider.size.x) / 2;
+
+		} else if (MazeManager.maze.tiles [x - 1, y].isWall) { // Virado para a direita
 			Vector3 wpos = MazeManager.TileToWorldPos (new Vector2 (x + 1, y)) + new Vector3 (0, Tile.size / 2, 0);
 			TurnTo (new Vector2 (wpos.x, wpos.y));
-		} else if (MazeManager.maze.tiles [x, y - 1].isWall) {
+			offset.x -= (Tile.size - boxCollider.size.x) / 2;
+
+		} else if (MazeManager.maze.tiles [x, y - 1].isWall) { // Virado para cima
 			Vector3 wpos = MazeManager.TileToWorldPos (new Vector2 (x, y + 1)) + new Vector3 (0, Tile.size / 2, 0);
-			TurnTo (new Vector2 (wpos.x, wpos.y));		
+			TurnTo (new Vector2 (wpos.x, wpos.y));
+			offset.y -= (Tile.size - boxCollider.size.y) / 2;
 		}
-		Stop ();
+
+		currentTile = currentTile;
+		transform.Translate (offset.x, offset.y, offset.y);
 	}
 
 	// ===============================================================================

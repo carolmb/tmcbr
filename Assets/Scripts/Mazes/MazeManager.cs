@@ -63,7 +63,7 @@ public class MazeManager : MonoBehaviour {
 	GameObject CreateTileFloor(int x, int y, int id) {
 		GameObject floor = CreateTileGraphic (x, y, "floor" + id);
 		Vector3 pos = floor.transform.position;
-		pos.z = 999;
+		pos.z += Tile.size * 2;
 		floor.transform.position = pos;
 		return floor;
 	}
@@ -157,10 +157,15 @@ public class MazeManager : MonoBehaviour {
 		if (obstacles [t.x, t.y] == null) {
 			return false;
 		}
-		Rect r = new Rect ();
-		r.size = obstacles [t.x, t.y].size;
-		r.center = obstacles [t.x, t.y].bounds.center - new Vector3(0, Tile.size / 2, 0);
-		return r.Contains (new Vector2 (x, y));
+		Vector2 center = (Vector2)TileToWorldPos (t.coordinates);
+		BoxCollider2D boxCollider = obstacles [t.x, t.y];
+
+		float left 		= center.x - boxCollider.size.x / 2 + boxCollider.offset.x;
+		float right 	= center.x + boxCollider.size.x / 2 + boxCollider.offset.x;
+		float bottom 	= center.y - boxCollider.size.y / 2 + boxCollider.offset.y;
+		float top 		= center.y + boxCollider.size.y / 2 + boxCollider.offset.y;
+
+		return (x <= right && x >= left) && (y <= top && y >= bottom);
 	}
 
 }

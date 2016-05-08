@@ -127,7 +127,7 @@ public abstract class MazeGenerator {
 		for (int i = tile.x - deltaEnemys; i < tile.x + deltaEnemys; i++) {
 			for (int j = tile.y - deltaEnemys; j < tile.y + deltaEnemys; j++) {
 				if (i >= 0 && i < maze.width && j >= 0 && j < maze.height) {
-					if (maze.tiles [i, j].objectName != "" || maze.tiles[i,j].obstacleID > 0) {
+					if (maze.tiles [i, j].objectName != "" || maze.tiles[i,j].obstacleID > 0 || maze.tiles[i,j].chest > 0) {
 						return false;
 					}
 				}

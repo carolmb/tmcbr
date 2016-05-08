@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[RequireComponent (typeof(Character))]
 public class KnightArmor : Enemy {
 
 	bool isChasing;

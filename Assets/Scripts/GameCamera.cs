@@ -75,4 +75,14 @@ public class GameCamera : MonoBehaviour {
 		Destroy (go, clip.length);
 	}
 
+	// ===============================================================================
+	// Efeito da luz
+	// ===============================================================================
+
+	public Material lampMaterial;
+
+	void OnRenderImage(RenderTexture source, RenderTexture dest) {
+		Graphics.Blit (source, dest, lampMaterial);
+	}
+
 }

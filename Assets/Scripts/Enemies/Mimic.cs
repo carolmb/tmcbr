@@ -8,8 +8,8 @@ public class Mimic : Enemy {
 
 	protected override void Start () {
 		base.Start ();
-		character.InitialDirection ();
 		isChasing = false;
+		character.InitialDirection ();
 	}
 
 	void Update () {

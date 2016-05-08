@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent (typeof(Character))]
+[RequireComponent (typeof(Animator))]
 public class Enemy : MonoBehaviour {
 
 	public GameObject coin;
@@ -84,10 +86,10 @@ public class Enemy : MonoBehaviour {
 
 	protected bool ChasePlayer () {
 		Tile nextTile = ClosestToPlayer ();
-		if (nextTile != null) {
+		if (nextTile != null && nextTile.isWalkable) {
 			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
 			character.TurnTo (nextPosition);
-			character.MoveTo (nextPosition);
+			character.MoveTo (nextPosition, true);
 			return true;
 		} else {
 			return false;
@@ -96,10 +98,10 @@ public class Enemy : MonoBehaviour {
 
 	protected bool RunFromPlayer () {
 		Tile nextTile = FarestFromPlayer ();
-		if (nextTile != null) {
+		if (nextTile != null && nextTile.isWalkable) {
 			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
 			character.TurnTo (nextPosition);
-			character.MoveTo (nextPosition);
+			character.MoveTo (nextPosition, true);
 			return true;
 		} else {
 			return false;
@@ -119,12 +121,12 @@ public class Enemy : MonoBehaviour {
 
 	private IEnumerator DamageLight () {
 		Color color = Color.red;
-		while (color.r < 1) {
+		while (color.r < 1 && character.spriteRenderer != null) {
 			color.r += 0.25f;
 			character.spriteRenderer.color = color;
 			yield return null;
 		}
-		while (color.r > 0) {
+		while (color.r > 0 && character.spriteRenderer != null) {
 			color.r -= 0.25f;
 			character.spriteRenderer.color = color;
 			yield return null;

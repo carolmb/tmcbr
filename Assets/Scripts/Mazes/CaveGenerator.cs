@@ -16,30 +16,32 @@ public class CaveGenerator : MazeGenerator {
 
 	public override void CreateEnemies (Maze maze) {
 		this.maze = maze;
+
 		foreach (Tile t in maze.tiles) {
 			if (HasTransitionNear (t)) {
 				continue;
 			}
+				
+			if (t.isWalkable) {
+				if (EmptyRadiusToEnemies (t) && Random.Range (0, 100) < 30) {
+					t.objectName = "Enemies/Bat";
+				} else if (!HasObstaclesNear (t) && Random.Range (0, 100) < 50) {
+					t.obstacleID = Random.Range (1, 5);
+				}
+			}
+		}
 
-			if (EmptyRadiusToEnemies(t)) {
-				if (t.isWall) {	
-					if (Random.Range (1, 100) < 30) { //fator random
-						t.obstacleID = 1;
-						t.wallID = 0;
-					} else if (Random.Range (1, 100) < 30) {
-						t.obstacleID = 2;
-						t.wallID = 0;
-					}
-				} else if (t.isWalkable && EmptyRadiusToEnemies(t)) { 
-					if (Random.Range (1, 100) < 30) {
-						t.objectName = "Enemies/Bat";
-					}
-				} else if (t.isWalkable && !HasObstaclesNear(t)){ 
-					if (Random.Range (1, 100) < 30) { //fator random
-						t.obstacleID = 1;
-					} else if (Random.Range (1, 100) < 30) {
-						t.obstacleID = 2;
-					}
+		foreach (Tile t in maze.tiles) {
+			if (HasTransitionNear (t)) {
+				continue;
+			}
+			if (t.isWall) {	
+				if (Random.Range (0, 100) < 30) { //fator random
+					t.obstacleID = 1;
+					t.wallID = 0;
+				} else if (Random.Range (0, 100) < 30) {
+					t.obstacleID = 2;
+					t.wallID = 0;
 				}
 			}
 		}

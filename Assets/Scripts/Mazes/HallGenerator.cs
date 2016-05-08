@@ -41,8 +41,8 @@ public class HallGenerator : MazeGenerator {
 		foreach (Tile t in maze.tiles) {
 			if (!HasTransitionNear (t) && t.isWalkable) {
 				if (EmptyRadiusToEnemies (t)) {
-					if (GetAllWallNeighbours(t).Count > 0 && !maze.tiles [t.x, t.y - 1].isWall) { //mimics
-						if (Random.Range (0, 100) < 20) { //fator random
+					if (GetAllWallNeighbours(t).Count > 0) { //mimics
+						if (Random.Range (0, 100) < 20 && !maze.tiles [t.x, t.y - 1].isWall) { //fator random
 							t.objectName = "Enemies/Mimic";
 						} else if (Random.Range (0, 100) < 30) { //fator random
 							t.objectName = "Enemies/KnightArmor";

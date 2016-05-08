@@ -16,40 +16,41 @@ public class ForestGenerator : MazeGenerator {
 
 	public override void CreateEnemies (Maze maze) {
 		this.maze = maze;
+
 		foreach (Tile t in maze.tiles) {
 			t.type = 1; // grama
 
-			if (HasTransitionNear(t)) {
+			if (HasTransitionNear(t) || t.isWall) {
 				continue;
 			}
-			if (Random.Range (1, 100) < 70) {
-				if (t.isWalkable) {
-					if (EmptyRadiusToEnemies (t)) { 
-						if (Random.Range (1, 100) < 30) {
-							t.objectName = "Enemies/Tomato";
-						} else if (Random.Range (1, 100) < 20) {
-							t.objectName = "Enemies/Butterfly";
-						}
-					}
+			if (Random.Range (0, 100) < 75 && EmptyRadiusToEnemies (t)) {
+				if (Random.Range (0, 100) < 50) {
+					t.objectName = "Enemies/Tomato";
+				} else if (Random.Range (0, 100) < 50) {
+					t.objectName = "Enemies/Butterfly";
 				}
 			} else { 
-				if (t.isWalkable) {
-					if (!HasObstaclesNear (t, 3)) {
-						if (Random.Range (1, 100) < 50) {
-							t.obstacleID = 2;
-						} else if (Random.Range (1, 100) < 50) {
-							t.obstacleID = 3;
-						} else {
-							t.obstacleID = 4;
-						}
+				if (!HasObstaclesNear (t, 3)) {
+					if (Random.Range (0, 100) < 50) {
+						t.obstacleID = 2;
+					} else if (Random.Range (0, 100) < 50) {
+						t.obstacleID = 3;
+					} else {
+						t.obstacleID = 4;
 					}
 				}
 			}
+
+		}
+			
+		foreach (Tile t in maze.tiles) {
 			if (t.isWall) {	
-				if (!HasObstaclesNear(t, 3) && Random.Range (1, 100) < 30) { //fator random
+				if (!HasObstaclesNear (t, 3) && Random.Range (0, 100) < 30) { //fator random
 					t.obstacleID = 1;
-				} else if (!HasObstaclesNear(t, 3) && Random.Range (1, 100) < 30) {
+				} else if (!HasObstaclesNear (t, 3) && Random.Range (0, 100) < 30) {
 					t.obstacleID = 5;
+					t.wallID = 0;
+				} else if (Random.Range (0, 100) < 30 && GetAllWallNeighbours (t).Count >= 3) {
 					t.wallID = 0;
 				}
 			}

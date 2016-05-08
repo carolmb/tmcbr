@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Chest : CharacterBase {
+public class Chest : MonoBehaviour {
 
 	// Moedas
 	public AudioClip coinSound;
@@ -13,12 +13,15 @@ public class Chest : CharacterBase {
 
 	public Sprite[] openSprites;
 
+	private CharacterBase character;
+
 	// Use this for initialization
 	void Start () {
-		animator = GetComponent<Animator> ();
-		InitialDirection ();
+		character = GetComponent<CharacterBase> ();
+		character.InitialDirection ();
+		character.Stop ();
 		if (open) {
-			spriteRenderer.sprite = openSprites [direction];
+			character.spriteRenderer.sprite = openSprites [character.direction];
 		}
 	}
 
@@ -28,7 +31,7 @@ public class Chest : CharacterBase {
 	
 	// Abre o baú
 	public void OpenChest() {
-		Tile t = MazeManager.GetTile (transform.position - new Vector3 (0, Tile.size / 2, 0));
+		Tile t = character.currentTile;
 
 		// Não é mais possível interagir
 		Destroy (GetComponent<Interactable> ());
@@ -36,7 +39,7 @@ public class Chest : CharacterBase {
 		// Muda o tipo do objeto
 		t.chest = 2; // Baú aberto
 
-		animator.speed = 1;
+		character.animator.speed = 1;
 		GameCamera.PlayAudioClip (openSound);
 		Invoke ("IncrementCoins", openSound.length);
 	}

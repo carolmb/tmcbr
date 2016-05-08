@@ -60,6 +60,12 @@ public class ShopChoiceWindow : SlotChoiceWindow {
 		fullBagMessage.SetActive (true);
 	}
 
+	public void FullBagReturn() {
+		GameHUD.ClickItemSound ();
+		gameObject.SetActive (true);
+		fullBagMessage.SetActive (false);
+	}
+
 	public void Return () {
 		GameHUD.ClickItemSound ();
 		BackToShopWindow ();
