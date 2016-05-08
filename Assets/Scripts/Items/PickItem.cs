@@ -72,6 +72,8 @@ public class PickItem : MonoBehaviour {
 				comp.Damage (transform.position, damage);
 			}
 			Destroy (gameObject);
+		} else if (collider.CompareTag ("Rock")) {
+			Destroy (collider.GetComponent<Character> ());
 		}
 	}
 
