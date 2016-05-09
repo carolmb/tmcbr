@@ -2,7 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public class TransitionValues {
+	public float x, y; 
+	public int deltaX, deltaY;
+	public double deltaToCenterX, deltaToCenterY;
+}
+
 public static class StageGenerator {
+
+	const int expansionFactor = 2;
 
 	// Retorna o tile final da fase
 	public static void CreateStage (Maze[] mazes, MazeGenerator generator, int initialID, int initialDir) {
@@ -10,7 +18,7 @@ public static class StageGenerator {
 		int mazeCount = mazes.Length;
 		for (int i = 0, id = initialID; i < mazeCount; i++, id++) {
 			mazes [i] = generator.Create (id, 1 + 2 * Random.Range(5, 8), 1 + 2 * Random.Range(5, 8));
-			mazes [i].Expand (2, 2);
+			mazes [i].Expand (expansionFactor, expansionFactor);
 		}
 		for (int i = 0, j = 1; j < mazeCount; i++, j++) {
 			initialDir = GenerateDir (initialDir);
@@ -57,33 +65,28 @@ public static class StageGenerator {
 		switch (dir) {
 		case Character.UP:
 			y = maze.height - 1;
-			do {
-				x = UnityEngine.Random.Range (size/2, maze.width - size/2);
-			} while (maze.tiles [x, y - 2].wallID != 0 || maze.tiles [x + 1, y - 2].wallID != 0);
+			x = Random.Range (0, (maze.width / expansionFactor) / 2);
+			x = expansionFactor + x * expansionFactor * 2; 
 			break;
 		
 		case Character.LEFT:
 			x = 0;
-			do {
-				y = UnityEngine.Random.Range (size/2, maze.height - size/2);
-			} while (maze.tiles[x + 2, y].wallID != 0 || maze.tiles[x + 2, y + 1].wallID != 0);
+			y = Random.Range (0, (maze.height / expansionFactor) / 2);
+			y = expansionFactor + y * expansionFactor * 2; 
 			break;
 		
 		case Character.RIGHT:
 			x = maze.width - 1;
-			do {
-				y = UnityEngine.Random.Range (size/2, maze.height - size/2);
-			} while (maze.tiles[x - 2, y].wallID != 0 || maze.tiles[x - 2, y + 1].wallID != 0);
+			y = Random.Range (0, (maze.height / expansionFactor) / 2);
+			y = expansionFactor + y * expansionFactor * 2; 
 			break;
 		
 		case Character.DOWN:
 			y = 0;
-			do {
-				x = UnityEngine.Random.Range (size/2, maze.width - size/2);
-			} while (maze.tiles[x, y + 2].wallID != 0 || maze.tiles[x + 1, y + 2].wallID != 0);
+			x = Random.Range (0, (maze.width / expansionFactor) / 2);
+			x = expansionFactor + x * expansionFactor * 2; 
 			break;
 		}
-
 		finalTile = maze.tiles [x, y];
 		List<Tile> n = GetNeighbours (maze, finalTile, size/2 + 1);
 		foreach (Tile t in n) {
@@ -92,6 +95,34 @@ public static class StageGenerator {
 		}
 
 		return finalTile;
+	}
+
+	static bool CheckInterval(Maze maze, int x, int y, int direction, int size){
+		if (x < 0 || y < 0 || x > maze.width || y > maze.height)
+			return false;
+		TransitionValues values = SetValuesToSetTransitions (3 - direction, size, size, x, y);
+		if (direction == Character.UP || direction == Character.DOWN) {
+			int j = 0;
+			Debug.Log (x +" " + y + " " + values.deltaY);
+			for (int i = -(int)System.Math.Ceiling(values.deltaToCenterX) + 1; 
+				i < (int)System.Math.Floor (values.deltaToCenterX) + 1; i++) {
+				Debug.Log (i);
+				Tile tile = maze.tiles [x + i, y + j];
+				if (maze.tiles [tile.x, tile.y + values.deltaY * expansionFactor].wallID > 0)
+					return false;
+			}
+		} else {
+			int i = 0;
+			Debug.Log (x + " " + y + " " + values.deltaX);
+			for (int j = -(int)System.Math.Ceiling(values.deltaToCenterY) + 1; 
+				j < (int)System.Math.Floor (values.deltaToCenterY) + 1; j++) {
+				Debug.Log (j);
+				Tile tile = maze.tiles [x + i, y + j];
+				if (maze.tiles [tile.x + values.deltaX * expansionFactor, tile.y].wallID > 0)
+					return false;
+			}
+		}
+		return true;
 	}
 
 	//código duplicado
@@ -158,56 +189,59 @@ public static class StageGenerator {
 	}
 
 	static void SetTransitionsSide(Maze maze1, Tile tile1, Maze maze2, Tile tile2, int direction, int size1, int size2){
-		int deltaX = 0;
-		int deltaY = 0;
+		TransitionValues values = SetValuesToSetTransitions(direction, size1, size2, tile2.x, tile2.y);
 
-		double neighborX = 1;
-		double neighborY = 1;
-
-		// tem que passar por toda a entrada transformando em chão 
-		// Ida para todos os vizinhos
-		float x = 0, y = 0;
-		if (direction == Character.UP) {
-			deltaY = 1;
-			neighborX = ((double)size1)/2;
-			x = (float)(tile2.x + (size2%2 == 0 ? + 0.5 : 0));
-			y = tile2.y + 1;
-		} else if (direction == Character.LEFT) {
-			deltaX = -1;
-			neighborY = ((double)size1)/2;
-			x = tile2.x - 1;
-			y = (float)(tile2.y + (size2%2 == 0 ? + 0.5 : 0));
-		} else if (direction == Character.RIGHT) {
-			deltaX = 1;
-			neighborY = ((double)size1)/2;
-			x = tile2.x + 1;
-			y = (float)(tile2.y + (size2%2 == 0 ? + 0.5 : 0));
-		} else if (direction == Character.DOWN) {
-			deltaY = -1;
-			neighborX = ((double)size1)/2;
-			x = (float)(tile2.x + (size2%2 == 0 ? + 0.5 : 0));
-			y = tile2.y - 1;
-		}
-
-		Vector2 destVector = new Vector2 (x, y);
+		Vector2 destVector = new Vector2 (values.x, values.y);
 		if (direction == Character.UP || direction == Character.DOWN) {
 			int j = 0;
-			for (int i = -(int)System.Math.Ceiling(neighborX) + 1; 
-				i < (int)System.Math.Floor (neighborX) + 1; i++) {
+			for (int i = -(int)System.Math.Ceiling(values.deltaToCenterX) + 1; 
+				i < (int)System.Math.Floor (values.deltaToCenterX) + 1; i++) {
 				Tile tile = maze1.tiles [tile1.x + i, tile1.y + j];
 				SetTransition (maze1, tile, maze2, destVector, direction);
-				maze1.tiles [tile.x, tile.y - deltaY].wallID = 0;
+				maze1.tiles [tile.x, tile.y - values.deltaY].wallID = 0;
 			}
 		} else {
 			int i = 0;
-			for (int j = -(int)System.Math.Ceiling(neighborY) + 1; 
-				j < (int)System.Math.Floor (neighborY) + 1; j++) {
+			for (int j = -(int)System.Math.Ceiling(values.deltaToCenterY) + 1; 
+				j < (int)System.Math.Floor (values.deltaToCenterY) + 1; j++) {
 				Tile tile = maze1.tiles [tile1.x + i, tile1.y + j];
 				SetTransition (maze1, tile, maze2, destVector, direction);
-				maze1.tiles [tile.x - deltaX, tile.y].wallID = 0;
+				maze1.tiles [tile.x - values.deltaX, tile.y].wallID = 0;
 			}
 		}
 
-	} 
+	}
+
+	static TransitionValues SetValuesToSetTransitions(int direction, int size1, int size2, int x, int y) {
+		TransitionValues values = new TransitionValues();
+		values.deltaToCenterX = 1;
+		values.deltaToCenterY = 1;
+
+		// tem que passar por toda a entrada transformando em chão 
+		// Ida para todos os vizinhos
+		
+		if (direction == Character.UP) {
+			values.deltaY = 1;
+			values.deltaToCenterX = ((double)size1)/2;
+			values.x = (float)(x + (size2%2 == 0 ? + 0.5 : 0));
+			values.y = y + 1;
+		} else if (direction == Character.LEFT) {
+			values.deltaX = -1;
+			values.deltaToCenterY = ((double)size1)/2;
+			values.x = x - 1;
+			values.y = (float)(y + (size2%2 == 0 ? + 0.5 : 0));
+		} else if (direction == Character.RIGHT) {
+			values.deltaX = 1;
+			values.deltaToCenterY = ((double)size1)/2;
+			values.x = x + 1;
+			values.y = (float)(y + (size2%2 == 0 ? + 0.5 : 0));
+		} else if (direction == Character.DOWN) {
+			values.deltaY = -1;
+			values.deltaToCenterX = ((double)size1)/2;
+			values.x = (float)(x + (size2%2 == 0 ? + 0.5 : 0));
+			values.y = y - 1;
+		}
+		return values;
+	}
 
 }
