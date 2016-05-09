@@ -2,22 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ForestGenerator : MazeGenerator {
+public class ForestMaze : ProceduralMaze {
 
-	protected override string Theme () {
+	public ForestMaze(int i, int w, int h) : base(i, w, h) {}
+
+	public override string GetTheme () {
 		return "Forest";
 	}
 
-	protected override Tile GetNeighbour (Tile t){
-		List<Tile> n = GetVisitedNeighbours (t, 2);
+	protected override Tile GetNeighbour (Tile t, bool[,] visited){
+		List<Tile> n = GetVisitedNeighbours (t, 2, visited);
 		int i = Random.Range (0, n.Count);
 		return n [i];
 	}
 
-	public override void CreateEnemies (Maze maze) {
-		this.maze = maze;
+	public override void CreateObstacles () {
 
-		foreach (Tile t in maze.tiles) {
+		foreach (Tile t in tiles) {
 			t.type = 1; // grama
 
 			if (HasTransitionNear(t) || t.isWall) {
@@ -42,8 +43,8 @@ public class ForestGenerator : MazeGenerator {
 			}
 
 		}
-			
-		foreach (Tile t in maze.tiles) {
+
+		foreach (Tile t in tiles) {
 			if (t.isWall) {	
 				if (!HasObstaclesNear (t, 3) && Random.Range (0, 100) < 30) { //fator random
 					t.obstacleID = 1;

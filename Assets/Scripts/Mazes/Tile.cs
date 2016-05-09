@@ -3,21 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class Transition {
-	public int mazeID;
-	public float tileX;
-	public float tileY;
-	public int direction;
-	public Transition(int id, float x, float y, int dir) {
-		mazeID = id;
-		tileX = x;
-		tileY = y;
-		direction = dir;
-	}
-}
-
-[System.Serializable]
 public class Tile {
+
+	[System.Serializable]
+	public class Transition {
+		public int mazeID;
+		public float tileX;
+		public float tileY;
+		public int direction;
+		public Transition(int id, float x, float y, int dir) {
+			mazeID = id;
+			tileX = x;
+			tileY = y;
+			direction = dir;
+		}
+	}
 
 	public const int size = 32;
 
@@ -97,16 +97,9 @@ public class Tile {
 		return neighbours;
 	}
 
-	public List<Tile> GetNeighbours8 () {
-		List<Tile> neightbours = new List<Tile> ();
-		neightbours.Add (MazeManager.maze.tiles [x, y + 1]);
-		neightbours.Add (MazeManager.maze.tiles [x, y - 1]);
-		neightbours.Add (MazeManager.maze.tiles [x + 1, y]);
-		neightbours.Add (MazeManager.maze.tiles [x + 1, y + 1]);
-		neightbours.Add (MazeManager.maze.tiles [x + 1, y - 1]);
-		neightbours.Add (MazeManager.maze.tiles [x - 1, y]);
-		neightbours.Add (MazeManager.maze.tiles [x - 1, y + 1]);
-		neightbours.Add (MazeManager.maze.tiles [x - 1, y - 1]);
-		return neightbours;
+	public void SetTransition(int id, float x, float y, int dir) {
+		transition = new Transition (id, x, y, dir);
+		wallID = 0;
 	}
+
 }

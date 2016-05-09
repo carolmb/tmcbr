@@ -2,26 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class CaveGenerator : MazeGenerator {
+public class CaveMaze : ProceduralMaze {
 
-	protected override string Theme () {
+	public CaveMaze(int id, int width, int height)  : base (id, width, height) { }
+
+	public override string GetTheme () {
 		return "Cave";
 	}
 
-	protected override Tile GetNeighbour (Tile t){
-		List<Tile> n = GetVisitedNeighbours (t, 2);
+	protected override Tile GetNeighbour (Tile t, bool[,] visited){
+		List<Tile> n = GetVisitedNeighbours (t, 2, visited);
 		int i = Random.Range (0, n.Count);
 		return n [i];
 	}
 
-	public override void CreateEnemies (Maze maze) {
-		this.maze = maze;
+	public override void CreateObstacles () {
 
-		foreach (Tile t in maze.tiles) {
+		foreach (Tile t in tiles) {
 			if (HasTransitionNear (t)) {
 				continue;
 			}
-				
+
 			if (t.isWalkable) {
 				if (EmptyRadiusToEnemies (t) && Random.Range (0, 100) < 30) {
 					t.objectName = "Enemies/Bat";
@@ -31,7 +32,7 @@ public class CaveGenerator : MazeGenerator {
 			}
 		}
 
-		foreach (Tile t in maze.tiles) {
+		foreach (Tile t in tiles) {
 			if (HasTransitionNear (t)) {
 				continue;
 			}

@@ -6,15 +6,15 @@ public class GameSave {
 
 	public string name;
 	public Maze[] mazes;
-	public Transition transition;
+	public Tile.Transition transition;
 	public Bag bag;
 	public int lifePoints;
 	public float playTime;
 
 	public GameSave() {
-		Stage bigStage = GameGenerator.Create ();
-		mazes = bigStage.mazes;
-		transition = new Transition (0, bigStage.beginTile.x + (bigStage.beginSize - 1) * 0.5f, bigStage.beginTile.y, bigStage.beginDir);
+		GameGraph gameGraph = new GameGraph ();
+		transition = gameGraph.StartTransition ();
+		mazes = gameGraph.ToMazeArray ();
 
 		bag = new Bag ();
 		lifePoints = 99;

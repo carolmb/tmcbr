@@ -1,28 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-using System.IO;
 
-public static class StaticStage {
+public class StaticStage : Stage {
+
+	public StaticMaze[] mazes;
+
+	public override Maze[] GetMazes() {
+		return mazes;
+	}
+
+	public Maze maze {
+		get { return mazes [0]; }
+	}
 
 	private static string dataPath {
 		get { return "MazeData/"; } 
 	}
 
-	public static Stage LoadStaticStage (string stageName, int id) {
-		Stage stage = ReadFromFileBase (stageName, id);
-		ReadFromFileFloor (stage.mazes[0]);
-		ReadFromFileWalls (stage.mazes[0]);
-		ReadFromFileObstacles (stage.mazes[0]);
-		ReadFromFileTypes (stage.mazes [0]);
-		return stage;
+	public StaticStage(int i, string name) : base(i) {
+		ReadFromFileBase (name, i);
+		ReadFromFileFloor (mazes[0]);
+		ReadFromFileWalls (mazes[0]);
+		ReadFromFileObstacles (mazes[0]);
+		ReadFromFileTypes (mazes [0]);
+		endIndex = i;
 	}
 
-	public static Stage ReadFromFileBase(string stageName, int id) {
+	void ReadFromFileBase(string stageName, int id) {
 		TextAsset file = Resources.Load<TextAsset> (dataPath + stageName + "/base");
 		if (file == null) {
 			Debug.Log ("The file could not be read: " + dataPath + stageName + "/base");
-			return null;
+			return;
 		}
 		string[] lines = file.text.Split("\n"[0]);
 
@@ -30,8 +39,8 @@ public static class StaticStage {
 		string[] info = line.Split(' ');
 		int width = Int32.Parse(info[0]);
 		int height = Int32.Parse(info[1]);
-		Maze maze = new Maze (id, stageName, width, height);
-		Stage stage = new Stage(new Maze[] {maze} );
+		StaticMaze maze = new StaticMaze (id, width, height, stageName);
+		mazes = new StaticMaze[] { maze };
 
 		for(int i = 0; i < width; i++) {
 			for(int j = 0; j < height; j++) {
@@ -39,33 +48,22 @@ public static class StaticStage {
 			}
 		}
 
-		line = lines[1];
-		info = line.Split(' ');
-		int x = Int32.Parse(info[0]);
-		int y = Int32.Parse(info[1]);
-		int d = Int32.Parse(info[2]);
-		int s = Int32.Parse(info[3]);
-		stage.beginTile = maze.tiles[x, y];
-		stage.beginDir = d;
-		stage.beginSize = s;
+		for(int i = 1; i < lines.Length; i++) {
+			line = lines [i];
+			info = line.Split(' ');
+			int x = Int32.Parse(info[0]);
+			int y = Int32.Parse(info[1]);
+			int d = Int32.Parse(info[2]);
+			int s = Int32.Parse(info[3]);
+			AddTransition (maze, x, y, d, s);
+		}
 
-		line = lines[2];
-		info = line.Split(' ');
-		x = Int32.Parse(info[0]);
-		y = Int32.Parse(info[1]);
-		d = Int32.Parse(info[2]);
-		s = Int32.Parse(info[3]);
-		stage.endTile = maze.tiles[x, y];
-		stage.endDir = d;
-		stage.endSize = s;
-
-		return stage;
 	}
 
-	public static void ReadFromFileFloor (Maze maze) {
-		TextAsset file = Resources.Load<TextAsset> (dataPath + maze.theme + "/floor");
+	void ReadFromFileFloor (Maze maze) {
+		TextAsset file = Resources.Load<TextAsset> (dataPath + maze.GetTheme() + "/floor");
 		if (file == null) {
-			Debug.Log ("The file could not be read: " + dataPath + maze.theme + "/floor");
+			Debug.Log ("The file could not be read: " + dataPath + maze.GetTheme() + "/floor");
 			return;
 		}
 		string[] lines = file.text.Split("\n"[0]);
@@ -80,10 +78,10 @@ public static class StaticStage {
 	}
 
 	//nome do objeto seguido das coordenadas x e y
-	static void ReadFromFileWalls (Maze maze) {
-		TextAsset file = Resources.Load<TextAsset> (dataPath  + maze.theme + "/walls");
+	void ReadFromFileWalls (Maze maze) {
+		TextAsset file = Resources.Load<TextAsset> (dataPath  + maze.GetTheme() + "/walls");
 		if (file == null) {
-			Debug.Log ("The file could not be read: " + dataPath + maze.theme + "/walls");
+			Debug.Log ("The file could not be read: " + dataPath + maze.GetTheme() + "/walls");
 			return;
 		}
 		string[] lines = file.text.Split("\n"[0]);
@@ -97,10 +95,10 @@ public static class StaticStage {
 		}
 	}
 
-	static void ReadFromFileObstacles (Maze maze) {
-		TextAsset file = Resources.Load<TextAsset> (dataPath  + maze.theme + "/obstacles");
+	void ReadFromFileObstacles (Maze maze) {
+		TextAsset file = Resources.Load<TextAsset> (dataPath  + maze.GetTheme() + "/obstacles");
 		if (file == null) {
-			Debug.Log ("The file could not be read: " + dataPath + maze.theme + "/obstacles");
+			Debug.Log ("The file could not be read: " + dataPath + maze.GetTheme() + "/obstacles");
 			return;
 		}
 		string[] lines = file.text.Split("\n"[0]);
@@ -114,10 +112,10 @@ public static class StaticStage {
 		}
 	}
 
-	static void ReadFromFileTypes (Maze maze) {
-		TextAsset file = Resources.Load<TextAsset> (dataPath  + maze.theme + "/types");
+	void ReadFromFileTypes (Maze maze) {
+		TextAsset file = Resources.Load<TextAsset> (dataPath  + maze.GetTheme() + "/types");
 		if (file == null) {
-			Debug.Log ("The file could not be read: " + dataPath + maze.theme + "/types");
+			Debug.Log ("The file could not be read: " + dataPath + maze.GetTheme() + "/types");
 			return;
 		}
 		string[] lines = file.text.Split("\n"[0]);
@@ -129,6 +127,7 @@ public static class StaticStage {
 				maze.tiles[j, (maze.height - 1) - i].type = Int32.Parse(info[j]); 
 			}
 		}
+
 	}
 
 }

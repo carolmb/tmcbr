@@ -12,11 +12,11 @@ public class MazeManager : MonoBehaviour {
 	// Transição entre labirintos
 	// ===============================================================================
 
-	public static Transition currentTransition {
+	public static Tile.Transition currentTransition {
 		get { return SaveManager.currentSave.transition; }
 	}
 
-	public static void GoToMaze(Transition transition) {
+	public static void GoToMaze(Tile.Transition transition) {
 		SaveManager.currentSave.transition = transition;
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
@@ -40,7 +40,7 @@ public class MazeManager : MonoBehaviour {
 		}
 		maze = SaveManager.currentSave.mazes [currentTransition.mazeID];
 		obstacles = new BoxCollider2D[maze.width, maze.height];
-		foreach (Tile t in maze) {
+		foreach (Tile t in maze.tiles) {
 			CreateTileFloor (t.x, t.y, t.floorID);
 
 			if (t.wallID > 0) {
@@ -81,7 +81,7 @@ public class MazeManager : MonoBehaviour {
 		obj.name = "Tile[" + spriteName + "] (" + x + ", " + y + ")";
 		obj.transform.position = TileToWorldPos (new Vector2 (x, y));
 		SpriteRenderer sr = obj.AddComponent<SpriteRenderer> ();
-		sr.sprite = Resources.Load<Sprite> ("Images/Tilesets/" + maze.theme + "/" + spriteName);
+		sr.sprite = Resources.Load<Sprite> ("Images/Tilesets/" + maze.GetTheme() + "/" + spriteName);
 		obj.transform.SetParent (transform);
 		return obj;
 	}
@@ -98,7 +98,7 @@ public class MazeManager : MonoBehaviour {
 
 	// Criar prefabs de obstáculos
 	GameObject CreateTileObstacle(int x, int y, int id) {
-		return CreateTileObstacle (x, y, "Obstacles/" + maze.theme + "/obstacle" + id);
+		return CreateTileObstacle (x, y, "Obstacles/" + maze.GetTheme() + "/obstacle" + id);
 	}
 
 	// Criar prefabs de obstáculos fora da pasta de obstacles 
