@@ -110,7 +110,7 @@ public abstract class ProceduralMaze : Maze {
 	protected bool HasTransitionNear(Tile t) {
 		if (t.transition != null)
 			return true;
-		foreach (Tile n in GetNeighbours(t, 1)) {
+		foreach (Tile n in GetNeighbours(t, 2)) {
 			if (n.transition != null)
 				return true;
 		}

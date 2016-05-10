@@ -41,13 +41,19 @@ public abstract class ProceduralStage : Stage {
 		}
 		if (dir == Character.DOWN || dir == Character.UP) {
 			for (int i = 0; i < size; i++) {
-				if (maze.tiles [x + i, y].transition != null)
-					return GenerateBorderTile (maze, dir, size);
+				if (maze.tiles [x + i, y].transition != null) {
+					if (System.Math.Abs(maze.tiles [x + i, y].transition.tileX) > 0.0001 || System.Math.Abs(maze.tiles [x + i, y].transition.tileY) > 0.0001) {
+						return GenerateBorderTile (maze, dir, size);
+					}
+				}
 			}
 		} else {
 			for (int i = 0; i < size; i++) {
-				if (maze.tiles [x, y + i].transition != null)
-					return GenerateBorderTile (maze, dir, size);
+				if (maze.tiles [x, y + 1].transition != null) {
+					if (System.Math.Abs(maze.tiles [x, y + i].transition.tileX) > 0.0001 || System.Math.Abs(maze.tiles [x, y + i].transition.tileY) > 0.0001) {
+						return GenerateBorderTile (maze, dir, size);
+					}
+				}
 			}
 		}
 
@@ -107,7 +113,7 @@ public abstract class ProceduralStage : Stage {
 		
 	protected static void SetTileTransition (Maze maze1, Tile tile1, Maze maze2, Tile tile2, int direction, int size1, int size2){
 
-		Debug.Log ("Transition tiles:");
+		Debug.Log ("Transition tiles: " + maze1.GetTheme() + " to " + maze2.GetTheme());
 		Debug.Log (tile1.coordinates);
 		Debug.Log (tile2.coordinates);
 		Debug.Log (direction);
