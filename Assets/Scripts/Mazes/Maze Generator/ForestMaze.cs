@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 public class ForestMaze : ProceduralMaze {
 
-	public ForestMaze(int i, int w, int h) : base(i, w, h) {}
+	public ForestMaze(int i, int w, int h) : base(i, w, h) {
+		GenerateTiles ();
+	}
 
 	public override string GetTheme () {
 		return "Forest";

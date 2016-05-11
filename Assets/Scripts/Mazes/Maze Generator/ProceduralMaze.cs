@@ -4,14 +4,12 @@ using System.Collections.Generic;
 
 public abstract class ProceduralMaze : Maze {
 
-	public ProceduralMaze(int i, int w, int h) : base(i, w, h) {
-		GenerateTiles (id, width, height);
-	}
+	public ProceduralMaze(int i, int w, int h) : base(i, w, h) {}
 
 	public abstract void CreateObstacles ();
 	protected abstract Tile GetNeighbour(Tile t, bool[,] visited);
 
-	public virtual void GenerateTiles (int id, int width, int height) {
+	public virtual void GenerateTiles () {
 		bool[,] visited = new bool[width, height];
 		InicializeNullMaze (visited);
 		Tile beginTile = FirstTile ();
@@ -34,7 +32,6 @@ public abstract class ProceduralMaze : Maze {
 			}
 		}
 	}
-
 
 	// Multiplica os tiles de um labirinto
 	// Apenas obstáculos, chão, parede e transição são replicados

@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 public class CaveMaze : ProceduralMaze {
 
-	public CaveMaze(int id, int width, int height)  : base (id, width, height) { }
+	public CaveMaze(int id, int width, int height)  : base (id, width, height) { 
+		GenerateTiles ();
+	}
 
 	public override string GetTheme () {
 		return "Cave";
