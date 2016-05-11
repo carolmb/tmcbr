@@ -3,7 +3,11 @@ using System.Collections;
 
 public class HallMaze : ProceduralMaze {
 
-	public HallMaze(int i, int w, int h) : base(i, w, h) {}
+	public int type; // 0 -> correr comum; 1 -> salinha
+
+	public HallMaze(int i, int w, int h, int type) : base(i, w, h) {
+		this.type = type;
+	}
 
 	public override string GetTheme () {
 		return "Hall";
@@ -44,7 +48,7 @@ public class HallMaze : ProceduralMaze {
 			if (!HasTransitionNear (t) && t.isWalkable) {
 				if (EmptyRadiusToEnemies (t)) {
 					if (GetAllWallNeighbours(t).Count > 0) { //mimics
-						if (Random.Range (0, 100) < 20 && !tiles [t.x, t.y - 1].isWall) { //fator random
+						if (Random.Range (0, 100) < 10 && !tiles [t.x, t.y - 1].isWall) { //fator random
 							t.objectName = "Enemies/Mimic";
 						} else if (Random.Range (0, 100) < 30) { //fator random
 							t.objectName = "Enemies/KnightArmor";
@@ -67,4 +71,12 @@ public class HallMaze : ProceduralMaze {
 		}
 	}
 
+	public void ChangeType () {
+		type = 1;
+		foreach (Tile t in tiles) {
+			if (t.coordinates.x > 2 && t.coordinates.y > 2 && t.coordinates.x < width - 3 && t.coordinates.y < height - 3) {
+				t.wallID = 0;
+			}
+		}
+	}
 }
