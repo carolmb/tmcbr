@@ -67,8 +67,8 @@ public class GameGraph {
 		Maze maze1 = t1.maze;
 		Maze maze2 = t2.maze;
 
-		Debug.Log (t1);
-		Debug.Log (t2);
+		//Debug.Log (t1);
+		//Debug.Log (t2);
 
 		Tile tile1 = maze1.tiles [(int)t1.tileX, (int)t1.tileY];
 		Tile tile2 = maze2.tiles [(int)t2.tileX, (int)t2.tileY];

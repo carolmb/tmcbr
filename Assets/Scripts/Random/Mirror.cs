@@ -43,7 +43,7 @@ public class Mirror : MonoBehaviour {
 		GameCamera.PlayAudioClip (breakSound);
 		Player.instance.canMove = true;
 		sr.sprite = broken;
-		MazeManager.GetTile ((Vector2)transform.position - new Vector2 (Tile.size / 2, Tile.size / 2)).obstacleID = 5;
+		MazeManager.GetTile ((Vector2)transform.position - new Vector2 (Tile.size / 2, Tile.size / 2)).obstacle = "obstacle5";
 	}
 
 }

@@ -37,7 +37,7 @@ public class Chest : MonoBehaviour {
 		Destroy (GetComponent<Interactable> ());
 
 		// Muda o tipo do objeto
-		t.chest = 2; // Baú aberto
+		t.obstacle = "Open Chest";
 
 		character.animator.speed = 1;
 		GameCamera.PlayAudioClip (openSound);

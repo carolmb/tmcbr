@@ -27,10 +27,10 @@ public class Tile {
 	}
 
 	// Informações dos gráficos de cenário do tile
-	public int floorID = 1; // nunca é 0 (se não só tem um vácuo)
-	public int wallID = 0; // 0 é sem parede
-	public int obstacleID = 0; // 0 é sem obstáculo
-	public int type; // tipo do tile
+	public int floorID = 1;		 // nunca é 0 (se não só tem um vácuo)
+	public int wallID = 0;		 // 0 é sem parede
+	public int type;			 // tipo do tile
+	public string obstacle = ""; // 0 é sem obstáculo
 
 	// Informações do objeto do tile
 	public string objectName = ""; // nome do objeto (inimigo ou item), se tiver 
@@ -39,9 +39,6 @@ public class Tile {
 	// Spawn de objeto
 	public float lastSpawn = 0f;
 	public float spawnTime = 0f;
-
-	// Informações de baú
-	public int chest = 0; // 0 = não tem; 1 = baú fechado; 2 = baú aberto
 
 	// Se o tempo de spawn já deu
 	public bool canSpawn {
@@ -54,7 +51,7 @@ public class Tile {
 	public Transition transition; // se ao tocar, para onde o player vai
 
 	public bool isWalkable {
-		get { return !isWall && obstacleID <= 0 && chest <= 0; }
+		get { return !isWall && obstacle == ""; }
 	}
 
 	public bool isWall {
@@ -72,7 +69,7 @@ public class Tile {
 		this.y = newY;
 		this.wallID = copy.wallID;
 		this.floorID = copy.floorID;
-		this.obstacleID = copy.obstacleID;
+		this.obstacle = copy.obstacle;
 		ResetObjectPos ();
 	}
 

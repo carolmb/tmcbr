@@ -56,15 +56,15 @@ public class HallMaze : ProceduralMaze {
 					}
 				} else if (!HasObstaclesNear (t)) {
 					if (Random.Range (0, 100) < 15) {
-						t.obstacleID = 3; // Flores
+						t.obstacle = "Vase";
 					} else if (Random.Range (0, 100) < 15 && !tiles [t.x, t.y - 1].isWall) {
-						t.obstacleID = 1; // Mesa
+						t.obstacle = "Table";
 					} else if (Random.Range (0, 100) < 15 && tiles [t.x, t.y + 1].isWall) {
-						t.obstacleID = 2; // Cadeira
+						t.obstacle = "Chair";
 					} else if (Random.Range (0, 100) < 50 && !tiles [t.x, t.y - 1].isWall) {
-						t.chest = 1;
+						t.obstacle = "Closed Chest";
 					} else if (Random.Range (0, 100) < 60 && !tiles [t.x, t.y - 1].isWall) {
-						t.obstacleID = 4;
+						t.obstacle = "Armour";
 					}
 				}
 			}

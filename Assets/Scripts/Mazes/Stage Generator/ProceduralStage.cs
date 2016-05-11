@@ -16,7 +16,6 @@ public abstract class ProceduralStage : Stage {
 
 	public static Tile GenerateBorderTile(Maze maze, int dir, int size = 2){
 		int x = 0, y = 0;
-		Tile tile = null;
 		switch (dir) {
 		case Character.UP:
 			y = maze.height - 1;
@@ -92,7 +91,6 @@ public abstract class ProceduralStage : Stage {
 				direction,
 				size1
 			);
-			//Debug.Log (tile1.coordinates);
 		}
 
 		if (tile2 == null) {
@@ -101,7 +99,6 @@ public abstract class ProceduralStage : Stage {
 				3 - direction,
 				size2
 			);
-			//Debug.Log (tile2.coordinates);
 		}
 
 		//ida
@@ -113,9 +110,9 @@ public abstract class ProceduralStage : Stage {
 		
 	protected static void SetTileTransition (Maze maze1, Tile tile1, Maze maze2, Tile tile2, int direction, int size1, int size2){
 
-		Debug.Log ("Transition tiles: " + maze1.GetTheme() + " to " + maze2.GetTheme());
-		Debug.Log (tile1.coordinates + " " + tile2.coordinates);
-		Debug.Log ("dir: " + direction);
+		//Debug.Log ("Transition tiles: " + maze1.GetTheme() + " to " + maze2.GetTheme());
+		//Debug.Log (tile1.coordinates + " " + tile2.coordinates);
+		//Debug.Log ("dir: " + direction);
 
 		Vector2 delta = Vector2.zero;
 		Vector2 destVector = tile2.coordinates;
@@ -148,8 +145,8 @@ public abstract class ProceduralStage : Stage {
 				Tile tile = maze1.tiles [tile1.x + i, tile1.y];
 				tile.SetTransition (maze2.id, destVector.x, destVector.y, direction);
 
-				if (tile.y - (int)delta.y >= maze1.height)
-					Debug.Log (maze1.id + " " + (tile.y - (int)delta.y) + " " + maze1.height + " " + delta.y);
+				//if (tile.y - (int)delta.y >= maze1.height)
+				//	Debug.Log (maze1.id + " " + (tile.y - (int)delta.y) + " " + maze1.height + " " + delta.y);
 				maze1.tiles [tile.x, tile.y - (int)delta.y].wallID = 0; // Remove a parede do vizinho
 			}
 		} else {

@@ -107,7 +107,12 @@ public class StaticStage : Stage {
 			string line = lines [i];
 			string [] info = line.Split(' ');
 			for (int j = 0; j < maze.width; j++) {
-				maze.tiles[j, (maze.height - 1) - i].obstacleID = Int32.Parse(info[j]); 
+				int id = Int32.Parse (info [j]);
+				if (id > 0) {
+					maze.tiles [j, (maze.height - 1) - i].obstacle = "obstacle" + id;
+				} else {
+					maze.tiles [j, (maze.height - 1) - i].obstacle = "";
+				}
 			}
 		}
 	}

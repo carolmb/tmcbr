@@ -33,11 +33,11 @@ public class ForestMaze : ProceduralMaze {
 			} else { 
 				if (!HasObstaclesNear (t, 3)) {
 					if (Random.Range (0, 100) < 50) {
-						t.obstacleID = 2;
+						t.obstacle = "Trunk";
 					} else if (Random.Range (0, 100) < 50) {
-						t.obstacleID = 3;
+						t.obstacle = "Log";
 					} else {
-						t.obstacleID = 4;
+						t.obstacle = "Tree";
 					}
 				}
 			}
@@ -47,9 +47,9 @@ public class ForestMaze : ProceduralMaze {
 		foreach (Tile t in tiles) {
 			if (t.isWall) {	
 				if (!HasObstaclesNear (t, 3) && Random.Range (0, 100) < 30) { //fator random
-					t.obstacleID = 1;
+					t.obstacle = "Bush";
 				} else if (!HasObstaclesNear (t, 3) && Random.Range (0, 100) < 30) {
-					t.obstacleID = 5;
+					t.obstacle = "Mushroom";
 					t.wallID = 0;
 				} else if (Random.Range (0, 100) < 30 && GetAllWallNeighbours (t).Count >= 3) {
 					t.wallID = 0;

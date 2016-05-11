@@ -46,12 +46,8 @@ public class MazeManager : MonoBehaviour {
 			if (t.wallID > 0) {
 				CreateTileWall (t.x, t.y, t.wallID);
 			}
-			if (t.obstacleID > 0) {
-				CreateTileObstacle (t.x, t.y, t.obstacleID);
-			} else if (t.chest > 0) {
-				GameObject chest = CreateTileObject (t.x, t.y, "chest" + t.chest);
-				obstacles [t.x, t.y] = chest.GetComponent<BoxCollider2D> ();
-				// Debug.Log ("blah");
+			if (t.obstacle != "") {
+				CreateTileObstacle (t.x, t.y, t.obstacle);
 			} else if (t.objectName != "" && t.canSpawn) {
 				CreateTileObject (t.x, t.y, t.objectName);
 				t.lastSpawn = SaveManager.currentPlayTime;
@@ -90,20 +86,17 @@ public class MazeManager : MonoBehaviour {
 	GameObject CreateTileObject(int x, int y, string prefabName) {
 		Vector3 pos = TileToWorldPos (new Vector2 (x, y)) + new Vector3(0, Tile.size / 2, Tile.size / 2);
 		GameObject prefab = Resources.Load<GameObject> ("Prefabs/" + prefabName);
+		if (prefab == null)
+			Debug.Log ("null prefab: Prefabs/" + prefabName);
 		GameObject obj = (GameObject) Instantiate(prefab, pos, Quaternion.identity);
 		obj.transform.SetParent (transform);
 		obj.name = prefabName;
 		return obj;
 	}
 
-	// Criar prefabs de obstáculos
-	GameObject CreateTileObstacle(int x, int y, int id) {
-		return CreateTileObstacle (x, y, "Obstacles/" + maze.GetTheme() + "/obstacle" + id);
-	}
-
 	// Criar prefabs de obstáculos fora da pasta de obstacles 
 	GameObject CreateTileObstacle(int x, int y, string name) {
-		GameObject g = CreateTileObject (x, y, name);
+		GameObject g = CreateTileObject (x, y, "Obstacles/" + maze.GetTheme() + "/" + name);
 		g.name = "Tile[" + name + "] (" + x + ", " + y + ")";
 		obstacles [x, y] = g.GetComponent<BoxCollider2D> ();
 		return g;

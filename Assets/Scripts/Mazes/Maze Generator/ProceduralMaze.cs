@@ -63,7 +63,7 @@ public abstract class ProceduralMaze : Maze {
 		for (int i = tile.x - deltaEnemies; i < tile.x + deltaEnemies; i++) {
 			for (int j = tile.y - deltaEnemies; j < tile.y + deltaEnemies; j++) {
 				if (i >= 0 && i < width && j >= 0 && j < height) {
-					if (tiles [i, j].objectName != "" || tiles[i,j].obstacleID > 0 || tiles[i,j].chest > 0) {
+					if (tiles [i, j].objectName != "" || tiles[i,j].obstacle != "") {
 						return false;
 					}
 				}
@@ -118,10 +118,10 @@ public abstract class ProceduralMaze : Maze {
 	}
 
 	protected bool HasObstaclesNear (Tile t, int vision = 6) {
-		if (t.obstacleID > 0)
+		if (t.obstacle != "")
 			return true;
 		foreach (Tile n in GetNeighbours(t, vision)) {
-			if (n.obstacleID > 0 || n.chest == 1)
+			if (n.obstacle != "")
 				return true;
 		}
 		return false;
