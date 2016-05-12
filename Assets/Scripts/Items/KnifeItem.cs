@@ -72,6 +72,8 @@ public class KnifeItem : MonoBehaviour {
 				comp.Damage (transform.position, damage);
 			}
 			Destroy (gameObject);
+		} else if (collider.CompareTag ("Grass")) {
+			Destroy (gameObject);
 		}
 	}
 
