@@ -49,7 +49,7 @@ public class HallStage : ProceduralStage {
 
 		queue.Enqueue (first);
 
-		int mazeCount = 0, maxMazeCount = Random.Range (5, 8);
+		int mazeCount = 0, maxMazeCount = Random.Range (7, 12);
 		int currentId = beginIndex + 1;
 
 		while (mazeCount < maxMazeCount) {
@@ -148,8 +148,8 @@ public class HallStage : ProceduralStage {
 		int w, h;
 		if (node.type == 0) {
 			//hall normal
-			w = Random.Range (5, 8) * 2 + 1;
-			h = Random.Range (5, 8) * 2 + 1;
+			w = Random.Range (4, 6) * 2 + 1;
+			h = Random.Range (4, 6) * 2 + 1;
 		} else {
 			//salinha
 			w = 5;//Random.Range (5, 8);

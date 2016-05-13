@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2a3c64ee40aee914cb4140e00b27efd6
-timeCreated: 1462535243
+timeCreated: 1463150180
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -78,134 +78,225 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 72
-        width: 24
-        height: 24
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -10, y: 18.400002}
+        - {x: -13, y: 15.400002}
+        - {x: -13, y: -0.5999985}
+        - {x: -11, y: -2.5999985}
+        - {x: 11, y: -2.5999985}
+        - {x: 13, y: -0.5999985}
+        - {x: 13, y: 15.400002}
+        - {x: 10, y: 18.400002}
     - name: chest_1
       rect:
         serializedVersion: 2
-        x: 24
-        y: 72
-        width: 24
-        height: 24
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -10, y: 18.400002}
+        - {x: -13, y: 15.400002}
+        - {x: -13, y: -0.5999985}
+        - {x: -11, y: -2.5999985}
+        - {x: 11, y: -2.5999985}
+        - {x: 13, y: -0.5999985}
+        - {x: 13, y: 15.400002}
+        - {x: 10, y: 18.400002}
     - name: chest_2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 72
-        width: 24
-        height: 24
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -10, y: 18.400002}
+        - {x: -13, y: 15.400002}
+        - {x: -13, y: -0.5999985}
+        - {x: -11, y: -2.5999985}
+        - {x: 11, y: -2.5999985}
+        - {x: 13, y: -0.5999985}
+        - {x: 13, y: 15.400002}
+        - {x: 10, y: 18.400002}
     - name: chest_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 48
-        width: 24
-        height: 24
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -10, y: 18.400002}
+        - {x: -10, y: -5.5999985}
+        - {x: 9, y: -5.5999985}
+        - {x: 12, y: 0.40000153}
+        - {x: 12, y: 17.400002}
+        - {x: 8, y: 18.400002}
     - name: chest_4
       rect:
         serializedVersion: 2
-        x: 24
-        y: 48
-        width: 24
-        height: 24
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 1, y: 20.400002}
+        - {x: -8, y: 18.400002}
+        - {x: -10, y: 17.400002}
+        - {x: -10, y: -5.5999985}
+        - {x: 10, y: -5.5999985}
+        - {x: 11, y: -0.5999985}
+        - {x: 11, y: 17.400002}
+        - {x: 8, y: 20.400002}
     - name: chest_5
       rect:
         serializedVersion: 2
-        x: 48
-        y: 48
-        width: 24
-        height: 24
+        x: 64
+        y: 64
+        width: 32
+        height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 9, y: 22.400002}
+        - {x: -2, y: 22.400002}
+        - {x: -9, y: 20.400002}
+        - {x: -10, y: 15.400002}
+        - {x: -10, y: -5.5999985}
+        - {x: 10, y: -5.5999985}
+        - {x: 10, y: 21.400002}
     - name: chest_6
       rect:
         serializedVersion: 2
         x: 0
-        y: 24
-        width: 24
-        height: 24
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -7, y: 22.400002}
+        - {x: -10, y: 18.400002}
+        - {x: -10, y: -5.5999985}
+        - {x: 10, y: -5.5999985}
+        - {x: 10, y: 16.400002}
+        - {x: 1, y: 22.400002}
     - name: chest_7
       rect:
         serializedVersion: 2
-        x: 24
-        y: 24
-        width: 24
-        height: 24
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 1, y: 20.400002}
+        - {x: -8, y: 20.400002}
+        - {x: -10, y: 15.400002}
+        - {x: -11, y: 9.400002}
+        - {x: -11, y: -5.5999985}
+        - {x: 10, y: -5.5999985}
+        - {x: 10, y: 16.400002}
+        - {x: 8, y: 19.400002}
     - name: chest_8
       rect:
         serializedVersion: 2
-        x: 48
-        y: 24
-        width: 24
-        height: 24
+        x: 64
+        y: 32
+        width: 32
+        height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -7, y: 18.400002}
+        - {x: -10, y: 15.400002}
+        - {x: -12, y: 12.400002}
+        - {x: -12, y: -5.5999985}
+        - {x: 9, y: -5.5999985}
+        - {x: 10, y: -3.5999985}
+        - {x: 10, y: 15.400002}
+        - {x: 7, y: 18.400002}
     - name: chest_9
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 24
-        height: 24
+        width: 32
+        height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -10, y: 18.4}
+        - {x: -13, y: 15.4}
+        - {x: -13, y: -0.6000004}
+        - {x: -11, y: -2.6000004}
+        - {x: 11, y: -2.6000004}
+        - {x: 13, y: -0.6000004}
+        - {x: 13, y: 15.4}
+        - {x: 10, y: 18.4}
     - name: chest_10
       rect:
         serializedVersion: 2
-        x: 24
+        x: 32
         y: 0
-        width: 24
-        height: 24
+        width: 32
+        height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -10, y: 18.4}
+        - {x: -13, y: 15.4}
+        - {x: -13, y: -0.6000004}
+        - {x: -11, y: -2.6000004}
+        - {x: 11, y: -2.6000004}
+        - {x: 13, y: -0.6000004}
+        - {x: 13, y: 15.4}
+        - {x: 10, y: 18.4}
     - name: chest_11
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 0
-        width: 24
-        height: 24
+        width: 32
+        height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -10, y: 18.4}
+        - {x: -13, y: 15.4}
+        - {x: -13, y: -0.6000004}
+        - {x: -11, y: -2.6000004}
+        - {x: 11, y: -2.6000004}
+        - {x: 13, y: -0.6000004}
+        - {x: 13, y: 15.4}
+        - {x: 10, y: 18.4}
     outline: []
   spritePackingTag: 
   userData: 
