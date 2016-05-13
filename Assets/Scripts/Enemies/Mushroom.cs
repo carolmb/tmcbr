@@ -3,13 +3,9 @@ using System.Collections;
 
 public class Mushroom : Enemy {
 
-	public GameObject tomato;
-
 	// Use this for initialization
-
 	protected override void Start () {
 		base.Start ();
-		Spawn ();
 	}
 	
 	void Update () {
@@ -23,17 +19,11 @@ public class Mushroom : Enemy {
 		}
 	}
 
-	void Spawn () {
-		if (!character.moving && !character.damaging) {
-			Tile t = ClosestToPlayer();
-			if (t != null) {
-				Invoke ("MiniTomato", 3);
+	void OnTriggerStay2D (Collider2D other) {
+		if (other.CompareTag ("Player")) {
+			if (!Player.instance.immune) {
+				//
 			}
 		}
-		Invoke ("Spawn", 6);
-	}
-
-	void MiniTomato () {
-		Instantiate (tomato, character.transform.position, character.transform.rotation);
 	}
 }

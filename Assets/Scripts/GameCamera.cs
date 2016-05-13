@@ -5,6 +5,12 @@ public class GameCamera : MonoBehaviour {
 
 	public static GameCamera instance;
 	public Transform player;
+	public static Camera camera;
+	public Shader shader;
+
+	void Start() {
+		//InvertColors ();
+	}
 
 	// Limites do cenário
 	private float maxX { get { return MazeManager.maze.worldWidth - size.x / 2 - Tile.size / 2; } }
@@ -85,4 +91,7 @@ public class GameCamera : MonoBehaviour {
 		Graphics.Blit (source, dest, lampMaterial);
 	}
 
+	public void InvertColors() {
+		camera.SetReplacementShader (shader, "Queue");
+	}
 }

@@ -5,12 +5,15 @@ using System.Collections.Generic;
 public class HallStage : ProceduralStage {
 
 	class NodeGraph {
-		public HallMaze maze;
+		public int id;
+		public int type;
 		public NodeGraph father;
 		public List<NodeGraph> children;
-		public NodeGraph(int id, int w, int h, int type = 0, NodeGraph father = null){
-			maze = new HallMaze(id, w, h, type);
-			maze.Expand (expansionFactor, expansionFactor);
+		public HallMaze maze;
+		public NodeGraph(int id, int type = 0, NodeGraph father = null){
+			this.id = id;
+			this.type = type;
+			maze = null;
 			this.father = father;
 			children = new List<NodeGraph>();
 		}
@@ -41,7 +44,7 @@ public class HallStage : ProceduralStage {
 		*/
 
 		Queue<NodeGraph> queue = new Queue<NodeGraph>();
-		NodeGraph first = new NodeGraph (beginIndex, 1 + 2 * Random.Range (5, 8), 1 + 2 * Random.Range (5, 8));
+		NodeGraph first = new NodeGraph (beginIndex);
 		NodeGraph current;
 
 		queue.Enqueue (first);
@@ -54,18 +57,17 @@ public class HallStage : ProceduralStage {
 			int childrenNumber = Random.Range (1, Mathf.Min(maxMazeCount - mazeCount + 1, 4));
 			NodeGraph[] children = CreateChildren (current, childrenNumber, currentId);
 			foreach (NodeGraph c in children) {
-				if (c.maze.type == 0) {
+				if (c.type == 0) {
 					queue.Enqueue (c);
 				}
 			}
+
 			currentId += childrenNumber;
 			mazeCount += childrenNumber;
 		}
 
-		NodeGraph final = GetLastMaze (first);
-
+		NodeGraph final = GetEndWay (first);
 		HallMaze[] mazes = TreeToArray(first, final, maxMazeCount);
-
 		Tile entranceTile = GenerateBorderTile (mazes [0], 3 - entrance.dir, entrance.size);
 		Tile roomTile = GenerateBorderTile (final.maze, 3 - mirrorRoom.dir, mirrorRoom.size);
 
@@ -93,57 +95,83 @@ public class HallStage : ProceduralStage {
 		*/
 	}
 
-	NodeGraph GetLastMaze(NodeGraph first) {
+	// variar os possiveis ultimos
+	NodeGraph GetEndWay(NodeGraph first) {
 		NodeGraph current = first;
 		while (current.children.Count > 0) {
+			List<NodeGraph> children = new List<NodeGraph>();
 			foreach (NodeGraph node in current.children) {
-				if (node.maze.type == 0) {
-					current = node;
-					break;
+				if (node.type == 0) {
+					children.Add (node);
 				}
 			}
+			current = children [Random.Range (0, children.Count)];
 		}
 		return current;
 	}
 
 	NodeGraph[] CreateChildren (NodeGraph father, int childrenNumber, int currentId) {
-		int beginDir = Random.Range (0, 4);
 		for (int i = 0, id = currentId; i < childrenNumber; i++, id++) {
 			NodeGraph newNode = new NodeGraph (
-				id, 1 + 2 * Random.Range (5, 8), 
-				1 + 2 * Random.Range (5, 8), 
+				id,
 				DefineTypeHallMaze (i, childrenNumber), 
 				father);
 			father.children.Add (newNode);
-			beginDir = GenerateDir (beginDir);
-			SetTransitions (
-				father.maze, 
-				newNode.maze, 
-				beginDir
-			);
 		}
 		return father.children.ToArray();
 	}
 
+	//transforma a estrutura árvore em array, cria os labirintos e transições
 	HallMaze[] TreeToArray(NodeGraph initialNode, NodeGraph finalNode, int max) {
 		List<HallMaze> hallMazes = new List<HallMaze> ();
-		NodeGraph current;
+		NodeGraph current = null;
 		Queue<NodeGraph> queue = new Queue<NodeGraph>();
 		queue.Enqueue (initialNode);
 		while (queue.Count > 0) {
 			current = queue.Dequeue ();
 
 			if (current.children.Count == 0 && current != finalNode) {
-				current.maze.ChangeType ();
+				current.type = 1;
 			}
+			Debug.Log (current.children);
+			hallMazes.Add (FromNodeToArray (current));
 
-			hallMazes.Add (current.maze);
 			foreach (NodeGraph node in current.children) {
 				queue.Enqueue (node);
 			}
+
 		}
 		return hallMazes.ToArray ();
 	}
+
+	HallMaze FromNodeToArray (NodeGraph node) {
+		int w, h;
+		if (node.type == 0) {
+			//hall normal
+			w = Random.Range (5, 8) * 2 + 1;
+			h = Random.Range (5, 8) * 2 + 1;
+		} else {
+			//salinha
+			w = Random.Range (5, 8);
+			h = Random.Range (5, 8);
+		}
+		HallMaze hallMaze = new HallMaze (node.id, w, h, node.type);
+		hallMaze.Expand (expansionFactor, expansionFactor);
+		node.maze = hallMaze;
+		int beginDir = Random.Range (0, 4);
+
+		if (node.father != null) {
+			Debug.Log (node.father.maze.width + " " + node.father.maze.height);
+			beginDir = GenerateDir (beginDir);
+			SetTransitions (
+				node.father.maze, 
+				node.maze, 
+				beginDir
+			);
+		}
+
+		return hallMaze;
+	}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 
 	int DefineTypeHallMaze (int i, int childrenNumber) {
 		if (childrenNumber - i < 1) {
