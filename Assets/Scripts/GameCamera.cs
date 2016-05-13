@@ -9,7 +9,7 @@ public class GameCamera : MonoBehaviour {
 	public Shader shader;
 
 	void Start() {
-		InvertColors ();
+		//InvertColors ();
 	}
 
 	// Limites do cenário

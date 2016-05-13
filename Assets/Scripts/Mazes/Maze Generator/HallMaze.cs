@@ -126,13 +126,4 @@ public class HallMaze : ProceduralMaze {
 			}
 		}
 	}
-
-	public void ChangeType () {
-		type = 1;
-		foreach (Tile t in tiles) {
-			if (t.coordinates.x > 2 && t.coordinates.y > 2 && t.coordinates.x < width - 3 && t.coordinates.y < height - 3) {
-				t.wallID = 0;
-			}
-		}
-	}
 }
