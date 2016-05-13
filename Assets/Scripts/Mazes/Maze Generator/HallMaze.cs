@@ -35,31 +35,36 @@ public class HallMaze : ProceduralMaze {
 	// ===============================================================================
 
 	private void CreateDefaultObstacles () {
-		foreach (Tile t in tiles) {
-			if (!HasTransitionNear (t) && t.isWalkable) {
-				if (EmptyRadiusToEnemies (t)) {
-					if (GetAllWallNeighbours(t).Count > 0) { //mimics
-						if (Random.Range (0, 100) < 10 && !tiles [t.x, t.y - 1].isWall) { //fator random
-							t.objectName = "Enemies/Mimic";
-						} else if (Random.Range (0, 100) < 30) { //fator random
-							t.objectName = "Enemies/KnightArmor";
-						}
-					}
-				} else if (!HasObstaclesNear (t)) {
-					if (Random.Range (0, 100) < 15) {
-						t.obstacle = "Vase";
-					} else if (Random.Range (0, 100) < 15 && !tiles [t.x, t.y - 1].isWall) {
-						t.obstacle = "Table";
-					} else if (Random.Range (0, 100) < 15 && tiles [t.x, t.y + 1].isWall) {
-						t.obstacle = "Chair";
-					} else if (Random.Range (0, 100) < 50 && !tiles [t.x, t.y - 1].isWall) {
-						t.obstacle = "Closed Chest";
-					} else if (Random.Range (0, 100) < 60 && !tiles [t.x, t.y - 1].isWall) {
-						t.obstacle = "Armour";
-					}
+		// Gerar sequências de armaduras
+		for (int k = Random.Range ((width + height) / 8, (width + height) / 4); k >= 0; k--) {
+			int x = Random.Range (0, (width / ProceduralStage.expansionFactor) / 2);
+			x = ProceduralStage.expansionFactor * (1 + x * 2); 
+			int y = Random.Range (0, (height / ProceduralStage.expansionFactor) / 2);
+			y = ProceduralStage.expansionFactor * (1 + y * 2) + 1; 
+
+			int dx, dy;
+			if (Random.Range (0, 2) == 0) {
+				dx = Random.Range (0, 2) * 2 - 1; // -1 ou 1 
+				dy = 0;
+			} else {
+				dy = Random.Range (0, 2) * 2 - 1; // -1 ou 1 
+				dx = 0;
+			}
+
+			for (dx *= 2, dy *= 2; x >= 0 && x < width && y >= 0 && y < height; x += dx, y += dy) {
+				Tile t = tiles [x, y];
+				if (!t.isWalkable || GetAllWallNeighbours(t).Count != 1)
+					break;
+				if (Random.Range (0, 100) < 10) {
+					t.objectName = "Enemies/KnightArmor";
+				} else {
+					t.obstacle = "Armor";
 				}
 			}
 		}
+
+		// Gerar paredes com quadros
+		// TODO
 	}
 
 	protected override Tile GetNeighbour(Tile t, bool[,] visited) {

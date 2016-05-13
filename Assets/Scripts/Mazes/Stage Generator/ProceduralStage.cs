@@ -6,7 +6,7 @@ public abstract class ProceduralStage : Stage {
 
 	public ProceduralMaze[] mazes;
 
-	protected const int expansionFactor = 2;
+	public const int expansionFactor = 2;
 
 	public ProceduralStage(int i) : base(i) {}
 
