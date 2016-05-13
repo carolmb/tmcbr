@@ -26,7 +26,7 @@ public class CaveMaze : ProceduralMaze {
 			}
 
 			if (t.isWalkable) {
-				if (EmptyRadiusToEnemies (t) && Random.Range (0, 100) < 30) {
+				if (EmptyRadiusToEnemies (t, 4) && Random.Range (0, 100) < 30) {
 					t.objectName = "Enemies/Bat";
 				} else if (!HasObstaclesNear (t)) {
 					int r = Random.Range (0, 100);

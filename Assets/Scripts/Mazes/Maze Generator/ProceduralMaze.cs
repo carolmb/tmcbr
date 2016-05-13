@@ -55,12 +55,11 @@ public abstract class ProceduralMaze : Maze {
 		tiles = expandedTiles;
 	}
 
-	protected bool EmptyRadiusToEnemies (Tile tile) {
-		int deltaEnemies = 4;
+	protected bool EmptyRadiusToEnemies (Tile tile, int deltaEnemies) {
 		for (int i = tile.x - deltaEnemies; i < tile.x + deltaEnemies; i++) {
 			for (int j = tile.y - deltaEnemies; j < tile.y + deltaEnemies; j++) {
 				if (i >= 0 && i < width && j >= 0 && j < height) {
-					if (tiles [i, j].objectName != "" || tiles[i,j].obstacle != "") {
+					if (tiles [i, j].objectName != "" || tiles[i, j].obstacle != "") {
 						return false;
 					}
 				}

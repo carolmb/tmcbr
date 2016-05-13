@@ -26,7 +26,7 @@ public class ForestMaze : ProceduralMaze {
 			if (HasTransitionNear(t) || t.isWall) {
 				continue;
 			}
-			if (Random.Range (0, 100) < 75 && EmptyRadiusToEnemies (t)) {
+			if (Random.Range (0, 100) < 75 && EmptyRadiusToEnemies (t, 4)) {
 				if (Random.Range (0, 100) < 50) {
 					t.objectName = "Enemies/Tomato";
 				} else if (Random.Range (0, 100) < 50) {

@@ -152,8 +152,8 @@ public class HallStage : ProceduralStage {
 			h = Random.Range (5, 8) * 2 + 1;
 		} else {
 			//salinha
-			w = Random.Range (5, 8);
-			h = Random.Range (5, 8);
+			w = 5;//Random.Range (5, 8);
+			h = 5;//Random.Range (5, 8);
 		}
 		HallMaze hallMaze = new HallMaze (node.id, w, h, node.type);
 		hallMaze.Expand (expansionFactor, expansionFactor);

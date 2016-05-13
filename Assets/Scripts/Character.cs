@@ -156,7 +156,7 @@ public class Character : CharacterBase {
 
 	// Quantos pixels o personagem vai andar para trás quando levar dano
 	public float damageSpeed = 3;
-	private float damageDuration = 0.25f;
+	public float damageDuration = 0.25f;
 
 	// Serve para verificar se o personagem está levando dano
 	public bool damaging;

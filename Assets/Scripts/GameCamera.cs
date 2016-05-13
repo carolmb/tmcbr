@@ -5,7 +5,6 @@ public class GameCamera : MonoBehaviour {
 
 	public static GameCamera instance;
 	public Transform player;
-	public static Camera camera;
 	public Shader shader;
 
 	void Start() {
@@ -92,6 +91,6 @@ public class GameCamera : MonoBehaviour {
 	}
 
 	public void InvertColors() {
-		camera.SetReplacementShader (shader, "Queue");
+		Camera.main.SetReplacementShader (shader, "Queue");
 	}
 }

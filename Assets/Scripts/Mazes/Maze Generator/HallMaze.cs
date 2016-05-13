@@ -35,10 +35,11 @@ public class HallMaze : ProceduralMaze {
 	// ===============================================================================
 
 	private void CreateDefaultObstacles () {
+
 		// Gerar sequências de armaduras
 		for (int k = Random.Range ((width + height) / 8, (width + height) / 4); k >= 0; k--) {
 			int x = Random.Range (0, (width / ProceduralStage.expansionFactor) / 2);
-			x = ProceduralStage.expansionFactor * (1 + x * 2); 
+			x = ProceduralStage.expansionFactor * (1 + x * 2) + Random.Range(0, 2); 
 			int y = Random.Range (0, (height / ProceduralStage.expansionFactor) / 2);
 			y = ProceduralStage.expansionFactor * (1 + y * 2) + 1; 
 
@@ -51,9 +52,9 @@ public class HallMaze : ProceduralMaze {
 				dx = 0;
 			}
 
-			for (dx *= 2, dy *= 2; x >= 0 && x < width && y >= 0 && y < height; x += dx, y += dy) {
+			for (dx *= 2, dy *= 2; x > 0 && x < width - 1 && y > 0 && y < height - 1; x += dx, y += dy) {
 				Tile t = tiles [x, y];
-				if (!t.isWalkable || GetAllWallNeighbours(t).Count != 1)
+				if (!CanPutArmor(t))
 					break;
 				if (Random.Range (0, 100) < 10) {
 					t.objectName = "Enemies/KnightArmor";
@@ -63,8 +64,54 @@ public class HallMaze : ProceduralMaze {
 			}
 		}
 
-		// Gerar paredes com quadros
-		// TODO
+		foreach (Tile t in tiles) {
+			if (t.isWall && t.y > 0 && tiles[t.x, t.y - 1].obstacle == "") {
+				bool nearPainting = false;
+				foreach (Tile t2 in GetAllWallNeighbours(t)) {
+					if (t2.wallID > 1) {
+						nearPainting = true;
+						break;
+					}
+				}
+				if (!nearPainting) {
+					if (Random.Range (0, 100) < 5) {
+						t.wallID = 2;
+					} else if (Random.Range (0, 100) < 5) {
+						t.wallID = 3;
+					} else if (Random.Range (0, 100) < 5) {
+						t.wallID = 4;
+					} else if (Random.Range (0, 1000) < 1) {
+						t.wallID = 5;
+					}
+				}
+			}
+		}
+
+	}
+
+	// Checa se dá pra colocar uma armadura
+	private bool CanPutArmor(Tile t) {
+		if (!t.isWalkable || !EmptyRadiusToEnemies(t, 1))
+			return false;
+
+		if (!(t.x > 1 && t.x < width - 2 && t.y > 1 && t.y < height - 2))
+			return false;
+
+		if (tiles [t.x - 1, t.y].isWall || tiles [t.x + 1, t.y].isWall) { // Se for vizinho a parede na horizontal
+			if (tiles [t.x, t.y + 1].isWall || tiles [t.x, t.y - 1].isWall || 
+				tiles [t.x, t.y + 2].isWall || tiles [t.x, t.y - 2].isWall)
+				return false;
+			else
+				return true;
+		} else if (tiles [t.x, t.y - 1].isWall || tiles [t.x, t.y + 1].isWall) {
+			if (tiles [t.x + 1, t.y].isWall || tiles [t.x - 1, t.y].isWall || 
+				tiles [t.x + 2, t.y].isWall || tiles [t.x - 2, t.y].isWall)
+				return false;
+			else
+				return true;
+		} else {
+			return false;
+		}
 	}
 
 	protected override Tile GetNeighbour(Tile t, bool[,] visited) {
@@ -110,11 +157,24 @@ public class HallMaze : ProceduralMaze {
 		tiles [tableX, tableY + 1].obstacle = "Dinner1";
 		tiles [tableX + 1, tableY + 1].obstacle = "Dinner2";
 
-		// Estantes
-		//TODO
+		for (int i = 2; i <= width - 3; i++) {
+			if (Random.Range (0, 100) < 50) {
+				while (i <= width - 3 && Random.Range(0, 100) < 70 && tiles [i, height - 2].isWall) {
+					tiles [i, height - 3].obstacle = "Shelf";
+					i ++;
+				}
+			}
+		}
 
-		// Baus e mimic
-		//TODO
+		for (int i = 2; i <= width - 3; i++) {
+			if (tiles [i, height - 3].obstacle == "" && Random.Range (0, 100) < 50 && tiles [i, height - 2].isWall) {
+				if (Random.Range(0, 100) < 20) {
+					tiles [i, height - 3].objectName = "Enemies/Mimic";
+				} else {
+					tiles [i, height - 3].obstacle = "Closed chest";
+				}
+			}
+		}
 	}
 
 	private void GenerateRoomTiles () {
