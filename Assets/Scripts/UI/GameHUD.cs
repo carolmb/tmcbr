@@ -8,6 +8,7 @@ public class GameHUD : MonoBehaviour {
 
 	public MainMenu mainMenu;
 	public ShopMenu shopMenu;
+	public DialogWindow dialog;
 
 	void Awake () {
 		instance = this;
