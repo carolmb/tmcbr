@@ -1,9 +1,21 @@
 fileFormatVersion: 2
 guid: 8023f7b12267bec43b80e610e5b574f7
-timeCreated: 1461713475
+timeCreated: 1463353985
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: curupira_0
+    21300002: curupira_1
+    21300004: curupira_2
+    21300006: curupira_3
+    21300008: curupira_4
+    21300010: curupira_5
+    21300012: curupira_6
+    21300014: curupira_7
+    21300016: curupira_8
+    21300018: curupira_9
+    21300020: curupira_10
+    21300022: curupira_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -49,7 +61,139 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: curupira_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 96
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: curupira_1
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 96
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: curupira_2
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 96
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: curupira_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 64
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: curupira_4
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 64
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: curupira_5
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 64
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: curupira_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 32
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: curupira_7
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 32
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: curupira_8
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 32
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: curupira_9
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: curupira_10
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 0
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: curupira_11
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 0
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     outline: []
   spritePackingTag: 
   userData: 

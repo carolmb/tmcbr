@@ -20,6 +20,8 @@ public class ForestMaze : ProceduralMaze {
 
 	public override void CreateObstacles () {
 
+		bool curupira = false;
+
 		foreach (Tile t in tiles) {
 			t.type = 1; // grama
 
@@ -27,7 +29,10 @@ public class ForestMaze : ProceduralMaze {
 				continue;
 			}
 			if (Random.Range (0, 100) < 75 && EmptyRadiusToEnemies (t, 4)) {
-				if (Random.Range (0, 100) < 50) {
+				if (!curupira) {
+					t.objectName = "Enemies/Curupira";
+					curupira = true;
+				} else if (Random.Range (0, 100) < 50) {
 					t.objectName = "Enemies/Tomato";
 				} else if (Random.Range (0, 100) < 50) {
 					t.objectName = "Enemies/Butterfly";

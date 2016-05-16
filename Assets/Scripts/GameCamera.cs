@@ -6,6 +6,7 @@ public class GameCamera : MonoBehaviour {
 	public static GameCamera instance;
 	public Transform player;
 	public Shader shader;
+	//public Material invert;
 
 	void Start() {
 		//InvertColors ();

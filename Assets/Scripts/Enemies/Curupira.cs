@@ -7,11 +7,13 @@ public class Curupira : Enemy {
 
 	bool isChasing;
 	bool awaken;
+	bool inAttackMode;
 
 	protected override void Start() {
 		base.Start ();
 		isChasing = false;
 		awaken = false;
+		inAttackMode = false;
 		character.InitialDirection ();
 	}
 
@@ -32,7 +34,7 @@ public class Curupira : Enemy {
 					awaken = true;
 					Invoke ("StartChasing", 1);
 				} else {
-					awaken = false;
+					DefaultMovement ();
 				}
 			}
 		}
@@ -49,8 +51,41 @@ public class Curupira : Enemy {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.CompareTag ("Player")) {
-			StartChasing ();
 		}
 	}
 
+	void DefaultMovement () {
+		if (inAttackMode) {
+			if (!character.moving && !character.damaging) {
+				if (!ChasePlayer ()) {
+					inAttackMode = false;
+				}
+			}
+		} else {
+			if (!character.moving && !character.damaging) {
+				List<Vector2> neighbours = new List<Vector2> ();
+				Tile t = character.currentTile;
+
+				if (t.x - 4 >= 0) {
+					neighbours.Add (new Vector2(t.x - 1, t.y));
+				}
+				if (t.x + 4 <= MazeManager.maze.width - 1) {
+					neighbours.Add (new Vector2(t.x + 1, t.y));
+				} 
+				if (t.y - 4 >= 0) {
+					neighbours.Add (new Vector2(t.x, t.y - 1));
+				} 
+				if (t.y + 4 <= MazeManager.maze.height - 1) {
+					neighbours.Add (new Vector2(t.x, t.y + 1));
+				}
+
+				Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (neighbours [Random.Range (0, neighbours.Count)]) + 
+					new Vector2(0, Tile.size / 2);
+
+				character.TurnTo (nextPosition);
+				character.MoveTo (nextPosition);
+			}
+		}
+
+	}
 }
