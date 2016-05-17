@@ -133,7 +133,6 @@ public class HallStage : ProceduralStage {
 			if (current.children.Count == 0 && current != finalNode) {
 				current.type = 1;
 			}
-			Debug.Log (current.children);
 			hallMazes.Add (FromNodeToArray (current));
 
 			foreach (NodeGraph node in current.children) {
@@ -161,7 +160,6 @@ public class HallStage : ProceduralStage {
 		int beginDir = Random.Range (0, 4);
 
 		if (node.father != null) {
-			Debug.Log (node.father.maze.width + " " + node.father.maze.height);
 			beginDir = GenerateDir (beginDir);
 			SetTransitions (
 				node.father.maze, 

@@ -29,9 +29,12 @@ public class GameGraph {
 		forestStage = new ForestStage (caveStage.endIndex + 1, fireplace.transitions[1]);
 
 		// OBS2: Por enquanto tá repetindo código mesmo mas depois vai começar a variar as transições
+		Debug.Log(hallStage.transitions[0].ToString());
 		SetTransitions (entrance.transitions[1], hallStage.transitions[0]);
 		SetTransitions (hallStage.transitions[1], mirrorRoom.transitions[0]);
+		Debug.Log(caveStage.transitions[0].ToString());
 		SetTransitions (mirrorRoom.transitions[1], caveStage.transitions[0]);
+		Debug.Log(fireplace.transitions[0].ToString());
 		SetTransitions (caveStage.transitions[1], fireplace.transitions[0]);
 		SetTransitions (fireplace.transitions[1], forestStage.transitions[0]);
 
