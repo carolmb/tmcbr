@@ -7,7 +7,7 @@ public class Curupira : Enemy {
 
 	bool isChasing;
 	bool awaken;
-	bool inAttackMode;
+	public bool inAttackMode;
 
 	protected override void Start() {
 		base.Start ();
@@ -30,7 +30,7 @@ public class Curupira : Enemy {
 						isChasing = false;
 						character.InitialDirection ();
 					}
-				} else if (!awaken && PlayerInFront ()) {
+				} else if (!awaken && PlayerInFront ()) { // Verficar se o player está cortando plantas
 					awaken = true;
 					Invoke ("StartChasing", 1);
 				} else {
