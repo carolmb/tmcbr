@@ -40,9 +40,7 @@ public abstract class ProceduralStage : Stage {
 		}
 		if (dir == Character.DOWN || dir == Character.UP) {
 			for (int i = 0; i < size; i++) {
-				Debug.Log ("x: " + (x + i) + " y: " + y);
 				if (maze.tiles [x + i, y].transition != null) {
-					Debug.Log ("GNJTRGLIGBTRJK");
 					return GenerateBorderTile (maze, dir, size);
 				}
 			}
@@ -54,7 +52,6 @@ public abstract class ProceduralStage : Stage {
 			}
 		}
 
-		Debug.Log ("TEM TRANSIÇÃO AQUI: x=" + x + " y=" + y);
 		return maze.tiles [x, y];
 	}
 
@@ -143,9 +140,6 @@ public abstract class ProceduralStage : Stage {
 			for (int i = 0; i < size1; i++) {
 				Tile tile = maze1.tiles [tile1.x + i, tile1.y];
 				tile.SetTransition (maze2.id, destVector.x, destVector.y, direction);
-
-				//if (tile.y - (int)delta.y >= maze1.height)
-				//	Debug.Log (maze1.id + " " + (tile.y - (int)delta.y) + " " + maze1.height + " " + delta.y);
 				maze1.tiles [tile.x, tile.y - (int)delta.y].wallID = 0; // Remove a parede do vizinho
 			}
 		} else {

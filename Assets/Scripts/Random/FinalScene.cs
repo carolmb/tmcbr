@@ -8,7 +8,7 @@ public class FinalScene : MonoBehaviour {
 	public Character maid;
 
 	public bool hasAllRoses {
-		get { return true; }
+		get { return Bag.current.roses == 3; }
 	}
 
 	void Start () {
@@ -20,16 +20,17 @@ public class FinalScene : MonoBehaviour {
 	}
 
 	IEnumerator BadEnding () {
-		/* O protagonista chega e encontra o duque numa sala bizarra. 
-		 * Um pequeno diálogo acontece entre eles.
-		 * O protagonista mata o duque.
-		 * O duque magicamente se transforma na criada.
-		 * 
-		 */
+		// Protagonista encontra a criada que acabou de se matar e se mata também
+		// 
 		yield return null;
 	}
 
 	IEnumerator TrueEnding () {
+		// Criada sente o cheiro das rosas que estão com o protagonista e resolve esperar ele entrar
+		// Ela o esfaqueia quando ele abre a porta e fala sobre como ele é um babaca
+		// Ele pede desculpas
+		// Ela foge e fim
+		// Epílogo: uma cena dela deixando flores azuis no túmulo dele
 		yield return null;
 	}
 
