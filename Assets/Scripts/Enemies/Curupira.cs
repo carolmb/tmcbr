@@ -7,7 +7,7 @@ public class Curupira : Enemy {
 
 	bool isChasing;
 	bool awaken;
-	bool inAttackMode;
+	public bool inAttackMode;
 
 	protected override void Start() {
 		base.Start ();
@@ -30,7 +30,7 @@ public class Curupira : Enemy {
 						isChasing = false;
 						character.InitialDirection ();
 					}
-				} else if (!awaken && PlayerInFront ()) {
+				} else if (!awaken && PlayerInFront ()) { // Verficar se o player está cortando plantas
 					awaken = true;
 					Invoke ("StartChasing", 1);
 				} else {
@@ -66,6 +66,7 @@ public class Curupira : Enemy {
 				List<Vector2> neighbours = new List<Vector2> ();
 				Tile t = character.currentTile;
 
+				// grande comentário que não acrescenta nada (exceto uma linha)
 				if (t.x - 4 >= 0) {
 					neighbours.Add (new Vector2(t.x - 1, t.y));
 				}
