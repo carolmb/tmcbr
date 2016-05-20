@@ -27,10 +27,12 @@ public class MazeManager : MonoBehaviour {
 
 	// Coloca o player na posição inicial
 	void Start() {
-		Vector2 tilePos = new Vector2 (currentTransition.tileX, currentTransition.tileY);
-		Vector2 initPos = TileToWorldPos (tilePos) + new Vector3 (0, Tile.size / 2, 0);
-		Player.instance.transform.position = initPos;
-		Player.instance.character.direction = currentTransition.direction;
+		if (Player.instance != null) {
+			Vector2 tilePos = new Vector2 (currentTransition.tileX, currentTransition.tileY);
+			Vector2 initPos = TileToWorldPos (tilePos) + new Vector3 (0, Tile.size / 2, 0);
+			Player.instance.transform.position = initPos;
+			Player.instance.character.direction = currentTransition.direction;
+		}
 	}
 
 	// Resgata o labirinto atual e inicializa os tiles

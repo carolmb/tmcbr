@@ -11,7 +11,8 @@ public class Interactable : MonoBehaviour {
 	private BoxCollider2D hitBox;
 
 	void Start () {
-		hitBox = GetComponent<BoxCollider2D> ();
+		BoxCollider2D[] allHitboxes = GetComponents<BoxCollider2D> ();
+		hitBox = allHitboxes [allHitboxes.Length - 1];
 	}
 
 	void Update () {
