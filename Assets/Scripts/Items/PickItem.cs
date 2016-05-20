@@ -27,24 +27,24 @@ public class PickItem : MonoBehaviour {
 		Vector3 pos = Vector3.zero;
 		switch (Player.instance.character.direction) {
 		case 0: // Pra baixo
-			orig = Quaternion.Euler(0, 0,-200);
-			dest = Quaternion.Euler(0, 0, -45);
+			orig = Quaternion.Euler(0, 0, -200);
+			dest = Quaternion.Euler(0, 0, -150);
 			break;
 		case 1: // Pra esquerda
 			orig = Quaternion.Euler(0, 0, 45);
-			dest = Quaternion.Euler(0, 0, 200);
+			dest = Quaternion.Euler(0, 0, 150);
 			pos.y = 6;
 			pos.x = -6;
 			break;
 		case 2: // Pra direita
 			orig = Quaternion.Euler(0, 0, 15);
-			dest = Quaternion.Euler(0, 0, -115);
+			dest = Quaternion.Euler(0, 0, -80);
 			pos.x = 6;
 			pos.y = 6;
 			break;
 		case 3: // Pra cima
 			orig = Quaternion.Euler(0, 0, -15);
-			dest = Quaternion.Euler(0, 0, 115);
+			dest = Quaternion.Euler(0, 0, 45);
 			pos.y = 16;
 			pos.z = 1;
 			break;
@@ -72,8 +72,10 @@ public class PickItem : MonoBehaviour {
 				comp.Damage (transform.position, damage);
 			}
 			Destroy (gameObject);
-		} else if (collider.CompareTag ("Rock")) {
-			Destroy (collider.GetComponent<Character> ());
+		}
+		if (collider.CompareTag ("Rock")) {
+			Debug.Log ("asd");
+			Destroy (collider.GetComponent<GameObject> ());
 		}
 	}
 
