@@ -66,6 +66,7 @@ public class Curupira : Enemy {
 				List<Vector2> neighbours = new List<Vector2> ();
 				Tile t = character.currentTile;
 
+				// grande comentário que não acrescenta nada (exceto uma linha)
 				if (t.x - 4 >= 0) {
 					neighbours.Add (new Vector2(t.x - 1, t.y));
 				}

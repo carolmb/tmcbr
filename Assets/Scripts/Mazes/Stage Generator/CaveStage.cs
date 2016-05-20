@@ -53,7 +53,10 @@ public class CaveStage : ProceduralStage {
 		}
 
 		Tile roomTile = GenerateBorderTile (mazes [0], 3 - mirrorRoom.dir, mirrorRoom.size);
-		Tile fireTile = GenerateBorderTile (mazes [mazeCount - 1], 3 - fireplace.dir, fireplace.size);
+		Tile fireTile;
+		do {
+			fireTile = GenerateBorderTile (mazes [mazeCount - 1], 3 - fireplace.dir, fireplace.size);
+		} while (roomTile.x == fireTile.x);
 
 		AddTransition (mazes [0], roomTile.x, roomTile.y, 3 - mirrorRoom.dir, expansionFactor);
 		AddTransition (mazes [mazeCount - 1], fireTile.x, fireTile.y, 3 - fireplace.dir, expansionFactor);

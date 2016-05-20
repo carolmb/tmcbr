@@ -40,22 +40,21 @@ public abstract class ProceduralStage : Stage {
 		}
 		if (dir == Character.DOWN || dir == Character.UP) {
 			for (int i = 0; i < size; i++) {
+				Debug.Log ("x: " + (x + i) + " y: " + y);
 				if (maze.tiles [x + i, y].transition != null) {
-					if (System.Math.Abs(maze.tiles [x + i, y].transition.tileX) > 0.0001 || System.Math.Abs(maze.tiles [x + i, y].transition.tileY) > 0.0001) {
-						return GenerateBorderTile (maze, dir, size);
-					}
+					Debug.Log ("GNJTRGLIGBTRJK");
+					return GenerateBorderTile (maze, dir, size);
 				}
 			}
 		} else {
 			for (int i = 0; i < size; i++) {
-				if (maze.tiles [x, y + 1].transition != null) {
-					if (System.Math.Abs(maze.tiles [x, y + i].transition.tileX) > 0.0001 || System.Math.Abs(maze.tiles [x, y + i].transition.tileY) > 0.0001) {
-						return GenerateBorderTile (maze, dir, size);
-					}
+				if (maze.tiles [x, y + i].transition != null) {
+					return GenerateBorderTile (maze, dir, size);
 				}
 			}
 		}
 
+		Debug.Log ("TEM TRANSIÇÃO AQUI: x=" + x + " y=" + y);
 		return maze.tiles [x, y];
 	}
 
