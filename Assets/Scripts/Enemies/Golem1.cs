@@ -20,5 +20,4 @@ public class Golem1 : Enemy {
 			}
 		}
 	}
-
 }

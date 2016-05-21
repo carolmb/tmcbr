@@ -32,13 +32,16 @@ public class CaveMaze : ProceduralMaze {
 					int r = Random.Range (0, 100);
 					if (r < 20) {
 						t.obstacle = "Puddle1";
+					} else if (r < 50) {
+						Debug.Log ("AQUI");
+						t.objectName = "Enemies/Golem1";
 					} else if (r < 40) {
 						t.obstacle = "Puddle2";
 					} else if (r < 60) {
 						t.obstacle = "Rock";
 					} else if (r < 80) {
 						t.obstacle = "Bush";
-					}
+					} 
 				}
 			}
 		}
@@ -54,7 +57,7 @@ public class CaveMaze : ProceduralMaze {
 				} else if (Random.Range (0, 100) < 30) {
 					t.obstacle = "Bush";
 					t.wallID = 0;
-				}
+				} 
 			}
 		}
 	}
