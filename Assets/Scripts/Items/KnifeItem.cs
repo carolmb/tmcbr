@@ -72,18 +72,17 @@ public class KnifeItem : MonoBehaviour {
 				comp.Damage (transform.position, damage);
 			}
 			Destroy (gameObject);
-		} else if (collider.CompareTag ("Grass")) {
-			Destroy (gameObject);
+		}
+		if (collider.CompareTag ("Grass")) {
+			Destroy (collider.gameObject);
 			gameObject.SendMessage("Curupira");
+			Destroy (gameObject);
 		}
 	}
 
 	void Curupira() {
-		GameObject gameObject = GameObject.Find("Curupira");
+		GameObject gameObject = GameObject.Find("Enemies/Curupira");
 		Curupira curupira = gameObject.GetComponent<Curupira>();
-		// Verifica se o Curupira está perto para descobrir que o player está desmatando a floresta
-		if (Vector3.Distance(Player.instance.transform.position, curupira.transform.position) <= 0.5F) {
-			curupira.inAttackMode = true;
-		}
+		curupira.inAttackMode = true;
 	}
 }
