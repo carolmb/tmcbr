@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour {
 
 	public int damage = 1;
 	public int vision = 10;
-	public float spawnTime = 1200f; // 20min
+	public float spawnTime = 300f; // 5min
 
 	protected virtual void Awake () {
 		character = GetComponent<Character> ();
@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour {
 	protected virtual void Start () {
 		originalTile = character.currentTile;
 		transform.position = originalTile.lastObjectPos;
+		originalTile.lastSpawn = 0f;
+		originalTile.spawnTime = 0f;
 	}
 
 	protected virtual bool PlayerInFront () {
@@ -115,8 +117,10 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
+	Coroutine damageRoutine = null;
+
 	protected virtual void OnDamage () {
-		StartCoroutine (DamageLight ());
+		damageRoutine = StartCoroutine (DamageLight ());
 	}
 
 	private IEnumerator DamageLight () {
@@ -132,12 +136,18 @@ public class Enemy : MonoBehaviour {
 			yield return null;
 		}
 		character.spriteRenderer.color = Color.white;
+		damageRoutine = null;
 	}
 
 	protected void OnDie() {
+		if (damageRoutine != null) {
+			StopCoroutine (damageRoutine);
+		}
 		Destroy (character.spriteRenderer);
-		if (spawnTime >= 0) 
+		if (spawnTime >= 0) {
 			originalTile.spawnTime = spawnTime;
+			originalTile.lastSpawn = SaveManager.currentPlayTime;
+		}
 		Instantiate (coin, transform.position, transform.rotation);
 
 		character.currentTile = originalTile;

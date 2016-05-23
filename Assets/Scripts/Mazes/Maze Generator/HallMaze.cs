@@ -64,6 +64,7 @@ public class HallMaze : ProceduralMaze {
 			}
 		}
 
+		// Colocar os quadros onde não tiver armadura (ignora quando é inimigo)
 		foreach (Tile t in tiles) {
 			if (t.isWall && t.y > 0 && tiles[t.x, t.y - 1].obstacle == "") {
 				bool nearPainting = false;
@@ -98,20 +99,15 @@ public class HallMaze : ProceduralMaze {
 			return false;
 
 		if (tiles [t.x - 1, t.y].isWall || tiles [t.x + 1, t.y].isWall) { // Se for vizinho a parede na horizontal
-			if (!tiles [t.x, t.y + 1].isWalkable || !tiles [t.x, t.y - 1].isWalkable || 
-				tiles [t.x, t.y + 2].isWall || tiles [t.x, t.y - 2].isWall)
-				return false;
-			else
-				return true;
+			if (tiles [t.x, t.y + 1].isWalkable && tiles [t.x, t.y - 1].isWalkable && 
+				!tiles [t.x, t.y + 2].isWall && !tiles [t.x, t.y - 2].isWall)
+					return true;
 		} else if (tiles [t.x, t.y - 1].isWall || tiles [t.x, t.y + 1].isWall) {
-			if (!tiles [t.x + 1, t.y].isWalkable || !tiles [t.x - 1, t.y].isWalkable || 
-				tiles [t.x + 2, t.y].isWall || tiles [t.x - 2, t.y].isWall)
-				return false;
-			else
-				return true;
-		} else {
-			return false;
+			if (tiles [t.x + 1, t.y].isWalkable && tiles [t.x - 1, t.y].isWalkable && 
+				!tiles [t.x + 2, t.y].isWall || !tiles [t.x - 2, t.y].isWall)
+					return true;
 		}
+		return false;
 	}
 
 	protected override Tile GetNeighbour(Tile t, bool[,] visited) {
