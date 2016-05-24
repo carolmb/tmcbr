@@ -8,7 +8,6 @@ public class Curupira : Enemy {
 	bool isChasing;
 	bool awaken;
 	public bool inAttackMode;
-	public GameObject footsteps;
 
 	protected override void Start() {
 		base.Start ();
@@ -93,7 +92,7 @@ public class Curupira : Enemy {
 			{
 				List<Vector2> neighbours = new List<Vector2> ();
 				Tile t = character.currentTile;
-				Instantiate (footsteps, character.transform.position, character.transform.rotation);
+				// trocar chão
 
 				// grande comentário que não acrescenta nada (exceto uma linha)
 				if (t.x - 4 >= 0) {
