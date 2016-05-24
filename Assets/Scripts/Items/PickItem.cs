@@ -4,6 +4,8 @@ using System.Collections;
 [RequireComponent (typeof(BoxCollider2D))]
 public class PickItem : MonoBehaviour {
 
+	public RockQ rockq;
+
 	// Dano causado ao inimigo
 	public int damage = 1;
 
@@ -80,7 +82,9 @@ public class PickItem : MonoBehaviour {
 		}
 		if (collider.CompareTag ("Rock")) {
 			Destroy (collider.gameObject);
+			rockq.transform.position = collider.gameObject.transform.position;
 			Destroy (gameObject);
+			Instantiate (rockq);
 		}
 		Vector2 moveVector = GameManager.AngleToVector (Player.instance.character.lookingAngle) * speed;
 		if (collider.CompareTag ("Golem")) {
