@@ -1,55 +1,95 @@
-﻿Shader "ddShaders/dd_Invert" {
-Properties
-    {
-        _Color ("Tint Color", Color) = (1,1,1,1)
-    }
-   
-    SubShader
-    {
-        Tags { "Queue"="Transparent" }
- 
-        Pass
-        {
-           ZWrite On
-           ColorMask 0
-        }
-        Blend OneMinusDstColor OneMinusSrcAlpha //invert blending, so long as FG color is 1,1,1,1
-        BlendOp Add
-       
-        Pass
-        {
-       
-CGPROGRAM
-#pragma vertex vert
-#pragma fragment frag
-uniform float4 _Color;
- 
-struct vertexInput
-{
-    float4 vertex: POSITION;
-    float4 color : COLOR;  
-};
- 
-struct fragmentInput
-{
-    float4 pos : SV_POSITION;
-    float4 color : COLOR0;
-};
- 
-fragmentInput vert( vertexInput i )
-{
-    fragmentInput o;
-    o.pos = mul(UNITY_MATRIX_MVP, i.vertex);
-    o.color = _Color;
-    return o;
-}
- 
-half4 frag( fragmentInput i ) : COLOR
-{
-    return i.color;
-}
- 
-ENDCG
-}
-}
-}
+﻿Shader "Sprites/SpritesInvertColor"
+  {
+      Properties
+      {
+          [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
+          _Color ("Tint", Color) = (1,1,1,1)
+          [MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
+         _InvertColors ("Invert Colors", Range(0,1)) = 0
+      }
+  
+      SubShader
+      {
+          Tags
+          { 
+              "Queue"="Transparent" 
+              "IgnoreProjector"="True" 
+              "RenderType"="Transparent" 
+              "PreviewType"="Plane"
+              "CanUseSpriteAtlas"="True"
+          }
+  
+          Cull Off
+          Lighting Off
+          ZWrite Off
+          Blend One OneMinusSrcAlpha
+  
+          Pass
+          {
+          CGPROGRAM
+              #pragma vertex vert
+              #pragma fragment frag
+              #pragma multi_compile _ PIXELSNAP_ON
+              #include "UnityCG.cginc"
+              
+              struct appdata_t
+              {
+                  float4 vertex   : POSITION;
+                  float4 color    : COLOR;
+                  float2 texcoord : TEXCOORD0;
+              };
+  
+              struct v2f
+              {
+                  float4 vertex   : SV_POSITION;
+                  fixed4 color    : COLOR;
+                  float2 texcoord  : TEXCOORD0;
+              };
+              
+              fixed4 _Color;
+  
+              v2f vert(appdata_t IN)
+              {
+                  v2f OUT;
+                  OUT.vertex = mul(UNITY_MATRIX_MVP, IN.vertex);
+                  OUT.texcoord = IN.texcoord;
+                  OUT.color = IN.color * _Color;
+                  #ifdef PIXELSNAP_ON
+                  OUT.vertex = UnityPixelSnap (OUT.vertex);
+                  #endif
+  
+                  return OUT;
+              }
+  
+              sampler2D _MainTex;
+              sampler2D _AlphaTex;
+              float _AlphaSplitEnabled;
+              float _InvertColors;
+  
+              fixed4 SampleSpriteTexture (float2 uv)
+              {
+                  fixed4 color = tex2D (_MainTex, uv);
+  
+  #if UNITY_TEXTURE_ALPHASPLIT_ALLOWED
+                  if (_AlphaSplitEnabled)
+                      color.a = tex2D (_AlphaTex, uv).r;
+  #endif //UNITY_TEXTURE_ALPHASPLIT_ALLOWED
+  
+                  return color;
+              }
+  
+              fixed4 frag(v2f IN) : SV_Target
+              {
+                  fixed4 c = SampleSpriteTexture (IN.texcoord) * IN.color;
+                  
+                  if (_InvertColors == 1)
+                  {
+                      c.rgb = (0.25 - c);
+                  }
+                  c.rgb *= c.a;
+                  return c;
+              }
+          ENDCG
+          }
+      }
+  }

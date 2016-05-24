@@ -5,8 +5,6 @@ public class GameCamera : MonoBehaviour {
 
 	public static GameCamera instance;
 	public Transform player;
-	public Shader shader;
-	//public Material invert;
 
 	void Start() {
 		//InvertColors ();
@@ -29,6 +27,13 @@ public class GameCamera : MonoBehaviour {
 			float h = Camera.main.orthographicSize * 2;
 			float w = Camera.main.aspect * h;
 			return new Vector2(w, h);
+		}
+	}
+
+	void Update () {
+		GameCamera gc = GameObject.FindWithTag("MainCamera").GetComponent<GameCamera> ();
+		if (gc.lampMaterial.GetFloat ("_InvertColors") == 1) {
+			StartCoroutine(Poisonous(gc));
 		}
 	}
 
@@ -91,7 +96,8 @@ public class GameCamera : MonoBehaviour {
 		Graphics.Blit (source, dest, lampMaterial);
 	}
 
-	public void InvertColors() {
-		Camera.main.SetReplacementShader (shader, "Queue");
+	IEnumerator Poisonous(GameCamera gc) {
+		yield return new WaitForSeconds(5);
+		gc.lampMaterial.SetFloat("_InvertColors", 0);
 	}
 }
