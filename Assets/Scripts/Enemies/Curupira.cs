@@ -8,6 +8,7 @@ public class Curupira : Enemy {
 	bool isChasing;
 	bool awaken;
 	public bool inAttackMode;
+	public GameObject footsteps;
 
 	protected override void Start() {
 		base.Start ();
@@ -44,6 +45,32 @@ public class Curupira : Enemy {
 		isChasing = true;
 	}
 
+	protected bool ChasePlayer () {
+		Tile nextTile = ClosestToPlayer ();
+		if (nextTile != null && nextTile.isWalkable) {
+			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
+			character.TurnTo (nextPosition);
+			character.MoveTo (nextPosition, true);
+			Instantiate (footsteps, character.transform.position, character.transform.rotation);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	protected bool RunFromPlayer () {
+		Tile nextTile = FarestFromPlayer ();
+		if (nextTile != null && nextTile.isWalkable) {
+			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
+			character.TurnTo (nextPosition);
+			character.MoveTo (nextPosition, true);
+			Instantiate (footsteps, character.transform.position, character.transform.rotation);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	protected override void OnDamage () {
 		base.OnDamage ();
 		StartChasing ();
@@ -61,10 +88,12 @@ public class Curupira : Enemy {
 					inAttackMode = false;
 				}
 			}
-		} else {
-			if (!character.moving && !character.damaging) {
+		} else if (!character.moving && !character.damaging) {
+			try
+			{
 				List<Vector2> neighbours = new List<Vector2> ();
 				Tile t = character.currentTile;
+				Instantiate (footsteps, character.transform.position, character.transform.rotation);
 
 				// grande comentário que não acrescenta nada (exceto uma linha)
 				if (t.x - 4 >= 0) {
@@ -85,6 +114,8 @@ public class Curupira : Enemy {
 
 				character.TurnTo (nextPosition);
 				character.MoveTo (nextPosition);
+			} catch (System.IndexOutOfRangeException ex) {
+				//
 			}
 		}
 
