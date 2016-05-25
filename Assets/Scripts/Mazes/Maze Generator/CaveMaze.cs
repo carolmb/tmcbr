@@ -32,9 +32,12 @@ public class CaveMaze : ProceduralMaze {
 					int r = Random.Range (0, 100);
 					if (r < 20) {
 						t.obstacle = "Puddle1";
-					} else if (r < 35) {
+					} else if (r < 15) {
 						Debug.Log ("AQUI");
 						t.objectName = "Enemies/Golem1";
+					} else if (r < 35) {
+						Debug.Log ("AQUI2");
+						t.objectName = "Enemies/Golem2";
 					} else if (r < 50) {
 						t.obstacle = "Puddle2";
 					} else if (r < 70) {

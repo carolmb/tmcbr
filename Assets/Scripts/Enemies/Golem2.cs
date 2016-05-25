@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class Golem2 : Enemy {
 
+	public GameObject golemrock;
+
 	protected override void Start () {
 		base.Start ();
 		Spawn ();
@@ -33,6 +35,7 @@ public class Golem2 : Enemy {
 	}
 
 	void GolemRock() {
-		//Instantiate (golemrock, character.transform.position, character.transform.rotation);
+		Debug.Log (transform.position);
+		Instantiate (golemrock, character.transform.position, character.transform.rotation);
 	}
 }

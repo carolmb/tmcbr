@@ -50,7 +50,7 @@ public class Curupira : Enemy {
 			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
 			character.TurnTo (nextPosition);
 			character.MoveTo (nextPosition, true);
-			Instantiate (footsteps, character.transform.position, character.transform.rotation);
+//			Instantiate (footsteps, character.transform.position, character.transform.rotation);
 			return true;
 		} else {
 			return false;
@@ -63,7 +63,7 @@ public class Curupira : Enemy {
 			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
 			character.TurnTo (nextPosition);
 			character.MoveTo (nextPosition, true);
-			Instantiate (footsteps, character.transform.position, character.transform.rotation);
+//			Instantiate (footsteps, character.transform.position, character.transform.rotation);
 			return true;
 		} else {
 			return false;

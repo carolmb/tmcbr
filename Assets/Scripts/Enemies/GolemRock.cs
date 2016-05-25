@@ -15,12 +15,8 @@ public class GolemRock : MonoBehaviour {
 	public AudioClip collisionSound;
 
 	void Start() {
-		Vector3 pos;
-		pos.x = Player.instance.transform.position.x;
-		pos.z = Player.instance.transform.position.y;
-		pos.y = pos.z + 8;
-		transform.position = pos;
-		//moveVector = GameManager.AngleToVector (c.lookingAngle) * speed;
+		Debug.Log ("transform da rock: " + transform.position);
+		moveVector = GameManager.AngleToVector ((float)Random.Range(0, 4) * 90) * speed;
 	}
 
 	void Update () {
