@@ -44,7 +44,7 @@ public class Curupira : Enemy {
 		isChasing = true;
 	}
 
-	protected bool ChasePlayer () {
+	protected override bool ChasePlayer () {
 		Tile nextTile = ClosestToPlayer ();
 		if (nextTile != null && nextTile.isWalkable) {
 			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
@@ -57,7 +57,7 @@ public class Curupira : Enemy {
 		}
 	}
 
-	protected bool RunFromPlayer () {
+	protected override bool RunFromPlayer () {
 		Tile nextTile = FarestFromPlayer ();
 		if (nextTile != null && nextTile.isWalkable) {
 			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
@@ -113,7 +113,7 @@ public class Curupira : Enemy {
 
 				character.TurnTo (nextPosition);
 				character.MoveTo (nextPosition);
-			} catch (System.IndexOutOfRangeException ex) {
+			} catch (System.IndexOutOfRangeException) {
 				//
 			}
 		}

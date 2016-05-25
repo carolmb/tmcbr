@@ -22,8 +22,7 @@ public class Mushroom : Enemy {
 	void OnTriggerStay2D (Collider2D other) {
 		if (other.CompareTag ("Player")) {
 			if (!Player.instance.immune) {
-				GameCamera gc = GameObject.FindWithTag("MainCamera").GetComponent<GameCamera> ();
-				gc.lampMaterial.SetFloat("_InvertColors", 1);
+				GameCamera.instance.MushroomEffect ();
 			}
 		}
 	}
