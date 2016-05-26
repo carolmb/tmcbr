@@ -27,30 +27,13 @@ public class ShopChoiceWindow : SlotChoiceWindow {
 	public void Buy () {
 		if (item.consumable) {
 			// Procura o item na mochila, e se achar, incrementa
-			for (int i = 0; i < Bag.maxItems; i++) {
-				Item item2 = Bag.current.GetItem (i);
-				if (item2 != null && item2.id == item.id) {
-					BuySound ();
-					Bag.current.coins -= item.totalPrice;
-					Bag.current.Increment(i);
-					BackToShopWindow ();
-					return;
-				}
+			if (Bag.current.Add (item)) {
+				BuySound ();
+				Bag.current.coins -= item.totalPrice;
+				BackToShopWindow ();
+			} else {
+				FullBagError ();
 			}
-			// Não achou o item na mochila, então cria slot novo
-			for (int i = 0; i < Bag.maxItems; i++) {
-				ItemSlot slot = Bag.current.GetSlot (i);
-				if (slot == null) {
-					BuySound ();
-					Bag.current.Add (item, i);
-					Bag.current.coins -= item.totalPrice;
-					BackToShopWindow ();
-					return;
-				}
-			}
-			// Se a mochila estiver cheia
-			FullBagError();
-			return;
 		}
 	}
 
