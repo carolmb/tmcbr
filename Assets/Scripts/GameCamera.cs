@@ -18,7 +18,7 @@ public class GameCamera : MonoBehaviour {
 	void Awake() {
 		quake = false;
 		instance = this;
-		MushroomEffect ();
+		//MushroomEffect ();
 	}
 
 	// Tamanho da câmera (em coordenadas do jogo)

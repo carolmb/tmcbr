@@ -1,9 +1,11 @@
 ﻿Shader "Hidden/LampLight" {
 	Properties {
 		_MainTex ("Texture", 2D) = "white" {}
+		_radius("Radius", float) = 100
 		_playerX ("Player X", float) = 320
 		_playerY ("Player Y", float) = 240
-		_radius("Radius", float) = 100
+		_screenW ("Screen Width", float) = 640
+		_screenH ("Screen Height", float) = 480
 	}
 	SubShader {
 		// No culling or depth
@@ -32,6 +34,8 @@
 			float _radius;
 			float _playerX;
 			float _playerY;
+			float _screenW;
+			float _screenH;
 			 
 			// vertex shader
 			v2f vert(appdata_t IN) {
@@ -47,14 +51,17 @@
 			// fragment shader
 			fixed4 frag(v2f IN) : COLOR {
 				fixed4 tex = tex2D(_MainTex, IN.texcoord) * IN.color;
-				float2 worldpos = IN.screenpos * _ScreenParams.xy;
-				float2 playerpos;
-				playerpos.x = _playerX;
-				playerpos.y = _playerY;
-				float bla = 1 - distance(worldpos, playerpos) / _radius;
-				tex.r *= bla;
-				tex.g *= bla;
-				tex.b *= bla;
+				float2 worldPos = IN.screenpos * _ScreenParams.xy;
+
+				float2 playerPos = float2(_playerX, _playerY);
+				float2 screenSize = float2(_screenW, _screenH);
+				_radius *= _ScreenParams.xy;
+
+				float a = 1 - (distance(worldPos, playerPos) / _radius);
+				tex.r *= a;
+				tex.g *= a;
+				tex.b *= a;
+
 				return tex;
 			}
 			ENDCG
