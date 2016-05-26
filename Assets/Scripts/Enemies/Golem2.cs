@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Golem2 : Enemy {
 
 	public GameObject golemrock;
+	public GameObject golem1;
 
 	protected override void Start () {
 		base.Start ();
@@ -25,17 +26,19 @@ public class Golem2 : Enemy {
 	}
 
 	void Spawn () {
-		if (!character.moving && !character.damaging) {
-			Tile t = ClosestToPlayer();
-			if (t != null) {
-				Invoke ("GolemRock", 3);
-			}
+		if (!character.damaging) {
+			Invoke ("GolemRock", 1);
 		}
-		Invoke ("Spawn", 6);
+		Invoke ("Spawn", 2);
 	}
 
 	void GolemRock() {
-		Debug.Log (transform.position);
 		Instantiate (golemrock, character.transform.position, character.transform.rotation);
+	}
+
+	void OnDestroy() {
+		List<Tile> t = character.currentTile.GetNeighbours4Walkeable ();
+		Instantiate (golem1, MazeManager.TileToWorldPos(t[Random.Range(0, t.Count)].coordinates), character.transform.rotation);
+		Instantiate (golem1, MazeManager.TileToWorldPos(t[Random.Range(0, t.Count)].coordinates), character.transform.rotation);
 	}
 }

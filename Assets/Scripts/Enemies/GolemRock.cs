@@ -6,7 +6,7 @@ public class GolemRock : MonoBehaviour {
 	public int damage = 2;
 
 	// Velocidade
-	public float speed = 4;
+	public float speed = 3;
 
 	// Direção do movimento
 	private Vector2 moveVector;
@@ -15,8 +15,7 @@ public class GolemRock : MonoBehaviour {
 	public AudioClip collisionSound;
 
 	void Start() {
-		Debug.Log ("transform da rock: " + transform.position);
-		moveVector = GameManager.AngleToVector ((float)Random.Range(0, 4) * 90) * speed;
+		moveVector = GameManager.AngleToVector ((float)Random.Range(-3, 4) * 90) * speed;
 	}
 
 	void Update () {
