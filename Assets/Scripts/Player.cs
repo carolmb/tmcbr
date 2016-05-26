@@ -109,14 +109,21 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+	public static float inputFactor = 1;
+	public bool moved = false;
+
 	void MoveByKeyboard () {
-		if (!canMove || character.damaging)
+		if (!canMove || character.damaging) {
+			moved = false;
 			return;
+		}
 
-		moveVector.x = Input.GetAxisRaw ("Horizontal") * character.speed;
-		moveVector.y = Input.GetAxisRaw ("Vertical") * character.speed;
+		moveVector.x = Input.GetAxisRaw ("Horizontal") * character.speed * inputFactor;
+		moveVector.y = Input.GetAxisRaw ("Vertical") * character.speed * inputFactor;
 
-		if (moveVector.x == 0 && moveVector.y == 0) {
+		moved = moveVector != Vector2.zero;
+
+		if (!moved) {
 			// Se não apertou botão
 			if (!character.moving)
 				character.Stop ();

@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	protected bool ChasePlayer () {
+	protected virtual bool ChasePlayer () {
 		Tile nextTile = ClosestToPlayer ();
 		if (nextTile != null && nextTile.isWalkable) {
 			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
@@ -98,7 +98,7 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	protected bool RunFromPlayer () {
+	protected virtual bool RunFromPlayer () {
 		Tile nextTile = FarestFromPlayer ();
 		if (nextTile != null && nextTile.isWalkable) {
 			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);

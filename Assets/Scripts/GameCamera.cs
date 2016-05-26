@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.ImageEffects;
 
 public class GameCamera : MonoBehaviour {
 
 	public static GameCamera instance;
 	public Transform player;
-
-	void Start() {
-		//InvertColors ();
-	}
 
 	// Limites do cenário
 	private float maxX { get { return MazeManager.maze.worldWidth - size.x / 2 - Tile.size / 2; } }
@@ -19,6 +16,7 @@ public class GameCamera : MonoBehaviour {
 	// Para acesso à camera por outras classes
 	void Awake() {
 		instance = this;
+		MushroomEffect ();
 	}
 
 	// Tamanho da câmera (em coordenadas do jogo)
@@ -27,13 +25,6 @@ public class GameCamera : MonoBehaviour {
 			float h = Camera.main.orthographicSize * 2;
 			float w = Camera.main.aspect * h;
 			return new Vector2(w, h);
-		}
-	}
-
-	void Update () {
-		GameCamera gc = GameObject.FindWithTag("MainCamera").GetComponent<GameCamera> ();
-		if (gc.lampMaterial.GetFloat ("_InvertColors") == 1) {
-			StartCoroutine(Poisonous(gc));
 		}
 	}
 
@@ -87,17 +78,36 @@ public class GameCamera : MonoBehaviour {
 	}
 
 	// ===============================================================================
-	// Efeito da luz
+	// Efeitos
 	// ===============================================================================
 
-	public Material lampMaterial;
+	private static Coroutine mushRoom;
 
-	void OnRenderImage(RenderTexture source, RenderTexture dest) {
-		Graphics.Blit (source, dest, lampMaterial);
+	public void MushroomEffect() {
+		if (mushRoom != null) {
+			StopCoroutine (mushRoom);
+		} else {
+			ColorInverter.angle = 360;
+			Twirl.angle = 45;
+			Player.inputFactor = -1;
+		}
+		mushRoom = StartCoroutine (MushroomEffect_coroutine ());
 	}
 
-	IEnumerator Poisonous(GameCamera gc) {
-		yield return new WaitForSeconds(5);
-		gc.lampMaterial.SetFloat("_InvertColors", 0);
+	private IEnumerator MushroomEffect_coroutine() {
+		while (Twirl.angle > 0) {
+			if (!Player.instance.paused) {
+				if (Player.instance.moved) {
+					yield return new WaitForSeconds (3);
+				} else {
+					Twirl.angle -= Time.deltaTime * 2;
+				}
+			}
+			yield return null;
+		}
+		Twirl.angle = 0;
+		ColorInverter.angle = 0;
+		Player.inputFactor = 1;
 	}
+
 }
