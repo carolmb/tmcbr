@@ -73,14 +73,10 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9, y: 11}
-        - {x: -11, y: 10}
-        - {x: -11, y: -12}
-        - {x: -10, y: -16}
-        - {x: 4, y: -16}
-        - {x: 11, y: -10}
-        - {x: 11, y: 8}
-        - {x: 9, y: 11}
+      - - {x: -16, y: 13}
+        - {x: -16, y: -2}
+        - {x: 16, y: -2}
+        - {x: 16, y: 13}
     - name: butterfly_1
       rect:
         serializedVersion: 2
@@ -92,17 +88,14 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6, y: 11}
-        - {x: -11, y: 9}
-        - {x: -11, y: -9}
-        - {x: -7, y: -12}
-        - {x: -5, y: -12}
-        - {x: -8, y: -14}
-        - {x: -7, y: -16}
-        - {x: 4, y: -16}
-        - {x: 11, y: -10}
-        - {x: 11, y: 8}
-        - {x: 7, y: 11}
+      - - {x: 7, y: 14}
+        - {x: -6, y: 14}
+        - {x: -16, y: 9}
+        - {x: -16, y: 2}
+        - {x: -13, y: -1}
+        - {x: 16, y: -1}
+        - {x: 16, y: 7}
+        - {x: 14, y: 9}
     - name: butterfly_2
       rect:
         serializedVersion: 2
@@ -114,14 +107,12 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9, y: 11}
-        - {x: -11, y: 10}
-        - {x: -11, y: -12}
-        - {x: -10, y: -16}
-        - {x: 4, y: -16}
-        - {x: 11, y: -10}
-        - {x: 11, y: 8}
-        - {x: 9, y: 11}
+      - - {x: -4, y: 15}
+        - {x: -16, y: 5}
+        - {x: -16, y: 0}
+        - {x: 16, y: 0}
+        - {x: 16, y: 7}
+        - {x: 4, y: 15}
     - name: butterfly_3
       rect:
         serializedVersion: 2
@@ -133,14 +124,13 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 0, y: 12}
-        - {x: -10, y: 12}
-        - {x: -14, y: 10}
-        - {x: -14, y: -4}
-        - {x: 4, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: -5}
-        - {x: 12, y: 1}
+      - - {x: -3, y: 14}
+        - {x: -7, y: 9}
+        - {x: -7, y: 3}
+        - {x: -4, y: -2}
+        - {x: 11, y: -2}
+        - {x: 11, y: 4}
+        - {x: 5, y: 14}
     - name: butterfly_4
       rect:
         serializedVersion: 2
@@ -152,14 +142,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -12, y: 11}
-        - {x: -14, y: 6}
-        - {x: -14, y: 3}
-        - {x: 5, y: -16}
-        - {x: 15, y: -16}
-        - {x: 16, y: -15}
-        - {x: 16, y: -3}
-        - {x: 12, y: 11}
+      - - {x: -4, y: 15}
+        - {x: -5, y: 14}
+        - {x: -7, y: 7}
+        - {x: -7, y: 2}
+        - {x: 3, y: -5}
+        - {x: 6, y: -4}
+        - {x: 8, y: 0}
+        - {x: 8, y: 6}
+        - {x: 1, y: 15}
     - name: butterfly_5
       rect:
         serializedVersion: 2
@@ -171,14 +162,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 0, y: 12}
-        - {x: -10, y: 12}
-        - {x: -14, y: 10}
-        - {x: -14, y: -4}
-        - {x: 4, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: -5}
-        - {x: 12, y: 1}
+      - - {x: -3, y: 16}
+        - {x: -7, y: 12}
+        - {x: -7, y: 1}
+        - {x: -6, y: -1}
+        - {x: 1, y: -6}
+        - {x: 5, y: -5}
+        - {x: 8, y: 5}
+        - {x: 8, y: 11}
+        - {x: 3, y: 16}
     - name: butterfly_6
       rect:
         serializedVersion: 2
@@ -190,20 +182,14 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 0, y: 13}
-        - {x: -12, y: 2}
-        - {x: -15, y: -3}
-        - {x: -15, y: -15}
-        - {x: -14, y: -16}
-        - {x: -6, y: -16}
-        - {x: 14, y: 4}
-        - {x: 14, y: 9}
-        - {x: 12, y: 13}
-      - - {x: 6, y: 16}
-        - {x: 7, y: 13}
-        - {x: 11, y: 13}
-        - {x: 13, y: 15}
-        - {x: 13, y: 16}
+      - - {x: 5, y: 14}
+        - {x: -3, y: 14}
+        - {x: -11, y: 10}
+        - {x: -11, y: -2}
+        - {x: 3, y: -2}
+        - {x: 7, y: 1}
+        - {x: 7, y: 8}
+        - {x: 5, y: 13}
     - name: butterfly_7
       rect:
         serializedVersion: 2
@@ -215,24 +201,14 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -1, y: 12}
-        - {x: -10, y: 9}
-        - {x: -13, y: 2}
-        - {x: -13, y: -3}
-        - {x: -10, y: -8}
-        - {x: -11, y: -7}
-        - {x: -13, y: -7}
-        - {x: -16, y: -14}
-        - {x: -15, y: -16}
-        - {x: -4, y: -16}
-        - {x: 0, y: -15}
-        - {x: 14, y: 4}
-        - {x: 14, y: 12}
-      - - {x: 6, y: 16}
-        - {x: 7, y: 13}
-        - {x: 10, y: 13}
-        - {x: 12, y: 15}
-        - {x: 12, y: 16}
+      - - {x: 1, y: 15}
+        - {x: -8, y: 8}
+        - {x: -8, y: 0}
+        - {x: -4, y: -5}
+        - {x: 1, y: -5}
+        - {x: 7, y: 3}
+        - {x: 7, y: 12}
+        - {x: 5, y: 15}
     - name: butterfly_8
       rect:
         serializedVersion: 2
@@ -244,20 +220,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 0, y: 13}
-        - {x: -12, y: 2}
-        - {x: -15, y: -3}
-        - {x: -15, y: -15}
-        - {x: -14, y: -16}
-        - {x: -6, y: -16}
-        - {x: 14, y: 4}
-        - {x: 14, y: 9}
-        - {x: 12, y: 13}
-      - - {x: 6, y: 16}
-        - {x: 7, y: 13}
-        - {x: 11, y: 13}
-        - {x: 13, y: 15}
-        - {x: 13, y: 16}
+      - - {x: 2, y: 16}
+        - {x: -1, y: 16}
+        - {x: -8, y: 11}
+        - {x: -8, y: 4}
+        - {x: -4, y: -6}
+        - {x: -1, y: -6}
+        - {x: 7, y: -1}
+        - {x: 7, y: 10}
+        - {x: 5, y: 15}
     - name: butterfly_9
       rect:
         serializedVersion: 2
@@ -269,14 +240,10 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6, y: 11}
-        - {x: -11, y: 6}
-        - {x: -11, y: -11}
-        - {x: -9, y: -16}
-        - {x: 7, y: -16}
-        - {x: 11, y: -14}
-        - {x: 11, y: 9}
-        - {x: 5, y: 11}
+      - - {x: -16, y: 13}
+        - {x: -16, y: -2}
+        - {x: 16, y: -2}
+        - {x: 16, y: 13}
     - name: butterfly_10
       rect:
         serializedVersion: 2
@@ -288,13 +255,14 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -8, y: 11}
-        - {x: -11, y: 8}
-        - {x: -11, y: -10}
-        - {x: -6, y: -16}
-        - {x: 11, y: -16}
-        - {x: 11, y: 9}
-        - {x: 9, y: 11}
+      - - {x: 7, y: 14}
+        - {x: -6, y: 14}
+        - {x: -16, y: 9}
+        - {x: -16, y: 2}
+        - {x: -13, y: -1}
+        - {x: 16, y: -1}
+        - {x: 16, y: 7}
+        - {x: 14, y: 9}
     - name: butterfly_11
       rect:
         serializedVersion: 2
@@ -306,14 +274,12 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -10, y: 11}
-        - {x: -11, y: 6}
-        - {x: -11, y: -14}
-        - {x: -9, y: -16}
-        - {x: 5, y: -16}
-        - {x: 11, y: -14}
-        - {x: 11, y: 9}
-        - {x: 9, y: 11}
+      - - {x: -4, y: 15}
+        - {x: -16, y: 5}
+        - {x: -16, y: 0}
+        - {x: 16, y: 0}
+        - {x: 16, y: 7}
+        - {x: 4, y: 15}
     outline: []
   spritePackingTag: 
   userData: 

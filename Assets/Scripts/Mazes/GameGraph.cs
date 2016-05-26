@@ -11,6 +11,7 @@ public class GameGraph {
 
 	StaticStage entrance;
 	StaticStage entrance2;
+	StaticStage lockup;
 	StaticStage mirrorRoom;
 	StaticStage fireplace;
 
@@ -25,16 +26,20 @@ public class GameGraph {
 		// OBS: sempre carregar as estáticas primeiro
 		entrance = new StaticStage (0, "Entrance");
 		entrance2 = new StaticStage (1, "Entrance2");
-		mirrorRoom = new StaticStage (2, "Mirror room");
-		fireplace = new StaticStage (3, "Fireplace");
+		lockup = new StaticStage (2, "Lockup");
+		mirrorRoom = new StaticStage (3, "Mirror room");
+		fireplace = new StaticStage (4, "Fireplace");
 
-		hallStage = new HallStage (4, entrance.transitions [1], mirrorRoom.transitions [0]);
+		hallStage = new HallStage (5, entrance.transitions [1], mirrorRoom.transitions [0]);
 		caveStage = new CaveStage (hallStage.endIndex + 1, mirrorRoom.transitions[1], fireplace.transitions[0]);
 		forestStage = new ForestStage (caveStage.endIndex + 1, fireplace.transitions[1]);
 
 		// Da entrada para o maze com do calabouço
 		SetTransitions (entrance.transitions[2], entrance2.transitions[1]);
 		SetTransitions (entrance.transitions[3], entrance2.transitions[2]);
+
+		// Da entrada do calabouço para o calabouço em si
+		SetTransitions (entrance2.transitions[0], lockup.transitions[0]);
 
 		// Da entrada para os corredores
 		SetTransitions (entrance.transitions[1], hallStage.transitions[0]);

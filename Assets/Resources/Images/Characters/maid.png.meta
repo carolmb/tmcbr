@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b8c4cb08dcfb2e64d91dfa284de4cc5f
-timeCreated: 1460292906
+timeCreated: 1464277566
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -69,8 +69,8 @@ TextureImporter:
         y: 96
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: maid_1
@@ -80,8 +80,8 @@ TextureImporter:
         y: 96
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: maid_2
@@ -91,8 +91,8 @@ TextureImporter:
         y: 96
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: maid_3
@@ -102,8 +102,8 @@ TextureImporter:
         y: 64
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: maid_4
@@ -113,8 +113,8 @@ TextureImporter:
         y: 64
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: maid_5
@@ -124,8 +124,8 @@ TextureImporter:
         y: 64
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: maid_6
@@ -135,8 +135,8 @@ TextureImporter:
         y: 32
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: maid_7
@@ -146,8 +146,8 @@ TextureImporter:
         y: 32
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: maid_8
@@ -157,8 +157,8 @@ TextureImporter:
         y: 32
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: maid_9
@@ -168,8 +168,8 @@ TextureImporter:
         y: 0
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: maid_10
@@ -179,8 +179,8 @@ TextureImporter:
         y: 0
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: maid_11
@@ -190,8 +190,8 @@ TextureImporter:
         y: 0
         width: 24
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     outline: []

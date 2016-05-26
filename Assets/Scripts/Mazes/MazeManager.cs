@@ -188,6 +188,8 @@ public class MazeManager : MonoBehaviour {
 			if (clip != null) {
 				musicPlayer.clip = clip;
 				musicPlayer.Play ();
+			} else {
+				musicPlayer.Stop ();
 			}
 		}
 	}

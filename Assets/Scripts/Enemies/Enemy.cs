@@ -151,6 +151,8 @@ public class Enemy : MonoBehaviour {
 		Instantiate (coin, transform.position, transform.rotation);
 
 		character.currentTile = originalTile;
+
+		Destroy (gameObject);
 	}
 
 	void OnDestroy() {

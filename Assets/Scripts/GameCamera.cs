@@ -18,6 +18,7 @@ public class GameCamera : MonoBehaviour {
 	void Awake() {
 		quake = false;
 		instance = this;
+		FadeEffect.intensity = 0;
 		//MushroomEffect ();
 	}
 
@@ -114,6 +115,22 @@ public class GameCamera : MonoBehaviour {
 		Twirl.angle = 0;
 		ColorInverter.angle = 0;
 		Player.inputFactor = 1;
+	}
+
+	public IEnumerator FadeOut(float speed) {
+		while (FadeEffect.intensity < 1) {
+			FadeEffect.intensity += Time.deltaTime * speed;
+			yield return null;
+		}
+		FadeEffect.intensity = 1;
+	}
+
+	public IEnumerator FadeIn(float speed) {
+		while (FadeEffect.intensity > 0) {
+			FadeEffect.intensity -= Time.deltaTime * speed;
+			yield return null;
+		}
+		FadeEffect.intensity = 0;
 	}
 
 }

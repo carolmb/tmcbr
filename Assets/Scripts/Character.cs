@@ -213,6 +213,7 @@ public class Character : CharacterBase {
 			time += Time.deltaTime;
 		}
 		damaging = false;
+
 	}
 
 	// Animação de morte
@@ -220,7 +221,19 @@ public class Character : CharacterBase {
 		// TODO: animaçãozinha simples de morte
 		SendMessage ("OnDie");
 		yield return null;
-		Destroy (gameObject);
 	}
+		
+	// ===============================================================================
+	// Sons
+	// ===============================================================================
+
+	public AudioClip[] stepSounds;
+
+	// Som dos passos
+	public void Footstep () {
+		int type = currentTile.type;
+		GameCamera.PlayAudioClip (stepSounds [type * 3 + Random.Range (0, 3)], 0.5f - 0.35f * type);
+	}
+
 
 }

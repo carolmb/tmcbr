@@ -12,6 +12,9 @@ public class FinalScene : MonoBehaviour {
 	}
 
 	void Start () {
+		maid = GetComponent<Character> ();
+		protagonist = GameObject.Find ("Player").GetComponent<Character> ();
+
 		if (hasAllRoses) {
 			StartCoroutine (TrueEnding ());
 		} else {

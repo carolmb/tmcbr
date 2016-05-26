@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent (typeof(Character))]
@@ -31,10 +32,15 @@ public class Player : MonoBehaviour {
 			visible = true;
 			SetVisible (false);
 		}
+
 	}
 
 	// Inputs e checagem de estados
 	void Update () {
+		if (Input.GetKeyDown (KeyCode.D)) {
+			character.Damage ((Vector2) transform.position - new Vector2(0, 100), 1);
+		}
+
 		CheckPause ();
 		CheckInteract ();
 		if (paused) 
@@ -203,7 +209,7 @@ public class Player : MonoBehaviour {
 	}
 
 	// ===============================================================================
-	// Dano e Morte
+	// Dano
 	// ===============================================================================
 
 	// Imunidade a dano
@@ -239,9 +245,32 @@ public class Player : MonoBehaviour {
 		immune = false;
 	}
 
+	// ===============================================================================
+	// Morte
+	// ===============================================================================
+
+	public Sprite deadSprite;
+	public AudioClip deadSound;
+
 	// Sair do jogo quando morrer
 	public void OnDie () {
-		MazeManager.GoToMaze (MazeManager.currentTransition);
+		character.Stop ();
+		canMove = false;
+
+		StartCoroutine (DieAnimation ());
+	}
+
+	private IEnumerator DieAnimation () {
+		MazeManager.musicPlayer.Stop ();
+
+		Coroutine c = StartCoroutine (GameCamera.instance.FadeOut (0.5f));
+		yield return new WaitForSeconds (1f);
+		GameCamera.PlayAudioClip (deadSound);
+		character.direction = 4;
+		Destroy (character.animator);
+		character.spriteRenderer.sprite = deadSprite;
+		yield return c;
+		SceneManager.LoadScene ("Title");
 	}
 
 	// ===============================================================================
@@ -272,18 +301,6 @@ public class Player : MonoBehaviour {
 			}
 			visible = false;
 		}
-	}
-
-	// ===============================================================================
-	// Sons
-	// ===============================================================================
-
-	public AudioClip[] stepSounds;
-
-	// Som dos passos
-	public void Footstep () {
-		int type = character.currentTile.type;
-		GameCamera.PlayAudioClip (stepSounds [type * 3 + Random.Range (0, 3)], 0.5f - 0.35f * type);
 	}
 
 }

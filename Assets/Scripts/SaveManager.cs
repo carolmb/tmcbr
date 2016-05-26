@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.IO;
+using System;
 
 public static class SaveManager {
 
@@ -50,6 +51,8 @@ public static class SaveManager {
 			try {
 				allSaves = (GameSave[]) bf.Deserialize(file);
 			} catch(SerializationException) {
+				allSaves = new GameSave[maxSaves];
+			} catch(TypeLoadException) {
 				allSaves = new GameSave[maxSaves];
 			}
 			file.Close();
