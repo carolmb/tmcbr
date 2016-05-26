@@ -39,4 +39,10 @@ public class TitleMenu : MonoBehaviour {
 		Application.Quit ();
 	}
 
+	public AudioClip confirmSound;
+
+	public void Sound() {
+		AudioSource.PlayClipAtPoint(confirmSound, new Vector3(0,0,0));
+	}
+
 }
