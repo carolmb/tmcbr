@@ -9,6 +9,7 @@ public class MazeManager : MonoBehaviour {
 	public static BoxCollider2D[,] obstacles;
 	public static AudioSource musicPlayer;
 	public static string lastMaze;
+	public static SpriteRenderer[,] floorSprites;
 
 	// ===============================================================================
 	// Transição entre labirintos
@@ -45,6 +46,7 @@ public class MazeManager : MonoBehaviour {
 		}
 		maze = SaveManager.currentSave.mazes [currentTransition.mazeID];
 		obstacles = new BoxCollider2D[maze.width, maze.height];
+		floorSprites = new SpriteRenderer[maze.width, maze.height];
 		foreach (Tile t in maze.tiles) {
 			CreateTileFloor (t.x, t.y, t.floorID);
 
@@ -63,29 +65,19 @@ public class MazeManager : MonoBehaviour {
 
 	// Cria o sprite de chão
 	GameObject CreateTileFloor(int x, int y, int id) {
-		GameObject floor = CreateTileGraphic (x, y, "floor" + id);
+		SpriteRenderer floor = CreateTileGraphic (x, y, "floor" + id);
 		Vector3 pos = floor.transform.position;
 		pos.z += Tile.size * 2;
 		floor.transform.position = pos;
-		return floor;
+		floorSprites [x, y] = floor;
+		return floor.gameObject;
 	}
 
 	// Cria o sprite de parede
 	GameObject CreateTileWall(int x, int y, int id) {
-		GameObject g = CreateTileGraphic (x, y, "wall" + id);
+		SpriteRenderer g = CreateTileGraphic (x, y, "wall" + id);
 		g.transform.Translate (0, 0, 1);
-		return g;
-	}
-
-	// Cria um objeto fazia com um sprite na posição do tile
-	GameObject CreateTileGraphic(int x, int y, string spriteName) {
-		GameObject obj = new GameObject ();
-		obj.name = "Tile[" + spriteName + "] (" + x + ", " + y + ")";
-		obj.transform.position = TileToWorldPos (new Vector2 (x, y));
-		SpriteRenderer sr = obj.AddComponent<SpriteRenderer> ();
-		sr.sprite = Resources.Load<Sprite> ("Images/Tilesets/" + maze.GetTheme() + "/" + spriteName);
-		obj.transform.SetParent (transform);
-		return obj;
+		return g.gameObject;
 	}
 
 	// Cria objeto do tile (prefab do item/inimigo deve estar na pasta Resources/Prefabs)
@@ -106,6 +98,17 @@ public class MazeManager : MonoBehaviour {
 		g.name = "Tile[" + name + "] (" + x + ", " + y + ")";
 		obstacles [x, y] = g.GetComponent<BoxCollider2D> ();
 		return g;
+	}
+		
+	// Cria um objeto fazia com um sprite na posição do tile
+	SpriteRenderer CreateTileGraphic(int x, int y, string spriteName) {
+		GameObject obj = new GameObject ();
+		obj.name = "Tile[" + spriteName + "] (" + x + ", " + y + ")";
+		obj.transform.position = TileToWorldPos (new Vector2 (x, y));
+		SpriteRenderer sr = obj.AddComponent<SpriteRenderer> ();
+		sr.sprite = Resources.Load<Sprite> ("Images/Tilesets/" + maze.GetTheme() + "/" + spriteName);
+		obj.transform.SetParent (transform);
+		return sr;
 	}
 
 	// ===============================================================================
