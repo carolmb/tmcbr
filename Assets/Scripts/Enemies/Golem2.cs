@@ -29,16 +29,19 @@ public class Golem2 : Enemy {
 		if (!character.damaging) {
 			Invoke ("GolemRock", 1);
 		}
-		Invoke ("Spawn", 2);
+		Invoke ("Spawn", 1);
 	}
 
 	void GolemRock() {
 		Instantiate (golemrock, character.transform.position, character.transform.rotation);
 	}
 
-	void OnDestroy() {
+	protected override void OnDie() {
 		List<Tile> t = character.currentTile.GetNeighbours4Walkeable ();
-		Instantiate (golem1, MazeManager.TileToWorldPos(t[Random.Range(0, t.Count)].coordinates), character.transform.rotation);
-		Instantiate (golem1, MazeManager.TileToWorldPos(t[Random.Range(0, t.Count)].coordinates), character.transform.rotation);
+		GameObject spawGolem1 = Instantiate (golem1) as GameObject;
+		GameObject spawGolem2 = Instantiate (golem1) as GameObject;
+		spawGolem1.transform.position = MazeManager.TileToWorldPos (t [Random.Range (0, t.Count)].coordinates);
+		spawGolem2.transform.position = MazeManager.TileToWorldPos (t [Random.Range (0, t.Count)].coordinates);
+		base.OnDie ();
 	}
 }

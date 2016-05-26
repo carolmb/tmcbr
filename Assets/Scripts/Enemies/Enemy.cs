@@ -139,7 +139,7 @@ public class Enemy : MonoBehaviour {
 		damageRoutine = null;
 	}
 
-	protected void OnDie() {
+	protected virtual void OnDie() {
 		if (damageRoutine != null) {
 			StopCoroutine (damageRoutine);
 		}

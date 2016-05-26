@@ -96,16 +96,16 @@ public class Tile {
 
 	public List<Tile> GetNeighbours4Walkeable () {
 		List<Tile> neighbours = new List<Tile> ();
-		if (x - 1 >= 0 && !MazeManager.maze.tiles[x - 1, y].isWall) {
+		if (x - 1 >= 0 && MazeManager.maze.tiles[x - 1, y].isWalkable) {
 			neighbours.Add (MazeManager.maze.tiles [x - 1, y]);
 		}
-		if (x + 1 <= MazeManager.maze.width - 1 && !MazeManager.maze.tiles[x + 1, y].isWall) {
+		if (x + 1 <= MazeManager.maze.width - 1 && MazeManager.maze.tiles[x + 1, y].isWalkable) {
 			neighbours.Add (MazeManager.maze.tiles [x + 1, y]);
 		} 
-		if (y - 1 >= 0 && !MazeManager.maze.tiles[x, y - 1].isWall) {
+		if (y - 1 >= 0 && MazeManager.maze.tiles[x, y - 1].isWalkable) {
 			neighbours.Add (MazeManager.maze.tiles [x, y - 1]);
 		} 
-		if (y + 1 <= MazeManager.maze.height - 1 && !MazeManager.maze.tiles[x, y + 1].isWall) {
+		if (y + 1 <= MazeManager.maze.height - 1 && MazeManager.maze.tiles[x, y + 1].isWalkable) {
 			neighbours.Add (MazeManager.maze.tiles [x, y + 1]);
 		}
 		return neighbours;

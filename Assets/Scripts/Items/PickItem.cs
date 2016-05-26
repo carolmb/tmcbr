@@ -88,7 +88,6 @@ public class PickItem : MonoBehaviour {
 		}
 		Vector2 moveVector = GameManager.AngleToVector (Player.instance.character.lookingAngle) * speed;
 		if (collider.CompareTag ("Golem")) {
-			Debug.Log ("rolow");
 			Character comp = collider.GetComponent<Character> ();
 			comp.Damage ((Vector2) transform.position - moveVector * 10, damage);
 			//GameCamera.PlayAudioClip (collisionSound);

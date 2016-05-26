@@ -6,6 +6,7 @@ public class GameCamera : MonoBehaviour {
 
 	public static GameCamera instance;
 	public Transform player;
+	public bool quake;
 
 	// Limites do cenário
 	private float maxX { get { return MazeManager.maze.worldWidth - size.x / 2 - Tile.size / 2; } }
@@ -15,6 +16,7 @@ public class GameCamera : MonoBehaviour {
 
 	// Para acesso à camera por outras classes
 	void Awake() {
+		quake = false;
 		instance = this;
 		MushroomEffect ();
 	}
@@ -31,6 +33,10 @@ public class GameCamera : MonoBehaviour {
 	// Seguir o player
 	void LateUpdate() {
 		Vector3 newPos = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+		if (quake) {
+			newPos += new Vector3 (Random.Range (-6, 7), Random.Range (-6, 7), 0);
+			quake = false;
+		}
 		AdjustPosition (ref newPos);
 		transform.position = newPos;
 	}

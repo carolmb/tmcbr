@@ -19,11 +19,17 @@ public class CaveMaze : ProceduralMaze {
 	}
 
 	public override void CreateObstacles () {
-
+		bool boss = true;
 		foreach (Tile t in tiles) {
 			if (HasTransitionNear (t)) {
 				continue;
+			} else if (t.transition == null && boss) {
+				Debug.Log ("BOSS");
+				t.objectName = "Enemies/Golem3";
+				boss = false;
+				continue;
 			}
+
 
 			if (t.isWalkable) {
 				if (EmptyRadiusToEnemies (t, 4) && Random.Range (0, 100) < 30) {
@@ -33,11 +39,7 @@ public class CaveMaze : ProceduralMaze {
 					if (r < 20) {
 						t.obstacle = "Puddle1";
 					} else if (r < 15) {
-						Debug.Log ("AQUI");
 						t.objectName = "Enemies/Golem1";
-					} else if (r < 35) {
-						Debug.Log ("AQUI2");
-						t.objectName = "Enemies/Golem2";
 					} else if (r < 50) {
 						t.obstacle = "Puddle2";
 					} else if (r < 70) {
