@@ -11,7 +11,7 @@ public class Poison : Item {
 
 	public override void OnUse () {
 		//Player.instance.character.PlayAnimation ("Drink", false);
-		// Die
+		Player.instance.OnDie ();
 	}
 
 }

@@ -254,15 +254,15 @@ public class Player : MonoBehaviour {
 
 	// Sair do jogo quando morrer
 	public void OnDie () {
+		character.damaging = true;
 		character.Stop ();
 		canMove = false;
-
+		GameHUD.instance.gameObject.SetActive (false);
 		StartCoroutine (DieAnimation ());
 	}
 
 	private IEnumerator DieAnimation () {
 		MazeManager.musicPlayer.Stop ();
-
 		Coroutine c = StartCoroutine (GameCamera.instance.FadeOut (0.5f));
 		yield return new WaitForSeconds (1f);
 		GameCamera.PlayAudioClip (deadSound);
