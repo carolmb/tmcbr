@@ -7,6 +7,8 @@ public class MazeManager : MonoBehaviour {
 
 	public static Maze maze; // Se quiser acesso a qualquer informação do labirinto, use isso
 	public static BoxCollider2D[,] obstacles;
+	public static AudioSource musicPlayer;
+	public static string lastMaze;
 
 	// ===============================================================================
 	// Transição entre labirintos
@@ -17,6 +19,7 @@ public class MazeManager : MonoBehaviour {
 	}
 
 	public static void GoToMaze(Tile.Transition transition) {
+		lastMaze = maze != null ? maze.GetTheme () : "";
 		SaveManager.currentSave.transition = transition;
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
@@ -55,6 +58,7 @@ public class MazeManager : MonoBehaviour {
 				t.lastSpawn = SaveManager.currentPlayTime;
 			}
 		}
+		PlayMusic ();
 	}
 
 	// Cria o sprite de chão
@@ -161,6 +165,35 @@ public class MazeManager : MonoBehaviour {
 		float top 		= center.y + boxCollider.size.y / 2 + boxCollider.offset.y;
 
 		return (x <= right && x >= left) && (y <= top && y >= bottom);
+	}
+
+	// ===============================================================================
+	// Musica do labirinto
+	// ===============================================================================
+
+	private void PlayMusic() {
+		// Se não já foi criado
+		if (musicPlayer == null) {
+			GameObject go = new GameObject ();
+			go.name = "Music Player";
+			musicPlayer = go.AddComponent<AudioSource> ();
+			musicPlayer.loop = true;
+			musicPlayer.playOnAwake = false;
+			DontDestroyOnLoad (go);
+		}
+
+		// 
+		if (lastMaze != maze.GetTheme ()) {
+			AudioClip clip = Resources.Load<AudioClip> ("Sounds/Music/" + maze.GetTheme ());
+			if (clip != null) {
+				musicPlayer.clip = clip;
+				musicPlayer.Play ();
+			}
+		}
+	}
+
+	void Update () {
+		musicPlayer.transform.position = GameCamera.instance.transform.position;
 	}
 
 }
