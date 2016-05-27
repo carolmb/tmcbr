@@ -22,6 +22,8 @@ public class KnifeItem : MonoBehaviour {
 	private float rotPerc = 0;
 
 	void Start () {
+		transform.SetParent (Player.instance.transform);
+
 		GameCamera.PlayAudioClip (sound, 0.5f);
 
 		Vector3 pos = Vector3.zero;
