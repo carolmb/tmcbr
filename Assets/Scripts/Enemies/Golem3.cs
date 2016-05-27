@@ -10,6 +10,9 @@ public class Golem3 : Enemy {
 	protected override void Start () {
 		base.Start ();
 		Spawn ();
+		if (!SaveManager.currentSave.golemBoss && Random.Range(0, 100) > 20) {
+			Destroy (gameObject);
+		}
 	}
 
 	void Update () {
@@ -47,8 +50,7 @@ public class Golem3 : Enemy {
 	}
 
 	protected override void OnDie() {
-		//MazeManager.maze.tiles [originalTile.x, originalTile.y].objectName = "";
-
+		SaveManager.currentSave.golemBoss = false;
 		List<Tile> t = character.currentTile.GetNeighbours4Walkeable ();
 		for (int i = 0; i < 4; i++) {
 			GameObject spawGolem = Instantiate (golem2) as GameObject;
@@ -58,6 +60,8 @@ public class Golem3 : Enemy {
 	}
 
 	void OnDestroy() {
-		MazeManager.maze.tiles [originalTile.x, originalTile.y].objectName = "";
+		if (!SaveManager.currentSave.golemBoss) {
+			MazeManager.maze.tiles [originalTile.x, originalTile.y].objectName = "";
+		}
 	}
 }
