@@ -10,7 +10,7 @@ public class MapWindow : MonoBehaviour {
 
 	public static Color visitedColor = Color.white;
 	public static Color hiddenColor = Color.black;
-	public static Color playerColor = Color.blue;
+	public static Color playerColor = Color.green;
 	public static Color transitionColor = Color.yellow;
 
 	void Awake() {

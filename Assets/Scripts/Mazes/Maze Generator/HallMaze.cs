@@ -66,7 +66,9 @@ public class HallMaze : ProceduralMaze {
 
 		// Colocar os quadros onde não tiver armadura (ignora quando é inimigo)
 		foreach (Tile t in tiles) {
-			if (t.isWall && t.y > 0 && tiles[t.x, t.y - 1].obstacle == "") {
+			if (!t.isWall && Random.Range(0, 100) < 60 && GetAllWallNeighbours (t).Count == 2) {
+				t.obstacle = "Vase";
+			} else if (t.isWall && t.y > 0 && tiles[t.x, t.y - 1].obstacle == "") {
 				bool nearPainting = false;
 				foreach (Tile t2 in GetAllWallNeighbours(t)) {
 					if (t2.wallID > 1) {

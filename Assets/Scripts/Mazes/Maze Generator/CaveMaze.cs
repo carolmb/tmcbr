@@ -47,21 +47,23 @@ public class CaveMaze : ProceduralMaze {
 				continue;
 
 			if (t.isWalkable) {
-				if (EmptyRadiusToEnemies (t, 4) && Random.Range (0, 100) < 30) {
+				if (EmptyRadiusToEnemies (t, 4) && Random.Range (0, 100) < 10) {
 					t.objectName = "Enemies/Bat";
 				} else if (!HasObstaclesNear (t)) {
 					int r = Random.Range (0, 100);
-					if (r < 50 && this.id > beginID) {
+
+					if (r < 25 && this.id > beginID) {
 						t.objectName = "Hidden Hole";
 						t.transition = GenerateHole (beginID);
-						//t.obstacle = "Puddle1";
-					} else if (r < 15) {
-						t.objectName = "Enemies/Golem1";
+					} else if (r < 45) {
+						t.obstacle = "Puddle1";
 					} else if (r < 50) {
+						t.objectName = "Enemies/Golem1";
+					} else if (r < 65) {
 						t.obstacle = "Puddle2";
-					} else if (r < 70) {
+					} else if (r < 80) {
 						t.obstacle = "Rock";
-					} else if (r < 75) {
+					} else if (r < 95) {
 						t.obstacle = "Mushroom";
 					} 
 				}
@@ -72,8 +74,8 @@ public class CaveMaze : ProceduralMaze {
 			if (HasTransitionNear (t)) {
 				continue;
 			}
-			if (t.isWall) {	
-				if (Random.Range (0, 100) < 30) { //fator random
+			if (t.isWall && t.x > 0 && t.x < width - 1 && t.y > 0 && t.y < height - 1) {	
+				if (Random.Range (0, 100) < 20) { //fator random
 					t.obstacle = "Rock";
 					t.wallID = 0;
 				} else if (Random.Range (0, 100) < 30) {
