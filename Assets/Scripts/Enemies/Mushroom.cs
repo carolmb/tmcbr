@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Mushroom : Enemy {
+public class Mushroom : KnightArmor {
 
 	void Update () {
 		if (Player.instance.paused)
