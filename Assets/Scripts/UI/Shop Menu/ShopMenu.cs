@@ -16,8 +16,14 @@ public class ShopMenu : MenuBase {
 		GameHUD.instance.gameObject.SetActive (false);
 	}
 
-	public void UpdateCoins(int value) {
+	public void UpdateCoins (int value) {
 		coinText.text = "x" + value;
+	}
+
+	void Update () {
+		if (Input.GetButtonDown ("Menu")) {
+			gameObject.SetActive (false);
+		}
 	}
 
 }
