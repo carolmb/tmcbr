@@ -4,8 +4,6 @@
 		_radius("Radius", float) = 100
 		_playerX ("Player X", float) = 320
 		_playerY ("Player Y", float) = 240
-		_screenW ("Screen Width", float) = 640
-		_screenH ("Screen Height", float) = 480
 	}
 	SubShader {
 		// No culling or depth
@@ -54,10 +52,10 @@
 				float2 worldPos = IN.screenpos * _ScreenParams.xy;
 
 				float2 playerPos = float2(_playerX, _playerY);
-				float2 screenSize = float2(_screenW, _screenH);
 				_radius *= _ScreenParams.xy;
 
-				float a = 1 - (distance(worldPos, playerPos) / _radius);
+				float d = distance(worldPos, playerPos);
+				float a = d > _radius ? exp(-(d - _radius) / _radius) : 1;
 				tex.r *= a;
 				tex.g *= a;
 				tex.b *= a;

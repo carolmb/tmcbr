@@ -8,10 +8,10 @@ public class SaveWindow : MonoBehaviour {
 	public Button[] saveButtons;
 
 	public void OnEnable() {
-		SaveManager.LoadSaves ();
+		SaveManager.LoadList ();
 		for (int i = 0; i < SaveManager.maxSaves; i++) {
-			if (SaveManager.allSaves [i] != null) {
-				saveButtons [i].GetComponentInChildren<Text> ().text = SaveManager.allSaves [i].name;
+			if (SaveManager.saveList [i] != null) {
+				saveButtons [i].GetComponentInChildren<Text> ().text = SaveManager.saveList [i];
 			} else {
 				saveButtons [i].GetComponentInChildren<Text> ().text = "Empty";
 			}

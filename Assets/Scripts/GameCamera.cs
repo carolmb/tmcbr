@@ -33,6 +33,9 @@ public class GameCamera : MonoBehaviour {
 
 	// Seguir o player
 	void LateUpdate() {
+		if (player == null)
+			return;
+
 		Vector3 newPos = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
 		if (quake) {
 			newPos += new Vector3 (Random.Range (-6, 7), Random.Range (-6, 7), 0);
