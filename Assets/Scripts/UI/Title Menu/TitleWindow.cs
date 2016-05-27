@@ -29,6 +29,7 @@ public class TitleWindow : MonoBehaviour {
 	public void OnCredits () {
 		if (TitleMenu.fading)
 			return;
+		TitleMenu.ClickItemSound ();
 		TitleMenu.instance.loadWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}

@@ -108,10 +108,11 @@ public class Curupira : Enemy {
 					neighbours.Add (new Vector2(t.x, t.y + 1));
 				}
 
-				Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (neighbours [Random.Range (0, neighbours.Count)]) + 
-					new Vector2(0, Tile.size / 2);
+				Tile nextTile = neighbours [Random.Range (0, neighbours.Count)];
 
-				if (MazeManager.GetTile(nextPosition).isWalkable) {
+				if (nextTile.isWalkable) {
+					Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile) + 
+						new Vector2(0, Tile.size / 2);
 					character.TurnTo (nextPosition);
 					character.MoveTo (nextPosition);
 				} else {

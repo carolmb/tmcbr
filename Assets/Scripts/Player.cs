@@ -48,10 +48,8 @@ public class Player : MonoBehaviour {
 
 		// Guardar tile visitado
 		Tile tile = character.currentTile;
-		if (!tile.visited) {
-			tile.visited = true;
-			GameHUD.instance.UpdateMap ();
-		}
+		tile.visited = true;
+		GameHUD.instance.UpdateMap ();
 		character.currentTile.visited = true;
 
 		// Checar outros bagulho

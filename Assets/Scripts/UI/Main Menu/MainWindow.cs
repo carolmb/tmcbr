@@ -27,6 +27,7 @@ public class MainWindow : MonoBehaviour {
 
 	public void QuitButton () {
 		GameHUD.ClickItemSound ();
+		Destroy (MazeManager.musicPlayer.gameObject);
 		SceneManager.LoadScene ("Title");
 	}
 

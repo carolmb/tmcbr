@@ -108,9 +108,9 @@ public class GameCamera : MonoBehaviour {
 		while (Twirl.angle > 0) {
 			if (!Player.instance.paused) {
 				if (Player.instance.moved) {
-					yield return new WaitForSeconds (3);
+					yield return new WaitForSeconds (2);
 				} else {
-					Twirl.angle -= Time.deltaTime * 2;
+					Twirl.angle -= Time.deltaTime * 3;
 				}
 			}
 			yield return null;
