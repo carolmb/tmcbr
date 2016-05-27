@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Mushroom : Enemy {
+public class Mushroom : KnightArmor {
 
 	// Use this for initialization
 	protected override void Start () {
