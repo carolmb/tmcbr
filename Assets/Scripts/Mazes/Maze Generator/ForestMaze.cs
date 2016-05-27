@@ -28,16 +28,16 @@ public class ForestMaze : ProceduralMaze {
 			if (HasTransitionNear(t) || t.isWall) {
 				continue;
 			}
-			if (Random.Range (0, 100) < 75 && EmptyRadiusToEnemies (t, 4)) {
+			if (Random.Range (0, 100) < 75 && EmptyRadiusToEnemies (t, 2)) {
 				if (!curupira) {
 					t.objectName = "Enemies/Curupira";
 					curupira = true;
-				} else if (Random.Range (0, 100) < 50) {
+				} else if (Random.Range (0, 100) < 35) {
 					t.objectName = "Enemies/Tomato";
-				} else if (Random.Range (0, 100) < 100) {
-					t.objectName = "Enemies/Butterfly";
-				} else if (Random.Range (0, 100) < 120) {
+				} else if (Random.Range (0, 100) < 55) {
 					t.objectName = "Enemies/Mushroom";
+				} else if (Random.Range (0, 100) < 75) {
+					t.objectName = "Enemies/Butterfly";
 				}
 			} else { 
 				if (!HasObstaclesNear (t, 3)) {

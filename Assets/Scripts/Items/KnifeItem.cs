@@ -83,8 +83,10 @@ public class KnifeItem : MonoBehaviour {
 	}
 
 	void Curupira() {
-		GameObject gameObject = GameObject.Find("Enemies/Curupira");
-		Curupira curupira = gameObject.GetComponent<Curupira>();
-		curupira.inAttackMode = true;
+		GameObject go = GameObject.Find("Enemies/Curupira");
+		if (go != null) {
+			Curupira curupira = go.GetComponent<Curupira>();
+			curupira.inAttackMode = true;
+		}
 	}
 }

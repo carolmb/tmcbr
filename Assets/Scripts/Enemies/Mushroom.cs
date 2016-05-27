@@ -3,11 +3,6 @@ using System.Collections;
 
 public class Mushroom : Enemy {
 
-	// Use this for initialization
-	protected override void Start () {
-		base.Start ();
-	}
-	
 	void Update () {
 		if (Player.instance.paused)
 			return;
