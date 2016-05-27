@@ -17,7 +17,7 @@ public class GameSave {
 		mazes = gameGraph.ToMazeArray ();
 
 		bag = new Bag ();
-		lifePoints = 5;
+		lifePoints = 50;
 		playTime = 0;
 	}
 

@@ -47,11 +47,17 @@ public class Golem3 : Enemy {
 	}
 
 	protected override void OnDie() {
+		//MazeManager.maze.tiles [originalTile.x, originalTile.y].objectName = "";
+
 		List<Tile> t = character.currentTile.GetNeighbours4Walkeable ();
 		for (int i = 0; i < 4; i++) {
 			GameObject spawGolem = Instantiate (golem2) as GameObject;
 			spawGolem.transform.position = MazeManager.TileToWorldPos (t [Random.Range (0, t.Count)].coordinates);
 		}
 		base.OnDie ();
+	}
+
+	void OnDestroy() {
+		MazeManager.maze.tiles [originalTile.x, originalTile.y].objectName = "";
 	}
 }

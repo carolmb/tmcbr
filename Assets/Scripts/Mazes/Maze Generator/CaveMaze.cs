@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class CaveMaze : ProceduralMaze {
 
-	int type;
+	public int type;
 
 	public CaveMaze(int id, int width, int height, int type = 0)  : base (id, width, height) { 
 		this.type = type;
@@ -41,7 +41,6 @@ public class CaveMaze : ProceduralMaze {
 	public override void CreateObstacles () {
 		if (type == 1)
 			return;
-		bool boss = true;
 		foreach (Tile t in tiles) {
 			if (HasTransitionNear (t)) {
 				continue;

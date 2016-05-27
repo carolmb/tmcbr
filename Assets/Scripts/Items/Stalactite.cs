@@ -28,7 +28,6 @@ public class Stalactite : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.CompareTag ("Player")) {
-			Debug.Log ("asdjandk");
 			Character comp = collider.GetComponent<Character> ();
 			comp.Damage ((Vector2) transform.position - (Vector2)moveVector * 10, damage);
 			Destroy (gameObject);

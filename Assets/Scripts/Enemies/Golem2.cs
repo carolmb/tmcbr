@@ -8,6 +8,7 @@ public class Golem2 : Enemy {
 	public GameObject golem1;
 
 	protected override void Start () {
+		MazeManager.maze.tiles [character.currentTile.x, character.currentTile.y].objectName = "Enemies/Golem2";
 		base.Start ();
 		Spawn ();
 	}
@@ -37,6 +38,7 @@ public class Golem2 : Enemy {
 	}
 
 	protected override void OnDie() {
+		MazeManager.maze.tiles [originalTile.x, originalTile.y].objectName = "";
 		List<Tile> t = character.currentTile.GetNeighbours4Walkeable ();
 		GameObject spawGolem1 = Instantiate (golem1) as GameObject;
 		GameObject spawGolem2 = Instantiate (golem1) as GameObject;
