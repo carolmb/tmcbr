@@ -42,8 +42,8 @@ public class Golem3 : Enemy {
 			}
 			lastTile = false;
 		}
-		if(Camera.current != null)
-			Camera.current.GetComponent<GameCamera>().quake = true;
+		if(GameCamera.instance != null)
+			GameCamera.instance.quake = true;
 	}
 
 	protected override void OnDie() {
