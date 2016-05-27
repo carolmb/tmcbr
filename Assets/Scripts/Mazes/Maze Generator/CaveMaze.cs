@@ -4,8 +4,14 @@ using System.Collections.Generic;
 
 public class CaveMaze : ProceduralMaze {
 
-	public CaveMaze(int id, int width, int height)  : base (id, width, height) { 
-		GenerateTiles ();
+	int type;
+
+	public CaveMaze(int id, int width, int height, int type = 0)  : base (id, width, height) { 
+		this.type = type;
+		if (type == 0)
+			GenerateTiles ();
+		else
+			SpecialCave ();
 	}
 
 	public override string GetTheme () {
@@ -18,18 +24,28 @@ public class CaveMaze : ProceduralMaze {
 		return n [i];
 	}
 
+	void SpecialCave() {
+		tiles = new Tile[width, height];
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				tiles [i, j] = new Tile (i, j);
+				if (i == 0 || i == width - 1 || j == 0 || j == height) {
+					tiles [i, j].wallID = 1;
+				}
+			}
+		}
+		tiles [width / 2, height - 2].objectName = "Enemies/Golem3";
+	}
+		
+
 	public override void CreateObstacles () {
+		if (type == 1)
+			return;
 		bool boss = true;
 		foreach (Tile t in tiles) {
 			if (HasTransitionNear (t)) {
 				continue;
-			} else if (t.transition == null && boss) {
-				Debug.Log ("BOSS");
-				t.objectName = "Enemies/Golem3";
-				boss = false;
-				continue;
 			}
-
 
 			if (t.isWalkable) {
 				if (EmptyRadiusToEnemies (t, 4) && Random.Range (0, 100) < 30) {

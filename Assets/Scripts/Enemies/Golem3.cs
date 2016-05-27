@@ -33,11 +33,14 @@ public class Golem3 : Enemy {
 	}
 
 	void Earthquake() {
+		bool lastTile = false;
 		foreach(Tile t in MazeManager.maze.tiles){
-			if (Random.Range (0, 100) < 30) {
+			if (Random.Range (0, 100) < 20 && Random.Range(0, 100) < (lastTile ? 8 : 80)) {
 				GameObject s = Instantiate (stalactite) as GameObject;
 				s.transform.position = MazeManager.TileToWorldPos (t.coordinates);
+				lastTile = true;
 			}
+			lastTile = false;
 		}
 		if(Camera.current != null)
 			Camera.current.GetComponent<GameCamera>().quake = true;
