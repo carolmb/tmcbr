@@ -11,6 +11,7 @@ public class Tile {
 		public float tileX;
 		public float tileY;
 		public int direction;
+		public bool instant = true;
 		public Transition(int id, float x, float y, int dir) {
 			mazeID = id;
 			tileX = x;

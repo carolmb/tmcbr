@@ -37,6 +37,7 @@ public class MazeManager : MonoBehaviour {
 			Player.instance.transform.position = initPos;
 			Player.instance.character.direction = currentTransition.direction;
 		}
+		GameHUD.instance.UpdateMap ();
 	}
 
 	// Resgata o labirinto atual e inicializa os tiles

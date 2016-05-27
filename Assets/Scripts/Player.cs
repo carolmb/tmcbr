@@ -37,18 +37,25 @@ public class Player : MonoBehaviour {
 
 	// Inputs e checagem de estados
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.D)) {
+		/*if (Input.GetKeyDown (KeyCode.D)) {
 			character.Damage ((Vector2) transform.position - new Vector2(0, 100), 1);
-		}
+		}*/
 
+		// Checar o pause do jogo
 		CheckPause ();
-		CheckInteract ();
 		if (paused) 
 			return;
 
 		// Guardar tile visitado
+		Tile tile = character.currentTile;
+		if (!tile.visited) {
+			tile.visited = true;
+			GameHUD.instance.UpdateMap ();
+		}
 		character.currentTile.visited = true;
 
+		// Checar outros bagulho
+		CheckInteract ();
 		CheckItems ();
 		CheckMovement ();
 	}
@@ -75,30 +82,6 @@ public class Player : MonoBehaviour {
 	// ===============================================================================
 	// Movimento
 	// ===============================================================================
-
-	public Button menuButton;
-	public Button returnButton;
-
-	// Verificar botão de pause
-	void CheckPause() {
-		if (Input.GetButtonDown ("Menu")) {
-			if (!paused) {
-				menuButton.onClick.Invoke ();
-			} else {
-				returnButton.onClick.Invoke ();
-			}
-		}
-	}
-
-	// Atualizar uso de itens
-	void CheckItems() {
-		if (repelling) {
-			repelTime -= Time.deltaTime;
-		}
-		if (canMove && Input.GetButtonDown ("Item")) {
-			UseItem ();
-		}
-	}
 
 	// Movimento pelo Input
 	void CheckMovement() {
@@ -152,7 +135,7 @@ public class Player : MonoBehaviour {
 	// Verifica se o player chegou nem tile que tem uma transição
 	void CheckTransition () {
 		Tile tile = character.currentTile;
-		if (tile.transition != null) {
+		if (tile.transition != null && tile.transition.instant) {
 			MazeManager.GoToMaze (tile.transition);
 		}
 	}
@@ -160,6 +143,20 @@ public class Player : MonoBehaviour {
 	// ===============================================================================
 	// Pause
 	// ===============================================================================
+
+	public Button menuButton;
+	public Button returnButton;
+
+	// Verificar botão de pause
+	void CheckPause() {
+		if (Input.GetButtonDown ("Menu")) {
+			if (!paused) {
+				menuButton.onClick.Invoke ();
+			} else {
+				returnButton.onClick.Invoke ();
+			}
+		}
+	}
 
 	// Pausar jogo
 	public void Pause () {
@@ -176,6 +173,16 @@ public class Player : MonoBehaviour {
 	// ===============================================================================
 	// Itens
 	// ===============================================================================
+
+	// Atualizar uso de itens
+	void CheckItems() {
+		if (repelling) {
+			repelTime -= Time.deltaTime;
+		}
+		if (canMove && Input.GetButtonDown ("Item")) {
+			UseItem ();
+		}
+	}
 
 	public void IncrementCoins (int value) {
 		Bag.current.coins += value;
@@ -266,8 +273,7 @@ public class Player : MonoBehaviour {
 		Coroutine c = StartCoroutine (GameCamera.instance.FadeOut (0.5f));
 		yield return new WaitForSeconds (1f);
 		GameCamera.PlayAudioClip (deadSound);
-		character.direction = 4;
-		Destroy (character.animator);
+		character.animator.enabled = false;
 		character.spriteRenderer.sprite = deadSprite;
 		yield return c;
 		SceneManager.LoadScene ("Title");
@@ -301,6 +307,25 @@ public class Player : MonoBehaviour {
 			}
 			visible = false;
 		}
+	}
+
+	// ===============================================================================
+	// Queda
+	// ===============================================================================
+
+	public IEnumerator Fall (Tile.Transition transition) {
+		canMove = false;
+		character.damaging = true;
+		character.Stop ();
+		yield return new WaitForSeconds (0.2f);
+		Destroy (transform.GetChild (0).gameObject);
+		float speed = 120;
+		while (character.spriteRenderer.color.a > 0) {
+			transform.Translate (0, -Time.deltaTime * speed, 0);
+			character.spriteRenderer.color -= new Color (0, 0, 0, Time.deltaTime * 4);
+			yield return null;
+		}
+		MazeManager.GoToMaze (transition);
 	}
 
 }
