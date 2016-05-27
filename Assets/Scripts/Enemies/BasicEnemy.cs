@@ -4,6 +4,13 @@ using System.Collections.Generic;
 
 public class BasicEnemy : Enemy {
 
+	float defaultSpeed;
+
+	protected override void Start () {
+		base.Start ();
+		defaultSpeed = character.speed;
+	}
+
 	void Update () {
 		if (Player.instance.paused)
 			return;
@@ -11,7 +18,10 @@ public class BasicEnemy : Enemy {
 		if (!character.moving && !character.damaging) {
 			if (Player.instance.repelling) {
 				RunFromPlayer ();
-			} else if (!ChasePlayer ()) {
+			} else if (ChasePlayer ()) {
+				character.speed = defaultSpeed * 3;
+			} else {
+				character.speed = defaultSpeed;
 				RandomMove ();
 			}
 		}

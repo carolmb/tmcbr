@@ -32,8 +32,10 @@ public class ForestMaze : ProceduralMaze {
 				if (!curupira) {
 					t.objectName = "Enemies/Curupira";
 					curupira = true;
-				} else if (Random.Range (0, 100) < 25) {
+				} else if (Random.Range (0, 100) < 5) {
 					t.objectName = "Enemies/Butterfly";
+				} else if (Random.Range (0, 100) < 10) {
+					t.objectName = "Enemies/Kodama";
 				}
 			} else { 
 				if (EmptyRadiusToEnemies(t, 1)) {

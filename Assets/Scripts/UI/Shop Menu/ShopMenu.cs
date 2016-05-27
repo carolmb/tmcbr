@@ -13,6 +13,7 @@ public class ShopMenu : MenuBase {
 		base.Open ();
 		UpdateCoins (Bag.current.coins);
 		shopWindow.gameObject.SetActive (true);
+		GameHUD.instance.gameObject.SetActive (false);
 	}
 
 	public void UpdateCoins(int value) {

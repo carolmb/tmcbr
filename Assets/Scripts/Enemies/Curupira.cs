@@ -26,9 +26,9 @@ public class Curupira : Enemy {
 				RunFromPlayer ();
 			} else {
 				if (inAttackMode) {
-					character.speed = 1.2f;
+					character.speed = 2f;
 				} else {
-					character.speed = 0.7f;
+					character.speed = 0.5f;
 				}
 				if (isChasing) {
 					if (!ChasePlayer ()) {
