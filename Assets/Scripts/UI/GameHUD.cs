@@ -53,6 +53,12 @@ public class GameHUD : MonoBehaviour {
 			t.text = item.consumable ? "x" + count : "";
 		}
 	}
+
+	public Image miniMap;
+
+	public void UpdateMap () {
+		MapWindow.UpdateTexture (miniMap, 1);
+	}
 		
 	// ===============================================================================
 	// Sons

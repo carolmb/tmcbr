@@ -49,7 +49,7 @@ public class HallStage : ProceduralStage {
 
 		queue.Enqueue (first);
 
-		int mazeCount = 1, maxMazeCount = 2;//Random.Range (7, 12);
+		int mazeCount = 1, maxMazeCount = 1;//Random.Range (7, 12);
 		int currentId = beginIndex + 1;
 
 		while (mazeCount < maxMazeCount) {

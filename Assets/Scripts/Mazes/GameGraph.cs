@@ -5,15 +5,17 @@ using System.Collections.Generic;
 
 public class GameGraph {
 
-	HallStage hallStage;
-	CaveStage caveStage;
-	ForestStage forestStage;
+	public HallStage hallStage;
+	public CaveStage caveStage;
+	public ForestStage forestStage;
 
 	StaticStage entrance;
 	StaticStage entrance2;
 	StaticStage lockup;
 	StaticStage mirrorRoom;
 	StaticStage fireplace;
+
+	public static GameGraph current = null;
 
 	// Posição inicial do player
 	public Tile.Transition StartTransition() {
@@ -23,6 +25,8 @@ public class GameGraph {
 
 	// Cria as fases e seta as transições entre elas
 	public GameGraph () {
+		current = this;
+
 		// OBS: sempre carregar as estáticas primeiro
 		entrance = new StaticStage (0, "Entrance");
 		entrance2 = new StaticStage (1, "Entrance2");

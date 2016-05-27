@@ -13,7 +13,8 @@ public class MainWindow : MonoBehaviour {
 
 	public void MapButton () {
 		GameHUD.ClickItemSound ();
-		GameHUD.instance.mainMenu.mapWindow.UpdateTexture ();
+		MapWindow map = GameHUD.instance.mainMenu.mapWindow;
+		MapWindow.UpdateTexture (map.miniMap.GetComponent<Image> ());
 		GameHUD.instance.mainMenu.mapWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}

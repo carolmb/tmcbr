@@ -37,18 +37,25 @@ public class Player : MonoBehaviour {
 
 	// Inputs e checagem de estados
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.D)) {
+		/*if (Input.GetKeyDown (KeyCode.D)) {
 			character.Damage ((Vector2) transform.position - new Vector2(0, 100), 1);
-		}
+		}*/
 
+		// Checar o pause do jogo
 		CheckPause ();
-		CheckInteract ();
 		if (paused) 
 			return;
 
 		// Guardar tile visitado
+		Tile tile = character.currentTile;
+		if (!tile.visited) {
+			tile.visited = true;
+			GameHUD.instance.UpdateMap ();
+		}
 		character.currentTile.visited = true;
 
+		// Checar outros bagulho
+		CheckInteract ();
 		CheckItems ();
 		CheckMovement ();
 	}
@@ -309,10 +316,13 @@ public class Player : MonoBehaviour {
 	public IEnumerator Fall (Tile.Transition transition) {
 		canMove = false;
 		character.damaging = true;
-		float speed = 2;
+		character.Stop ();
+		yield return new WaitForSeconds (0.2f);
+		Destroy (transform.GetChild (0).gameObject);
+		float speed = 120;
 		while (character.spriteRenderer.color.a > 0) {
 			transform.Translate (0, -Time.deltaTime * speed, 0);
-			character.spriteRenderer.color -= new Color (0, 0, 0, Time.deltaTime);
+			character.spriteRenderer.color -= new Color (0, 0, 0, Time.deltaTime * 4);
 			yield return null;
 		}
 		MazeManager.GoToMaze (transition);

@@ -7,21 +7,23 @@ public class MapWindow : MonoBehaviour {
 	public GameObject miniMap;
 
 	Image imageComp;
-	Texture2D texture;
 
-	public Color visitedColor = Color.white;
-	public Color hiddenColor = Color.black;
-	public Color playerColor = Color.blue;
-	public Color transitionColor = Color.yellow;
+	public static Color visitedColor = Color.white;
+	public static Color hiddenColor = Color.black;
+	public static Color playerColor = Color.blue;
+	public static Color transitionColor = Color.yellow;
 
-	public void UpdateTexture() {
+	void Awake() {
 		imageComp = miniMap.GetComponent<Image> ();
-		texture = new Texture2D (MazeManager.maze.width, MazeManager.maze.height);
+	}
+
+	public static void UpdateTexture(Image imageComp, int size = 4) {
+		Texture2D texture = new Texture2D (MazeManager.maze.width, MazeManager.maze.height);
 		texture.filterMode = FilterMode.Point;
 
 		for (int i = 0; i < texture.width; i++) {
 			for (int j = 0; j < texture.height; j++) {
-				if (MazeManager.maze.tiles [i, j].transition != null) {
+				if (MazeManager.maze.tiles [i, j].transition != null && MazeManager.maze.tiles [i,j].transition.instant) {
 					texture.SetPixel (i, j, transitionColor);
 				} else { 
 					if (MazeManager.maze.tiles [i, j].visited) {
@@ -36,12 +38,12 @@ public class MapWindow : MonoBehaviour {
 		}
 		texture.Apply ();
 		imageComp.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-		imageComp.rectTransform.sizeDelta = new Vector2 (texture.width * 4, texture.height * 4);
-		SetPivot (0.5f, 0.5f);
+		imageComp.rectTransform.sizeDelta = new Vector2 (texture.width * size, texture.height * size);
+		SetPivot (imageComp, 0.5f, 0.5f);
 	}
 
-	private void SetPivot(float x, float y) {
-		imageComp.rectTransform.pivot = new Vector2 (x, y);
+	private static void SetPivot(Image image, float x, float y) {
+		image.rectTransform.pivot = new Vector2 (x, y);
 	}
 
 	public int speed = 2;
@@ -52,15 +54,15 @@ public class MapWindow : MonoBehaviour {
 		float x = -Input.GetAxisRaw("Horizontal");
 		float y = -Input.GetAxisRaw ("Vertical");
 		if (x != 0 || y != 0) {
-			px += x * speed / texture.width;
+			px += x * speed / imageComp.rectTransform.sizeDelta.x;
 			px = Mathf.Min (1, px);
 			px = Mathf.Max (0, px);
 
-			py += y * speed / texture.height;
+			py += y * speed / imageComp.rectTransform.sizeDelta.y;
 			py = Mathf.Min (1, py);
 			py = Mathf.Max (0, py);
 
-			SetPivot (px, py);
+			SetPivot (imageComp, px, py);
 		}
 	}
 

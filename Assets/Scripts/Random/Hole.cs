@@ -9,7 +9,7 @@ public class Hole : MonoBehaviour {
 	public Sprite openSprite;
 
 	void Start () {
-		transform.Translate (0, - Tile.size / 2, 100);
+		transform.Translate (0, - Tile.size / 2, Tile.size);
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
@@ -35,7 +35,7 @@ public class Hole : MonoBehaviour {
 	}
 
 	void Open() {
-		GetComponent<SpriteRenderer> ().sprite = brokenSprite;
+		GetComponent<SpriteRenderer> ().sprite = openSprite;
 		MazeManager.GetTile (transform.position).objectName = "Hole";
 		state = 2;
 	}
