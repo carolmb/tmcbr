@@ -31,27 +31,28 @@ public class PickItem : MonoBehaviour {
 		Vector3 pos = Vector3.zero;
 		switch (Player.instance.character.direction) {
 		case 0: // Pra baixo
-			orig = Quaternion.Euler (0, 0, -200);
-			dest = Quaternion.Euler (0, 0, -150);
+			orig = Quaternion.Euler (0, 0, 180);
+			dest = Quaternion.Euler (0, 0, 270);
 			box.offset.Set(0,0);
 			break;
 		case 1: // Pra esquerda
-			orig = Quaternion.Euler(0, 0, 45);
-			dest = Quaternion.Euler(0, 0, 150);
+			transform.localScale = new Vector2(-1, 1);
+			orig = Quaternion.Euler(0, 0, 0);
+			dest = Quaternion.Euler(0, 0, 90);
 			box.offset.Set(0,0);
 			pos.y = 6;
 			pos.x = -6;
 			break;
 		case 2: // Pra direita
-			orig = Quaternion.Euler(0, 0, 15);
-			dest = Quaternion.Euler(0, 0, -80);
+			orig = Quaternion.Euler(0, 0, 0);
+			dest = Quaternion.Euler(0, 0, -90);
 			box.offset.Set(0,0);
 			pos.x = 6;
 			pos.y = 6;
 			break;
 		case 3: // Pra cima
-			orig = Quaternion.Euler(0, 0, -15);
-			dest = Quaternion.Euler(0, 0, 45);
+			orig = Quaternion.Euler(0, 0, 90);
+			dest = Quaternion.Euler(0, 0, 0);
 			box.offset.Set(0,0);
 			pos.y = 16;
 			pos.z = 1;
@@ -90,7 +91,6 @@ public class PickItem : MonoBehaviour {
 			Vector2 moveVector = GameManager.AngleToVector (Player.instance.character.lookingAngle) * speed;
 			Character comp = collider.GetComponent<Character> ();
 			comp.Damage ((Vector2) transform.position - moveVector * 10, damage);
-			//GameCamera.PlayAudioClip (collisionSound);
 		}
 	}
 

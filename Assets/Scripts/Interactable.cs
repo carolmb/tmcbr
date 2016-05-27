@@ -16,6 +16,9 @@ public class Interactable : MonoBehaviour {
 	}
 
 	void Update () {
+		if (Player.instance.paused)
+			return;
+
 		if (Player.instance.interactedPoint != Vector2.zero) {
 			Rect r = new Rect ();
 			r.size = hitBox.size;
