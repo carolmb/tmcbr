@@ -37,14 +37,18 @@ public class GameCamera : MonoBehaviour {
 			return;
 
 		Vector3 newPos = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
-		if (quake) {
-			newPos += new Vector3 (Random.Range (-6, 7), Random.Range (-6, 7), 0);
-			quake = false;
-		}
+		if(quake)
+			newPos += new Vector3 (Random.Range (-10, 11), Random.Range (-10, 11), 0);
+
 		AdjustPosition (ref newPos);
 		transform.position = newPos;
-	}
+		Invoke ("Quake", 2);
 
+	}
+		
+	void Quake() {
+		quake = false;
+	}
 	// Serve para "cortar" uma posição afim de mantê-la dentro dos limites do cenário
 	public bool AdjustPosition(ref Vector3 newPos) {
 		bool moved = false;

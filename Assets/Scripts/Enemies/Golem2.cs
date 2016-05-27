@@ -40,10 +40,10 @@ public class Golem2 : Enemy {
 	protected override void OnDie() {
 		MazeManager.maze.tiles [originalTile.x, originalTile.y].objectName = "";
 		List<Tile> t = character.currentTile.GetNeighbours4Walkeable ();
-		GameObject spawGolem1 = Instantiate (golem1) as GameObject;
-		GameObject spawGolem2 = Instantiate (golem1) as GameObject;
-		spawGolem1.transform.position = MazeManager.TileToWorldPos (t [Random.Range (0, t.Count)].coordinates);
-		spawGolem2.transform.position = MazeManager.TileToWorldPos (t [Random.Range (0, t.Count)].coordinates);
+		for (int i = 0; i < 2; i++) {
+			GameObject spawGolem = Instantiate (golem1) as GameObject;
+			spawGolem.transform.position = MazeManager.TileToWorldPos (t [Random.Range (0, t.Count)].coordinates);
+		}
 		base.OnDie ();
 	}
 }
