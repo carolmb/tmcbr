@@ -41,7 +41,7 @@ public class CaveStage : ProceduralStage {
 			);
 		}
 
-		CaveMaze specialCave = new CaveMaze (beginIndex + mazeCount, 12, 10, 1);
+		CaveMaze specialCave = new CaveMaze (beginIndex + mazeCount, 10, 8, 1);
 
 		mazes [mazeCount] = specialCave;
 		for (int i = 0; i < mazeCount; i++) {

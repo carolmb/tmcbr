@@ -1,13 +1,25 @@
 fileFormatVersion: 2
 guid: 94360db21f475a347aa1add1ac9b68ba
-timeCreated: 1464225066
+timeCreated: 1464346959
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: golem3_0
+    21300002: golem3_1
+    21300004: golem3_2
+    21300006: golem3_3
+    21300008: golem3_4
+    21300010: golem3_5
+    21300012: golem3_6
+    21300014: golem3_7
+    21300016: golem3_8
+    21300018: golem3_9
+    21300020: golem3_10
+    21300022: golem3_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -26,10 +38,10 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -38,18 +50,233 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 1
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: golem3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 9}
+        - {x: -4, y: 9}
+        - {x: -12, y: 6}
+        - {x: -12, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: -5}
+        - {x: 10, y: 5}
+    - name: golem3_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8, y: 8}
+        - {x: -7, y: 8}
+        - {x: -12, y: -1}
+        - {x: -12, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 7}
+    - name: golem3_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 9}
+        - {x: -13, y: 6}
+        - {x: -13, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 2}
+        - {x: 9, y: 9}
+    - name: golem3_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 9}
+        - {x: -12, y: -3}
+        - {x: -12, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 1}
+        - {x: 8, y: 9}
+    - name: golem3_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: -1}
+        - {x: 6, y: 8}
+        - {x: -5, y: 8}
+        - {x: -12, y: 7}
+        - {x: -13, y: 4}
+        - {x: -13, y: -16}
+        - {x: 13, y: -16}
+        - {x: 13, y: -3}
+    - name: golem3_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 10}
+        - {x: -7, y: 10}
+        - {x: -12, y: 8}
+        - {x: -12, y: -16}
+        - {x: 12, y: -16}
+        - {x: 13, y: -12}
+        - {x: 13, y: -5}
+        - {x: 9, y: 6}
+    - name: golem3_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 8}
+        - {x: -12, y: 3}
+        - {x: -12, y: -16}
+        - {x: 13, y: -16}
+        - {x: 13, y: 2}
+        - {x: 10, y: 8}
+    - name: golem3_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 9}
+        - {x: -14, y: 0}
+        - {x: -14, y: -12}
+        - {x: -13, y: -16}
+        - {x: 11, y: -16}
+        - {x: 13, y: -15}
+        - {x: 13, y: 1}
+        - {x: 5, y: 9}
+    - name: golem3_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5, y: 10}
+        - {x: -11, y: 8}
+        - {x: -13, y: -1}
+        - {x: -13, y: -16}
+        - {x: 13, y: -16}
+        - {x: 13, y: 4}
+        - {x: 7, y: 10}
+    - name: golem3_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 10}
+        - {x: -13, y: 0}
+        - {x: -13, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 3}
+        - {x: 6, y: 10}
+    - name: golem3_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 9}
+        - {x: -13, y: 5}
+        - {x: -14, y: -2}
+        - {x: -14, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 4}
+        - {x: 5, y: 9}
+    - name: golem3_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 10}
+        - {x: -12, y: 8}
+        - {x: -14, y: -3}
+        - {x: -14, y: -15}
+        - {x: -12, y: -16}
+        - {x: 11, y: -16}
+        - {x: 11, y: 9}
+        - {x: 7, y: 10}
     outline: []
   spritePackingTag: 
   userData: 

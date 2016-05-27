@@ -11,6 +11,8 @@ public class GameSave {
 	public int lifePoints;
 	public float playTime;
 
+	public bool golemBoss;
+
 	public GameSave() {
 		GameGraph gameGraph = new GameGraph ();
 		transition = gameGraph.StartTransition ();
@@ -20,6 +22,7 @@ public class GameSave {
 
 		lifePoints = 99;
 		playTime = 0;
-	}
 
+		golemBoss = true;
+	}
 }
