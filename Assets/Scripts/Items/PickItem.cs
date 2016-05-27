@@ -4,7 +4,8 @@ using System.Collections;
 [RequireComponent (typeof(BoxCollider2D))]
 public class PickItem : MonoBehaviour {
 
-	public RockQ rockq;
+	public GameObject rockq;
+	public GameObject golem;
 
 	// Dano causado ao inimigo
 	public int damage = 1;
@@ -79,18 +80,24 @@ public class PickItem : MonoBehaviour {
 				comp.Damage (transform.position, damage);
 			}
 			Destroy (gameObject);
-		}
-		if (collider.CompareTag ("Rock")) {
+		} else if (collider.CompareTag ("Rock")) {
+			OnDestroyRock (collider.transform.position);
 			Destroy (collider.gameObject);
-			rockq.transform.position = collider.gameObject.transform.position;
 			Destroy (gameObject);
-			Instantiate (rockq);
-		}
-		Vector2 moveVector = GameManager.AngleToVector (Player.instance.character.lookingAngle) * speed;
-		if (collider.CompareTag ("Golem")) {
+		} else if (collider.CompareTag ("Golem")) {
+			Vector2 moveVector = GameManager.AngleToVector (Player.instance.character.lookingAngle) * speed;
 			Character comp = collider.GetComponent<Character> ();
 			comp.Damage ((Vector2) transform.position - moveVector * 10, damage);
 			//GameCamera.PlayAudioClip (collisionSound);
+		}
+	}
+
+	void OnDestroyRock(Vector3 position) {
+		int r = Random.Range (0, 100);
+		if (r < 30) {
+			Instantiate (rockq, position, Quaternion.identity);
+		} else if (r < 60) {
+			Instantiate (golem, position, Quaternion.identity);
 		}
 	}
 

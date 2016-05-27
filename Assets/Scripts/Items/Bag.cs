@@ -82,6 +82,24 @@ public class Bag : IEnumerable<Item> {
 	// Adicionar e remover itens
 	// ===============================================================================
 
+	public void AddOne(Item item) {
+		for (int i = 0; i < Bag.maxItems; i++) {
+			Item item2 = Bag.current.GetItem (i);
+			if (item2 != null && item2.id == item.id) {
+				Bag.current.Increment(i, 1);
+				return;
+			}
+		}
+		// Não achou o item na mochila, então cria slot novo
+		for (int i = 0; i < Bag.maxItems; i++) {
+			ItemSlot slot = Bag.current.GetSlot (i);
+			if (slot == null) {
+				Bag.current.Add (item, i, 1);
+				return;
+			}
+		}
+	}
+
 	public bool Add(Item item) {
 		for (int i = 0; i < Bag.maxItems; i++) {
 			Item item2 = Bag.current.GetItem (i);
@@ -101,12 +119,20 @@ public class Bag : IEnumerable<Item> {
 		return false;
 	}
 
+	public void Add (Item item, int slot, int count) {
+		itemSlots [slot] = new ItemSlot (item.id, count);
+	}
+
 	public void Add (Item item, int slot) {
 		itemSlots [slot] = new ItemSlot (item.id, item.count);
 	}
 
 	public void Increment (int slot) {
 		itemSlots [slot].count += GetItem(slot).count;
+	}
+
+	public void Increment (int slot, int count) {
+		itemSlots [slot].count += count;
 	}
 
 	public void Discard (int slot) {

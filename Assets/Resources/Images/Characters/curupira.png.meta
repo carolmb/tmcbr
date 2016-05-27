@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8023f7b12267bec43b80e610e5b574f7
-timeCreated: 1463353985
+timeCreated: 1464369027
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -65,133 +65,133 @@ TextureImporter:
     - name: curupira_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 96
-        width: 21
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: curupira_1
       rect:
         serializedVersion: 2
-        x: 25
+        x: 24
         y: 96
-        width: 21
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: curupira_2
       rect:
         serializedVersion: 2
-        x: 49
+        x: 48
         y: 96
-        width: 21
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: curupira_3
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 64
-        width: 22
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: curupira_4
       rect:
         serializedVersion: 2
-        x: 26
+        x: 24
         y: 64
-        width: 22
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: curupira_5
       rect:
         serializedVersion: 2
-        x: 50
+        x: 48
         y: 64
-        width: 22
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: curupira_6
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 32
-        width: 20
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: curupira_7
       rect:
         serializedVersion: 2
-        x: 25
+        x: 24
         y: 32
-        width: 20
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: curupira_8
       rect:
         serializedVersion: 2
-        x: 49
+        x: 48
         y: 32
-        width: 20
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: curupira_9
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 21
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: curupira_10
       rect:
         serializedVersion: 2
-        x: 26
+        x: 24
         y: 0
-        width: 21
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: curupira_11
       rect:
         serializedVersion: 2
-        x: 49
+        x: 48
         y: 0
-        width: 21
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     outline: []
