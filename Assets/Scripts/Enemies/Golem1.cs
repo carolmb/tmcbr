@@ -9,7 +9,7 @@ public class Golem1 : Enemy {
 	protected override void Start () {
 		base.Start ();
 
-		MazeManager.maze.tiles [character.currentTile.x, character.currentTile.y].objectName = "Enemies/Golem1";
+		//MazeManager.maze.tiles [character.currentTile.x, character.currentTile.y].objectName = "Enemies/Golem1";
 	}
 
 	void Update () {
@@ -38,4 +38,5 @@ public class Golem1 : Enemy {
 		}
 		base.OnDie();
 	}
+
 }

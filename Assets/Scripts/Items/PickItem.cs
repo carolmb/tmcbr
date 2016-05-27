@@ -81,8 +81,10 @@ public class PickItem : MonoBehaviour {
 			}
 			Destroy (gameObject);
 		} else if (collider.CompareTag ("Rock")) {
-			OnDestroyRock (collider.transform.position);
+			Vector3 pos = collider.transform.position;
+			MazeManager.GetTile (pos - new Vector3 (0, Tile.size / 2, 0)).obstacle = "";
 			Destroy (collider.gameObject);
+			OnDestroyRock (pos);
 			Destroy (gameObject);
 		} else if (collider.CompareTag ("Golem")) {
 			Vector2 moveVector = GameManager.AngleToVector (Player.instance.character.lookingAngle) * speed;
