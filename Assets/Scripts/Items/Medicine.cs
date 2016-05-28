@@ -10,6 +10,7 @@ public class Medicine : Item {
 	}
 
 	public override void OnUse () {
+		GameCamera.PlayAudioClip (Resources.Load<AudioClip>("Sounds/Effects/remedio"));
 		Player.instance.character.lifePoints++;
 		GameHUD.instance.UpdateLife(Player.instance.character.lifePoints);
 		//Player.instance.character.PlayAnimation ("Drink", false);

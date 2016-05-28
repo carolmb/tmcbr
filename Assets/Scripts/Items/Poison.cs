@@ -11,6 +11,7 @@ public class Poison : Item {
 
 	public override void OnUse () {
 		//Player.instance.character.PlayAnimation ("Drink", false);
+		GameCamera.PlayAudioClip (Resources.Load<AudioClip>("Sounds/Effects/remedio"));
 		Player.instance.OnDie ();
 	}
 

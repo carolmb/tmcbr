@@ -82,6 +82,7 @@ public class PickItem : MonoBehaviour {
 			}
 			Destroy (gameObject);
 		} else if (collider.CompareTag ("Rock")) {
+			GameCamera.PlayAudioClip (Resources.Load<AudioClip>("Sounds/collision_1"));
 			Vector3 pos = collider.transform.position;
 			MazeManager.GetTile (pos - new Vector3 (0, Tile.size / 2, 0)).obstacle = "";
 			Destroy (collider.gameObject);
