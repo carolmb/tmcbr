@@ -12,7 +12,7 @@ public class ForestStage : ProceduralStage {
 	}
 
 	protected void CreateMazes () {
-		int mazeCount = 1;
+		int mazeCount = 3;
 		ForestMaze[] mazes = new ForestMaze[mazeCount];
 
 		int beginDir = fireplace.dir;
