@@ -25,6 +25,7 @@ public class RiddleWindow : MonoBehaviour {
 	public void OnReturn () {
 		SoundManager.Click ();
 		gameObject.SetActive (false);
+		Player.instance.Resume ();
 	}
 
 	void Update () {
