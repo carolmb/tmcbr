@@ -7,6 +7,22 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip surprise;
 	public AudioClip[] floorSteps;
 	public AudioClip[] grassSteps;
+	public AudioClip openChest;
+	public AudioClip openDoor;
+	public AudioClip coin;
+	public AudioClip cloth;
+	public AudioClip playerDamage;
+	public AudioClip rockCollision;
+	public AudioClip explosion;
+	public AudioClip knife;
+	public AudioClip glassBreak;
+	public AudioClip drink;
+	public AudioClip spray;
+	public AudioClip throwSound;
+	public AudioClip fall;
+	public AudioClip dieCollision;
+	public AudioClip lockDoor;
+	public AudioClip stab;
 
 	private static SoundManager instance;
 
@@ -24,83 +40,89 @@ public class SoundManager : MonoBehaviour {
 	}
 
 	public static void FloorStep () {
-		// parecida com o da grama
+		AudioClip i = instance.floorSteps[Random.Range(0, instance.floorSteps.Length)];
+		PlayAudioClip(i, 1);
 	}
 
 	public static void OpenChest () {
-		// abrindo baú
+		PlayAudioClip (instance.openChest, 1);
 	}
 
 	public static void OpenDoor() {
-		// abrindo porta
-	}
-
-	public static void CloseDoor () {
-		// fechando a porta
+		PlayAudioClip (instance.openDoor, 1);
 	}
 
 	public static void Coin () {
-		// quando pega a moeda
+		PlayAudioClip (instance.coin, 1);
 	}
 
 	public static void Buy () {
-		// quando compra algo (pode ser o msm da moeda)
+		PlayAudioClip (instance.coin, 1);
 	}
 
 	public static void Cloth () {
-		// quando veste a capa
+		PlayAudioClip (instance.cloth, 1);
 	}
 
 	public static void PlayerDamage () {
 		// aquele choro de criança
+		PlayAudioClip (instance.playerDamage, 1);
 	}
 
 	public static void RockCollision () {
-		// quando a pedra jogada bate em alguma coisa
+		PlayAudioClip (instance.rockCollision, 1);
 	}
 
 	public static void Explosion () {
-		// auto-explicativo
+		PlayAudioClip (instance.explosion, 1);
 	}
 
 	public static void Knife () {
-		// barulho de sword slash
+		PlayAudioClip (instance.knife, 1);
 	}
 
 	public static void Pickaxe () {
-		// picareta (pode ser o mesmo da faca)
+		PlayAudioClip (instance.knife, 1);
 	}
 
 	public static void GlassBreak () {
 		// vidro quebrando
+		PlayAudioClip (instance.glassBreak, 1);
 	}
 
 	public static void Drink () {
 		// remédio e veneno
+		PlayAudioClip (instance.drink, 1);
 	}
 
 	public static void Spray () {
 		// repelente
+		PlayAudioClip (instance.spray, 1);
 	}
 
 	public static void Throw () {
 		// quando joga a pedra
+		PlayAudioClip (instance.throwSound, 1);
 	}
 
 	public static void Fall () {
 		// quando o personagem cai no furaco (barulho de desenho animado mesmo)
+		PlayAudioClip (instance.fall, 1);
 	}
 
-	public static void DieCollision () {
+	public static void DieCollision() {
 		// quando o personagem cai no chão, na animação de morte
+		PlayAudioClip (instance.dieCollision, 1);
 	}
 
 	public static void Lock () {
 		// barulho que faz quando o player interage com uma porta trancada
+		PlayAudioClip (instance.lockDoor, 1);
 	}
 
 	public static void Stab () {
 		// quando a criada dá uma facada no duque
+		PlayAudioClip (instance.stab, 1);
 	}
 
 	public static void Surprise () {
