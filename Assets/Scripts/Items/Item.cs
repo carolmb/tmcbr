@@ -57,6 +57,7 @@ public abstract class Item {
 		db[6] = new Pick (6);
 		db[7] = new KeyItem (7, "Map");
 		db[8] = new Poison (8);
+		db[9] = new KeyItem (9, "Key");
 
 		return db;
 	}

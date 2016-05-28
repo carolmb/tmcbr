@@ -3,9 +3,14 @@ using System.Collections;
 
 public class FinalScene : MonoBehaviour {
 
-	public Character protagonist;
-	public Character duke;
-	public Character maid;
+	Character protagonist;
+	Character maid;
+
+	public GameObject deadMaid;
+	public GameObject surprise;
+
+	public Sprite deadDuke;
+	public Sprite duke;
 
 	public bool hasAllRoses {
 		get { return Bag.current.roses == 3; }
@@ -13,7 +18,11 @@ public class FinalScene : MonoBehaviour {
 
 	void Start () {
 		maid = GetComponent<Character> ();
-		protagonist = GameObject.Find ("Player").GetComponent<Character> ();
+		protagonist = Player.instance.character;
+
+		protagonist.speed = 1;
+		GameHUD.instance.gameObject.SetActive (false);
+		Player.instance.canMove = false;
 
 		if (hasAllRoses) {
 			StartCoroutine (TrueEnding ());
@@ -23,25 +32,61 @@ public class FinalScene : MonoBehaviour {
 	}
 
 	IEnumerator BadEnding () {
-		// Protagonista encontra a criada que acabou de se matar e se mata também
-		// 
-		yield return null;
+		maid.animator.enabled = false;
+		maid.spriteRenderer.sprite = null;
+		Instantiate (deadMaid, transform.position, Quaternion.identity);
+		yield return new WaitForSeconds (1);
+		yield return protagonist.Move (new Vector2 (0, 48));
+		protagonist.Stop ();
+		Player.instance.paused = true;
+		surprise = (GameObject) Instantiate (surprise, protagonist.transform.position + new Vector3 (0, 48, -100), Quaternion.identity);
+		SoundManager.Surprise ();
+		yield return new WaitForSeconds (0.5f);
+		Destroy (surprise);
+		yield return GameHUD.instance.dialog.ShowDialog ("What...?", "Player[sad]");
+		GameHUD.instance.gameObject.SetActive (true);
+		Player.instance.canMove = true;
+		Player.instance.paused = false;
+		maid.currentTile.obstacle = "dead maid";
 	}
 
 	IEnumerator TrueEnding () {
-		// Criada sente o cheiro das rosas que estão com o protagonista e resolve esperar ele entrar
-		// Ela o esfaqueia quando ele abre a porta e fala sobre como ele é um babaca
-		// Ele pede desculpas
-		// Ela foge e fim
-		// Epílogo: uma cena dela deixando flores azuis no túmulo dele
-		yield return null;
-	}
+		yield return protagonist.Move (new Vector2 (0, 48));
+		protagonist.Stop ();
+		surprise = (GameObject) Instantiate (surprise, protagonist.transform.position + new Vector3 (0, 48, -100), Quaternion.identity);
+		SoundManager.Click ();
+		yield return new WaitForSeconds (0.5f);
+		Destroy (surprise);
+		yield return GameHUD.instance.dialog.ShowDialog ("I finally found you!", "Player[surprise]");
+		maid.speed = protagonist.speed * 2;
+		maid.Move (new Vector2 (0, -64));
+		yield return protagonist.Move (new Vector2 (0, 32));
+		protagonist.Stop ();
+		maid.Stop ();
 
-	void OnInteract () {
-		if (!Bag.current.HasItem (Item.DB [8])) {
-			Bag.current.Add (Item.DB [8]);
-			SoundManager.Coin ();
-		}
+		StartCoroutine (GameCamera.instance.FadeOut (-1));
+		SoundManager.Knife ();
+		protagonist.animator.enabled = false;
+		protagonist.spriteRenderer.sprite = duke;
+		// Mostra desenho com ela esfaqueando o duque
+		// Apaga o desenho
+
+		yield return GameHUD.instance.dialog.ShowDialog ("I could smell this scent of roses from far...", "Maid[smile]");
+		maid.speed = protagonist.speed;
+		yield return maid.Move (new Vector2 (24, 0));
+		yield return maid.Move (new Vector2 (0, -48));
+		maid.Stop ();
+		yield return GameHUD.instance.dialog.ShowDialog ("I'm sorry.", "Maid[sad]");
+		yield return maid.Move (new Vector2 (-24, 0));
+		yield return maid.Move (new Vector2 (0, -48));
+
+		Coroutine c = StartCoroutine (GameCamera.instance.FadeOut (0.5f));
+		yield return new WaitForSeconds (1f);
+		SoundManager.DieCollision ();
+		protagonist.spriteRenderer.sprite = deadDuke;
+		yield return c;
+
+		MazeManager.GoToMaze(new Tile.Transition(SaveManager.currentSave.mazes.Length - 1, 5, 0, 3));
 	}
 
 }

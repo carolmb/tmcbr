@@ -182,7 +182,6 @@ public class HallMaze : ProceduralMaze {
 
 	void Statue() {
 		tiles [width / 2, height / 2].objectName = "Statue";
-		Debug.Log (width / 2 + " " + height / 2);
 		tiles [width / 2 - 1, height / 2].obstacle = "Plaque";
 	}
 
