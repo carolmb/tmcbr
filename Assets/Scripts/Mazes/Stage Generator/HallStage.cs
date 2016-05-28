@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class HallStage : ProceduralStage {
 
 	bool puzzle;
@@ -52,12 +53,12 @@ public class HallStage : ProceduralStage {
 
 		queue.Enqueue (first);
 
-		int mazeCount = 1, maxMazeCount = 3;//Random.Range (7, 12);
+		int mazeCount = 1, maxMazeCount = 5;//Random.Range (7, 12);
 		int currentId = beginIndex + 1;
 
 		while (mazeCount < maxMazeCount) {
 			current = queue.Dequeue ();
-			int childrenNumber = Random.Range (1, Mathf.Min(maxMazeCount - mazeCount + 1, 4));
+			int childrenNumber = Random.Range (Mathf.Min(maxMazeCount - mazeCount + 1, 3), Mathf.Min(maxMazeCount - mazeCount + 1, 4));
 			NodeGraph[] children = CreateChildren (current, childrenNumber, currentId);
 			foreach (NodeGraph c in children) {
 				if (c.type == 0) {
@@ -133,7 +134,7 @@ public class HallStage : ProceduralStage {
 		while (queue.Count > 0) {
 			current = queue.Dequeue ();
 
-			if (current.children.Count == 0 && current != finalNode) {
+			if (current.children.Count == 0 && current != finalNode && current.type != 2) {
 				current.type = 1;
 			}
 			hallMazes.Add (FromNodeToArray (current));
@@ -175,14 +176,14 @@ public class HallStage : ProceduralStage {
 	}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 
 	int DefineTypeHallMaze (int i, int childrenNumber) {
-		if (childrenNumber - i < 1) {
-			if (!puzzle) {
-				puzzle = true;
-				return 2;
-			}
-			return 1;
-		} else {
-			return 0;
+		int type = 0;
+		if (i == 0 && !puzzle && childrenNumber > 1) {
+			type = 2;
+			puzzle = true;
+		} else if (i == 0 && childrenNumber > 1) {
+			type = 1;
 		}
+		Debug.Log (type);
+		return type;
 	}
 }

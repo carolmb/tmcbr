@@ -9,12 +9,8 @@ public class Statue : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		controller = GetComponent<Animator> ();
+		controller.SetBool ("isDying", false);
 		iniPos = transform.position;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
 	public void Explosion() {
@@ -22,10 +18,10 @@ public class Statue : MonoBehaviour {
 	}
 
 	void Die() {
-		Destroy (gameObject);
-	}
-	void OnDestroy() {
+		Vector2 iniPosTile = MazeManager.WorldToTilePos (iniPos);
+		MazeManager.maze.tiles [(int)iniPosTile.x, (int)iniPosTile.y - 1].objectName = "";
 		GameObject obj = Instantiate (rose) as GameObject;
 		obj.transform.position = iniPos; 
+		Destroy (gameObject);
 	}
 }
