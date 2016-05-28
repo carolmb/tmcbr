@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class HallStage : ProceduralStage {
 
+	bool puzzle;
+
 	class NodeGraph {
 		public int id;
 		public int type;
@@ -27,6 +29,7 @@ public class HallStage : ProceduralStage {
 		this.mirrorRoom = mirrorRoom;
 		CreateMazes ();
 		endIndex = mazes.Length + beginIndex - 1;
+		puzzle = false;
 	}
 
 	// TODO: colocar pra gerar em árvore
@@ -173,6 +176,10 @@ public class HallStage : ProceduralStage {
 
 	int DefineTypeHallMaze (int i, int childrenNumber) {
 		if (childrenNumber - i < 1) {
+			if (!puzzle) {
+				puzzle = true;
+				return 2;
+			}
 			return 1;
 		} else {
 			return 0;

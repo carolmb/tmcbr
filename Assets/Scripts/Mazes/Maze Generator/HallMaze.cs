@@ -13,15 +13,17 @@ public class HallMaze : ProceduralMaze {
 	public override void GenerateTiles () {
 		if (type == 0)
 			base.GenerateTiles ();
-		else {
-			GenerateRoomTiles();
+		else if (type == 1) {
+			GenerateRoomTiles ();
+		} else {
+			GeneratePuzzle ();
 		}
 	}
 
 	public override void CreateObstacles () {
 		if (type == 0) {
 			CreateDefaultObstacles ();
-		} else {
+		} else if (type == 1) {
 			CreateRoomObstacles();
 		}
 	}
@@ -191,5 +193,10 @@ public class HallMaze : ProceduralMaze {
 					tiles[i, j].wallID = 0;
 			}
 		}
+	}
+
+	private void GeneratePuzzle() {
+		GenerateTiles ();
+		tiles [width / 2, height / 2].objectName = "Statue";
 	}
 }
