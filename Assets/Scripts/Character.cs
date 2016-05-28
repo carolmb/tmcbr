@@ -179,8 +179,8 @@ public class Character : CharacterBase {
 		lifePoints = Mathf.Max (0, lifePoints - value);
 		SendMessage ("OnDamage");
 
-		if (damageSound != null) {
-			GameCamera.PlayAudioClip (damageSound);
+		if (isPlayer) {
+			SoundManager.PlayerDamage ();
 		}
 
 		// Step
@@ -227,13 +227,14 @@ public class Character : CharacterBase {
 	// Sons
 	// ===============================================================================
 
-	public AudioClip[] stepSounds;
-
 	// Som dos passos
 	public void Footstep () {
 		int type = currentTile.type;
-		GameCamera.PlayAudioClip (stepSounds [type * 3 + Random.Range (0, 3)], 0.5f - 0.35f * type);
+		if (type == 0) {
+			SoundManager.FloorStep ();
+		} else {
+			SoundManager.GrassStep ();
+		}
 	}
-
 
 }

@@ -22,7 +22,7 @@ public class GameHUD : MonoBehaviour {
 	}
 
 	public void MenuButton () {
-		ClickItemSound ();
+		SoundManager.Click ();
 		Player.instance.Pause ();
 		mainMenu.Open ();
 		gameObject.SetActive (false);
@@ -58,16 +58,6 @@ public class GameHUD : MonoBehaviour {
 
 	public void UpdateMap () {
 		MapWindow.UpdateTexture (miniMap, 1);
-	}
-		
-	// ===============================================================================
-	// Sons
-	// ===============================================================================
-
-	public AudioClip confirmSound;
-
-	public static void ClickItemSound () {
-		GameCamera.PlayAudioClip (instance.confirmSound);
 	}
 		
 }

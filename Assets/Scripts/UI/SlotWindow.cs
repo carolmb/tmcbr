@@ -54,19 +54,19 @@ public abstract class SlotWindow : MonoBehaviour {
 	}
 
 	public void Left() {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		beginItemIndex -= itemButtons.Length;
 		OnEnable ();
 	}
 
 	public void Right() {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		beginItemIndex += itemButtons.Length;
 		OnEnable ();
 	}
 
 	public virtual void ItemButton(int i) {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		choiceWindow.position = i + beginItemIndex;
 		gameObject.SetActive (false);
 		choiceWindow.gameObject.SetActive (true);

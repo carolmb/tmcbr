@@ -17,8 +17,7 @@ public class Slingshot : Item {
 	}
 
 	public override void OnUse () {
-		AudioClip clip = Resources.Load<AudioClip> ("Sounds/throw");
-		GameCamera.PlayAudioClip (clip, 0.5f);
+		SoundManager.Throw ();
 		Player.instance.character.PlayAnimation ("Walking"); // Temporário (TODO: animação "throw")
 		lastUse = Time.time;
 		GameObject.Instantiate (rock);

@@ -37,12 +37,10 @@ public class FinalScene : MonoBehaviour {
 		yield return null;
 	}
 
-	public AudioClip itemSound;
-
 	void OnInteract () {
 		if (!Bag.current.HasItem (Item.DB [8])) {
 			Bag.current.Add (Item.DB [8]);
-			GameCamera.PlayAudioClip (itemSound);
+			SoundManager.Coin ();
 		}
 	}
 

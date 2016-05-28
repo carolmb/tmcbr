@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class MainWindow : MonoBehaviour {
 
 	public void ItemButton () {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		GameHUD.instance.mainMenu.itemWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
 
 	public void MapButton () {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		MapWindow map = GameHUD.instance.mainMenu.mapWindow;
 		MapWindow.UpdateTexture (map.miniMap.GetComponent<Image> ());
 		GameHUD.instance.mainMenu.mapWindow.gameObject.SetActive (true);
@@ -20,19 +20,19 @@ public class MainWindow : MonoBehaviour {
 	}
 
 	public void SaveButton () {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		GameHUD.instance.mainMenu.saveWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
 
 	public void QuitButton () {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		Destroy (MazeManager.musicPlayer.gameObject);
 		SceneManager.LoadScene ("Title");
 	}
 
 	public void Return () {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		Player.instance.Resume ();
 		GameHUD.instance.gameObject.SetActive (true);
 		GameHUD.instance.mainMenu.Close ();

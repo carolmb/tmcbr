@@ -73,23 +73,6 @@ public class GameCamera : MonoBehaviour {
 
 		return moved;
 	}
-		
-	// ===============================================================================
-	// Sons
-	// ===============================================================================
-
-	public static void PlayAudioClip(AudioClip clip, float volume = 1) {
-		GameObject go = new GameObject ();
-		go.transform.SetParent (instance.transform);
-		go.transform.localPosition = Vector3.zero;
-
-		AudioSource audio = go.AddComponent<AudioSource> ();
-		audio.clip = clip;
-		audio.volume = volume;
-		audio.Play ();
-
-		Destroy (go, clip.length);
-	}
 
 	// ===============================================================================
 	// Efeitos

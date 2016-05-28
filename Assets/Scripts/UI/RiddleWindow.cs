@@ -7,14 +7,14 @@ public class RiddleWindow : MonoBehaviour {
 	public Text input;
 
 	public void OnTry () {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		if (input.text.ToLower () == "rose") {
 			//blablabla
 		}
 	}
 
 	public void OnReturn () {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		gameObject.SetActive (false);
 	}
 

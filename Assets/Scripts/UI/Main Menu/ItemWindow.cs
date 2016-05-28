@@ -40,7 +40,7 @@ public class ItemWindow : SlotWindow {
 	}
 
 	public void Return() {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		if (slotSelection) {
 			choiceWindow.gameObject.SetActive (true);
 		} else {

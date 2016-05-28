@@ -13,9 +13,6 @@ public class KnifeItem : MonoBehaviour {
 	// Tempo máximo até ser destruído
 	public float lifeTime = 0.1f;
 
-	// Som da espada
-	public AudioClip sound;
-
 	// O quanto a espada vai rotacionar
 	private Quaternion dest;
 	private Quaternion orig;
@@ -24,7 +21,7 @@ public class KnifeItem : MonoBehaviour {
 	void Start () {
 		transform.SetParent (Player.instance.transform);
 
-		GameCamera.PlayAudioClip (sound, 0.5f);
+		SoundManager.Knife ();
 
 		Vector3 pos = Vector3.zero;
 		switch (Player.instance.character.direction) {

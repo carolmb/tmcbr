@@ -19,25 +19,25 @@ public class ItemChoiceWindow : SlotChoiceWindow {
 	}
 
 	public void Equip () {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		Player.instance.ChooseItem (position);
 		GameHUD.instance.mainMenu.Close ();
 	}
 
 	public void Visualize () {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		itemDrawing.sprite = Resources.Load<Sprite> ("Images/Items/" + item.spriteName + "(big)");
 		itemDrawing.gameObject.SetActive (true);
 	}
 
 	public void Move () {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		GameHUD.instance.mainMenu.itemWindow.slotSelection = true;
 		Return ();
 	}
 
 	public void ClosePicture() {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		gameObject.SetActive (true);
 		itemDrawing.gameObject.SetActive (false);
 	}
@@ -48,7 +48,7 @@ public class ItemChoiceWindow : SlotChoiceWindow {
 	}
 
 	public void Return () {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		GameHUD.instance.mainMenu.itemWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}

@@ -33,7 +33,7 @@ public class ShopWindow : SlotWindow {
 	}
 
 	public void Return () {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		GameHUD.instance.shopMenu.Close ();
 		if (Bag.current.selectedSlot == null) {
 			GameHUD.instance.UpdateItem (null, 0);

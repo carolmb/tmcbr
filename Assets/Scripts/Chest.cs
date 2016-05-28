@@ -3,13 +3,7 @@ using System.Collections;
 
 public class Chest : MonoBehaviour {
 
-	// Moedas
-	public AudioClip coinSound;
-
 	public bool open = false;
-
-	// Barulho de abrir baú
-	public AudioClip openSound;
 
 	public Sprite[] openSprites;
 
@@ -40,8 +34,8 @@ public class Chest : MonoBehaviour {
 		t.obstacle = "Open Chest";
 
 		character.animator.speed = 1;
-		GameCamera.PlayAudioClip (openSound);
-		Invoke ("IncrementCoins", openSound.length);
+		SoundManager.OpenChest ();
+		Invoke ("IncrementCoins", 0.1f);
 	}
 
 	void IncrementCoins() {
@@ -49,7 +43,7 @@ public class Chest : MonoBehaviour {
 		int coins = Random.Range (0, 5);
 
 		Player.instance.IncrementCoins(coins);
-		GameCamera.PlayAudioClip (coinSound);
+		SoundManager.Coin ();
 	}
 
 }

@@ -38,19 +38,19 @@ public class ShopChoiceWindow : SlotChoiceWindow {
 	}
 
 	public void FullBagError () {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		gameObject.SetActive (false);
 		fullBagMessage.SetActive (true);
 	}
 
 	public void FullBagReturn() {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		gameObject.SetActive (true);
 		fullBagMessage.SetActive (false);
 	}
 
 	public void Return () {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		BackToShopWindow ();
 	}
 
@@ -61,7 +61,7 @@ public class ShopChoiceWindow : SlotChoiceWindow {
 	}
 
 	public void BuySound () {
-		GameCamera.PlayAudioClip (buySound);
+		SoundManager.Buy ();
 	}
 
 }

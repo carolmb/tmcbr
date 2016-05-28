@@ -11,7 +11,7 @@ public class Repel : Item {
 
 	public override void OnUse () {
 		//Player.instance.character.PlayAnimation ("Spray", false);
-		GameCamera.PlayAudioClip (Resources.Load<AudioClip>("Sounds/Effects/repelente"));
+		SoundManager.Spray ();
 		Player.instance.repelTime = 10;
 	}
 }

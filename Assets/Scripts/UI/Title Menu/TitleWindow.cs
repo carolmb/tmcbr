@@ -14,14 +14,14 @@ public class TitleWindow : MonoBehaviour {
 	public void OnNewGame () {
 		if (TitleMenu.fading)
 			return;
-		TitleMenu.ClickItemSound ();
+		SoundManager.Click ();
 		TitleMenu.instance.StartCoroutine (NewGameFade ());
 	}
 
 	public void OnLoad() {
 		if (TitleMenu.fading)
 			return;
-		TitleMenu.ClickItemSound ();
+		SoundManager.Click ();
 		TitleMenu.instance.loadWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
@@ -29,7 +29,7 @@ public class TitleWindow : MonoBehaviour {
 	public void OnCredits () {
 		if (TitleMenu.fading)
 			return;
-		TitleMenu.ClickItemSound ();
+		SoundManager.Click ();
 		TitleMenu.instance.loadWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
@@ -37,7 +37,7 @@ public class TitleWindow : MonoBehaviour {
 	public void Quit() {
 		if (TitleMenu.fading)
 			return;
-		TitleMenu.ClickItemSound ();
+		SoundManager.Click ();
 		TitleMenu.instance.StartCoroutine (QuitFade ());
 	}
 

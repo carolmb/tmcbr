@@ -67,7 +67,7 @@ public class MapWindow : MonoBehaviour {
 	}
 
 	public void Return() {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		GameHUD.instance.mainMenu.mainWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}

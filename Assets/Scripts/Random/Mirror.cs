@@ -40,7 +40,7 @@ public class Mirror : MonoBehaviour {
 	}
 
 	void Break() {
-		GameCamera.PlayAudioClip (breakSound);
+		SoundManager.GlassBreak ();
 		Player.instance.canMove = true;
 		sr.sprite = broken;
 		MazeManager.GetTile ((Vector2)transform.position - new Vector2 (Tile.size / 2, Tile.size / 2)).obstacle = "obstacle5";

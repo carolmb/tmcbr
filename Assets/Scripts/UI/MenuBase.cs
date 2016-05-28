@@ -5,7 +5,7 @@ using System.Collections;
 public class MenuBase : MonoBehaviour {
 
 	public virtual void Open () {
-		GameHUD.ClickItemSound ();
+		SoundManager.Click ();
 		GameHUD.instance.gameObject.SetActive(false);
 		Player.instance.Pause ();
 		gameObject.SetActive (true);

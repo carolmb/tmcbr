@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Coin : MonoBehaviour {
 
-	public AudioClip sound;
-
 	private int value;
 
 	private class CoinType {
@@ -56,7 +54,7 @@ public class Coin : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.CompareTag ("Player")) {
-			GameCamera.PlayAudioClip (sound);
+			SoundManager.Coin ();
 			Player.instance.IncrementCoins (value);
 			Destroy (gameObject);
 		}

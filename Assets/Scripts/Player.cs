@@ -255,7 +255,6 @@ public class Player : MonoBehaviour {
 	// ===============================================================================
 
 	public Sprite deadSprite;
-	public AudioClip deadSound;
 
 	// Sair do jogo quando morrer
 	public void OnDie () {
@@ -270,7 +269,7 @@ public class Player : MonoBehaviour {
 		MazeManager.musicPlayer.Stop ();
 		Coroutine c = StartCoroutine (GameCamera.instance.FadeOut (0.5f));
 		yield return new WaitForSeconds (1f);
-		GameCamera.PlayAudioClip (deadSound);
+		SoundManager.DieCollision ();
 		character.animator.enabled = false;
 		character.spriteRenderer.sprite = deadSprite;
 		yield return c;

@@ -18,14 +18,4 @@ public class TitleMenu : MenuBase {
 
 	public static bool fading = false;
 
-	// ===============================================================================
-	// Sons
-	// ===============================================================================
-
-	public AudioClip confirmSound;
-
-	public static void ClickItemSound () {
-		GameCamera.PlayAudioClip (instance.confirmSound);
-	}
-
 }

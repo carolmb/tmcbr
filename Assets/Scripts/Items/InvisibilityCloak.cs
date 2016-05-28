@@ -10,8 +10,7 @@ public class InvisibilityCloak : Item {
 	}
 
 	public override void OnUse() {
-		AudioClip clip = Resources.Load<AudioClip> ("Sounds/cloth");
-		GameCamera.PlayAudioClip (clip);
+		SoundManager.Cloth ();
 
 		Color c = Player.instance.character.spriteRenderer.color;
 		if (Player.visible) {

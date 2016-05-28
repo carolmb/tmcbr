@@ -32,7 +32,7 @@ public class LoadWindow : MonoBehaviour {
 	}
 
 	public void Return () {
-		TitleMenu.ClickItemSound ();
+		SoundManager.Click ();
 		gameObject.SetActive (false);
 		TitleMenu.instance.titleWindow.gameObject.SetActive (true);
 	}

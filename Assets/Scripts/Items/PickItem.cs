@@ -16,16 +16,13 @@ public class PickItem : MonoBehaviour {
 	// Tempo máximo até ser destruído
 	public float lifeTime = 0.1f;
 
-	// Som da espada
-	public AudioClip sound;
-
 	// O quanto a espada vai rotacionar
 	private Quaternion dest;
 	private Quaternion orig;
 	private float rotPerc = 0;
 
 	void Start () {
-		GameCamera.PlayAudioClip (sound, 0.5f);
+		SoundManager.Pickaxe ();
 		BoxCollider2D box = GetComponentInChildren<BoxCollider2D>();
 
 		Vector3 pos = Vector3.zero;
@@ -82,7 +79,7 @@ public class PickItem : MonoBehaviour {
 			}
 			Destroy (gameObject);
 		} else if (collider.CompareTag ("Rock")) {
-			GameCamera.PlayAudioClip (Resources.Load<AudioClip>("Sounds/collision_1"));
+			SoundManager.RockCollision ();
 			Vector3 pos = collider.transform.position;
 			MazeManager.GetTile (pos - new Vector3 (0, Tile.size / 2, 0)).obstacle = "";
 			Destroy (collider.gameObject);
