@@ -23,6 +23,9 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip dieCollision;
 	public AudioClip lockDoor;
 	public AudioClip stab;
+	public AudioClip babycry; 
+	public AudioClip earthquake; 
+	public AudioClip fireplace;
 
 	private static SoundManager instance;
 
@@ -127,6 +130,18 @@ public class SoundManager : MonoBehaviour {
 
 	public static void Surprise () {
 		PlayAudioClip (instance.surprise, 1); 
+	}
+
+	public static void BabyCry () {
+		PlayAudioClip (instance.babycry, 1); 
+	}
+
+	public static void Earthquake () {
+		PlayAudioClip (instance.earthquake, 1); 
+	}
+
+	public static void Fireplace () {
+		PlayAudioClip (instance.fireplace, 1); 
 	}
 
 	// Método que cria o audio source na câmera
