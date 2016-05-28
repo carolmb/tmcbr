@@ -21,6 +21,12 @@ public class MapWindow : MonoBehaviour {
 		Texture2D texture = new Texture2D (MazeManager.maze.width, MazeManager.maze.height);
 		texture.filterMode = FilterMode.Point;
 
+		bool needsUpdate = false;
+
+		if (imageComp.sprite == null || texture.width != imageComp.sprite.texture.width ||
+			texture.height != imageComp.sprite.texture.height)
+			needsUpdate = true;
+
 		for (int i = 0; i < texture.width; i++) {
 			for (int j = 0; j < texture.height; j++) {
 				if (MazeManager.maze.tiles [i, j].transition != null && MazeManager.maze.tiles [i,j].transition.instant) {
@@ -32,14 +38,23 @@ public class MapWindow : MonoBehaviour {
 						texture.SetPixel (i, j, hiddenColor);
 					}
 				}
-				Tile t = Player.instance.character.currentTile;
-				texture.SetPixel (t.x, t.y, playerColor);
+				if (!needsUpdate && (texture.GetPixel (i, j) != imageComp.sprite.texture.GetPixel (i, j))) {
+					needsUpdate = true;
+				}
 			}
 		}
-		texture.Apply ();
-		imageComp.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-		imageComp.rectTransform.sizeDelta = new Vector2 (texture.width * size, texture.height * size);
-		SetPivot (imageComp, 0.5f, 0.5f);
+		Tile t = Player.instance.character.currentTile;
+		if (!needsUpdate && (texture.GetPixel (t.x, t.y) != imageComp.sprite.texture.GetPixel (t.x, t.y))) {
+			needsUpdate = true;
+		}
+
+		if (needsUpdate) {
+			texture.SetPixel (t.x, t.y, playerColor);
+			texture.Apply ();
+			imageComp.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero, 1);
+			imageComp.rectTransform.sizeDelta = new Vector2 (texture.width * size, texture.height * size);
+			SetPivot (imageComp, 0.5f, 0.5f);
+		}
 	}
 
 	private static void SetPivot(Image image, float x, float y) {

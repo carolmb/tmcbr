@@ -35,6 +35,8 @@ public class Player : MonoBehaviour {
 
 	}
 
+	bool needsMapUpdate;
+
 	// Inputs e checagem de estados
 	void Update () {
 		/*if (Input.GetKeyDown (KeyCode.D)) {
@@ -48,9 +50,12 @@ public class Player : MonoBehaviour {
 
 		// Guardar tile visitado
 		Tile tile = character.currentTile;
-		tile.visited = true;
-		GameHUD.instance.UpdateMap ();
-		character.currentTile.visited = true;
+		if (tile.visited == false) {
+			needsMapUpdate = true;
+			tile.visited = true;
+		} else {
+			needsMapUpdate = false;
+		}
 
 		if (character.moving)
 			return;
@@ -59,6 +64,10 @@ public class Player : MonoBehaviour {
 		CheckInteract ();
 		CheckItems ();
 		CheckMovement ();
+
+		if (needsMapUpdate || character.currentTile != tile) {
+			GameHUD.instance.UpdateMap ();
+		}
 	}
 
 	void OnDestroy() {
