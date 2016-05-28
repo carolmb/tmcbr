@@ -108,19 +108,27 @@ public class GameCamera : MonoBehaviour {
 	}
 
 	public IEnumerator FadeOut(float speed) {
-		while (FadeEffect.intensity < 1) {
-			FadeEffect.intensity += Time.deltaTime * speed;
-			yield return null;
+		if (speed == -1) {
+			FadeEffect.intensity = 1;
+		} else {
+			while (FadeEffect.intensity < 1) {
+				FadeEffect.intensity += Time.deltaTime * speed;
+				yield return null;
+			}
+			FadeEffect.intensity = 1;
 		}
-		FadeEffect.intensity = 1;
 	}
 
 	public IEnumerator FadeIn(float speed) {
-		while (FadeEffect.intensity > 0) {
-			FadeEffect.intensity -= Time.deltaTime * speed;
-			yield return null;
+		if (speed == -1) {
+			FadeEffect.intensity = 0;
+		} else {
+			while (FadeEffect.intensity > 0) {
+				FadeEffect.intensity -= Time.deltaTime * speed;
+				yield return null;
+			}
+			FadeEffect.intensity = 0;
 		}
-		FadeEffect.intensity = 0;
 	}
 
 }

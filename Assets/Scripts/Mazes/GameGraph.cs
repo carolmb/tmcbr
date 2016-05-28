@@ -67,6 +67,7 @@ public class GameGraph {
 
 		CopyMazes (mazes, entrance);
 		CopyMazes (mazes, entrance2);
+		CopyMazes (mazes, lockup);
 		CopyMazes (mazes, mirrorRoom);
 		CopyMazes (mazes, fireplace);
 		CopyMazes (mazes, hallStage);

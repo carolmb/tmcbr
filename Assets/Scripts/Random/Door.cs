@@ -16,14 +16,19 @@ public class Door : MonoBehaviour {
 	}
 
 	void OnInteract() {
-		if (closed) {
-			Open ();
+		if (Bag.current.HasItem (Item.DB[9])) {
+			if (closed) {
+				Open ();
+			} else {
+				Close ();
+			}
 		} else {
-			Close ();
+			SoundManager.Lock ();
 		}
 	}
 
 	void Open () {
+		SoundManager.OpenDoor ();
 		hitBox.size = Vector2.zero;
 		closed = false;
 		animator.SetBool ("Closed", false);

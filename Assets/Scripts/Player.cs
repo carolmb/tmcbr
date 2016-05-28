@@ -52,6 +52,9 @@ public class Player : MonoBehaviour {
 		GameHUD.instance.UpdateMap ();
 		character.currentTile.visited = true;
 
+		if (character.moving)
+			return;
+
 		// Checar outros bagulho
 		CheckInteract ();
 		CheckItems ();
@@ -149,6 +152,8 @@ public class Player : MonoBehaviour {
 	void CheckPause() {
 		if (Input.GetButtonDown ("Menu")) {
 			if (!paused) {
+				if (!GameHUD.instance.gameObject.activeSelf)
+					return;
 				menuButton.onClick.Invoke ();
 			} else {
 				returnButton.onClick.Invoke ();
@@ -314,6 +319,7 @@ public class Player : MonoBehaviour {
 		canMove = false;
 		character.damaging = true;
 		character.Stop ();
+		SoundManager.Fall ();
 		yield return new WaitForSeconds (0.2f);
 		Destroy (transform.GetChild (0).gameObject);
 		float speed = 120;

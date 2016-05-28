@@ -4,16 +4,17 @@ using System.Collections;
 public class SoundManager : MonoBehaviour {
 
 	public AudioClip click;
+	public AudioClip surprise;
 	public AudioClip[] floorSteps;
 	public AudioClip[] grassSteps;
 
 	private static SoundManager instance;
 
-	private void Awake() {
+	private void Awake () {
 		instance = this;
 	}
 
-	public static void Click() {
+	public static void Click () {
 		PlayAudioClip (instance.click, 1); 
 	}
 
@@ -31,7 +32,11 @@ public class SoundManager : MonoBehaviour {
 	}
 
 	public static void OpenDoor() {
-		// abrindo portão
+		// abrindo porta
+	}
+
+	public static void CloseDoor () {
+		// fechando a porta
 	}
 
 	public static void Coin () {
@@ -86,13 +91,24 @@ public class SoundManager : MonoBehaviour {
 		// quando o personagem cai no furaco (barulho de desenho animado mesmo)
 	}
 
-	public static void DieCollision() {
+	public static void DieCollision () {
 		// quando o personagem cai no chão, na animação de morte
 	}
 
+	public static void Lock () {
+		// barulho que faz quando o player interage com uma porta trancada
+	}
+
+	public static void Stab () {
+		// quando a criada dá uma facada no duque
+	}
+
+	public static void Surprise () {
+		PlayAudioClip (instance.surprise, 1); 
+	}
 
 	// Método que cria o audio source na câmera
-	private static void PlayAudioClip(AudioClip clip, float volume = 1) {
+	private static void PlayAudioClip (AudioClip clip, float volume = 1) {
 		GameObject go = new GameObject ();
 		go.transform.SetParent (Camera.main.transform);
 		go.transform.localPosition = Vector3.zero;
