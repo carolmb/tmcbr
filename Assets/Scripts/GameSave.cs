@@ -11,7 +11,7 @@ public class GameSave {
 	public int lifePoints;
 	public float playTime;
 
-	public bool golemBoss;
+	public bool golemBossFirstTime;
 
 	public GameSave() {
 		GameGraph gameGraph = new GameGraph ();
@@ -23,6 +23,6 @@ public class GameSave {
 		lifePoints = 99;
 		playTime = 0;
 
-		golemBoss = true;
+		golemBossFirstTime = true; 
 	}
 }

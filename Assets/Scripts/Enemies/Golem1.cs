@@ -9,7 +9,7 @@ public class Golem1 : Enemy {
 	protected override void Start () {
 		base.Start ();
 
-		MazeManager.maze.tiles [character.currentTile.x, character.currentTile.y].objectName = "Enemies/Golem1";
+		//MazeManager.maze.tiles [character.currentTile.x, character.currentTile.y].objectName = "Enemies/Golem1";
 	}
 
 	void Update () {
@@ -33,9 +33,12 @@ public class Golem1 : Enemy {
 			Debug.Log (golens.Count);
 			if (golens.Count == 1) {
 				GameObject obj = Instantiate (rose) as GameObject;
-				obj.transform.position = transform.position;
+				int width = MazeManager.maze.width;
+				int height = MazeManager.maze.height;
+				obj.transform.position = MazeManager.TileToWorldPos (MazeManager.maze.tiles [width / 2, height - 2].coordinates);
 			}
 		}
 		base.OnDie();
 	}
+
 }

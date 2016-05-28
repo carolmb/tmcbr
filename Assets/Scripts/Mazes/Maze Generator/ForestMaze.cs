@@ -32,21 +32,26 @@ public class ForestMaze : ProceduralMaze {
 				if (!curupira) {
 					t.objectName = "Enemies/Curupira";
 					curupira = true;
-				} else if (!tiles[t.x, t.y - 1].isWall && Random.Range (0, 100) < 55) {
-					t.objectName = "Enemies/Mushroom";
-				} else if (Random.Range (0, 100) < 25) {
+				} else if (Random.Range (0, 100) < 5) {
 					t.objectName = "Enemies/Butterfly";
+				} else if (Random.Range (0, 100) < 10) {
+					t.objectName = "Enemies/Kodama";
 				}
 			} else { 
-				if (!HasObstaclesNear (t, 3)) {
+				if (EmptyRadiusToEnemies(t, 1)) {
 					int r = Random.Range (0, 100);
-					if (r < 20) {
+					if (r < 15 && !tiles[t.x, t.y - 1].isWall) {
 						t.obstacle = "Trunk";
-					} else if (r < 40) {
+					} else if (r < 30 && !tiles[t.x, t.y - 1].isWall) {
 						t.obstacle = "Log";
-					} else if (r < 60) {
+					} else if (r < 45) {
 						t.obstacle = "Tree";
-					} else if (r < 80) {
+					} else if (r < 60 && !tiles[t.x, t.y - 1].isWall) {
+						if (Random.Range (0, 2) == 0)
+							t.obstacle = "Mushroom";
+						else
+							t.obstacle = "Poison Mushroom";
+					} else if (r < 75 && !tiles[t.x, t.y - 1].isWall) {
 						t.obstacle = "Bush";
 					}
 				}

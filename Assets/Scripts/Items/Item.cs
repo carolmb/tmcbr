@@ -43,18 +43,18 @@ public abstract class Item {
 	// ===============================================================================
 
 	// Essa lista vai ser acessada para pegar os items pelo ID
-	public static Item[] DB = InitializeDB();
+	public static Item [] DB = InitializeDB ();
 
-	private static Item[] InitializeDB() {
-		Item[] db = new Item[20];
+	private static Item [] InitializeDB () {
+		Item [] db = new Item [20];
 
-		db[0] = new Slingshot(0);
-		db[1] = new Knife(1);
-		db[2] = new Medicine(2);
-		db[3] = new Repel(3);
-		db[4] = new InvisibilityCloak(4);
+		db[0] = new Slingshot (0);
+		db[1] = new Knife (1);
+		db[2] = new Medicine (2);
+		db[3] = new Repel (3);
+		db[4] = new InvisibilityCloak (4);
 		db[5] = new KeyItem (5, "Photography");
-		db[6] = new Pick(6);
+		db[6] = new Pick (6);
 		db[7] = new KeyItem (7, "Map");
 		db[8] = new Poison (8);
 
