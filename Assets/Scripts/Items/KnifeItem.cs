@@ -73,7 +73,7 @@ public class KnifeItem : MonoBehaviour {
 			Destroy (gameObject);
 		}
 		if (collider.CompareTag ("Grass")) {
-			Destroy (collider.gameObject);
+			collider.gameObject.GetComponent<Bush> ().Cut ();
 			gameObject.SendMessage("Curupira");
 			Destroy (gameObject);
 		}
