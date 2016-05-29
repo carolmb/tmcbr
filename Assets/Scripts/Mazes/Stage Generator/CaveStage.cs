@@ -42,8 +42,9 @@ public class CaveStage : ProceduralStage {
 		}
 
 		CaveMaze specialCave = new CaveMaze (beginIndex + mazeCount, 10, 8, 1);
-
 		mazes [mazeCount] = specialCave;
+		SetTransitions (mazes [Random.Range (0, mazeCount)], mazes [mazeCount], GenerateDir (beginDir));
+
 		for (int i = 0; i < mazeCount; i++) {
 			int x = UnityEngine.Random.Range (0, mazeCount);
 			int y = UnityEngine.Random.Range (0, mazeCount);
@@ -54,8 +55,6 @@ public class CaveStage : ProceduralStage {
 				beginDir
 			);
 		}
-
-		SetTransitions (mazes [Random.Range (0, mazeCount)], mazes [mazeCount], GenerateDir (beginDir));
 
 		Tile roomTile = GenerateBorderTile (mazes [0], 3 - mirrorRoom.dir, mirrorRoom.size);
 		Tile fireTile;

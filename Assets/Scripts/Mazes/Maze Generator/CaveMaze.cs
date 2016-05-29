@@ -29,7 +29,7 @@ public class CaveMaze : ProceduralMaze {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				tiles [i, j] = new Tile (i, j);
-				if (i == 0 || i == width - 1 || j == 0 || j == height) {
+				if (i == 0 || i == width - 1 || j == 0 || j == height - 1) {
 					tiles [i, j].wallID = 1;
 				}
 			}
