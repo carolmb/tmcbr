@@ -45,8 +45,10 @@ public class Player : MonoBehaviour {
 
 		// Checar o pause do jogo
 		CheckPause ();
-		if (paused) 
+		if (paused) {
+			interactedPoint = Vector2.zero;
 			return;
+		}
 
 		// Guardar tile visitado
 		Tile tile = character.currentTile;
