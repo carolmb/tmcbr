@@ -4,25 +4,53 @@ using System.Collections.Generic;
 
 public class CarnivorousPlant : MonoBehaviour {
 
-	static List<int> fruits;
+	public GameObject rose;
+
+	static int[] fruits;
+	int currentFruit;
 	public int damage = 5;
 
 	// Use this for initialization
 	void Start () {
-		fruits = new List<int> ();
-		for(int i = 0; i < 7; i++)
-			fruits.Add (i);
+		fruits = new int[6];
+		for (int i = 0; i < 6; i++)
+			fruits [i] = i;
+		currentFruit = 0;
 	}
 
-	void Eat(int item) {
-		if (fruits [0] == item) {
-			fruits.Remove (0);
+	void Eat() {
+		Item fruitEquiped = SaveManager.currentSave.bag.selectedItem;
+		if (fruitEquiped != null && fruitEquiped is Fruit) {
+			Fruit f = (Fruit)fruitEquiped;
+			if (f.number == fruits [currentFruit]) {
+				currentFruit++;
+				SoundManager.Coin ();
+			} else {
+				Attack ();
+			}
 		} else {
-			Atack ();
+			Attack ();
+		}
+
+		if (currentFruit == 6) {
+			Vector2 pos = MazeManager.WorldToTilePos (transform.position);
+			MazeManager.maze.tiles [(int)pos.x, (int)pos.y].objectName = "";
+			GameObject r = Instantiate (rose) as GameObject;
+			r.transform.position = transform.position;
+			Destroy (gameObject);
 		}
 	}
 
-	void Atack() {
-		Player.instance.character.Damage (transform.position, damage);
+	void Attack() {
+		if (!Player.instance.character.damaging && !Player.instance.immune) {
+			Player.instance.character.Damage (transform.position, damage);
+		}
+	}
+		
+	void OnInteract () {
+		Player.instance.Pause ();
+		SoundManager.Click ();
+		Eat();
+		Player.instance.Resume ();	
 	}
 }

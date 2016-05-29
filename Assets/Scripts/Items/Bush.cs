@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Bush : MonoBehaviour {
-	public GameObject fruit;
+	public GameObject[] fruit;
 
 	static int currentNumber = 0;
 	Vector2 iniPos;
@@ -14,11 +14,7 @@ public class Bush : MonoBehaviour {
 
 	public void Cut(){
 		if (currentNumber < 6) {
-			GameObject f = Instantiate (fruit) as GameObject;
-			Debug.Log (currentNumber);
-			Sprite[] sprites = Resources.LoadAll<Sprite> ("Images/fruits");
-			Debug.Log (sprites.Length);
-			f.GetComponent<SpriteRenderer> ().sprite = sprites[currentNumber];
+			GameObject f = Instantiate (fruit[currentNumber]) as GameObject;
 			f.GetComponent<FruitObject> ().number = currentNumber;
 			currentNumber++;
 			f.transform.position = iniPos;
