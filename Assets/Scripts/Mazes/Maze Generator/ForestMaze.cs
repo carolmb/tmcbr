@@ -11,7 +11,6 @@ public class ForestMaze : ProceduralMaze {
 		if (type == 0)
 			GenerateTiles ();
 		else {
-			Debug.Log ("s dkasdnaskj");
 			SpecialForest ();
 		}
 	}

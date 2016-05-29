@@ -16,7 +16,7 @@ public class ItemSlot {
 [System.Serializable]
 public class Bag : IEnumerable<Item> {
 
-	public static readonly int maxItems = 12;
+	public static readonly int maxItems = 20;
 
 	private ItemSlot[] itemSlots;
 	public int selectedPosition;

@@ -58,7 +58,12 @@ public abstract class Item {
 		db[7] = new KeyItem (7, "Map");
 		db[8] = new Poison (8);
 		db[9] = new KeyItem (9, "Key");
-		db [10] = new Fruit (10, "Fruit");
+		db [10] = new Fruit (10, "Fruit", 0);
+		db [11] = new Fruit (11, "Fruit", 1);
+		db [12] = new Fruit (12, "Fruit", 2);
+		db [13] = new Fruit (13, "Fruit", 3);
+		db [14] = new Fruit (14, "Fruit", 4);
+		db [15] = new Fruit (15, "Fruit", 5);
 		return db;
 	}
 
