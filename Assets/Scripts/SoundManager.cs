@@ -23,7 +23,6 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip dieCollision;
 	public AudioClip lockDoor;
 	public AudioClip stab;
-	public AudioClip babycry; 
 	public AudioClip earthquake; 
 	public AudioClip fireplace;
 
@@ -39,12 +38,12 @@ public class SoundManager : MonoBehaviour {
 
 	public static void GrassStep () {
 		AudioClip i = instance.grassSteps[Random.Range(0, instance.grassSteps.Length)];
-		PlayAudioClip(i, 1);
+		PlayAudioClip(i, 0.75f);
 	}
 
 	public static void FloorStep () {
 		AudioClip i = instance.floorSteps[Random.Range(0, instance.floorSteps.Length)];
-		PlayAudioClip(i, 1);
+		PlayAudioClip(i, 0.75f);
 	}
 
 	public static void OpenChest () {
@@ -68,7 +67,6 @@ public class SoundManager : MonoBehaviour {
 	}
 
 	public static void PlayerDamage () {
-		// aquele choro de criança
 		PlayAudioClip (instance.playerDamage, 1);
 	}
 
@@ -89,32 +87,26 @@ public class SoundManager : MonoBehaviour {
 	}
 
 	public static void GlassBreak () {
-		// vidro quebrando
 		PlayAudioClip (instance.glassBreak, 1);
 	}
 
 	public static void Drink () {
-		// remédio e veneno
-		PlayAudioClip (instance.drink, 1);
+		//PlayAudioClip (instance.drink, 1);
 	}
 
 	public static void Spray () {
-		// repelente
 		PlayAudioClip (instance.spray, 1);
 	}
 
 	public static void Throw () {
-		// quando joga a pedra
 		PlayAudioClip (instance.throwSound, 1);
 	}
 
 	public static void Fall () {
-		// quando o personagem cai no furaco (barulho de desenho animado mesmo)
-		PlayAudioClip (instance.fall, 1);
+		//PlayAudioClip (instance.fall, 1);
 	}
 
 	public static void DieCollision() {
-		// quando o personagem cai no chão, na animação de morte
 		PlayAudioClip (instance.dieCollision, 1);
 	}
 
@@ -124,18 +116,13 @@ public class SoundManager : MonoBehaviour {
 	}
 
 	public static void Stab () {
-		// quando a criada dá uma facada no duque
 		PlayAudioClip (instance.stab, 1);
 	}
 
 	public static void Surprise () {
 		PlayAudioClip (instance.surprise, 1); 
 	}
-
-	public static void BabyCry () {
-		PlayAudioClip (instance.babycry, 1); 
-	}
-
+		
 	public static void Earthquake () {
 		PlayAudioClip (instance.earthquake, 1); 
 	}

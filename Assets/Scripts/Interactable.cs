@@ -15,7 +15,7 @@ public class Interactable : MonoBehaviour {
 		hitBox = allHitboxes [allHitboxes.Length - 1];
 	}
 
-	void Update () {
+	void LateUpdate () {
 		if (Player.instance.paused)
 			return;
 

@@ -90,7 +90,7 @@ public class HallMaze : ProceduralMaze {
 					}
 				}
 			}
-			if (t.isWalkable && Random.Range(0, 100) < 3 && !HasTransitionNear(t)) {
+			if (t.isWalkable && Random.Range(0, 100) < 1 && !HasTransitionNear(t)) {
 				t.objectName = "Enemies/Book";
 			}
 		}

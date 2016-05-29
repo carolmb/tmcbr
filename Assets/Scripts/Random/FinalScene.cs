@@ -22,7 +22,9 @@ public class FinalScene : MonoBehaviour {
 
 		protagonist.speed = 1;
 		GameHUD.instance.gameObject.SetActive (false);
+		protagonist.direction = 3;
 		Player.instance.canMove = false;
+		protagonist.Stop ();
 
 		if (hasAllRoses) {
 			StartCoroutine (TrueEnding ());
@@ -45,6 +47,7 @@ public class FinalScene : MonoBehaviour {
 		Destroy (surprise);
 		yield return GameHUD.instance.dialog.ShowDialog ("What...?", "Player[sad]");
 		GameHUD.instance.gameObject.SetActive (true);
+		protagonist.speed = 2;
 		Player.instance.canMove = true;
 		Player.instance.paused = false;
 		maid.currentTile.obstacle = "dead maid";
