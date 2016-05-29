@@ -13,7 +13,7 @@ public class FinalScene : MonoBehaviour {
 	public Sprite duke;
 
 	public bool hasAllRoses {
-		get { return Bag.current.roses == 3; }
+		get { return Bag.current.roses == 0; }
 	}
 
 	void Start () {
@@ -60,28 +60,34 @@ public class FinalScene : MonoBehaviour {
 		SoundManager.Click ();
 		yield return new WaitForSeconds (0.5f);
 		Destroy (surprise);
-		yield return GameHUD.instance.dialog.ShowDialog ("I finally found you!", "Player[surprise]");
+		//yield return GameHUD.instance.dialog.ShowDialog ("I finally found you!", "Player[surprise]");
 		maid.speed = protagonist.speed * 2;
-		maid.Move (new Vector2 (0, -64));
-		yield return protagonist.Move (new Vector2 (0, 32));
+		maid.Move (new Vector2 (0, -40));
+		yield return protagonist.Move (new Vector2 (0, 20));
 		protagonist.Stop ();
 		maid.Stop ();
 
-		StartCoroutine (GameCamera.instance.FadeOut (-1));
-		SoundManager.Knife ();
+		yield return StartCoroutine (GameCamera.instance.FadeOut (10));
+		SoundManager.Stab ();
+		yield return new WaitForSeconds (2);
 		protagonist.animator.enabled = false;
 		protagonist.spriteRenderer.sprite = duke;
-		// Mostra desenho com ela esfaqueando o duque
-		// Apaga o desenho
+		yield return StartCoroutine (GameCamera.instance.FadeIn (0.3f));
 
 		yield return GameHUD.instance.dialog.ShowDialog ("I could smell this scent of roses from far...", "Maid[smile]");
 		maid.speed = protagonist.speed;
-		yield return maid.Move (new Vector2 (24, 0));
+		maid.TurnTo (180);
+		yield return maid.Move (new Vector2 (-24, 0));
+		maid.TurnTo (270);
 		yield return maid.Move (new Vector2 (0, -48));
 		maid.Stop ();
 		yield return GameHUD.instance.dialog.ShowDialog ("I'm sorry.", "Maid[sad]");
-		yield return maid.Move (new Vector2 (-24, 0));
-		yield return maid.Move (new Vector2 (0, -48));
+		maid.TurnTo (0);
+		yield return maid.Move (new Vector2 (24, 0));
+		maid.TurnTo (270);
+		yield return maid.Move (new Vector2 (0, -60));
+		maid.spriteRenderer.enabled = false;
+		maid.animator.enabled = false;
 
 		Coroutine c = StartCoroutine (GameCamera.instance.FadeOut (0.5f));
 		yield return new WaitForSeconds (1f);
@@ -89,7 +95,10 @@ public class FinalScene : MonoBehaviour {
 		protagonist.spriteRenderer.sprite = deadDuke;
 		yield return c;
 
+		yield return new WaitForSeconds (2);
 		MazeManager.GoToMaze(new Tile.Transition(SaveManager.currentSave.mazes.Length - 1, 5, 0, 3));
+
+
 	}
 
 }

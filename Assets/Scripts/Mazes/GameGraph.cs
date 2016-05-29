@@ -14,6 +14,7 @@ public class GameGraph {
 	StaticStage lockup;
 	StaticStage mirrorRoom;
 	StaticStage fireplace;
+	StaticStage graveyard;
 
 	public static GameGraph current = null;
 
@@ -37,6 +38,8 @@ public class GameGraph {
 		hallStage = new HallStage (5, entrance.transitions [1], mirrorRoom.transitions [0]);
 		caveStage = new CaveStage (hallStage.endIndex + 1, mirrorRoom.transitions[1], fireplace.transitions[0]);
 		forestStage = new ForestStage (caveStage.endIndex + 1, fireplace.transitions[1]);
+
+		graveyard = new StaticStage (forestStage.endIndex + 1, "Graveyard");
 
 		// Da entrada para o maze com do calabouço
 		SetTransitions (entrance.transitions[2], entrance2.transitions[1]);
@@ -63,7 +66,7 @@ public class GameGraph {
 
 	// Pega o array de todos os mazes do jogo
 	public Maze[] ToMazeArray() {
-		Maze[] mazes = new Maze[forestStage.endIndex + 1];
+		Maze[] mazes = new Maze[graveyard.endIndex + 1];
 
 		CopyMazes (mazes, entrance);
 		CopyMazes (mazes, entrance2);
@@ -73,6 +76,7 @@ public class GameGraph {
 		CopyMazes (mazes, hallStage);
 		CopyMazes (mazes, caveStage);
 		CopyMazes (mazes, forestStage);
+		CopyMazes (mazes, graveyard);
 
 		return mazes;
 	}

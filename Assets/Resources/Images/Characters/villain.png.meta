@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 248b79412699b3c4b91dab9f092481da
-timeCreated: 1460292919
+timeCreated: 1464532144
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -69,8 +69,8 @@ TextureImporter:
         y: 108
         width: 24
         height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: villain_1
@@ -80,8 +80,8 @@ TextureImporter:
         y: 108
         width: 24
         height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: villain_2
@@ -91,8 +91,8 @@ TextureImporter:
         y: 108
         width: 24
         height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: villain_3
@@ -102,8 +102,8 @@ TextureImporter:
         y: 72
         width: 24
         height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: villain_4
@@ -113,8 +113,8 @@ TextureImporter:
         y: 72
         width: 24
         height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: villain_5
@@ -124,8 +124,8 @@ TextureImporter:
         y: 72
         width: 24
         height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: villain_6
@@ -135,8 +135,8 @@ TextureImporter:
         y: 36
         width: 24
         height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: villain_7
@@ -146,8 +146,8 @@ TextureImporter:
         y: 36
         width: 24
         height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: villain_8
@@ -157,8 +157,8 @@ TextureImporter:
         y: 36
         width: 24
         height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: villain_9
@@ -168,8 +168,8 @@ TextureImporter:
         y: 0
         width: 24
         height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: villain_10
@@ -179,8 +179,8 @@ TextureImporter:
         y: 0
         width: 24
         height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: villain_11
@@ -190,8 +190,8 @@ TextureImporter:
         y: 0
         width: 24
         height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     outline: []

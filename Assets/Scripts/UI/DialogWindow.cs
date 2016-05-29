@@ -11,7 +11,7 @@ public class DialogWindow : MonoBehaviour {
 		gameObject.SetActive (true);
 		message.text = txt;
 		portrait.sprite = Resources.Load<Sprite> ("Images/Portraits/" + portraitName);
-		return Player.instance.StartCoroutine (WaitForDialog ());
+		return GameCamera.instance.StartCoroutine (WaitForDialog ());
 	}
 
 	private IEnumerator WaitForDialog () {
