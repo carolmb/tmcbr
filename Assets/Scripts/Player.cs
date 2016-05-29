@@ -32,7 +32,6 @@ public class Player : MonoBehaviour {
 			visible = true;
 			SetVisible (false);
 		}
-
 	}
 
 	bool needsMapUpdate;
@@ -42,6 +41,8 @@ public class Player : MonoBehaviour {
 		/*if (Input.GetKeyDown (KeyCode.D)) {
 			character.Damage ((Vector2) transform.position - new Vector2(0, 100), 1);
 		}*/
+
+		moved = false;
 
 		// Checar o pause do jogo
 		CheckPause ();
