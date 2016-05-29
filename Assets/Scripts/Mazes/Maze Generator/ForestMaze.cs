@@ -4,8 +4,14 @@ using System.Collections.Generic;
 
 public class ForestMaze : ProceduralMaze {
 
-	public ForestMaze(int i, int w, int h) : base(i, w, h) {
-		GenerateTiles ();
+	int type; //0 -> floresta comum; 1 -> puzzle
+
+	public ForestMaze(int i, int w, int h, int type = 0) : base(i, w, h) {
+		this.type = type;
+		if (type == 0) 
+			GenerateTiles ();			
+		else
+			SpecialForest ();
 	}
 
 	public override string GetTheme () {
@@ -18,8 +24,26 @@ public class ForestMaze : ProceduralMaze {
 		return n [i];
 	}
 
-	public override void CreateObstacles () {
+	void SpecialForest() {
+		tiles = new Tile[width, height];
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				tiles [i, j] = new Tile (i, j);
+				if (i == 0 || i == width - 1 || j == 0 || j == height) {
+					tiles [i, j].wallID = 1;
+				}
+			}
+		}
+	}
 
+	protected void Puzzle() {
+		tiles [width / 2, height / 2].objectName = "Enemies/CarnivorousPlant";
+	}
+
+	public override void CreateObstacles () {
+		if (type == 1) {
+			Puzzle ();
+		}
 		bool curupira = false;
 
 		foreach (Tile t in tiles) {
