@@ -23,6 +23,7 @@ public class CarnivorousPlant : MonoBehaviour {
 		if (fruitEquiped != null && fruitEquiped is Fruit) {
 			Fruit f = (Fruit)fruitEquiped;
 			if (f.number == fruits [currentFruit]) {
+				Player.instance.UseItem ();
 				currentFruit++;
 				SoundManager.Coin ();
 			} else {
@@ -34,7 +35,7 @@ public class CarnivorousPlant : MonoBehaviour {
 
 		if (currentFruit == 6) {
 			Vector2 pos = MazeManager.WorldToTilePos (transform.position);
-			MazeManager.maze.tiles [(int)pos.x, (int)pos.y].objectName = "";
+			MazeManager.maze.tiles [(int)pos.x, (int)pos.y].obstacle = "";
 			GameObject r = Instantiate (rose) as GameObject;
 			r.transform.position = transform.position;
 			Destroy (gameObject);

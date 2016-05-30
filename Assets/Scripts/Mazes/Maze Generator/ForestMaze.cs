@@ -38,7 +38,7 @@ public class ForestMaze : ProceduralMaze {
 	}
 
 	protected void Puzzle() {
-		tiles [width / 2, height / 2].objectName = "Enemies/CarnivorousPlant";
+		tiles [width / 2, height / 2].obstacle = "CarnivorousPlant";
 	}
 
 	public override void CreateObstacles () {
@@ -86,9 +86,7 @@ public class ForestMaze : ProceduralMaze {
 
 		foreach (Tile t in tiles) {
 			if (t.isWall) {	
-				if (!HasObstaclesNear (t, 1) && Random.Range (0, 100) < 30) { //fator random
-					t.obstacle = "Bush";
-				} else if (!HasObstaclesNear (t, 3) && Random.Range (0, 100) < 30) {
+				if (!HasObstaclesNear (t, 3) && Random.Range (0, 100) < 30) {
 					t.obstacle = "Mushroom";
 					t.wallID = 0;
 				} else if (Random.Range (0, 100) < 30 && GetAllWallNeighbours (t).Count >= 3) {
