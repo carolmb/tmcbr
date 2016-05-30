@@ -218,7 +218,6 @@ public class Character : CharacterBase {
 
 	// Animação de morte
 	public IEnumerator Die() {
-		// TODO: animaçãozinha simples de morte
 		SendMessage ("OnDie");
 		yield return null;
 	}

@@ -28,6 +28,7 @@ public class ItemChoiceWindow : SlotChoiceWindow {
 		SoundManager.Click ();
 		itemDrawing.sprite = Resources.Load<Sprite> ("Images/Items/" + item.spriteName + "(big)");
 		itemDrawing.gameObject.SetActive (true);
+		gameObject.SetActive (false);
 	}
 
 	public void Move () {

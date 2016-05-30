@@ -55,10 +55,27 @@ public class Enemy : MonoBehaviour {
 			if (PathFinder.EstimateCost (myTile, playerTile) >= vision)
 				return null;
 
+			if (!playerTile.isWalkable) {
+				Vector2 playerPos = Player.instance.transform.position;
+				Vector2 tileCenter = MazeManager.TileToWorldPos(playerTile.coordinates) + new Vector3(0, Tile.size / 2, 0);
+				Vector2 d = playerPos - tileCenter;
+
+				if (Mathf.Abs(d.x) > Mathf.Abs(d.y)) {
+					int dx = d.x > 0 ? 1 : -1;
+					playerTile = MazeManager.maze.tiles[playerTile.x + dx, playerTile.y];
+				} else {
+					int dy = d.y > 0 ? 1 : -1;
+					playerTile = MazeManager.maze.tiles[playerTile.x, playerTile.y + dy];
+				}
+			}
+
 			GridPath path = PathFinder.FindPath (playerTile, myTile, vision);
-			if (path != null && path.PreviousSteps != null) {
-				if (path.PreviousSteps.LastStep.isWalkable)
+			if (path != null) {
+				if (path.PreviousSteps != null && path.PreviousSteps.LastStep.isWalkable) {
 					return path.PreviousSteps.LastStep;
+				} else {
+					return path.LastStep;
+				}
 			} else {
 				return null;
 			}
@@ -90,7 +107,14 @@ public class Enemy : MonoBehaviour {
 	protected virtual bool ChasePlayer () {
 		Tile nextTile = ClosestToPlayer ();
 		if (nextTile != null) {
-			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
+			Vector2 nextPosition;
+
+			if (nextTile == character.currentTile) {
+				nextPosition = Player.instance.transform.position;
+			} else {
+				nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + 
+					new Vector2 (0, Tile.size / 2);
+			}
 			character.TurnTo (nextPosition);
 			character.MoveTo (nextPosition, true);
 			return true;
