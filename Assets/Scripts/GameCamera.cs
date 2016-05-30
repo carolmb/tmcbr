@@ -15,11 +15,15 @@ public class GameCamera : MonoBehaviour {
 	private float minY { get { return size.y / 2; } }
 
 	// Para acesso à camera por outras classes
-	void Awake() {
+	void Awake () {
 		quake = false;
 		instance = this;
 		FadeEffect.intensity = 0;
-		//MushroomEffect ();
+	}
+
+	void Start () {
+		if (mushRoom != null)
+			MushroomEffect ();
 	}
 
 	// Tamanho da câmera (em coordenadas do jogo)
