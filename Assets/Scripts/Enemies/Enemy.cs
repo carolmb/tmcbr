@@ -57,7 +57,8 @@ public class Enemy : MonoBehaviour {
 
 			GridPath path = PathFinder.FindPath (playerTile, myTile, vision);
 			if (path != null && path.PreviousSteps != null) {
-				return path.PreviousSteps.LastStep;
+				if (path.PreviousSteps.LastStep.isWalkable)
+					return path.PreviousSteps.LastStep;
 			} else {
 				return null;
 			}
@@ -88,7 +89,7 @@ public class Enemy : MonoBehaviour {
 
 	protected virtual bool ChasePlayer () {
 		Tile nextTile = ClosestToPlayer ();
-		if (nextTile != null && nextTile.isWalkable) {
+		if (nextTile != null) {
 			Vector2 nextPosition = (Vector2)MazeManager.TileToWorldPos (nextTile.coordinates) + new Vector2 (0, Tile.size / 2);
 			character.TurnTo (nextPosition);
 			character.MoveTo (nextPosition, true);
