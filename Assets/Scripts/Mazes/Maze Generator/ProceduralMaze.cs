@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
 public abstract class ProceduralMaze : Maze {
 
 	public ProceduralMaze(int i, int w, int h) : base(i, w, h) {}

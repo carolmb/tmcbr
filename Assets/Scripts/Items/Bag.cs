@@ -16,26 +16,30 @@ public class ItemSlot {
 [System.Serializable]
 public class Bag : IEnumerable<Item> {
 
-	public static readonly int maxItems = 20;
+	public static readonly int maxItems = 16;
+	public static readonly int maxCoins = 9999;
 
 	private ItemSlot[] itemSlots;
 	public int selectedPosition;
-	public int coins;
 	public int roses;
+
+	private int _coins;
+	public int coins {
+		get {
+			return _coins;
+		} set {
+			_coins = Mathf.Min (maxCoins, value);
+		}
+	}
 
 	public Bag () {
 		itemSlots = new ItemSlot[maxItems];
 		itemSlots [0] = new ItemSlot (5);
 		itemSlots [1] = new ItemSlot (7);
-		itemSlots [2] = new ItemSlot (0, 4);
-		itemSlots [3] = new ItemSlot (1);
-		itemSlots [4] = new ItemSlot (2, 5);
-		itemSlots [5] = new ItemSlot (3, 4);
-		itemSlots [6] = new ItemSlot (4);
-		itemSlots [7] = new ItemSlot (6);
-		coins = 50;
+		itemSlots [2] = new ItemSlot (0, 10);
+		coins = 100;
 		roses = 0;
-		selectedPosition = 7;
+		selectedPosition = 2;
 	}
 
 	public static Bag current {

@@ -12,7 +12,7 @@ public class ForestStage : ProceduralStage {
 	}
 
 	protected void CreateMazes () {
-		int mazeCount = 1;
+		int mazeCount = Random.Range(7, 12);
 		ForestMaze[] mazes = new ForestMaze[mazeCount + 2];
 
 		int beginDir = fireplace.dir;

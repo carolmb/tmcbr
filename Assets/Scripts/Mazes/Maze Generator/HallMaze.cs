@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class HallMaze : ProceduralMaze {
 
 	public int type; // 0 -> correr comum; 1 -> salinha

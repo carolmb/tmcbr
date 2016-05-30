@@ -96,7 +96,7 @@ public class SoundManager : MonoBehaviour {
 	}
 
 	public static void Drink () {
-		//PlayAudioClip (instance.drink, 1);
+		PlayAudioClip (instance.rose, 1);
 	}
 
 	public static void Spray () {

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class ForestMaze : ProceduralMaze {
 
 	int type; //0 -> floresta comum; 1 -> puzzle; 2 -> canto com a chave
