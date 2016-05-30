@@ -218,16 +218,20 @@ public class Player : MonoBehaviour {
 		if (item != null && item.CanUse()) {
 			item.OnUse ();
 			if (item.consumable) {
-				int pos = Bag.current.selectedPosition;
-				ItemSlot slot = Bag.current.selectedSlot;
-				Bag.current.Consume(pos);
-				slot = Bag.current.selectedSlot;
-				if (slot == null)
-					GameHUD.instance.UpdateItem (null, 0);
-				else
-					GameHUD.instance.UpdateItem (item, slot.count);
+				ConsumeItem ();
 			}
 		}
+	}
+
+	public void ConsumeItem () {
+		int pos = Bag.current.selectedPosition;
+		ItemSlot slot = Bag.current.selectedSlot;
+		Bag.current.Consume(pos);
+		slot = Bag.current.selectedSlot;
+		if (slot == null)
+			GameHUD.instance.UpdateItem (null, 0);
+		else
+			GameHUD.instance.UpdateItem (Bag.current.selectedItem, slot.count);
 	}
 
 	// ===============================================================================
