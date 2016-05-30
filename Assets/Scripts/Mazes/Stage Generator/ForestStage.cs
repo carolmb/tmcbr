@@ -13,7 +13,7 @@ public class ForestStage : ProceduralStage {
 
 	protected void CreateMazes () {
 		int mazeCount = 1;
-		ForestMaze[] mazes = new ForestMaze[mazeCount + 1];
+		ForestMaze[] mazes = new ForestMaze[mazeCount + 2];
 
 		int beginDir = fireplace.dir;
 
@@ -31,9 +31,13 @@ public class ForestStage : ProceduralStage {
 			);
 		}
 
-		ForestMaze specialForest = new ForestMaze (beginIndex + mazeCount, 10, 8, 1);
-		mazes [mazeCount] = specialForest;
+		ForestMaze puzzle = new ForestMaze (beginIndex + mazeCount, 10, 8, 1);
+		mazes [mazeCount] = puzzle;
 		SetTransitions (mazes [Random.Range (0, mazeCount)], mazes [mazeCount], GenerateDir (beginDir));
+
+		ForestMaze key = new ForestMaze (beginIndex + mazeCount + 1, 10, 8, 2);
+		mazes [mazeCount + 1] = key;
+		SetTransitions (mazes [Random.Range (0, mazeCount)], mazes [mazeCount + 1], GenerateDir (Random.Range (0, 4)));
 
 		for (int i = 0; i < mazeCount; i++) {
 			int x = UnityEngine.Random.Range (0, mazeCount);

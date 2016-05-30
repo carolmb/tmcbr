@@ -57,6 +57,7 @@ public class PickItem : MonoBehaviour {
 		}
 		transform.position = Player.instance.transform.position + pos;
 		transform.rotation = orig;
+		transform.SetParent (Player.instance.transform);
 		Destroy(gameObject, lifeTime);
 	}
 

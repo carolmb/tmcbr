@@ -25,6 +25,7 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip stab;
 	public AudioClip earthquake; 
 	public AudioClip fireplace;
+	public AudioClip rose;
 
 	private static SoundManager instance;
 
@@ -56,6 +57,10 @@ public class SoundManager : MonoBehaviour {
 
 	public static void Coin () {
 		PlayAudioClip (instance.coin, 1);
+	}
+
+	public static void Rose () {
+		PlayAudioClip (instance.rose, 1);
 	}
 
 	public static void Buy () {

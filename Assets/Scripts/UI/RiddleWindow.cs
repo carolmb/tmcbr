@@ -13,17 +13,19 @@ public class RiddleWindow : MonoBehaviour {
 	}
 
 	public void OnTry () {
-		SoundManager.Click ();
+		//SoundManager.Click ();
 		if (input.text.ToLower () == "rose" && !correctAnswer) {
 			GameObject statue = GameObject.FindGameObjectWithTag ("Statue");
 			statue.GetComponent<Statue> ().Explosion ();
 			OnReturn ();
 			correctAnswer = true;
+		} else {
+			SoundManager.Click ();
 		}
 	}
 
 	public void OnReturn () {
-		SoundManager.Click ();
+		//SoundManager.Click ();
 		gameObject.SetActive (false);
 		Player.instance.Resume ();
 	}

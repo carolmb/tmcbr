@@ -5,7 +5,7 @@ public class Bush : MonoBehaviour {
 	public GameObject[] fruit;
 
 	static int currentNumber = 0;
-	Vector2 iniPos;
+	Vector3 iniPos;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +24,7 @@ public class Bush : MonoBehaviour {
 			f.transform.position = iniPos;
 			f.GetComponent<FruitObject> ().number = randNumber;
 		}
-		Vector2 pos = MazeManager.WorldToTilePos (transform.position);
+		Vector3 pos = MazeManager.WorldToTilePos (transform.position);
 		MazeManager.maze.tiles [(int)pos.x, (int)pos.y].obstacle = "";
 		Destroy (gameObject);
 	}

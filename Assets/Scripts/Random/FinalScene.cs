@@ -13,7 +13,7 @@ public class FinalScene : MonoBehaviour {
 	public Sprite duke;
 
 	public bool hasAllRoses {
-		get { return Bag.current.roses == 0; }
+		get { return Bag.current.roses == 3; }
 	}
 
 	void Start () {
@@ -45,7 +45,7 @@ public class FinalScene : MonoBehaviour {
 		SoundManager.Surprise ();
 		yield return new WaitForSeconds (0.5f);
 		Destroy (surprise);
-		yield return GameHUD.instance.dialog.ShowDialog ("What...?", "Player[sad]");
+		//yield return GameHUD.instance.dialog.ShowDialog ("What...?", "Player[sad]");
 		GameHUD.instance.gameObject.SetActive (true);
 		protagonist.speed = 2;
 		Player.instance.canMove = true;
@@ -74,18 +74,19 @@ public class FinalScene : MonoBehaviour {
 		protagonist.spriteRenderer.sprite = duke;
 		yield return StartCoroutine (GameCamera.instance.FadeIn (0.3f));
 
-		yield return GameHUD.instance.dialog.ShowDialog ("I could smell this scent of roses from far...", "Maid[smile]");
+		//yield return GameHUD.instance.dialog.ShowDialog ("I could smell this scent of roses from far...", "Maid[smile]");
 		maid.speed = protagonist.speed;
 		maid.TurnTo (180);
 		yield return maid.Move (new Vector2 (-24, 0));
 		maid.TurnTo (270);
-		yield return maid.Move (new Vector2 (0, -48));
+		yield return maid.Move (new Vector2 (0, -40));
 		maid.Stop ();
-		yield return GameHUD.instance.dialog.ShowDialog ("I'm sorry.", "Maid[sad]");
+		yield return new WaitForSeconds (0.5f);
+		//yield return GameHUD.instance.dialog.ShowDialog ("I'm sorry.", "Maid[sad]");
 		maid.TurnTo (0);
 		yield return maid.Move (new Vector2 (24, 0));
 		maid.TurnTo (270);
-		yield return maid.Move (new Vector2 (0, -60));
+		yield return maid.Move (new Vector2 (0, -64));
 		maid.spriteRenderer.enabled = false;
 		maid.animator.enabled = false;
 
@@ -97,7 +98,6 @@ public class FinalScene : MonoBehaviour {
 
 		yield return new WaitForSeconds (2);
 		MazeManager.GoToMaze(new Tile.Transition(SaveManager.currentSave.mazes.Length - 1, 5, 0, 3));
-
 
 	}
 

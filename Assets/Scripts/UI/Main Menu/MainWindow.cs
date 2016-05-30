@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class MainWindow : MonoBehaviour {
 
+	public Button start;
+
+	public void OnEnable() {
+		start.interactable = Bag.current.HasItem (Item.DB[9]);
+	}
+
 	public void ItemButton () {
 		SoundManager.Click ();
 		GameHUD.instance.mainMenu.itemWindow.gameObject.SetActive (true);
@@ -29,6 +35,10 @@ public class MainWindow : MonoBehaviour {
 		SoundManager.Click ();
 		Destroy (MazeManager.musicPlayer.gameObject);
 		SceneManager.LoadScene ("Title");
+	}
+
+	public void OnStart () {
+		MazeManager.GoToMaze (SaveManager.currentSave.start);
 	}
 
 	public void Return () {
