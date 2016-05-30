@@ -6,6 +6,7 @@ public class GameSave {
 
 	public string name;
 	public Maze[] mazes;
+	public Tile.Transition start;
 	public Tile.Transition transition;
 	public Bag bag;
 	public int lifePoints;
@@ -15,7 +16,7 @@ public class GameSave {
 
 	public GameSave() {
 		GameGraph gameGraph = new GameGraph ();
-		transition = gameGraph.StartTransition ();
+		start = transition = gameGraph.StartTransition ();
 		mazes = gameGraph.ToMazeArray ();
 
 		bag = new Bag ();

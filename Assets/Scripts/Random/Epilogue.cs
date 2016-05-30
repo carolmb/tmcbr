@@ -29,7 +29,7 @@ public class Epilogue : MonoBehaviour {
 		Instantiate (bouquet, transform.position + new Vector3 (0, 24, 24), Quaternion.identity);
 		SoundManager.Cloth ();
 		yield return new WaitForSeconds (0.5f);
-		yield return GameHUD.instance.dialog.ShowDialog ("I wish I could've prevent you from turning into that...", "Maid[smile]");
+		//yield return GameHUD.instance.dialog.ShowDialog ("I wish I could've prevent you from turning into that...", "Maid[smile]");
 		yield return new WaitForSeconds (0.5f);
 
 		Coroutine c = StartCoroutine (GameCamera.instance.FadeOut (0.5f));

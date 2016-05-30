@@ -4,9 +4,9 @@ using System.Collections;
 public class Statue : MonoBehaviour {
 
 	public GameObject rose;
-	Vector2 iniPos;
+	Vector3 iniPos;
 	Animator controller;
-	// Use this for initialization
+
 	void Start () {
 		controller = GetComponent<Animator> ();
 		controller.SetBool ("isDying", false);
@@ -14,14 +14,22 @@ public class Statue : MonoBehaviour {
 	}
 
 	public void Explosion() {
+		SoundManager.Explosion ();
 		controller.SetBool ("isDying", true);
 	}
 
 	void Die() {
-		Vector2 iniPosTile = MazeManager.WorldToTilePos (iniPos);
-		MazeManager.maze.tiles [(int)iniPosTile.x, (int)iniPosTile.y - 1].objectName = "";
+		Vector2 iniPosTile = MazeManager.WorldToTilePos (iniPos - new Vector3(0, Tile.size / 2, 0));
+		MazeManager.maze.tiles [(int)iniPosTile.x, (int)iniPosTile.y].obstacle = "";
 		GameObject obj = Instantiate (rose) as GameObject;
 		obj.transform.position = iniPos; 
 		Destroy (gameObject);
 	}
+
+	void OnInteract () {
+		Player.instance.Pause ();
+		SoundManager.Click ();
+		GameHUD.instance.riddleWindow.gameObject.SetActive (true);
+	}
+
 }

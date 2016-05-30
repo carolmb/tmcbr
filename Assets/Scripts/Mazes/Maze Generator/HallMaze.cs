@@ -181,8 +181,12 @@ public class HallMaze : ProceduralMaze {
 	}
 
 	void Statue() {
-		tiles [width / 2, height / 2].objectName = "Statue";
-		tiles [width / 2 - 1, height / 2].obstacle = "Plaque";
+		int x = width / 2;
+		int y = height / 2;
+		tiles [x, y].obstacle = "Statue";
+		tiles [x, y - 1].obstacle = "Plaque1";
+		tiles [x - 1, y + 1].obstacle = "Plaque2";
+		tiles [x + 1, y + 1].obstacle = "Plaque3";
 	}
 
 	private void GenerateRoomTiles () {
