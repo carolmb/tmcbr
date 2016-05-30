@@ -4,14 +4,16 @@ using System.Collections.Generic;
 
 public class ForestMaze : ProceduralMaze {
 
-	int type; //0 -> floresta comum; 1 -> puzzle
+	int type; //0 -> floresta comum; 1 -> puzzle; 2 -> canto com a chave
 
 	public ForestMaze(int i, int w, int h, int type = 0) : base(i, w, h) {
 		this.type = type;
 		if (type == 0)
 			GenerateTiles ();
-		else {
-			SpecialForest ();
+		else if (type == 1) {
+			PuzzlePlace ();
+		} else {
+			KeyPlace ();
 		}
 	}
 
@@ -25,7 +27,7 @@ public class ForestMaze : ProceduralMaze {
 		return n [i];
 	}
 
-	void SpecialForest() {
+	private void KeyPlace () {
 		tiles = new Tile[width, height];
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
@@ -37,15 +39,33 @@ public class ForestMaze : ProceduralMaze {
 		}
 	}
 
-	protected void Puzzle() {
+	private void PuzzlePlace () {
+		tiles = new Tile[width, height];
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				tiles [i, j] = new Tile (i, j);
+				if (i == 0 || i == width - 1 || j == 0 || j == height - 1) {
+					tiles [i, j].wallID = 1;
+				}
+			}
+		}
+	}
+
+	private void KeyObstacles () {
+		tiles [width / 2, height / 2].objectName = "Key";
+	}
+
+	private void PuzzleObstacles() {
 		tiles [width / 2, height / 2].objectName = "Enemies/CarnivorousPlant";
 	}
 
 	public override void CreateObstacles () {
 		if (type == 1) {
-			Puzzle ();
+			PuzzleObstacles ();
+		} else if (type == 2) {
+			KeyObstacles ();
 		}
-		bool curupira = false;
+		bool curupira = type != 0;
 
 		foreach (Tile t in tiles) {
 			t.type = 1; // grama

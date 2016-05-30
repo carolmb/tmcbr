@@ -6,8 +6,9 @@ public class FruitObject : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.tag == "Player") {
-			Fruit fruit = new Fruit (10 + number, "Fruit", number);
-			SaveManager.currentSave.bag.Add (fruit);
+			Item item = Item.DB [10 + number];
+			SoundManager.Coin ();
+			SaveManager.currentSave.bag.Add (item);
 			Destroy (gameObject);
 		}
 	}
