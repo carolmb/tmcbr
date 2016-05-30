@@ -6,7 +6,6 @@ public class ShopChoiceWindow : SlotChoiceWindow {
 
 	public Text priceText;
 	public Button buyButton;
-	public AudioClip buySound;
 
 	public GameObject fullBagMessage;
 
@@ -25,15 +24,12 @@ public class ShopChoiceWindow : SlotChoiceWindow {
 	}
 
 	public void Buy () {
-		if (item.consumable) {
-			// Procura o item na mochila, e se achar, incrementa
-			if (Bag.current.Add (item)) {
-				BuySound ();
-				Bag.current.coins -= item.totalPrice;
-				BackToShopWindow ();
-			} else {
-				FullBagError ();
-			}
+		if (Bag.current.Add (item)) {
+			BuySound ();
+			Bag.current.coins -= item.totalPrice;
+			BackToShopWindow ();
+		} else {
+			FullBagError ();
 		}
 	}
 

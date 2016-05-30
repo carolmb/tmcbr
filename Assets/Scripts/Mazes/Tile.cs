@@ -35,7 +35,16 @@ public class Tile {
 
 	// Informações do objeto do tile
 	public string objectName = ""; // nome do objeto (inimigo ou item), se tiver 
-	public Vector2 lastObjectPos;
+
+	private float lastObjectX = 0;
+	private float lastObjectY = 0;
+	public Vector2 lastObjectPos {
+		get { return new Vector2 (lastObjectX, lastObjectY); }
+		set {
+			lastObjectX = value.x;
+			lastObjectY = value.y;
+		}
+	}
 
 	// Spawn de objeto
 	public float lastSpawn = 0f;

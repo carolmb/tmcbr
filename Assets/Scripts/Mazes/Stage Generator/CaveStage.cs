@@ -22,7 +22,7 @@ public class CaveStage : ProceduralStage {
 	}
 
 	protected void CreateMazes () {
-		int mazeCount = 1;
+		int mazeCount = Random.Range (6, 10);
 		CaveMaze[] mazes = new CaveMaze [mazeCount + 1];
 
 		int beginDir = mirrorRoom.dir;
