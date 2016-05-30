@@ -4,7 +4,7 @@ using System.Collections;
 [System.Serializable]
 public class GameSave {
 
-	public static readonly int maxHP = 10;
+	public static readonly int maxHP = 9999;
 
 	public string name;
 	public Maze[] mazes;
@@ -14,6 +14,7 @@ public class GameSave {
 	public float playTime;
 
 	public bool golemBossFirstTime;
+	public bool golemRose = false;
 
 	private int _lifePoints;
 	public int lifePoints {

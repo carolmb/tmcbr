@@ -9,7 +9,7 @@ public class Pick : Item {
 	private static GameObject pickOnUse;
 
 	float lastUse = 0;
-	float delay = 0.01f;
+	float delay = 0.05f;
 	public float speed = 5;
 
 	public Pick(int id) : base(id, "Pick", 75) {

@@ -9,6 +9,7 @@ public class TitleMenu : MenuBase {
 	public TitleWindow titleWindow;
 	public LoadWindow loadWindow;
 	public CreditsWindow creditsWindow;
+	public TutorialWindow tutorialWindow;
 
 	public void Awake () {
 		instance = this;

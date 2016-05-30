@@ -16,7 +16,10 @@ public class MainMenu : MenuBase {
 
 	public override void Open () {
 		base.Open ();
+		gameObject.SetActive (true);
+		coinText.transform.parent.gameObject.SetActive (true);
 		UpdateCoins (Bag.current.coins);
+		roseText.transform.parent.gameObject.SetActive (true);
 		UpdateRoses (Bag.current.roses);
 		mainWindow.gameObject.SetActive (true);
 		GameHUD.instance.gameObject.SetActive (false);

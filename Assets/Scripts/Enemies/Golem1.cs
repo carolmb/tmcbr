@@ -6,6 +6,8 @@ public class Golem1 : Enemy {
 
 	public GameObject rose;
 
+	public bool boss = false;
+
 	protected override void Start () {
 		base.Start ();
 
@@ -27,16 +29,12 @@ public class Golem1 : Enemy {
 
 	protected override void OnDie() {
 		MazeManager.maze.tiles [originalTile.x, originalTile.y].objectName = "";
-		CaveMaze cm = (CaveMaze)MazeManager.maze;
-		if (cm.type == 1) {
-			List<GameObject> golens = new List<GameObject> (GameObject.FindGameObjectsWithTag ("Golem"));
-			Debug.Log (golens.Count);
-			if (golens.Count == 1) {
-				GameObject obj = Instantiate (rose) as GameObject;
-				int width = MazeManager.maze.width;
-				int height = MazeManager.maze.height;
-				obj.transform.position = MazeManager.TileToWorldPos (MazeManager.maze.tiles [width / 2, height - 2].coordinates);
-			}
+		if (PickItem.golemCount == 4 && !SaveManager.currentSave.golemRose) {
+			GameObject obj = Instantiate (rose) as GameObject;
+			int width = MazeManager.maze.width;
+			int height = MazeManager.maze.height;
+			obj.transform.position = MazeManager.TileToWorldPos (MazeManager.maze.tiles [width / 2, height - 2].coordinates);
+			SaveManager.currentSave.golemRose = true;
 		}
 		base.OnDie();
 	}

@@ -10,11 +10,11 @@ public class Golem3 : Enemy {
 	protected override void Start () {
 		base.Start ();
 		Spawn ();
-		if (!SaveManager.currentSave.golemBossFirstTime && Random.Range(0, 100) > 15) {
+		if (!SaveManager.currentSave.golemRose && (!SaveManager.currentSave.golemBossFirstTime && Random.Range(0, 100) > 15)) {
 			Destroy (gameObject);
 		}
-		SaveManager.currentSave.golemBossFirstTime = false;
-		Debug.Log (SaveManager.currentSave.golemBossFirstTime); 	
+		PickItem.golemCount = 0;
+		SaveManager.currentSave.golemBossFirstTime = false;	
 	}
 
 	void Update () {
@@ -37,10 +37,10 @@ public class Golem3 : Enemy {
 		Invoke ("Spawn", 3);
 	}
 
-	void Earthquake() {
+	void Earthquake () {
 		bool lastTile = false;
 		foreach(Tile t in MazeManager.maze.tiles){
-			if (Random.Range (0, 100) < 20 && Random.Range(0, 100) < (lastTile ? 8 : 80)) {
+			if (Random.Range (0, 100) < 10 && Random.Range(0, 100) < (lastTile ? 8 : 80)) {
 				GameObject s = Instantiate (stalactite) as GameObject;
 				s.transform.position = MazeManager.TileToWorldPos (t.coordinates);
 				lastTile = true;
@@ -54,10 +54,17 @@ public class Golem3 : Enemy {
 	protected override void OnDie() {
 		MazeManager.maze.tiles [originalTile.x, originalTile.y].objectName = "";
 		List<Tile> t = character.currentTile.GetNeighbours4Walkeable ();
-		for (int i = 0; i < 2; i++) {
-			GameObject spawGolem = Instantiate (golem2) as GameObject;
-			spawGolem.transform.position = MazeManager.TileToWorldPos (t [Random.Range (0, t.Count)].coordinates);
-		}
+		t.Add (character.currentTile);
+
+		GameObject spawGolem = Instantiate (golem2) as GameObject;
+		Tile tile = t [Random.Range (0, t.Count)];
+		spawGolem.GetComponent<Character> ().currentTile = tile;
+		t.Remove (tile);
+
+		spawGolem = Instantiate (golem2) as GameObject;
+		tile = t [Random.Range (0, t.Count)];
+		spawGolem.GetComponent<Character> ().currentTile = tile;
+
 		base.OnDie ();
 	}
 }

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 94360db21f475a347aa1add1ac9b68ba
-timeCreated: 1464359173
+timeCreated: 1464628865
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -69,19 +69,19 @@ TextureImporter:
         y: 144
         width: 32
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6, y: 21}
-        - {x: -12, y: 14}
-        - {x: -13, y: 2}
-        - {x: -13, y: -12}
-        - {x: -8, y: -24}
-        - {x: 7, y: -24}
-        - {x: 14, y: -19}
-        - {x: 14, y: 11}
-        - {x: 10, y: 21}
+      - - {x: -6, y: 37.800003}
+        - {x: -12, y: 30.800003}
+        - {x: -13, y: 18.800003}
+        - {x: -13, y: 4.800003}
+        - {x: -8, y: -7.199997}
+        - {x: 7, y: -7.199997}
+        - {x: 14, y: -2.199997}
+        - {x: 14, y: 27.800003}
+        - {x: 10, y: 37.800003}
     - name: golem3_1
       rect:
         serializedVersion: 2
@@ -89,18 +89,18 @@ TextureImporter:
         y: 144
         width: 32
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -10, y: 22}
-        - {x: -15, y: 4}
-        - {x: -15, y: -16}
-        - {x: -9, y: -24}
-        - {x: 10, y: -24}
-        - {x: 16, y: -17}
-        - {x: 16, y: 7}
-        - {x: 12, y: 22}
+      - - {x: -10, y: 38.800003}
+        - {x: -15, y: 20.800003}
+        - {x: -15, y: 0.80000305}
+        - {x: -9, y: -7.199997}
+        - {x: 10, y: -7.199997}
+        - {x: 16, y: -0.19999695}
+        - {x: 16, y: 23.800003}
+        - {x: 12, y: 38.800003}
     - name: golem3_2
       rect:
         serializedVersion: 2
@@ -108,18 +108,18 @@ TextureImporter:
         y: 144
         width: 32
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 21}
-        - {x: -12, y: 14}
-        - {x: -13, y: 8}
-        - {x: -13, y: -17}
-        - {x: -5, y: -24}
-        - {x: 14, y: -24}
-        - {x: 14, y: 20}
-        - {x: 11, y: 21}
+      - - {x: -7, y: 37.800003}
+        - {x: -12, y: 30.800003}
+        - {x: -13, y: 24.800003}
+        - {x: -13, y: -0.19999695}
+        - {x: -5, y: -7.199997}
+        - {x: 14, y: -7.199997}
+        - {x: 14, y: 36.800003}
+        - {x: 11, y: 37.800003}
     - name: golem3_3
       rect:
         serializedVersion: 2
@@ -127,19 +127,19 @@ TextureImporter:
         y: 96
         width: 32
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9, y: 21}
-        - {x: -13, y: 17}
-        - {x: -13, y: -10}
-        - {x: -12, y: -18}
-        - {x: -10, y: -24}
-        - {x: 9, y: -24}
-        - {x: 11, y: -23}
-        - {x: 11, y: 17}
-        - {x: 8, y: 21}
+      - - {x: -9, y: 37.800003}
+        - {x: -13, y: 33.800003}
+        - {x: -13, y: 6.800003}
+        - {x: -12, y: -1.199997}
+        - {x: -10, y: -7.199997}
+        - {x: 9, y: -7.199997}
+        - {x: 11, y: -6.199997}
+        - {x: 11, y: 33.800003}
+        - {x: 8, y: 37.800003}
     - name: golem3_4
       rect:
         serializedVersion: 2
@@ -147,17 +147,17 @@ TextureImporter:
         y: 96
         width: 32
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9, y: 22}
-        - {x: -13, y: 15}
-        - {x: -13, y: -2}
-        - {x: -12, y: -22}
-        - {x: -6, y: -24}
-        - {x: 11, y: -24}
-        - {x: 11, y: 22}
+      - - {x: -9, y: 38.800003}
+        - {x: -13, y: 31.800003}
+        - {x: -13, y: 14.800003}
+        - {x: -12, y: -5.199997}
+        - {x: -6, y: -7.199997}
+        - {x: 11, y: -7.199997}
+        - {x: 11, y: 38.800003}
     - name: golem3_5
       rect:
         serializedVersion: 2
@@ -165,14 +165,14 @@ TextureImporter:
         y: 96
         width: 32
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -13, y: 21}
-        - {x: -13, y: -24}
-        - {x: 12, y: -24}
-        - {x: 12, y: 21}
+      - - {x: -13, y: 37.800003}
+        - {x: -13, y: -7.199997}
+        - {x: 12, y: -7.199997}
+        - {x: 12, y: 37.800003}
     - name: golem3_6
       rect:
         serializedVersion: 2
@@ -180,18 +180,18 @@ TextureImporter:
         y: 48
         width: 32
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6, y: 21}
-        - {x: -12, y: 19}
-        - {x: -12, y: -20}
-        - {x: -9, y: -24}
-        - {x: 11, y: -24}
-        - {x: 13, y: -18}
-        - {x: 13, y: 18}
-        - {x: 10, y: 21}
+      - - {x: -6, y: 37.8}
+        - {x: -12, y: 35.8}
+        - {x: -12, y: -3.2000008}
+        - {x: -9, y: -7.200001}
+        - {x: 11, y: -7.200001}
+        - {x: 13, y: -1.2000008}
+        - {x: 13, y: 34.8}
+        - {x: 10, y: 37.8}
     - name: golem3_7
       rect:
         serializedVersion: 2
@@ -199,18 +199,18 @@ TextureImporter:
         y: 48
         width: 32
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 8, y: 22}
-        - {x: -7, y: 22}
-        - {x: -11, y: 20}
-        - {x: -11, y: -24}
-        - {x: 5, y: -24}
-        - {x: 12, y: -14}
-        - {x: 13, y: -3}
-        - {x: 13, y: 16}
+      - - {x: 8, y: 38.8}
+        - {x: -7, y: 38.8}
+        - {x: -11, y: 36.8}
+        - {x: -11, y: -7.200001}
+        - {x: 5, y: -7.200001}
+        - {x: 12, y: 2.7999992}
+        - {x: 13, y: 13.799999}
+        - {x: 13, y: 32.8}
     - name: golem3_8
       rect:
         serializedVersion: 2
@@ -218,15 +218,15 @@ TextureImporter:
         y: 48
         width: 32
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -11, y: 21}
-        - {x: -11, y: -24}
-        - {x: 9, y: -24}
-        - {x: 13, y: -21}
-        - {x: 13, y: 21}
+      - - {x: -11, y: 37.8}
+        - {x: -11, y: -7.200001}
+        - {x: 9, y: -7.200001}
+        - {x: 13, y: -4.200001}
+        - {x: 13, y: 37.8}
     - name: golem3_9
       rect:
         serializedVersion: 2
@@ -234,21 +234,21 @@ TextureImporter:
         y: 0
         width: 32
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 13, y: 15}
-        - {x: 10, y: 21}
-        - {x: -7, y: 21}
-        - {x: -13, y: 18}
-        - {x: -13, y: -10}
-        - {x: -10, y: -23}
-        - {x: -8, y: -24}
-        - {x: 5, y: -24}
-        - {x: 9, y: -19}
-        - {x: 14, y: -12}
-        - {x: 14, y: 4}
+      - - {x: 13, y: 31.8}
+        - {x: 10, y: 37.8}
+        - {x: -7, y: 37.8}
+        - {x: -13, y: 34.8}
+        - {x: -13, y: 6.799999}
+        - {x: -10, y: -6.200001}
+        - {x: -8, y: -7.200001}
+        - {x: 5, y: -7.200001}
+        - {x: 9, y: -2.2000008}
+        - {x: 14, y: 4.799999}
+        - {x: 14, y: 20.8}
     - name: golem3_10
       rect:
         serializedVersion: 2
@@ -256,18 +256,18 @@ TextureImporter:
         y: 0
         width: 32
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9, y: 22}
-        - {x: -15, y: 3}
-        - {x: -15, y: -18}
-        - {x: -11, y: -24}
-        - {x: 10, y: -24}
-        - {x: 16, y: -19}
-        - {x: 16, y: 10}
-        - {x: 11, y: 22}
+      - - {x: -9, y: 38.8}
+        - {x: -15, y: 19.8}
+        - {x: -15, y: -1.2000008}
+        - {x: -11, y: -7.200001}
+        - {x: 10, y: -7.200001}
+        - {x: 16, y: -2.2000008}
+        - {x: 16, y: 26.8}
+        - {x: 11, y: 38.8}
     - name: golem3_11
       rect:
         serializedVersion: 2
@@ -275,17 +275,17 @@ TextureImporter:
         y: 0
         width: 32
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 21}
-        - {x: -13, y: 18}
-        - {x: -13, y: -24}
-        - {x: 13, y: -24}
-        - {x: 14, y: -23}
-        - {x: 14, y: 20}
-        - {x: 13, y: 21}
+      - - {x: -7, y: 37.8}
+        - {x: -13, y: 34.8}
+        - {x: -13, y: -7.200001}
+        - {x: 13, y: -7.200001}
+        - {x: 14, y: -6.200001}
+        - {x: 14, y: 36.8}
+        - {x: 13, y: 37.8}
     outline: []
   spritePackingTag: 
   userData: 

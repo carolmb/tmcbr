@@ -35,6 +35,7 @@ public static class SaveManager {
 		currentSave.playTime = currentPlayTime;
 		saveList [id] = name;
 		StoreSave (id);
+		StoreList ();
 	}
 
 	// Restaurar a lista de salvos

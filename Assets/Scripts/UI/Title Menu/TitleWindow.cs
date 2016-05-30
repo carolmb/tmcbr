@@ -26,11 +26,19 @@ public class TitleWindow : MonoBehaviour {
 		gameObject.SetActive (false);
 	}
 
+	public void OnTutorial () {
+		if (TitleMenu.fading)
+			return;
+		SoundManager.Click ();
+		TitleMenu.instance.tutorialWindow.gameObject.SetActive (true);
+		gameObject.SetActive (false);
+	}
+
 	public void OnCredits () {
 		if (TitleMenu.fading)
 			return;
 		SoundManager.Click ();
-		TitleMenu.instance.loadWindow.gameObject.SetActive (true);
+		TitleMenu.instance.creditsWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
 

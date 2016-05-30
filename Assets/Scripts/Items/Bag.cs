@@ -37,9 +37,10 @@ public class Bag : IEnumerable<Item> {
 		itemSlots [0] = new ItemSlot (5);
 		itemSlots [1] = new ItemSlot (7);
 		itemSlots [2] = new ItemSlot (0, 10);
+		itemSlots [3] = new ItemSlot (6);
 		coins = 100;
 		roses = 0;
-		selectedPosition = 2;
+		selectedPosition = 3;
 	}
 
 	public static Bag current {
