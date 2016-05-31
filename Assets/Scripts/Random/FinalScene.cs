@@ -20,7 +20,6 @@ public class FinalScene : MonoBehaviour {
 		maid = GetComponent<Character> ();
 		protagonist = Player.instance.character;
 
-		protagonist.speed = 1;
 		GameHUD.instance.gameObject.SetActive (false);
 		protagonist.direction = 3;
 		Player.instance.canMove = false;
@@ -34,6 +33,8 @@ public class FinalScene : MonoBehaviour {
 	}
 
 	IEnumerator BadEnding () {
+		float s = protagonist.speed;
+		protagonist.speed = 1;
 		maid.animator.enabled = false;
 		maid.spriteRenderer.sprite = null;
 		Instantiate (deadMaid, transform.position, Quaternion.identity);
@@ -47,13 +48,14 @@ public class FinalScene : MonoBehaviour {
 		Destroy (surprise);
 		//yield return GameHUD.instance.dialog.ShowDialog ("What...?", "Player[sad]");
 		GameHUD.instance.gameObject.SetActive (true);
-		protagonist.speed = 2;
+		protagonist.speed = s;
 		Player.instance.canMove = true;
 		Player.instance.paused = false;
 		maid.currentTile.obstacle = "dead maid";
 	}
 
 	IEnumerator TrueEnding () {
+		protagonist.speed = 1;
 		yield return protagonist.Move (new Vector2 (0, 48));
 		protagonist.Stop ();
 		surprise = (GameObject) Instantiate (surprise, protagonist.transform.position + new Vector3 (0, 48, -100), Quaternion.identity);

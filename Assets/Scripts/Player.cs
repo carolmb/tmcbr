@@ -34,14 +34,8 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	bool needsMapUpdate;
-
 	// Inputs e checagem de estados
 	void Update () {
-		/*if (Input.GetKeyDown (KeyCode.D)) {
-			character.Damage ((Vector2) transform.position - new Vector2(0, 100), 1);
-		}*/
-
 		moved = false;
 		interactedPoint = Vector2.zero;
 
@@ -51,10 +45,7 @@ public class Player : MonoBehaviour {
 		// Guardar tile visitado
 		Tile tile = character.currentTile;
 		if (tile.visited == false) {
-			needsMapUpdate = true;
 			tile.visited = true;
-		} else {
-			needsMapUpdate = false;
 		}
 
 		if (character.moving)
@@ -65,7 +56,7 @@ public class Player : MonoBehaviour {
 		CheckItems ();
 		CheckMovement ();
 
-		if (needsMapUpdate || character.currentTile != tile) {
+		if (character.currentTile != tile) {
 			GameHUD.instance.UpdateMap ();
 		}
 	}
@@ -117,8 +108,11 @@ public class Player : MonoBehaviour {
 			return;
 		}
 
-		moveVector.x = Input.GetAxisRaw ("Horizontal") * character.speed * inputFactor;
-		moveVector.y = Input.GetAxisRaw ("Vertical") * character.speed * inputFactor;
+		moveVector.x = Input.GetAxisRaw ("Horizontal") * inputFactor;
+		moveVector.y = Input.GetAxisRaw ("Vertical") * inputFactor;
+
+		moveVector.Normalize ();
+		moveVector *= character.speed;
 
 		moved = moveVector != Vector2.zero;
 
