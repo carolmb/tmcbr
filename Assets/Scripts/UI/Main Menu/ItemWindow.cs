@@ -22,7 +22,7 @@ public class ItemWindow : SlotWindow {
 		return true;
 	}
 
-	public override void OnEnable () {
+	protected override void OnEnable () {
 		base.OnEnable ();
 		if (Bag.current.selectedSlot == null) {
 			GameHUD.instance.mainMenu.UpdateItem (null, 0);

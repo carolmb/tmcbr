@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class DialogWindow : MonoBehaviour {
+public class DialogWindow : WindowBase {
 
 	public Image portrait;
 	public Text message;

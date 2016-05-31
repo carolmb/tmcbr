@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class LoadWindow : MonoBehaviour {
+public class LoadWindow : WindowBase {
 
 	public Button[] saveButtons;
 
@@ -24,7 +24,7 @@ public class LoadWindow : MonoBehaviour {
 		return hasSave;
 	}
 
-	public void LoadGame(int id) {
+	public void LoadGame (int id) {
 		SaveManager.LoadSave (id);
 		TitleMenu.instance.titleWindow.OnNewGame ();
 	}

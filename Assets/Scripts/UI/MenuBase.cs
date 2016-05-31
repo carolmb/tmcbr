@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.EventSystems;
 
 public class MenuBase : MonoBehaviour {
 
@@ -18,6 +18,11 @@ public class MenuBase : MonoBehaviour {
 		Player.instance.Resume ();
 		GameHUD.instance.gameObject.SetActive (true);
 		gameObject.SetActive (false);
+		Invoke ("ResetSelected", 0.1f);
+	}
+
+	void ResetSelected() {
+		EventSystem.current.SetSelectedGameObject (null);
 	}
 
 }

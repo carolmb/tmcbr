@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class MapWindow : MonoBehaviour {
+public class MapWindow : WindowBase {
 
 	public GameObject miniMap;
 

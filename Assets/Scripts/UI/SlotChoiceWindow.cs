@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public abstract class SlotChoiceWindow : MonoBehaviour {
+public abstract class SlotChoiceWindow : WindowBase {
 
 	public int position;
 	public Image itemIcon;

@@ -129,22 +129,38 @@ public class Character : CharacterBase {
 				newPosition.x <= (MazeManager.maze.width - 1) * Tile.size &&
 				newPosition.y <= (MazeManager.maze.height - 1) * Tile.size;
 		}
-		
-		float left 		= newPosition.x - boxCollider.bounds.extents.x + boxCollider.offset.x;
-		float right 	= newPosition.x + boxCollider.bounds.extents.x + boxCollider.offset.x;
-		float bottom 	= newPosition.y - boxCollider.bounds.extents.y + boxCollider.offset.y - Tile.size / 2;
-		float top 		= newPosition.y + boxCollider.bounds.extents.y + boxCollider.offset.y - Tile.size / 2;
 
-		if (Collides (left, top) || Collides (left, bottom) || Collides (right, top) || Collides (right, bottom)) {
-			return false;
-		} else {
-			return true;
+		foreach (Vector2 v in ColliderPoints(newPosition)) {
+			if (MazeManager.Collides (v.x, v.y)) {
+				return false;
+			}
 		}
+		return true;
 	}
 
 	// Verifica se um dado ponto está colidindo em algum tile
 	public bool Collides (float x, float y) {
 		return MazeManager.Collides (x, y);
+	}
+
+	// Coleta os pontos do box collider
+	public Vector2[] ColliderPoints () {
+		return ColliderPoints (transform.position);
+	}
+
+	// Coleta os pontos do box collider com centro pos
+	public Vector2[] ColliderPoints (Vector2 pos) {
+		float left 		= pos.x - boxCollider.bounds.extents.x + boxCollider.offset.x;
+		float right 	= pos.x + boxCollider.bounds.extents.x + boxCollider.offset.x;
+		float bottom 	= pos.y - boxCollider.bounds.extents.y + boxCollider.offset.y - Tile.size / 2;
+		float top 		= pos.y + boxCollider.bounds.extents.y + boxCollider.offset.y - Tile.size / 2;
+
+		Vector2[] points = new Vector2[4];
+		points [0] = new Vector2 (left, top);
+		points [1] = new Vector2 (left, bottom);
+		points [2] = new Vector2 (right, top);
+		points [3] = new Vector2 (right, bottom);
+		return points;
 	}
 
 	// ===============================================================================

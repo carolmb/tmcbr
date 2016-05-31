@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class TitleWindow : MonoBehaviour {
+public class TitleWindow : WindowBase {
 
 	public Button loadButton;
 

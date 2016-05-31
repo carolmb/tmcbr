@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class RiddleWindow : MonoBehaviour {
+public class RiddleWindow : WindowBase {
 
 	public Text input;
 	bool correctAnswer; 

@@ -16,6 +16,12 @@ public class GameManager {
 		#endif
 	}
 
+	public static bool KeyBoardInteractInput () {
+		if (EventSystem.current.currentSelectedGameObject != null)
+			return false;
+		return Input.GetButtonDown("Submit");
+	}
+
 	private static bool TouchInput() {
 		if (EventSystem.current.IsPointerOverGameObject (0))
 			return false;

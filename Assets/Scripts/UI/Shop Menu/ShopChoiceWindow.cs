@@ -13,10 +13,11 @@ public class ShopChoiceWindow : SlotChoiceWindow {
 		get { return GameHUD.instance.shopMenu.shopWindow.GetItem (position); }
 	}
 
-	void OnEnable () {
+	protected override void OnEnable () {
 		UpdatePrice (item.totalPrice);
 		UpdateItem (item, item.count);
 		buyButton.interactable = Bag.current.coins >= item.totalPrice;
+		base.OnEnable ();
 	}
 		
 	public void UpdatePrice (int value) {

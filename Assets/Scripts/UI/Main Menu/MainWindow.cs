@@ -3,12 +3,13 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainWindow : MonoBehaviour {
+public class MainWindow : WindowBase {
 
 	public Button start;
 
-	public void OnEnable() {
+	protected override void OnEnable() {
 		start.interactable = Bag.current.HasItem (Item.DB[9]);
+		base.OnEnable ();
 	}
 
 	public void ItemButton () {

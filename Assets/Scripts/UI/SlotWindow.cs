@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public abstract class SlotWindow : MonoBehaviour {
+public abstract class SlotWindow : WindowBase {
 
 	public SlotChoiceWindow choiceWindow;
 	public Button[] itemButtons;
@@ -17,8 +17,9 @@ public abstract class SlotWindow : MonoBehaviour {
 	public abstract int MaxItems ();
 	public abstract bool ButtonEnable (int i);
 
-	public virtual void OnEnable () {
+	protected override void OnEnable () {
 		SetButtons ();
+		base.OnEnable ();
 	}
 
 	protected void SetButtons() {

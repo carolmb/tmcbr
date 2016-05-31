@@ -42,6 +42,9 @@ public class Player : MonoBehaviour {
 		// Checar o pause do jogo
 		CheckPause ();
 
+		if (paused)
+			return;
+
 		// Guardar tile visitado
 		Tile tile = character.currentTile;
 		if (tile.visited == false) {
@@ -75,6 +78,8 @@ public class Player : MonoBehaviour {
 		if (GameManager.InteractInput ()) {
 			Vector2 point = GameManager.InputPosition ();
 			interactedPoint = Camera.main.ScreenToWorldPoint (point);
+		} else if (GameManager.KeyBoardInteractInput ()) {
+			interactedPoint = transform.position;
 		} else {
 			interactedPoint = Vector2.zero;
 		}

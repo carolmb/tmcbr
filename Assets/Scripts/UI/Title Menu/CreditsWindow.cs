@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CreditsWindow : MonoBehaviour {
+public class CreditsWindow : WindowBase {
 
 	public void Return () {
 		SoundManager.Click ();

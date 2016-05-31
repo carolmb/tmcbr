@@ -12,10 +12,11 @@ public class ItemChoiceWindow : SlotChoiceWindow {
 		get { return Bag.current.GetItem (position); }
 	}
 
-	void OnEnable () {
+	protected override void OnEnable () {
 		UpdateItem (item, bag.GetSlot(position).count);
 		equipButton.interactable = item.canEquip;
 		discardButton.interactable = item.canDiscard;
+		base.OnEnable ();
 	}
 
 	public void Equip () {
