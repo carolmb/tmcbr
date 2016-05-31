@@ -16,6 +16,8 @@ public class GameSave {
 	public bool golemBossFirstTime;
 	public bool golemRose = false;
 
+	public int currentFruit = 0;
+
 	private int _lifePoints;
 	public int lifePoints {
 		get {

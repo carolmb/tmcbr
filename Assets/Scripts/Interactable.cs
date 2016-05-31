@@ -7,7 +7,6 @@ public class Interactable : MonoBehaviour {
 	public int moveDistance = 10; // Distância em tiles para poder andar até o obstáculo
 	public float interactDistance = 32; // Distância em pixels pra poder interagir
 
-	private Coroutine currentPath;
 	private BoxCollider2D hitBox;
 
 	void Start () {
@@ -27,9 +26,8 @@ public class Interactable : MonoBehaviour {
 				if (isNearPlayer) {
 					SendMessage ("OnInteract");
 				} else {
-					if (currentPath != null)
-						StopCoroutine (currentPath);
-					currentPath = StartCoroutine(ChaseItem ());
+					if (!Player.instance.character.moving)
+						StartCoroutine(ChaseItem ());
 				}
 			}
 		}

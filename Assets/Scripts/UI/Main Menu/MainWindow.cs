@@ -20,7 +20,7 @@ public class MainWindow : MonoBehaviour {
 	public void MapButton () {
 		SoundManager.Click ();
 		MapWindow map = GameHUD.instance.mainMenu.mapWindow;
-		MapWindow.UpdateTexture (map.miniMap.GetComponent<Image> ());
+		MapWindow.UpdateTexture (map.miniMap.GetComponent<Image> (), Vector2.one / 2);
 		GameHUD.instance.mainMenu.mapWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}

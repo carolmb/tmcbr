@@ -25,8 +25,6 @@ public class LoadWindow : MonoBehaviour {
 	}
 
 	public void LoadGame(int id) {
-		if (TitleMenu.fading)
-			return;
 		SaveManager.LoadSave (id);
 		TitleMenu.instance.titleWindow.OnNewGame ();
 	}

@@ -11,6 +11,8 @@ public class GameHUD : MonoBehaviour {
 	public DialogWindow dialog;
 	public RiddleWindow riddleWindow;
 
+	public Image miniMap;
+
 	void Awake () {
 		instance = this;
 	}
@@ -55,10 +57,8 @@ public class GameHUD : MonoBehaviour {
 		}
 	}
 
-	public Image miniMap;
-
 	public void UpdateMap () {
-		MapWindow.UpdateTexture (miniMap, 1);
+		MapWindow.UpdateTexture (miniMap, Vector2.zero, 2);
 	}
 		
 }

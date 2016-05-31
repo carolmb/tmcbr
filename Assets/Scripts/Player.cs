@@ -43,13 +43,10 @@ public class Player : MonoBehaviour {
 		}*/
 
 		moved = false;
+		interactedPoint = Vector2.zero;
 
 		// Checar o pause do jogo
 		CheckPause ();
-		if (paused) {
-			interactedPoint = Vector2.zero;
-			return;
-		}
 
 		// Guardar tile visitado
 		Tile tile = character.currentTile;

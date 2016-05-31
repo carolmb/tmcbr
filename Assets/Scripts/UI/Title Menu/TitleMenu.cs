@@ -13,10 +13,7 @@ public class TitleMenu : MenuBase {
 
 	public void Awake () {
 		instance = this;
-		fading = false;
 		titleWindow.UpdateLoadButton ();
 	}
-
-	public static bool fading = false;
 
 }

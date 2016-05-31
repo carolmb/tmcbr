@@ -12,52 +12,30 @@ public class TitleWindow : MonoBehaviour {
 	}
 
 	public void OnNewGame () {
-		if (TitleMenu.fading)
-			return;
 		SoundManager.Click ();
-		TitleMenu.instance.StartCoroutine (NewGameFade ());
+		SceneManager.LoadScene ("Game");
 	}
 
 	public void OnLoad() {
-		if (TitleMenu.fading)
-			return;
 		SoundManager.Click ();
 		TitleMenu.instance.loadWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
 
 	public void OnTutorial () {
-		if (TitleMenu.fading)
-			return;
 		SoundManager.Click ();
 		TitleMenu.instance.tutorialWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
 
 	public void OnCredits () {
-		if (TitleMenu.fading)
-			return;
 		SoundManager.Click ();
 		TitleMenu.instance.creditsWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
 	}
 
 	public void Quit() {
-		if (TitleMenu.fading)
-			return;
 		SoundManager.Click ();
-		TitleMenu.instance.StartCoroutine (QuitFade ());
-	}
-
-	private IEnumerator NewGameFade () {
-		TitleMenu.fading = true;
-		yield return TitleMenu.instance.StartCoroutine(GameCamera.instance.FadeOut (5));
-		SceneManager.LoadScene ("Game");
-	}
-
-	private IEnumerator QuitFade () {
-		TitleMenu.fading = true;
-		yield return TitleMenu.instance.StartCoroutine(GameCamera.instance.FadeOut (5));
 		Application.Quit ();
 	}
 

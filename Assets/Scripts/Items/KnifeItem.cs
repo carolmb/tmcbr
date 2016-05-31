@@ -74,16 +74,8 @@ public class KnifeItem : MonoBehaviour {
 		}
 		if (collider.CompareTag ("Grass")) {
 			collider.gameObject.GetComponent<Bush> ().Cut ();
-			gameObject.SendMessage("Curupira");
-			Destroy (gameObject);
+			Curupira.instance.OnGrassCut ();
 		}
 	}
 
-	void Curupira() {
-		GameObject go = GameObject.Find("Enemies/Curupira");
-		if (go != null) {
-			Curupira curupira = go.GetComponent<Curupira>();
-			curupira.inAttackMode = true;
-		}
-	}
 }

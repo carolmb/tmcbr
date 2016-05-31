@@ -16,6 +16,7 @@ public class MainMenu : MenuBase {
 
 	public override void Open () {
 		base.Open ();
+		Player.instance.Pause ();
 		gameObject.SetActive (true);
 		coinText.transform.parent.gameObject.SetActive (true);
 		UpdateCoins (Bag.current.coins);
@@ -27,6 +28,7 @@ public class MainMenu : MenuBase {
 
 	public override void Close () {
 		base.Close ();
+		Player.instance.Resume ();
 		GameHUD.instance.gameObject.SetActive (true);
 	}
 

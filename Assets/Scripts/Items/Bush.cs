@@ -12,9 +12,9 @@ public class Bush : MonoBehaviour {
 		iniPos = transform.position;
 	}
 
-	public void Cut(){
+	public void Cut () {
 		if (currentNumber < 6) {
-			GameObject f = Instantiate (fruit[currentNumber]) as GameObject;
+			GameObject f = Instantiate (fruit [currentNumber]) as GameObject;
 			f.transform.position = iniPos;
 			f.GetComponent<FruitObject> ().number = currentNumber;
 			currentNumber++;
@@ -24,8 +24,6 @@ public class Bush : MonoBehaviour {
 			f.transform.position = iniPos;
 			f.GetComponent<FruitObject> ().number = randNumber;
 		}
-		Vector3 pos = MazeManager.WorldToTilePos (transform.position);
-		MazeManager.maze.tiles [(int)pos.x, (int)pos.y].obstacle = "";
 		Destroy (gameObject);
 	}
 
