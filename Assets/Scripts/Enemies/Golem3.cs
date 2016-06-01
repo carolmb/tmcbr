@@ -10,7 +10,7 @@ public class Golem3 : Enemy {
 	protected override void Start () {
 		base.Start ();
 		Spawn ();
-		if (!SaveManager.currentSave.golemRose && (!SaveManager.currentSave.golemBossFirstTime && Random.Range(0, 100) > 15)) {
+		if (SaveManager.currentSave.golemRose || (!SaveManager.currentSave.golemBossFirstTime && Random.Range(0, 100) > 15)) {
 			Destroy (gameObject);
 		}
 		PickItem.golemCount = 0;
