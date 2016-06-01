@@ -177,9 +177,6 @@ public class Character : CharacterBase {
 	// Serve para verificar se o personagem está levando dano
 	public bool damaging;
 
-	// Som ao levar dano
-	public AudioClip damageSound;
-
 	// Animação de dano
 	public Coroutine Damage(Vector2 origin, int value) {
 		if (currentMovement != null) {
