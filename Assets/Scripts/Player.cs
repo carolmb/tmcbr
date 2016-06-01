@@ -60,8 +60,13 @@ public class Player : MonoBehaviour {
 		CheckMovement ();
 
 		if (character.currentTile != tile) {
-			GameHUD.instance.UpdateMap ();
+			Minimap.Update (tile);
+			Invoke ("UpdateMap", 0.1f);
 		}
+	}
+
+	void UpdateMap() {
+		GameHUD.instance.UpdateMap ();
 	}
 
 	void OnDestroy() {
