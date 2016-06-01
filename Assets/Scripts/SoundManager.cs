@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip coin;
 	public AudioClip cloth;
 	public AudioClip playerDamage;
+	public AudioClip enemyDamage;
 	public AudioClip rockCollision;
 	public AudioClip explosion;
 	public AudioClip knife;
@@ -73,6 +74,10 @@ public class SoundManager : MonoBehaviour {
 
 	public static void PlayerDamage () {
 		PlayAudioClip (instance.playerDamage, 1);
+	}
+
+	public static void EnemyDamage () {
+		PlayAudioClip (instance.enemyDamage, 1);
 	}
 
 	public static void RockCollision () {

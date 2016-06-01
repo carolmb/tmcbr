@@ -145,6 +145,7 @@ public class Enemy : MonoBehaviour {
 	Coroutine damageRoutine = null;
 
 	protected virtual void OnDamage () {
+		SoundManager.EnemyDamage ();
 		damageRoutine = StartCoroutine (DamageLight ());
 	}
 
