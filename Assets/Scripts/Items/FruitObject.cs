@@ -9,6 +9,9 @@ public class FruitObject : MonoBehaviour {
 			Item item = Item.DB [10 + number];
 			SoundManager.Coin ();
 			SaveManager.currentSave.bag.Add (item);
+			if (Random.Range (0, 100) < 30) {
+				SaveManager.currentSave.lifePoints++;
+			}
 			Destroy (gameObject);
 		}
 	}

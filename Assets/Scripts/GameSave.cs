@@ -4,7 +4,7 @@ using System.Collections;
 [System.Serializable]
 public class GameSave {
 
-	public static readonly int maxHP = 9999;
+	public static readonly int maxHP = 15;
 
 	public string name;
 	public Maze[] mazes;
