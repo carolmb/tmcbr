@@ -18,51 +18,10 @@ public class MapWindow : WindowBase {
 	}
 
 	public static void UpdateTexture(Image imageComp, Vector2 pivot, int size = 5) {
-		Texture2D texture = new Texture2D (MazeManager.maze.width + 2, MazeManager.maze.height + 2, TextureFormat.RGBA32, false);
-		texture.filterMode = FilterMode.Point;
-
-		bool needsUpdate = false;
-
-		if (imageComp.sprite == null) {
-			needsUpdate = true;
-		}
-
-		if (!needsUpdate && (texture.width != imageComp.sprite.texture.width ||texture.height != imageComp.sprite.texture.height))
-			needsUpdate = true;
-
-		for (int i = 0; i < texture.width; i++) {
-			for (int j = 0; j < texture.height; j++) {
-				texture.SetPixel (i, j, hiddenColor);
-			}
-		}
-
-		for (int i = 0; i < MazeManager.maze.width; i++) {
-			for (int j = 0; j < MazeManager.maze.height; j++) {
-
-				if (MazeManager.maze.tiles [i, j].transition != null && MazeManager.maze.tiles [i, j].transition.instant) {
-					texture.SetPixel (i + 1, j + 1, transitionColor);
-				} else if (MazeManager.maze.tiles [i, j].visited) {
-					texture.SetPixel (i + 1, j + 1, visitedColor);
-				}
-
-				if (!needsUpdate && (texture.GetPixel (i + 1, j + 1) != 
-						imageComp.sprite.texture.GetPixel (i + 1, j + 1))) {
-					needsUpdate = true;
-				}
-			}
-		}
-		Tile t = Player.instance.character.currentTile;
-		texture.SetPixel (t.x + 1, t.y + 1, playerColor);
-		if (!needsUpdate && (texture.GetPixel (t.x + 1, t.y + 1) != imageComp.sprite.texture.GetPixel (t.x + 1, t.y + 1))) {
-			needsUpdate = true;
-		}
-
-		if (needsUpdate) {
-			texture.Apply ();
-			imageComp.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero, 1);
-			imageComp.rectTransform.sizeDelta = new Vector2 (texture.width * size, texture.height * size);
-			SetPivot (imageComp, pivot.x, pivot.y);
-		}
+		Texture2D texture = Minimap.texture;
+		imageComp.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero, 1);
+		imageComp.rectTransform.sizeDelta = new Vector2 (texture.width * size, texture.height * size);
+		SetPivot (imageComp, pivot.x, pivot.y);
 	}
 
 	private static void SetPivot(Image image, float x, float y) {
@@ -89,7 +48,7 @@ public class MapWindow : WindowBase {
 		}
 	}
 
-	public void Return() {
+	public void Return () {
 		SoundManager.Click ();
 		GameHUD.instance.mainMenu.mainWindow.gameObject.SetActive (true);
 		gameObject.SetActive (false);
