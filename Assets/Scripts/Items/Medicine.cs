@@ -11,7 +11,7 @@ public class Medicine : Item {
 
 	public override void OnUse () {
 		SoundManager.Drink ();
-		SaveManager.currentSave.lifePoints++;
+		SaveManager.currentSave.lifePoints += 3;
 		Player.instance.character.lifePoints = SaveManager.currentSave.lifePoints;
 		GameHUD.instance.UpdateLife(Player.instance.character.lifePoints);
 		//Player.instance.character.PlayAnimation ("Drink", false);

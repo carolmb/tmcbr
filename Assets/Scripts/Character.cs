@@ -188,6 +188,7 @@ public class Character : CharacterBase {
 
 	private IEnumerator Damage_coroutine(Vector2 origin, int value) {
 		damaging = true;
+		Tile t = currentTile;
 
 		lifePoints = Mathf.Max (0, lifePoints - value);
 		SendMessage ("OnDamage");
@@ -204,6 +205,10 @@ public class Character : CharacterBase {
 			Stop ();
 		}
 		damaging = false;
+		if (isPlayer && currentTile != t) {
+			Minimap.Update (t);
+			Player.instance.Invoke ("UpdateMap", 0.1f);
+		}
 
 		// Death
 		if (lifePoints == 0) {

@@ -13,7 +13,10 @@ public class Fruit : Item {
 	}
 
 	public override void OnUse () {
-		
+		SoundManager.Drink ();
+		SaveManager.currentSave.lifePoints++;
+		Player.instance.character.lifePoints = SaveManager.currentSave.lifePoints;
+		GameHUD.instance.UpdateLife(Player.instance.character.lifePoints);
 	}
 
 }

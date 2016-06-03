@@ -195,7 +195,7 @@ public class Player : MonoBehaviour {
 		if (repelling) {
 			repelTime -= Time.deltaTime;
 		}
-		if (canMove && Input.GetButtonDown ("Item")) {
+		if (canMove && !character.damaging && Input.GetButtonDown ("Item")) {
 			UseItem ();
 		}
 	}
@@ -252,8 +252,9 @@ public class Player : MonoBehaviour {
 		GameHUD.instance.UpdateLife (character.lifePoints);
 		visible = true;
 		Knife.DestroyKnife ();
-		if (character.lifePoints > 0)
+		if (character.lifePoints > 0) {
 			StartCoroutine (Blink ());
+		}
 	}
 
 	// Piscar quando o jogador leva dano
@@ -272,7 +273,7 @@ public class Player : MonoBehaviour {
 		immune = false;
 	}
 
-	// ===============================================================================
+// ===============================================================================
 	// Morte
 	// ===============================================================================
 
