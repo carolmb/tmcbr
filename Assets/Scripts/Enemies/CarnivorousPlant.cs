@@ -6,26 +6,22 @@ public class CarnivorousPlant : MonoBehaviour {
 
 	public GameObject rose;
 
-	static int[] fruits;
 	public int damage = 5;
 
 	// Use this for initialization
 	void Start () {
-		fruits = new int[6];
-		for (int i = 0; i < 6; i++)
-			fruits [i] = i;
-		SaveManager.currentSave.currentFruit = 0;
 	}
 
 	void Eat() {
 		Item fruitEquiped = SaveManager.currentSave.bag.selectedItem;
 		if (fruitEquiped != null && fruitEquiped is Fruit) {
 			Fruit f = (Fruit)fruitEquiped;
-			if (f.number == fruits [SaveManager.currentSave.currentFruit]) {
-				Player.instance.UseItem ();
+			Player.instance.ConsumeItem ();
+			if (f.number == SaveManager.currentSave.currentFruit) {
 				SaveManager.currentSave.currentFruit++;
 				SoundManager.Coin ();
 			} else {
+				SaveManager.currentSave.currentFruit = 0;
 				Attack ();
 			}
 		} else {

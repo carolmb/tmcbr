@@ -17,10 +17,11 @@ public class SaveWindow : WindowBase {
 				saveButtons [i].GetComponentInChildren<Text> ().text = "Empty";
 			}
 		}
+		//saveName.text = SaveManager.currentSave.name;
 	}
 
 	public void Save(int id) {
-		SoundManager.Click ();
+		SoundManager.Rose ();
 		SaveManager.SaveGame (id, saveName.text);
 		OnEnable ();
 	}

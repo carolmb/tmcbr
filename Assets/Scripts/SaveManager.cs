@@ -26,6 +26,7 @@ public static class SaveManager {
 	// Ao criar um novo jogo
 	public static void NewGame () {
 		currentSave = new GameSave ();
+		currentSave.name = "";
 		loadTime = Time.time;
 	}
 
