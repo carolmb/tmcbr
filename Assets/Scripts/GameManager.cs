@@ -5,24 +5,26 @@ using System.Collections;
 public class GameManager {
 
 	// ===============================================================================
-	// Inputs
+	// Interaction Inputs
 	// ===============================================================================
 
-	public static bool InteractInput () {
-		#if UNITY_ANDROID
-			return TouchInput();
-		#else
-			return DefaultInput();
-		#endif
+	public static bool ClickInteractInput () {
+	//	#if UNITY_ANDROID
+	//		return TouchInteractInput();
+	//	#else
+			return MouseInteractInput();
+	//	#endif
+	}
+		
+	private static bool TouchInteractInput () {
+		return !EventSystem.current.IsPointerOverGameObject (0) &&
+		Input.GetTouch (0).phase == TouchPhase.Began;
 	}
 
-	public static bool SubmitInput () {
-		#if UNITY_ANDROID
-			Debug.Log(Input.touchCount);
-			return Input.GetTouch (0).phase == TouchPhase.Began;
-		#else
-			return Input.GetMouseButton (0);
-		#endif
+	private static bool MouseInteractInput () {
+		if (EventSystem.current.IsPointerOverGameObject (-1))
+			return false;
+		return Input.GetMouseButtonUp (0);
 	}
 
 	public static bool KeyBoardInteractInput () {
@@ -31,29 +33,37 @@ public class GameManager {
 		return Input.GetButtonDown("Submit");
 	}
 
-	private static bool TouchInput () {
-		if (EventSystem.current.IsPointerOverGameObject (0))
-			return false;
-		return Input.GetTouch (0).phase == TouchPhase.Began;
-	}
-
-	private static bool DefaultInput () {
-		if (EventSystem.current.IsPointerOverGameObject (-1))
-			return false;
-		return Input.GetMouseButtonUp (0);
-	}
-
 	public static Vector2 InteractPosition () {
 		Vector2 point = SubmitPosition ();
 		return Camera.main.ScreenToWorldPoint (point);
 	}
 
+	// ===============================================================================
+	// Other Inputs
+	// ===============================================================================
+
+	public static bool SubmitInput () {
+	//	#if UNITY_ANDROID
+	//		return SubmitTouchInput ();
+	//	#else
+			return SubmitMouseInput ();
+	//	#endif
+	}
+
+	private static bool SubmitMouseInput () {
+		return Input.GetMouseButton (0);
+	}
+
+	private static bool SubmitTouchInput () {
+		return Input.GetTouch (0).phase == TouchPhase.Moved || Input.GetTouch (0).phase == TouchPhase.Stationary;
+	}
+
 	public static Vector2 SubmitPosition () {
-		#if UNITY_ANDROID
-			return TouchPoint();
-		#else
-			return MousePoint();
-		#endif
+	//	#if UNITY_ANDROID
+	//		return TouchPoint ();
+	//	#else
+			return MousePoint ();
+	//	#endif
 	}
 
 	private static Vector2 TouchPoint () {

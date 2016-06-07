@@ -18,6 +18,7 @@ public class Player : MonoBehaviour {
 
 	// Guardar referências
 	void Awake () {
+		Input.simulateMouseWithTouches = true;
 		instance = this;
 		character = GetComponent<Character> ();
 	}
@@ -81,7 +82,7 @@ public class Player : MonoBehaviour {
 
 	private void CheckInteract() {
 		if (Analog.input != Vector2.zero) {
-			if (GameManager.InteractInput ()) {
+			if (GameManager.ClickInteractInput ()) {
 				interactedPoint = GameManager.InteractPosition ();
 			} else if (GameManager.KeyBoardInteractInput ()) {
 				interactedPoint = transform.position;
