@@ -18,6 +18,7 @@ public class GameManager {
 
 	public static bool SubmitInput () {
 		#if UNITY_ANDROID
+			Debug.Log(Input.touchCount);
 			return Input.GetTouch (0).phase == TouchPhase.Began;
 		#else
 			return Input.GetMouseButton (0);
