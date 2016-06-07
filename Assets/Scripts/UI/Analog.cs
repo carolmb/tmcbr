@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class Analog : MonoBehaviour {
 
 	public static Vector2 input;
-	private float radius;
-	private Vector2 center;
+	private float radius = 0;
+	private Vector2 center = Vector2.zero;
 
 	void Start () {
 		#if UNITY_ANDROID
