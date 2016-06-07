@@ -80,13 +80,14 @@ public class Player : MonoBehaviour {
 	public Vector2 interactedPoint { get; private set; }
 
 	private void CheckInteract() {
-		if (GameManager.InteractInput ()) {
-			Vector2 point = GameManager.InputPosition ();
-			interactedPoint = Camera.main.ScreenToWorldPoint (point);
-		} else if (GameManager.KeyBoardInteractInput ()) {
-			interactedPoint = transform.position;
-		} else {
-			interactedPoint = Vector2.zero;
+		if (Analog.input != Vector2.zero) {
+			if (GameManager.InteractInput ()) {
+				interactedPoint = GameManager.InteractPosition ();
+			} else if (GameManager.KeyBoardInteractInput ()) {
+				interactedPoint = transform.position;
+			} else {
+				interactedPoint = Vector2.zero;
+			}
 		}
 	}
 
@@ -95,24 +96,7 @@ public class Player : MonoBehaviour {
 	// ===============================================================================
 
 	// Movimento pelo Input
-	void CheckMovement() {
-		//MoveByMouse ();
-		MoveByKeyboard ();
-	}
-
-	void MoveByMouse () {
-		if (Input.GetMouseButton (0)) {
-			Vector2 point = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			point = MazeManager.TileToWorldPos (MazeManager.WorldToTilePos (point));
-			character.TurnTo (point);
-			character.MoveTo (point);
-		}
-	}
-
-	public static float inputFactor = 1;
-	public bool moved = false;
-
-	void MoveByKeyboard () {
+	void CheckMovement () {
 		if (!canMove || character.damaging) {
 			moved = false;
 			return;
@@ -120,6 +104,10 @@ public class Player : MonoBehaviour {
 
 		moveVector.x = Input.GetAxisRaw ("Horizontal") * inputFactor;
 		moveVector.y = Input.GetAxisRaw ("Vertical") * inputFactor;
+
+		if (moveVector == Vector2.zero) {
+			moveVector = Analog.input;
+		}
 
 		moveVector.Normalize ();
 		moveVector *= character.speed;
@@ -145,6 +133,10 @@ public class Player : MonoBehaviour {
 			}
 		}
 	}
+
+	public static float inputFactor = 1;
+	public bool moved = false;
+
 
 	// Verifica se o player chegou nem tile que tem uma transição
 	void CheckTransition () {

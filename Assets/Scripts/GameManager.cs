@@ -8,11 +8,19 @@ public class GameManager {
 	// Inputs
 	// ===============================================================================
 
-	public static bool InteractInput() {
+	public static bool InteractInput () {
 		#if UNITY_ANDROID
 			return TouchInput();
 		#else
 			return DefaultInput();
+		#endif
+	}
+
+	public static bool SubmitInput () {
+		#if UNITY_ANDROID
+			return Input.GetTouch (0).phase == TouchPhase.Began;
+		#else
+			return Input.GetMouseButton (0);
 		#endif
 	}
 
@@ -22,19 +30,24 @@ public class GameManager {
 		return Input.GetButtonDown("Submit");
 	}
 
-	private static bool TouchInput() {
+	private static bool TouchInput () {
 		if (EventSystem.current.IsPointerOverGameObject (0))
 			return false;
 		return Input.GetTouch (0).phase == TouchPhase.Began;
 	}
 
-	private static bool DefaultInput() {
+	private static bool DefaultInput () {
 		if (EventSystem.current.IsPointerOverGameObject (-1))
 			return false;
 		return Input.GetMouseButtonUp (0);
 	}
 
-	public static Vector2 InputPosition() {
+	public static Vector2 InteractPosition () {
+		Vector2 point = SubmitPosition ();
+		return Camera.main.ScreenToWorldPoint (point);
+	}
+
+	public static Vector2 SubmitPosition () {
 		#if UNITY_ANDROID
 			return TouchPoint();
 		#else
@@ -42,11 +55,11 @@ public class GameManager {
 		#endif
 	}
 
-	private static Vector2 TouchPoint() {
+	private static Vector2 TouchPoint () {
 		return Input.GetTouch (0).position;
 	}
 
-	private static Vector2 MousePoint() {
+	private static Vector2 MousePoint () {
 		return Input.mousePosition;
 	}
 

@@ -46,7 +46,7 @@ public class GameHUD : MonoBehaviour {
 		lifeText.text = "x" + value;
 	}
 
-	public void UpdateItem(Item item, int count) {
+	public void UpdateItem (Item item, int count) {
 		if (item == null) {
 			itemIcon.gameObject.SetActive (false);
 		} else {
@@ -58,7 +58,7 @@ public class GameHUD : MonoBehaviour {
 	}
 
 	public void UpdateMap () {
-		MapWindow.UpdateTexture (miniMap, Vector2.zero, 2);
+		MapWindow.UpdateTexture (miniMap, Vector2.one, 2);
 	}
-		
+
 }
