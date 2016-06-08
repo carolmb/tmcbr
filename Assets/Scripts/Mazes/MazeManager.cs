@@ -43,6 +43,9 @@ public class MazeManager : MonoBehaviour {
 
 	// Resgata o labirinto atual e inicializa os tiles
 	void Awake () {
+		Input.simulateMouseWithTouches = true;
+		Screen.SetResolution (Screen.height * 4 / 3, Screen.height, Screen.fullScreen);
+
 		if (SaveManager.currentSave == null) {
 			SaveManager.NewGame ();
 		}

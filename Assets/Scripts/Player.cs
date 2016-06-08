@@ -18,7 +18,6 @@ public class Player : MonoBehaviour {
 
 	// Guardar referências
 	void Awake () {
-		Input.simulateMouseWithTouches = true;
 		instance = this;
 		character = GetComponent<Character> ();
 	}

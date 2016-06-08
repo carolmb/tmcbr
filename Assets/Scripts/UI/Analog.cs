@@ -9,16 +9,16 @@ public class Analog : MonoBehaviour {
 	private Vector2 center = Vector2.zero;
 
 	void Start () {
-		#if UNITY_ANDROID
+	//	#if UNITY_ANDROID
 			RectTransform rt = GetComponent<RectTransform> ();
 			input = Vector2.zero;
 			radius = rt.sizeDelta.x / 2;
-			center = new Vector2 (radius, radius);
-		#else
-			gameObject.SetActive(false);
-			RectTransform rt = Player.instance.menuButton.GetComponent<RectTransform>();
-			rt.anchoredPosition -= new Vector2 (124, 0);
-		#endif
+			center = new Vector2 (radius, radius) + rt.anchorMin;
+	//	#else
+	//		gameObject.SetActive(false);
+	//		RectTransform rt = Player.instance.menuButton.GetComponent<RectTransform>();
+	//		rt.anchoredPosition -= new Vector2 (124, 0);
+	//	#endif
 	}
 
 	void Update () {
@@ -27,7 +27,7 @@ public class Analog : MonoBehaviour {
 			Debug.Log (GameManager.SubmitPosition ());
 			Debug.Log ("center: " + center);
 			//Debug.Log (input);
-			if (input.magnitude > radius * 2) {
+			if (input.magnitude > radius * 2 * Screen.height / 240) {
 				input = Vector2.zero;
 			} else {
 				input.Normalize ();

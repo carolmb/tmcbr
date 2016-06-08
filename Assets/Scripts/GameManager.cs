@@ -34,7 +34,12 @@ public class GameManager {
 	}
 
 	public static Vector2 InteractPosition () {
-		Vector2 point = SubmitPosition ();
+		Vector2 point;
+	//	#if UNITY_ANDROID
+	//		point = TouchPoint ();
+	//	#else
+			point = MousePoint ();
+	//	#endif
 		return Camera.main.ScreenToWorldPoint (point);
 	}
 
@@ -59,11 +64,13 @@ public class GameManager {
 	}
 
 	public static Vector2 SubmitPosition () {
+		Vector2 point;
 	//	#if UNITY_ANDROID
-	//		return TouchPoint ();
+	//		point = TouchPoint ();
 	//	#else
-			return MousePoint ();
+		point = MousePoint ();
 	//	#endif
+		return point;
 	}
 
 	private static Vector2 TouchPoint () {
