@@ -69,8 +69,8 @@ public class KnifeItem : MonoBehaviour {
 			Character comp = collider.GetComponent<Character> ();
 			if (!comp.damaging) {
 				comp.Damage (transform.position, damage);
+				Destroy (gameObject);
 			}
-			Destroy (gameObject);
 		}
 		if (collider.CompareTag ("Grass")) {
 			collider.gameObject.GetComponent<Bush> ().Cut ();

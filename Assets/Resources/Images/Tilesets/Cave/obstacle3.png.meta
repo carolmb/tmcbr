@@ -64,14 +64,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -4, y: 9}
-        - {x: -12, y: 5}
-        - {x: -12, y: -7}
-        - {x: -7, y: -12}
-        - {x: 10, y: -12}
-        - {x: 11, y: -8}
-        - {x: 11, y: 8}
-        - {x: 10, y: 9}
+      - - {x: 4, y: 10}
+        - {x: -4, y: 10}
+        - {x: -12, y: 3}
+        - {x: -12, y: -10}
+        - {x: -10, y: -11}
+        - {x: 9, y: -11}
+        - {x: 11, y: -5}
+        - {x: 11, y: 5}
     - name: obstacle3_1
       rect:
         serializedVersion: 2
@@ -83,14 +83,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -4, y: 9}
-        - {x: -12, y: 5}
-        - {x: -12, y: -7}
-        - {x: -7, y: -12}
-        - {x: 10, y: -12}
-        - {x: 11, y: -8}
-        - {x: 11, y: 8}
-        - {x: 10, y: 9}
+      - - {x: 4, y: 10}
+        - {x: -4, y: 10}
+        - {x: -12, y: 3}
+        - {x: -12, y: -10}
+        - {x: -10, y: -11}
+        - {x: 9, y: -11}
+        - {x: 11, y: -5}
+        - {x: 11, y: 5}
     - name: obstacle3_2
       rect:
         serializedVersion: 2
@@ -102,14 +102,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -4, y: 9}
-        - {x: -12, y: 5}
-        - {x: -12, y: -7}
-        - {x: -7, y: -12}
-        - {x: 10, y: -12}
-        - {x: 11, y: -8}
-        - {x: 11, y: 8}
-        - {x: 10, y: 9}
+      - - {x: 4, y: 10}
+        - {x: -4, y: 10}
+        - {x: -12, y: 3}
+        - {x: -12, y: -10}
+        - {x: -10, y: -11}
+        - {x: 9, y: -11}
+        - {x: 11, y: -5}
+        - {x: 11, y: 5}
     outline: []
   spritePackingTag: 
   userData: 

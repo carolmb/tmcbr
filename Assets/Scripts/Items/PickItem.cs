@@ -81,8 +81,8 @@ public class PickItem : MonoBehaviour {
 			Character comp = collider.GetComponent<Character> ();
 			if (!comp.damaging) {
 				comp.Damage (transform.position, damage);
+				Destroy (gameObject);
 			}
-			Destroy (gameObject);
 		} else if (collider.CompareTag ("Rock")) {
 			SoundManager.RockCollision ();
 			Vector3 pos = collider.transform.position;
@@ -91,21 +91,22 @@ public class PickItem : MonoBehaviour {
 			OnDestroyRock (pos);
 			Destroy (gameObject);
 		} else if (collider.CompareTag ("Golem")) {
-
 			Character comp = collider.GetComponent<Character> ();
-			Golem1 golem1 = collider.GetComponent<Golem1> ();
-			if (comp.lifePoints == 1) {
-				if (golem1 != null) {
-					if (golem1.boss) {
-						golemCount++;
-						Debug.Log ("killed golem");
-						Debug.Log (Time.time);
+			if (!comp.damaging) {
+				Golem1 golem1 = collider.GetComponent<Golem1> ();
+				if (comp.lifePoints == 1) {
+					if (golem1 != null) {
+						if (golem1.boss) {
+							golemCount++;
+							//Debug.Log ("killed golem");
+							//Debug.Log (Time.time);
+						}
 					}
 				}
+				Vector2 moveVector = GameManager.AngleToVector (Player.instance.character.lookingAngle) * speed;
+				comp.Damage ((Vector2) transform.position - moveVector * 10, damage);
+				Destroy (gameObject);
 			}
-
-			Vector2 moveVector = GameManager.AngleToVector (Player.instance.character.lookingAngle) * speed;
-			comp.Damage ((Vector2) transform.position - moveVector * 10, damage);
 		}
 	}
 

@@ -65,12 +65,11 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -7, y: 15}
-        - {x: -13, y: 6}
+      - - {x: -10, y: 16}
+        - {x: -13, y: 8}
         - {x: -13, y: -16}
         - {x: 16, y: -16}
-        - {x: 16, y: 14}
-        - {x: 11, y: 15}
+        - {x: 16, y: 16}
     - name: obstacles4_7_1
       rect:
         serializedVersion: 2
@@ -82,12 +81,11 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -11, y: 15}
-        - {x: -16, y: 7}
+      - - {x: -15, y: 16}
+        - {x: -16, y: 12}
         - {x: -16, y: -16}
         - {x: 13, y: -16}
-        - {x: 13, y: 12}
-        - {x: 6, y: 15}
+        - {x: 13, y: 16}
     - name: obstacles4_7_2
       rect:
         serializedVersion: 2
@@ -100,10 +98,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: -13, y: 16}
-        - {x: -13, y: -11}
-        - {x: -9, y: -13}
-        - {x: 14, y: -13}
-        - {x: 16, y: -12}
+        - {x: -13, y: -9}
+        - {x: -10, y: -11}
+        - {x: 15, y: -11}
+        - {x: 16, y: -8}
         - {x: 16, y: 16}
     - name: obstacles4_7_3
       rect:
@@ -117,8 +115,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: -16, y: 16}
-        - {x: -16, y: -13}
-        - {x: 12, y: -13}
+        - {x: -16, y: -11}
         - {x: 13, y: -11}
         - {x: 13, y: 16}
     outline: []

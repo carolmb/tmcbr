@@ -27,7 +27,7 @@ public class Analog : MonoBehaviour {
 			//Debug.Log (GameManager.SubmitPosition ());
 			//Debug.Log ("center: " + center);
 			//Debug.Log (input);
-			if (input.magnitude > radius * 2 * Screen.height / 240) {
+			if (input.magnitude > radius) {
 				input = Vector2.zero;
 			} else {
 				input.Normalize ();

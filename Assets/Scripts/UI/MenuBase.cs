@@ -21,7 +21,7 @@ public class MenuBase : MonoBehaviour {
 		Invoke ("ResetSelected", 0.1f);
 	}
 
-	void ResetSelected() {
+	void ResetSelected () {
 		EventSystem.current.SetSelectedGameObject (null);
 	}
 

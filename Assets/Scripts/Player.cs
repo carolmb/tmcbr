@@ -80,7 +80,7 @@ public class Player : MonoBehaviour {
 	public Vector2 interactedPoint { get; private set; }
 
 	private void CheckInteract() {
-		if (Analog.input != Vector2.zero) {
+		if (Analog.input == Vector2.zero) {
 			if (GameManager.ClickInteractInput ()) {
 				interactedPoint = GameManager.InteractPosition ();
 			} else if (GameManager.KeyBoardInteractInput ()) {
@@ -110,7 +110,7 @@ public class Player : MonoBehaviour {
 		}
 
 		moveVector.Normalize ();
-		moveVector *= character.speed;
+		moveVector *= character.speed * 60 * Time.deltaTime;
 
 		moved = moveVector != Vector2.zero;
 
@@ -128,7 +128,7 @@ public class Player : MonoBehaviour {
 				character.TurnTo (angle);
 				CheckTransition ();
 			} else {
-				character.TurnTo(GameManager.VectorToAngle (moveVector));
+				character.TurnTo (GameManager.VectorToAngle (moveVector));
 				character.Stop ();
 			}
 		}
@@ -240,6 +240,7 @@ public class Player : MonoBehaviour {
 
 	// Atualizar interface e piscar
 	public void OnDamage () {
+		SoundManager.PlayerDamage ();
 		SaveManager.currentSave.lifePoints = character.lifePoints;
 		GameHUD.instance.UpdateLife (character.lifePoints);
 		visible = true;

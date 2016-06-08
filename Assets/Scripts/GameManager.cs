@@ -28,9 +28,9 @@ public class GameManager {
 	}
 
 	public static bool KeyBoardInteractInput () {
-		if (EventSystem.current.currentSelectedGameObject != null)
-			return false;
-		return Input.GetButtonDown("Submit");
+		//if (EventSystem.current.currentSelectedGameObject != null)
+			//return false;
+		return Input.GetButtonDown ("Submit");
 	}
 
 	public static Vector2 InteractPosition () {

@@ -118,7 +118,7 @@ public class Character : CharacterBase {
 	// Tenta se mover no dado ângulo
 	// Se conseguir, move e retorna true; se não, apenas retorna false
 	bool TryMove (float angle, float speed, bool animate) {
-		Vector2 translation = GameManager.AngleToVector (angle) * speed * 60 * Time.deltaTime;
+		Vector2 translation = GameManager.AngleToVector (angle) * speed;
 		return InstantMove (translation, animate);
 	}
 
@@ -192,10 +192,6 @@ public class Character : CharacterBase {
 
 		lifePoints = Mathf.Max (0, lifePoints - value);
 		SendMessage ("OnDamage");
-
-		if (isPlayer) {
-			SoundManager.PlayerDamage ();
-		}
 
 		// Step
 		Stop();
