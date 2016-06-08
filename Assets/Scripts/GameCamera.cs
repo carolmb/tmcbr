@@ -57,23 +57,32 @@ public class GameCamera : MonoBehaviour {
 	public bool AdjustPosition(ref Vector3 newPos) {
 		bool moved = false;
 		newPos.z = transform.position.z;
-		if (newPos.x >= maxX) {
-			newPos.x = maxX;
-		} else if (newPos.x <= minX) {
-			newPos.x = minX;
+		if (minX < maxX) {
+			if (newPos.x >= maxX) {
+				newPos.x = maxX;
+			} else if (newPos.x <= minX) {
+				newPos.x = minX;
+			} else {
+				if (transform.position.x != newPos.x)
+					moved = true;
+			}
 		} else {
-			if (transform.position.x != newPos.x)
-				moved = true;
+			newPos.x = (minX + maxX) / 2;
 		}
 
-		if (newPos.y >= maxY) {
-			newPos.y = maxY;
-		} else if (newPos.y <= minY) {
-			newPos.y = minY;
+		if (minY < maxY) {
+			if (newPos.y >= maxY) {
+				newPos.y = maxY;
+			} else if (newPos.y <= minY) {
+				newPos.y = minY;
+			} else {
+				if (transform.position.y != newPos.y)
+					moved = true;
+			}
 		} else {
-			if (transform.position.y != newPos.y)
-				moved = true;
+			newPos.y = (minY + maxY) / 2;
 		}
+
 
 		return moved;
 	}

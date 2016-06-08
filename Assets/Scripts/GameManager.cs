@@ -68,9 +68,13 @@ public class GameManager {
 	//	#if UNITY_ANDROID
 	//		point = TouchPoint ();
 	//	#else
-		point = MousePoint ();
+			point = MousePoint ();
 	//	#endif
-		return point;
+		RectTransform canvasRect = GameHUD.instance.canvas.GetComponent<RectTransform>();
+		Vector2 viewportPosition = Camera.main.ScreenToViewportPoint(point);
+		Vector2 screenPosition = new Vector2((viewportPosition.x - 0.5f) * canvasRect.sizeDelta.x,
+											(viewportPosition.y - 0.5f) * canvasRect.sizeDelta.y);
+		return screenPosition;
 	}
 
 	private static Vector2 TouchPoint () {

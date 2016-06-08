@@ -6,6 +6,7 @@ public class GameHUD : MonoBehaviour {
 
 	public static GameHUD instance;
 
+	public Canvas canvas;
 	public MainMenu mainMenu;
 	public ShopMenu shopMenu;
 	public DialogWindow dialog;

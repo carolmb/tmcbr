@@ -52,7 +52,7 @@
 				float2 worldPos = IN.screenpos * _ScreenParams.xy;
 
 				float2 playerPos = float2(_playerX, _playerY);
-				_radius *= _ScreenParams.xy;
+				_radius *= _ScreenParams.y / 240;
 
 				float d = distance(worldPos, playerPos);
 				float a = d > _radius ? exp(-(d - _radius) / _radius) : 1;

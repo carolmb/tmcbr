@@ -16,7 +16,6 @@ namespace UnityStandardAssets.ImageEffects {
 			Vector2 screenPos = Camera.main.WorldToScreenPoint (player.position);
 			material.SetFloat ("_playerX", screenPos.x);
 			material.SetFloat ("_playerY", screenPos.y);
-			material.SetFloat ("_playerY", screenPos.y);
 			Graphics.Blit (source, destination, material);
 		}
 	}
