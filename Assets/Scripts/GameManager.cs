@@ -15,7 +15,7 @@ public class GameManager {
 			return MouseInteractInput();
 	//	#endif
 	}
-
+		
 	private static bool TouchInteractInput () {
 		return !EventSystem.current.IsPointerOverGameObject (0) &&
 		Input.GetTouch (0).phase == TouchPhase.Began;
