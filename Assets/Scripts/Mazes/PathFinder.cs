@@ -32,7 +32,7 @@ public class PathFinder {
 						GridPath newPath = currentPath.AddStep (neighbour, 1);
 
 						if (neighbour == final) {
-							return newPath;		
+							return newPath;
 						}
 						queue.Enqueue (newPath.TotalCost + EstimateCost (neighbour, final), newPath);
 					}

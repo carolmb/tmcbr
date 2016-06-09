@@ -44,6 +44,8 @@ public class MazeManager : MonoBehaviour {
 	// Resgata o labirinto atual e inicializa os tiles
 	void Awake () {
 		Input.simulateMouseWithTouches = true;
+		QualitySettings.vSyncCount = 0;  // VSync must be disabled
+		Application.targetFrameRate = 30;
 
 		if (SaveManager.currentSave == null) {
 			SaveManager.NewGame ();
@@ -163,8 +165,8 @@ public class MazeManager : MonoBehaviour {
 		if (obstacles [t.x, t.y] == null) {
 			return false;
 		}
-		Vector2 center = (Vector2)TileToWorldPos (t.coordinates);
 		BoxCollider2D boxCollider = obstacles [t.x, t.y];
+		Vector2 center = (Vector2) boxCollider.transform.position - new Vector2 (0, Tile.size / 2);
 
 		float left 		= center.x - boxCollider.size.x / 2 + boxCollider.offset.x;
 		float right 	= center.x + boxCollider.size.x / 2 + boxCollider.offset.x;

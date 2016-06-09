@@ -219,7 +219,7 @@ public class Character : CharacterBase {
 		bool broke = false;
 		while (time < damageDuration) {
 			if (!broke) {
-				if (float.IsNaN(TryMove (direction, false))) {
+				if (float.IsNaN(TryMove (direction * 60 * Time.deltaTime, false))) {
 					broke = true;
 				}
 			}

@@ -70,14 +70,24 @@ public class Enemy : MonoBehaviour {
 			}
 
 			GridPath path = PathFinder.FindPath (playerTile, myTile, vision);
+			if (path == null) {
+				float best = vision + 1;
+				GridPath bestp = null;
+				foreach (Tile n in myTile.GetNeighbours4Walkeable()) {
+					path = PathFinder.FindPath (n, playerTile, vision - 1);
+					if (path != null && path.TotalCost < best) {
+						best = path.TotalCost;
+						bestp = path;
+					}
+				}
+				path = bestp;
+			}
 			if (path != null) {
 				if (path.PreviousSteps != null && path.PreviousSteps.LastStep.isWalkable) {
 					return path.PreviousSteps.LastStep;
 				} else {
 					return path.LastStep;
 				}
-			} else {
-				return null;
 			}
 		}
 		return null;
