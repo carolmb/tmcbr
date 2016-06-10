@@ -102,15 +102,15 @@ public class Player : MonoBehaviour {
 			return;
 		}
 
-		moveVector.x = Input.GetAxisRaw ("Horizontal") * inputFactor;
-		moveVector.y = Input.GetAxisRaw ("Vertical") * inputFactor;
+		moveVector.x = Input.GetAxisRaw ("Horizontal");
+		moveVector.y = Input.GetAxisRaw ("Vertical");
 
 		if (moveVector == Vector2.zero) {
 			moveVector = Analog.input;
 		}
 
 		moveVector.Normalize ();
-		moveVector *= character.speed * 60 * Time.deltaTime;
+		moveVector *= character.speed * 60 * Time.deltaTime * inputFactor;
 
 		moved = moveVector != Vector2.zero;
 

@@ -13,19 +13,19 @@ public class HallStage : ProceduralStage {
 		public NodeGraph father;
 		public List<NodeGraph> children;
 		public HallMaze maze;
-		public NodeGraph(int id, int type = 0, NodeGraph father = null){
+		public NodeGraph(int id, int type = 0, NodeGraph father = null) {
 			this.id = id;
 			this.type = type;
 			maze = null;
 			this.father = father;
-			children = new List<NodeGraph>();
+			children = new List<NodeGraph> ();
 		}
 	}
 
 	Transition entrance;
 	Transition mirrorRoom;
 
-	public HallStage(int i, Transition entrance, Transition mirrorRoom) : base(i) {
+	public HallStage (int i, Transition entrance, Transition mirrorRoom) : base (i) {
 		this.entrance = entrance;
 		this.mirrorRoom = mirrorRoom;
 		CreateMazes ();
@@ -53,7 +53,7 @@ public class HallStage : ProceduralStage {
 
 		queue.Enqueue (first);
 
-		int mazeCount = 1, maxMazeCount = 3;//Random.Range (7, 12);
+		int mazeCount = 1, maxMazeCount = Random.Range (7, 12);
 		int currentId = beginIndex + 1;
 
 		while (mazeCount < maxMazeCount) {
